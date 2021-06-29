@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import Firebase
+import QuartzCore
 
 struct SignUpView : View {
     
@@ -19,143 +20,144 @@ struct SignUpView : View {
     @State var alert = false
     @State var error = ""
     
-    var body: some View{
+    @Environment(\.presentationMode) var presentation
+    
+    var body: some View {
         
-        //ZStack(alignment: .top){
-            
-            ZStack(alignment: .topLeading) {
-                                    
+        Color.white.ignoresSafeArea()
+            .overlay(
+                ZStack(alignment: .center) {
                 VStack(alignment: .center) {
-                        
-                    
-                    GeometryReader { geo in
-                            Image("signUp")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geo.size.width, height:geo.size.height)
-                    }
-                    Spacer()
-                        
-                        Text("Log in to your account")
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .foregroundColor(self.color)
-                        
-                        TextField("Email", text: self.$email)
+
+                    Image("signUp")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                
+                    Text("Log in to your account")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(self.color)
+                    TextField("Email", text: self.$email)
                         .autocapitalization(.none)
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 4).stroke(self.email != "" ? Color("Color") : self.color,lineWidth: 2))
                         .padding(.top, 1)
+                    
+                    HStack(spacing: 15){
                         
-                        HStack(spacing: 15){
+                        VStack{
                             
-                            VStack{
+                            if self.visible{
                                 
-                                if self.visible{
-                                    
-                                    TextField("Password", text: self.$pass)
+                                TextField("Password", text: self.$pass)
                                     .autocapitalization(.none)
-                                }
-                                else{
-                                    
-                                    SecureField("Password", text: self.$pass)
+                            }
+                            else{
+                                
+                                SecureField("Password", text: self.$pass)
                                     .autocapitalization(.none)
-                                }
                             }
-                            
-                            Button(action: {
-                                
-                                self.visible.toggle()
-                                
-                            }) {
-                                
-                                Image(systemName: self.visible ? "eye.slash.fill" : "eye.fill")
-                                    .foregroundColor(self.color)
-                            }
-                            
                         }
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 4).stroke(self.pass != "" ? Color("Color") : self.color,lineWidth: 2))
-                        .padding(.top, 15)
-                        
-                        HStack(spacing: 15){
-                            
-                            VStack{
-                                
-                                if self.revisible{
-                                    
-                                    TextField("Re-enter", text: self.$repass)
-                                    .autocapitalization(.none)
-                                    
-                                }
-                                else{
-                                    
-                                    SecureField("Re-enter", text: self.$repass)
-                                    .autocapitalization(.none)
-                            
-                                }
-                            }
-                            
-                            Button(action: {
-                                
-                                self.revisible.toggle()
-                                
-                            }) {
-                                
-                                Image(systemName: self.revisible ? "eye.slash.fill" : "eye.fill")
-                                    .foregroundColor(self.color)
-                            }
-                            
-                        }
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 4).stroke(self.repass != "" ? Color("Color") : self.color,lineWidth: 2))
-                        .padding(.top, 15)
                         
                         Button(action: {
                             
-                            self.register()
+                            self.visible.toggle()
+                            
                         }) {
                             
-                            Text("Register")
-                                .foregroundColor(.white)
-                                .padding(.vertical)
-                                .frame(width: UIScreen.main.bounds.width - 50)
+                            Image(systemName: self.visible ? "eye.slash.fill" : "eye.fill")
+                                .foregroundColor(self.color)
                         }
-                        .background(Color("Color"))
-                        .cornerRadius(10)
-                        .padding(.top, 15)
                         
                     }
-                    .padding(.horizontal, 25)
-                
-                
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 4).stroke(self.pass != "" ? Color("Color") : self.color,lineWidth: 2))
+                    .padding(.top, 5)
                     
-                
-                
-        
-                //.navigationBarBackButtonHidden(true)
-            
-            
-                Button(action: {
+                    HStack(spacing: 15){
+                        
+                        VStack{
+                            
+                            if self.revisible{
+                                
+                                TextField("Re-enter", text: self.$repass)
+                                    .autocapitalization(.none)
+                                
+                            }
+                            else{
+                                
+                                SecureField("Re-enter", text: self.$repass)
+                                    .autocapitalization(.none)
+                                
+                            }
+                        }
+                        
+                        Button(action: {
+                            
+                            self.revisible.toggle()
+                            
+                        }) {
+                            
+                            Image(systemName: self.revisible ? "eye.slash.fill" : "eye.fill")
+                                .foregroundColor(self.color)
+                        }
+                        
+                    }
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 4).stroke(self.repass != "" ? Color("Color") : self.color,lineWidth: 2))
+                    .padding(.top, 5)
                     
-                    self.show.toggle()
+                    Button(action: {
+                        
+                        self.register()
+                    }) {
+                        
+                        Text("Register")
+                            .foregroundColor(.white)
+                            .padding(.vertical)
+                            .frame(width: UIScreen.main.bounds.width - 50)
+                    }
+                    .background(.pink)
+                    .cornerRadius(10)
+                    .padding(.top, 35)
+                    Spacer()
                     
-                }) {
-                    
-                    Image(systemName: "chevron.left")
-                        .font(.title)
-                        .foregroundColor(Color("Color"))
                 }
-                .padding()
+                .padding(.horizontal, 25)
+                
+//                Button(action: {
+//
+//                    self.show.toggle()
+//
+//                }) {
+//
+//                    Image(systemName: "chevron.left")
+//                        .frame(width: 30, height: 30, alignment: .topLeading)
+//                        .font(.title)
+//                        .foregroundColor(Color("Color"))
+//                }
+//                .padding()
+                
                 if self.alert {
                     Spacer()
-
                     ErrorView(alert: self.$alert, error: self.$error)
+                        .frame(width: 300, height: 250, alignment: .center)
+                        .cornerRadius(22)
+                        .opacity(0.9)
                 }
-        }
-        .navigationBarBackButtonHidden(true)
-        
-        
+            }
+            .navigationBarBackButtonHidden(true)
+                    .toolbar(content: {
+                ToolbarItem (placement: .navigationBarLeading)  {
+                   Image(systemName: "arrow.left")
+                        .foregroundColor(.pink)
+                   .onTapGesture {
+                       // code to dismiss the view
+                       self.presentation.wrappedValue.dismiss()
+                   }
+                }
+             })
+        )
     }
 
     func register() {

@@ -40,7 +40,6 @@ struct Home : View {
             VStack{
                 
                 if self.status || self.appleLogStatus || self.fbLogged{
-                    
                     Homescreen()
                 }
                 else{
@@ -96,7 +95,7 @@ struct Homescreen : View {
                 .foregroundColor(Color.black.opacity(0.7))
             Button(action: {
 
-                try! Auth.auth().signOut()
+                
                 
                 UserDefaults.standard.set(false, forKey: "status")
                 UserDefaults.standard.set(false, forKey: "appleLogStatus")
@@ -105,6 +104,8 @@ struct Homescreen : View {
                 NotificationCenter.default.post(name: NSNotification.Name("status"), object: nil)
                 NotificationCenter.default.post(name: NSNotification.Name("appleLogStatus"), object: nil)
                 NotificationCenter.default.post(name: NSNotification.Name("fbLogged"), object: nil)
+                
+                try! Auth.auth().signOut()
                 
             }) {
                 

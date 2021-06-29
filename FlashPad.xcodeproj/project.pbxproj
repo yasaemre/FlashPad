@@ -173,11 +173,11 @@
 				C67413A9268ABAEB00128E2D /* FlashPadApp.swift */,
 				C67413AA268ABAEB00128E2D /* ContentView.swift */,
 				C67413E2268ABBCC00128E2D /* LoginView.swift */,
+				C67413E8268ABC1400128E2D /* SignUpView.swift */,
 				C622151A268AF67B00139D46 /* GoogleLoginView.swift */,
 				C67413E5268ABBED00128E2D /* ScreenView.swift */,
-				C67413E8268ABC1400128E2D /* SignUpView.swift */,
-				C67413EB268ABC3200128E2D /* WalkthroughView.swift */,
 				C67413DF268ABB2800128E2D /* ErrorView.swift */,
+				C67413EB268ABC3200128E2D /* WalkthroughView.swift */,
 				C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */,
 				C67413AB268ABAEC00128E2D /* Assets.xcassets */,
 			);

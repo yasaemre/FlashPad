@@ -38,8 +38,7 @@ struct GoogleLoginView: UIViewRepresentable {
     
     func makeUIView(context: UIViewRepresentableContext<GoogleLoginView>) -> GIDSignInButton {
         let view = GIDSignInButton()
-        GIDSignIn.sharedInstance().delegate = context.coordinator
-        GIDSignIn.sharedInstance()?.presentingViewController = UIApplication.shared.windows.last?.rootViewController
+        
         return view
     }
     

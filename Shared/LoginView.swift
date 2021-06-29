@@ -8,6 +8,7 @@ import SwiftUI
 import Firebase
 import AuthenticationServices
 import FBSDKLoginKit
+import GoogleSignIn
 
 struct LoginView: View {
     
@@ -23,6 +24,7 @@ struct LoginView: View {
     
     @AppStorage("fbLogged") var fbLogged = false
     @AppStorage("fbEmail") var fbEmail = ""
+    @State var manager = LoginManager()
     
     var body: some View {
 
@@ -39,24 +41,6 @@ struct LoginView: View {
 
 //                Button(action: {
 //                    print("Apple button was tapped")
-//                    SignInWithAppleButton { request in
-//                        //requesting parameters from Apple login
-//                        loginData.nonce = loginData.randomNonceString(length: 10)
-//                        request.requestedScopes = [.email, .fullName]
-//                        request.nonce = loginData.sha256(loginData.nonce)
-//                    } onCompletion: { result in
-//                        switch result {
-//                        case .success(let user):
-//                            print("Success")
-//                            guard let credential = user.credential as? ASAuthorizationAppleIDCredential else {
-//                                print("error with Firabase")
-//                                return
-//                            }
-//                            loginData.authenticate(credential: credential)
-//                        case .failure(let error):
-//                            print(error.localizedDescription)
-//                        }
-//                    }
 //                }) {
 //                        HStack(spacing: 40) {
 //                            Image("apple")
@@ -93,56 +77,88 @@ struct LoginView: View {
                     }
                 }
                 .frame(width: 300, height: 50, alignment: .center)
-                .clipShape(Capsule())
+                .background(Color.white)
+                .foregroundColor(.black)
+                .cornerRadius(25)
                 
                 
-//                Button(action: {
-//                    print("Google button was tapped")
-//                }) {
-//                    HStack(spacing: 40) {
-//                        Image("google")
-//                            .resizable()
-//                            .frame(width: 32.0, height: 32.0)
-//
-//                            Text("Continue with Google")
-//                                .fontWeight(.semibold)
-//                                .multilineTextAlignment(.trailing)
-//                    }
-//
-//                }
-                GoogleLoginView()
-                    .frame(width: 300, height: 50, alignment: .center)
-                    .background(Color.white)
-                    .foregroundColor(.black)
-                    .border(Color.white, width: 2)
-                    .cornerRadius(25)
-                
+                Button(action: {
+                    print("Google button was tapped")
+                    GIDSignIn.sharedInstance()?.presentingViewController = UIApplication.shared.windows.last?.rootViewController
+                    GIDSignIn.sharedInstance()?.signIn()
+                }) {
+                    HStack(spacing: 10) {
+                        Image("google")
+                            .resizable()
+                            .frame(width: 20.0, height: 20.0)
 
-                FBLoginView()
+                            Text("Continue w/ Google")
+                                .fontWeight(.semibold)
+                                .multilineTextAlignment(.trailing)
+                    }
+
+                }
                     .frame(width: 300, height: 50, alignment: .center)
                     .background(Color.white)
                     .foregroundColor(.black)
-                    .cornerRadius(25)
-                
-//                Button(action: {
-//                    print("Facebook button was tapped")
-//                }) {
-//                    HStack(spacing: 40) {
-//                        Image("fb")
-//                            .resizable()
-//                            .frame(width: 32.0, height: 32.0)
-//
-//                            Text("Continue with Apple")
-//                                .fontWeight(.semibold)
-//                                .multilineTextAlignment(.trailing)
-//                    }
-//
-//                }
-//                .frame(width: 300, height: 50, alignment: .center)
-//                .background(Color.white)
-//                .foregroundColor(.black)
-//                .border(Color.white, width: 2)
-//                .cornerRadius(25)
+                    .clipShape(Capsule())
+
+                Button(action: {
+                    print("Facebook button was tapped")
+                    if fbLogged {
+                        manager.logOut()
+                        fbEmail = ""
+                        fbLogged = false
+                    } else {
+                        manager.logIn(permissions: ["public_profile", "email"], from: nil) { result, error in
+                            if !result!.isCancelled {
+                                if error != nil {
+                                    print(error!.localizedDescription)
+                                    return
+                                }
+                                if AccessToken.current != nil {
+                                    let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+                                    
+                                    Auth.auth().signIn(with: credential) { res, err in
+                                        if err != nil {
+                                            print(err!.localizedDescription)
+                                            return
+                                        }
+                                        print("success fb login")
+                                    }
+                                }
+                                
+                                self.fbLogged = true
+                                let req = GraphRequest(graphPath: "me", parameters: ["fields": "email"])
+                                
+                                req.start { _, res, _ in
+                                    //it will return as dict
+                                    guard let profileData = res as? [String: Any] else {
+                                        return
+                                    }
+                                    fbEmail = profileData["email"] as! String
+                                }
+                            }
+                        }
+                    }
+                    
+                }) {
+                    HStack(spacing: 10) {
+                        Image("fb")
+                            .resizable()
+                            .frame(width: 20.0, height: 20.0)
+
+                            Text("Continue w/ Facebook")
+                                .fontWeight(.semibold)
+                                .multilineTextAlignment(.trailing)
+                    }
+
+                }
+                .frame(width: 300, height: 50, alignment: .center)
+                .background(Color.white)
+                .foregroundColor(.black)
+                .border(Color.white, width: 2)
+                .cornerRadius(25)
                 
 //                Text("OR")
 //                    .fontWeight(.semibold)
@@ -227,7 +243,6 @@ struct LoginView: View {
             }
                     .padding(.horizontal, 25)
                 
-                
             )
         if self.alert {
             ErrorView(alert: self.$alert, error: self.$error)
@@ -237,9 +252,7 @@ struct LoginView: View {
         }
     
     }
-    func continueWithApple() {
-        print("dsf")
-    }
+
     
     func verify() {
         if self.email != "" && self.pass != "" {
