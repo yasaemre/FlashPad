@@ -7,7 +7,7 @@
 import SwiftUI
 import Firebase
 import AuthenticationServices
-//import FBSDKLoginKit
+import FBSDKLoginKit
 
 struct LoginView: View {
     
@@ -288,8 +288,8 @@ struct FBLoginView: UIViewRepresentable {
 
     func makeUIView(context: UIViewRepresentableContext<FBLoginView>) -> FBLoginButton {
         let button = FBLoginButton()
-        button.delegate = context.coordinator
         button.permissions = ["email", "public_profile"]
+        button.delegate = context.coordinator
         return button
     }
     
@@ -299,6 +299,7 @@ struct FBLoginView: UIViewRepresentable {
     
     class Coordinator: NSObject, LoginButtonDelegate {
         @AppStorage("fbLogged") var fbLogged = false
+        @AppStorage("fbEmail") var fbEmail = ""
 
         func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
             if error != nil {

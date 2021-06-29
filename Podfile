@@ -7,6 +7,7 @@ target 'FlashPad (iOS)' do
 
   # Pods for FlashPad (iOS)
 	pod 'Firebase/Auth'
+	pod 'FBSDKLoginKit'
 
 end
 
@@ -15,5 +16,6 @@ target 'FlashPad (macOS)' do
   use_frameworks!
 
   # Pods for FlashPad (macOS)
+
 
 end

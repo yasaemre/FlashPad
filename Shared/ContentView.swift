@@ -48,8 +48,6 @@ struct Home : View {
                     ZStack{
                         
                         NavigationLink(destination: SignUpView(show: self.$show), isActive: self.$show) {
-                            
-                            Text("Facebook email: \(fbEmail)")
                         }
                         .hidden()
                         
@@ -76,9 +74,7 @@ struct Home : View {
                                     
                                     self.fbLogged = UserDefaults.standard.value(forKey: "fbLogged") as? Bool ?? false
                                 }
-
-                    
-                    self.fbLogged = UserDefaults.standard.value(forKey: "fbLogged") as? Bool ?? false
+                print("\(fbEmail)")
                 }
 
         }
@@ -91,18 +87,13 @@ struct Homescreen : View {
     @AppStorage("fbLogged") var fbLogged = false
     @AppStorage("fbEmail") var fbEmail = ""
     
-
     var body: some View{
         
         VStack{
-            
-
             Text(fbLogged ? "FB email: \(fbEmail)" : "Other type of login successfully")
-
                 .font(.title)
                 .fontWeight(.bold)
                 .foregroundColor(Color.black.opacity(0.7))
-            
             Button(action: {
 
                 try! Auth.auth().signOut()
