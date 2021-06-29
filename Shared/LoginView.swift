@@ -96,25 +96,26 @@ struct LoginView: View {
                 .clipShape(Capsule())
                 
                 
-                Button(action: {
-                    print("Google button was tapped")
-                }) {
-                    HStack(spacing: 40) {
-                        Image("google")
-                            .resizable()
-                            .frame(width: 32.0, height: 32.0)
-                            
-                            Text("Continue with Google")
-                                .fontWeight(.semibold)
-                                .multilineTextAlignment(.trailing)
-                    }
-                    
-                }
-                .frame(width: 300, height: 50, alignment: .center)
-                .background(Color.white)
-                .foregroundColor(.black)
-                .border(Color.white, width: 2)
-                .cornerRadius(25)
+//                Button(action: {
+//                    print("Google button was tapped")
+//                }) {
+//                    HStack(spacing: 40) {
+//                        Image("google")
+//                            .resizable()
+//                            .frame(width: 32.0, height: 32.0)
+//
+//                            Text("Continue with Google")
+//                                .fontWeight(.semibold)
+//                                .multilineTextAlignment(.trailing)
+//                    }
+//
+//                }
+                GoogleLoginView()
+                    .frame(width: 300, height: 50, alignment: .center)
+                    .background(Color.white)
+                    .foregroundColor(.black)
+                    .border(Color.white, width: 2)
+                    .cornerRadius(25)
                 
 
                 FBLoginView()

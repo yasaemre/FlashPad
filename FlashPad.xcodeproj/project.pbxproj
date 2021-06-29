@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		087DFC0A86E01D73443403E7 /* Pods_FlashPad__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C001D30FFD5961535C533F5 /* Pods_FlashPad__iOS_.framework */; };
 		74DD7C0CEEC204363C609EEC /* Pods_FlashPad__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F063BDFB06F350AA0582D8DE /* Pods_FlashPad__macOS_.framework */; };
+		C622151B268AF67B00139D46 /* GoogleLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C622151A268AF67B00139D46 /* GoogleLoginView.swift */; };
 		C6243192268AD79400C01F24 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6243191268AD79400C01F24 /* LoginViewModel.swift */; };
 		C6243195268AD7D600C01F24 /* ColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6243194268AD7D600C01F24 /* ColorExtention.swift */; };
 		C6243196268AD7D600C01F24 /* ColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6243194268AD7D600C01F24 /* ColorExtention.swift */; };
@@ -57,6 +58,7 @@
 		33717D2F4C2015FDC8F6AE57 /* Pods-FlashPad (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashPad (iOS).release.xcconfig"; path = "Target Support Files/Pods-FlashPad (iOS)/Pods-FlashPad (iOS).release.xcconfig"; sourceTree = "<group>"; };
 		5B8F4DD70226C0250BCA8CF3 /* Pods-FlashPad (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashPad (macOS).release.xcconfig"; path = "Target Support Files/Pods-FlashPad (macOS)/Pods-FlashPad (macOS).release.xcconfig"; sourceTree = "<group>"; };
 		7C001D30FFD5961535C533F5 /* Pods_FlashPad__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashPad__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C622151A268AF67B00139D46 /* GoogleLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLoginView.swift; sourceTree = "<group>"; };
 		C6243191268AD79400C01F24 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C6243194268AD7D600C01F24 /* ColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtention.swift; sourceTree = "<group>"; };
 		C67413A9268ABAEB00128E2D /* FlashPadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashPadApp.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				C67413A9268ABAEB00128E2D /* FlashPadApp.swift */,
 				C67413AA268ABAEB00128E2D /* ContentView.swift */,
 				C67413E2268ABBCC00128E2D /* LoginView.swift */,
+				C622151A268AF67B00139D46 /* GoogleLoginView.swift */,
 				C67413E5268ABBED00128E2D /* ScreenView.swift */,
 				C67413E8268ABC1400128E2D /* SignUpView.swift */,
 				C67413EB268ABC3200128E2D /* WalkthroughView.swift */,
@@ -220,6 +223,7 @@
 				C67413AD268ABAEC00128E2D /* Frameworks */,
 				C67413AE268ABAEC00128E2D /* Resources */,
 				202AF215A6906EB4B36D4EEB /* [CP] Embed Pods Frameworks */,
+				9788BA8AAD7A1BB36120A9C0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -384,6 +388,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlashPad (iOS)/Pods-FlashPad (iOS)-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9788BA8AAD7A1BB36120A9C0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlashPad (iOS)/Pods-FlashPad (iOS)-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlashPad (iOS)/Pods-FlashPad (iOS)-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlashPad (iOS)/Pods-FlashPad (iOS)-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9F6B994DD9130EBEF29EABCF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -436,6 +457,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6243195268AD7D600C01F24 /* ColorExtention.swift in Sources */,
+				C622151B268AF67B00139D46 /* GoogleLoginView.swift in Sources */,
 				C67413CD268ABAEC00128E2D /* ContentView.swift in Sources */,
 				C67413E0268ABB2800128E2D /* ErrorView.swift in Sources */,
 				C67413E3268ABBCC00128E2D /* LoginView.swift in Sources */,
