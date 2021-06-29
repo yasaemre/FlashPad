@@ -32,6 +32,9 @@ struct Home : View {
     
     @AppStorage("fbLogged") var fbLogged = false
     @AppStorage("fbEmail") var fbEmail = ""
+    
+    @AppStorage("googleLogged") var googleLogged = false
+    @AppStorage("googleEmail") var googleEmail = ""
 
     var body: some View{
         
@@ -39,7 +42,7 @@ struct Home : View {
             
             VStack{
                 
-                if self.status || self.appleLogStatus || self.fbLogged{
+                if self.status || self.appleLogStatus || self.fbLogged || self.googleLogged {
                     Homescreen()
                 }
                 else{
@@ -73,6 +76,11 @@ struct Home : View {
                                     
                                     self.fbLogged = UserDefaults.standard.value(forKey: "fbLogged") as? Bool ?? false
                                 }
+                
+                NotificationCenter.default.addObserver(forName: NSNotification.Name("googleLogged"), object: nil, queue: .main) { (_) in
+                                    
+                                    self.fbLogged = UserDefaults.standard.value(forKey: "googleLogged") as? Bool ?? false
+                                }
                 print("\(fbEmail)")
                 }
 
@@ -86,6 +94,9 @@ struct Homescreen : View {
     @AppStorage("fbLogged") var fbLogged = false
     @AppStorage("fbEmail") var fbEmail = ""
     
+    @AppStorage("googleLogged") var googleLogged = false
+    @AppStorage("googleEmail") var googleEmail = ""
+    
     var body: some View{
         
         VStack{
@@ -95,15 +106,15 @@ struct Homescreen : View {
                 .foregroundColor(Color.black.opacity(0.7))
             Button(action: {
 
-                
-                
                 UserDefaults.standard.set(false, forKey: "status")
                 UserDefaults.standard.set(false, forKey: "appleLogStatus")
                 UserDefaults.standard.set(false, forKey: "fbLogged")
+                UserDefaults.standard.set(false, forKey: "googleLogged")
 
                 NotificationCenter.default.post(name: NSNotification.Name("status"), object: nil)
                 NotificationCenter.default.post(name: NSNotification.Name("appleLogStatus"), object: nil)
                 NotificationCenter.default.post(name: NSNotification.Name("fbLogged"), object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name("googleLogged"), object: nil)
                 
                 try! Auth.auth().signOut()
                 

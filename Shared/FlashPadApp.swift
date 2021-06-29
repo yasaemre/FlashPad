@@ -24,6 +24,9 @@ struct FlashCardsApp: App {
 
 class AppDelegate: NSObject, UIApplicationDelegate, GIDSignInDelegate {
     
+    
+    @AppStorage("googleLogged") var googleLogged = false
+    @AppStorage("googleEmail") var googleEmail = ""
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
          // ...
          if let error = error {
@@ -34,12 +37,15 @@ class AppDelegate: NSObject, UIApplicationDelegate, GIDSignInDelegate {
          guard let authentication = user.authentication else { return }
          let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                            accessToken: authentication.accessToken)
-         Auth.auth().signIn(with: credential) { (authResult, error) in
+        Auth.auth().signIn(with: credential) { [self] (authResult, error) in
            if let error = error {
              print(error.localizedDescription)
              return
            }
-           print("signIn result: " + authResult!.user.email!)
+             self.googleLogged = true
+             self.googleEmail = authResult!.user.email!
+               
+             print("google email \(self.googleEmail), googleLogged: \(self.googleLogged) ")
          }
            
        }

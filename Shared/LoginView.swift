@@ -24,6 +24,10 @@ struct LoginView: View {
     
     @AppStorage("fbLogged") var fbLogged = false
     @AppStorage("fbEmail") var fbEmail = ""
+    
+    @AppStorage("googleLogged") var googleLogged = false
+    @AppStorage("googleEmail") var googleEmail = ""
+    
     @State var manager = LoginManager()
     
     var body: some View {
@@ -68,7 +72,7 @@ struct LoginView: View {
                     case .success(let user):
                         print("Success")
                         guard let credential = user.credential as? ASAuthorizationAppleIDCredential else {
-                            print("error with Firabase")
+                            print("sign with Apple")
                             return
                         }
                         loginData.authenticate(credential: credential)
@@ -84,8 +88,10 @@ struct LoginView: View {
                 
                 Button(action: {
                     print("Google button was tapped")
+                    
                     GIDSignIn.sharedInstance()?.presentingViewController = UIApplication.shared.windows.last?.rootViewController
                     GIDSignIn.sharedInstance()?.signIn()
+                    
                 }) {
                     HStack(spacing: 10) {
                         Image("google")
