@@ -3,10 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		087DFC0A86E01D73443403E7 /* Pods_FlashPad__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C001D30FFD5961535C533F5 /* Pods_FlashPad__iOS_.framework */; };
+		74DD7C0CEEC204363C609EEC /* Pods_FlashPad__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F063BDFB06F350AA0582D8DE /* Pods_FlashPad__macOS_.framework */; };
+		C6243192268AD79400C01F24 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6243191268AD79400C01F24 /* LoginViewModel.swift */; };
+		C6243195268AD7D600C01F24 /* ColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6243194268AD7D600C01F24 /* ColorExtention.swift */; };
+		C6243196268AD7D600C01F24 /* ColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6243194268AD7D600C01F24 /* ColorExtention.swift */; };
 		C67413C0268ABAEC00128E2D /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413BF268ABAEC00128E2D /* Tests_iOS.swift */; };
 		C67413CA268ABAEC00128E2D /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413C9268ABAEC00128E2D /* Tests_macOS.swift */; };
 		C67413CB268ABAEC00128E2D /* FlashPadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413A9268ABAEB00128E2D /* FlashPadApp.swift */; };
@@ -15,6 +20,18 @@
 		C67413CE268ABAEC00128E2D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413AA268ABAEB00128E2D /* ContentView.swift */; };
 		C67413CF268ABAEC00128E2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C67413AB268ABAEC00128E2D /* Assets.xcassets */; };
 		C67413D0268ABAEC00128E2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C67413AB268ABAEC00128E2D /* Assets.xcassets */; };
+		C67413E0268ABB2800128E2D /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413DF268ABB2800128E2D /* ErrorView.swift */; };
+		C67413E1268ABB2800128E2D /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413DF268ABB2800128E2D /* ErrorView.swift */; };
+		C67413E3268ABBCC00128E2D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413E2268ABBCC00128E2D /* LoginView.swift */; };
+		C67413E4268ABBCC00128E2D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413E2268ABBCC00128E2D /* LoginView.swift */; };
+		C67413E6268ABBED00128E2D /* ScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413E5268ABBED00128E2D /* ScreenView.swift */; };
+		C67413E7268ABBED00128E2D /* ScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413E5268ABBED00128E2D /* ScreenView.swift */; };
+		C67413E9268ABC1400128E2D /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413E8268ABC1400128E2D /* SignUpView.swift */; };
+		C67413EA268ABC1400128E2D /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413E8268ABC1400128E2D /* SignUpView.swift */; };
+		C67413EC268ABC3200128E2D /* WalkthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413EB268ABC3200128E2D /* WalkthroughView.swift */; };
+		C67413ED268ABC3200128E2D /* WalkthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413EB268ABC3200128E2D /* WalkthroughView.swift */; };
+		C6F4134D268AD65000ACBC78 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */; };
+		C6F4134E268AD65000ACBC78 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +52,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		222E659EEE60C373EA710628 /* Pods-FlashPad (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashPad (iOS).debug.xcconfig"; path = "Target Support Files/Pods-FlashPad (iOS)/Pods-FlashPad (iOS).debug.xcconfig"; sourceTree = "<group>"; };
+		2A79DED9D2D61A4EBE37F4FF /* Pods-FlashPad (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashPad (macOS).debug.xcconfig"; path = "Target Support Files/Pods-FlashPad (macOS)/Pods-FlashPad (macOS).debug.xcconfig"; sourceTree = "<group>"; };
+		33717D2F4C2015FDC8F6AE57 /* Pods-FlashPad (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashPad (iOS).release.xcconfig"; path = "Target Support Files/Pods-FlashPad (iOS)/Pods-FlashPad (iOS).release.xcconfig"; sourceTree = "<group>"; };
+		5B8F4DD70226C0250BCA8CF3 /* Pods-FlashPad (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashPad (macOS).release.xcconfig"; path = "Target Support Files/Pods-FlashPad (macOS)/Pods-FlashPad (macOS).release.xcconfig"; sourceTree = "<group>"; };
+		7C001D30FFD5961535C533F5 /* Pods_FlashPad__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashPad__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6243191268AD79400C01F24 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		C6243194268AD7D600C01F24 /* ColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtention.swift; sourceTree = "<group>"; };
 		C67413A9268ABAEB00128E2D /* FlashPadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashPadApp.swift; sourceTree = "<group>"; };
 		C67413AA268ABAEB00128E2D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C67413AB268ABAEC00128E2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -44,6 +68,13 @@
 		C67413BF268ABAEC00128E2D /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		C67413C5268ABAEC00128E2D /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67413C9268ABAEC00128E2D /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		C67413DF268ABB2800128E2D /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		C67413E2268ABBCC00128E2D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		C67413E5268ABBED00128E2D /* ScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenView.swift; sourceTree = "<group>"; };
+		C67413E8268ABC1400128E2D /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		C67413EB268ABC3200128E2D /* WalkthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughView.swift; sourceTree = "<group>"; };
+		C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F063BDFB06F350AA0582D8DE /* Pods_FlashPad__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashPad__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				087DFC0A86E01D73443403E7 /* Pods_FlashPad__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74DD7C0CEEC204363C609EEC /* Pods_FlashPad__macOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,13 +111,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B7918BB45E077F8EC594A39C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7C001D30FFD5961535C533F5 /* Pods_FlashPad__iOS_.framework */,
+				F063BDFB06F350AA0582D8DE /* Pods_FlashPad__macOS_.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BF530075DD9A072047B23994 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				222E659EEE60C373EA710628 /* Pods-FlashPad (iOS).debug.xcconfig */,
+				33717D2F4C2015FDC8F6AE57 /* Pods-FlashPad (iOS).release.xcconfig */,
+				2A79DED9D2D61A4EBE37F4FF /* Pods-FlashPad (macOS).debug.xcconfig */,
+				5B8F4DD70226C0250BCA8CF3 /* Pods-FlashPad (macOS).release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C6243190268AD75800C01F24 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				C6243191268AD79400C01F24 /* LoginViewModel.swift */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
+		C6243193268AD7AC00C01F24 /* Extention */ = {
+			isa = PBXGroup;
+			children = (
+				C6243194268AD7D600C01F24 /* ColorExtention.swift */,
+			);
+			path = Extention;
+			sourceTree = "<group>";
+		};
 		C67413A3268ABAEB00128E2D = {
 			isa = PBXGroup;
 			children = (
+				C6243193268AD7AC00C01F24 /* Extention */,
+				C6243190268AD75800C01F24 /* LoginView */,
 				C67413A8268ABAEB00128E2D /* Shared */,
 				C67413BE268ABAEC00128E2D /* Tests iOS */,
 				C67413C8268ABAEC00128E2D /* Tests macOS */,
 				C67413B1268ABAEC00128E2D /* Products */,
+				BF530075DD9A072047B23994 /* Pods */,
+				B7918BB45E077F8EC594A39C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,7 +165,13 @@
 			isa = PBXGroup;
 			children = (
 				C67413A9268ABAEB00128E2D /* FlashPadApp.swift */,
+				C67413E2268ABBCC00128E2D /* LoginView.swift */,
+				C67413E5268ABBED00128E2D /* ScreenView.swift */,
+				C67413E8268ABC1400128E2D /* SignUpView.swift */,
+				C67413EB268ABC3200128E2D /* WalkthroughView.swift */,
 				C67413AA268ABAEB00128E2D /* ContentView.swift */,
+				C67413DF268ABB2800128E2D /* ErrorView.swift */,
+				C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */,
 				C67413AB268ABAEC00128E2D /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -132,9 +211,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C67413D3268ABAEC00128E2D /* Build configuration list for PBXNativeTarget "FlashPad (iOS)" */;
 			buildPhases = (
+				9F6B994DD9130EBEF29EABCF /* [CP] Check Pods Manifest.lock */,
 				C67413AC268ABAEC00128E2D /* Sources */,
 				C67413AD268ABAEC00128E2D /* Frameworks */,
 				C67413AE268ABAEC00128E2D /* Resources */,
+				202AF215A6906EB4B36D4EEB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,6 +230,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C67413D6268ABAEC00128E2D /* Build configuration list for PBXNativeTarget "FlashPad (macOS)" */;
 			buildPhases = (
+				B678EDE13E539070F3FB42F3 /* [CP] Check Pods Manifest.lock */,
 				C67413B2268ABAEC00128E2D /* Sources */,
 				C67413B3268ABAEC00128E2D /* Frameworks */,
 				C67413B4268ABAEC00128E2D /* Resources */,
@@ -225,7 +307,7 @@
 				};
 			};
 			buildConfigurationList = C67413A7268ABAEB00128E2D /* Build configuration list for PBXProject "FlashPad" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -251,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C67413CF268ABAEC00128E2D /* Assets.xcassets in Resources */,
+				C6F4134D268AD65000ACBC78 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C67413D0268ABAEC00128E2D /* Assets.xcassets in Resources */,
+				C6F4134E268AD65000ACBC78 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,13 +362,84 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		202AF215A6906EB4B36D4EEB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlashPad (iOS)/Pods-FlashPad (iOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlashPad (iOS)/Pods-FlashPad (iOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlashPad (iOS)/Pods-FlashPad (iOS)-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F6B994DD9130EBEF29EABCF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FlashPad (iOS)-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B678EDE13E539070F3FB42F3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FlashPad (macOS)-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C67413AC268ABAEC00128E2D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6243195268AD7D600C01F24 /* ColorExtention.swift in Sources */,
 				C67413CD268ABAEC00128E2D /* ContentView.swift in Sources */,
+				C67413E0268ABB2800128E2D /* ErrorView.swift in Sources */,
+				C67413E3268ABBCC00128E2D /* LoginView.swift in Sources */,
 				C67413CB268ABAEC00128E2D /* FlashPadApp.swift in Sources */,
+				C6243192268AD79400C01F24 /* LoginViewModel.swift in Sources */,
+				C67413EC268ABC3200128E2D /* WalkthroughView.swift in Sources */,
+				C67413E9268ABC1400128E2D /* SignUpView.swift in Sources */,
+				C67413E6268ABBED00128E2D /* ScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,7 +448,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C67413CE268ABAEC00128E2D /* ContentView.swift in Sources */,
+				C67413E1268ABB2800128E2D /* ErrorView.swift in Sources */,
+				C67413E4268ABBCC00128E2D /* LoginView.swift in Sources */,
 				C67413CC268ABAEC00128E2D /* FlashPadApp.swift in Sources */,
+				C6243196268AD7D600C01F24 /* ColorExtention.swift in Sources */,
+				C67413ED268ABC3200128E2D /* WalkthroughView.swift in Sources */,
+				C67413EA268ABC1400128E2D /* SignUpView.swift in Sources */,
+				C67413E7268ABBED00128E2D /* ScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +603,7 @@
 		};
 		C67413D4268ABAEC00128E2D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 222E659EEE60C373EA710628 /* Pods-FlashPad (iOS).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -455,7 +617,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -472,6 +634,7 @@
 		};
 		C67413D5268ABAEC00128E2D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 33717D2F4C2015FDC8F6AE57 /* Pods-FlashPad (iOS).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -485,7 +648,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -503,6 +666,7 @@
 		};
 		C67413D7268ABAEC00128E2D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A79DED9D2D61A4EBE37F4FF /* Pods-FlashPad (macOS).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -532,6 +696,7 @@
 		};
 		C67413D8268ABAEC00128E2D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B8F4DD70226C0250BCA8CF3 /* Pods-FlashPad (macOS).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
