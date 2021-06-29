@@ -74,6 +74,7 @@
 		C67413E8268ABC1400128E2D /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C67413EB268ABC3200128E2D /* WalkthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughView.swift; sourceTree = "<group>"; };
 		C6D50CD0268AE8F200A60A7F /* FlashPad--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "FlashPad--iOS--Info.plist"; sourceTree = "<group>"; };
+		C6D50CD1268AF0FA00A60A7F /* FlashPad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlashPad.entitlements; sourceTree = "<group>"; };
 		C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F063BDFB06F350AA0582D8DE /* Pods_FlashPad__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashPad__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -151,6 +152,7 @@
 		C67413A3268ABAEB00128E2D = {
 			isa = PBXGroup;
 			children = (
+				C6D50CD1268AF0FA00A60A7F /* FlashPad.entitlements */,
 				C6D50CD0268AE8F200A60A7F /* FlashPad--iOS--Info.plist */,
 				C6243193268AD7AC00C01F24 /* Extention */,
 				C6243190268AD75800C01F24 /* LoginView */,
@@ -609,6 +611,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FlashPad.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5DG8S4P5ZL;
@@ -644,6 +647,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FlashPad.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5DG8S4P5ZL;
