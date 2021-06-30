@@ -77,6 +77,6 @@ struct ScreenView: View {
 
 struct ScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        ScreenView(image: "dsfds", title: "Wilcomen", detail: "hjkdsf asdf;das fdsf s; fasd")
+        ScreenView(image: "deck", title: "Welcome", detail: "You can create on a deck including words you want to study on Mac or iPhone. By doing so, your decks will be always updated through iCloud.")
     }
 }

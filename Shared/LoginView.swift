@@ -20,7 +20,7 @@ struct LoginView: View {
     @State var alert = false
     @State var error = ""
     
-    @StateObject var loginData = LoginViewModel()
+    @StateObject var loginData = AppleLoginViewModel()
     
     @AppStorage("fbLogged") var fbLogged = false
     @AppStorage("fbEmail") var fbEmail = ""

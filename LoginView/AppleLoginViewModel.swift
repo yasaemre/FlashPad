@@ -9,7 +9,7 @@ import CryptoKit
 import AuthenticationServices
 import Firebase
 
-class LoginViewModel: ObservableObject {
+class AppleLoginViewModel: ObservableObject {
     @Published var nonce = ""
     @AppStorage("appleLogStatus") var appleLogStatus = false
     
@@ -89,7 +89,7 @@ class LoginViewModel: ObservableObject {
 
 //struct LoginViewModel_Previews: PreviewProvider {
 //    static var previews: some View {
-//        LoginViewModel()
+//        AppleLoginViewModel()
 //    }
 //}
 

@@ -30,7 +30,7 @@ struct SignUpView : View {
                 VStack(alignment: .center) {
 
                     Image("signUp")
-                        .resizable()
+                        .frame(minWidth: 50, idealWidth: 100, maxWidth: 200, minHeight: 25, idealHeight: 50, maxHeight: 100, alignment: .center)
                         .aspectRatio(contentMode: .fit)
                 
                     Text("Log in to your account")
@@ -120,23 +120,11 @@ struct SignUpView : View {
                     .background(.pink)
                     .cornerRadius(10)
                     .padding(.top, 35)
-                    Spacer()
                     
                 }
                 .padding(.horizontal, 25)
+                Spacer()
                 
-//                Button(action: {
-//
-//                    self.show.toggle()
-//
-//                }) {
-//
-//                    Image(systemName: "chevron.left")
-//                        .frame(width: 30, height: 30, alignment: .topLeading)
-//                        .font(.title)
-//                        .foregroundColor(Color("Color"))
-//                }
-//                .padding()
                 
                 if self.alert {
                     Spacer()

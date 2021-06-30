@@ -6,6 +6,9 @@
 //
 import SwiftUI
 
+
+//total pages
+var totalPages = 4
 struct WalkthroughView:View {
     @AppStorage("currentPage") var currentPage = 1
     
@@ -74,8 +77,7 @@ struct WalkthroughView:View {
 
 
 
-//total pages
-var totalPages = 4
+
 struct WalkthroughView_Previews: PreviewProvider {
     static var previews: some View {
         WalkthroughView()
