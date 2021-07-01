@@ -7,8 +7,6 @@
 import SwiftUI
 import Firebase
 
-
-
 struct ContentView: View {
     @AppStorage("currentPage") var currentPage = 1
 

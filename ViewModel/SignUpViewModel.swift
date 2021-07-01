@@ -9,8 +9,7 @@ import Foundation
 import Firebase
 import SwiftUI
 
-class SignUpViewModel: ObservableObject {
-    
+class SignUpViewModel: ObservableObject {    
  
     @Published var pass = ""
     @Published var repass = ""
