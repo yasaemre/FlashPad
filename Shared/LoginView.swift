@@ -225,10 +225,11 @@ struct LoginView: View {
                     .cornerRadius(25)
                 }
                 
-                Text("Continue without sign in")
-                    .fontWeight(.light)
-                    .foregroundColor(.white)
-                 
+                NavigationLink(destination: HomeScreenView()) {
+                    Text("Continue without sign in")
+                        .fontWeight(.light)
+                        .foregroundColor(.white)
+                }
                 
             }
                     .padding(.horizontal, 25)
