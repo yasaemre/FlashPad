@@ -11,7 +11,7 @@ import Firebase
 
 class AppleLoginViewModel: ObservableObject {
     @Published var nonce = ""
-    @AppStorage("appleLogStatus") var appleLogStatus = false
+    @AppStorage("logged") var logged = false
     
     func authenticate(credential: ASAuthorizationAppleIDCredential) {
         //getting token
@@ -37,7 +37,7 @@ class AppleLoginViewModel: ObservableObject {
             //User successfully logged into Firebase
             print("Logged in Success")
             withAnimation(.easeOut) {
-                self.appleLogStatus = true
+                self.logged = true
             }
         }
     }
@@ -86,10 +86,4 @@ class AppleLoginViewModel: ObservableObject {
       return result
     }
 }
-
-//struct LoginViewModel_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AppleLoginViewModel()
-//    }
-//}
 

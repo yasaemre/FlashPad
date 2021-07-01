@@ -10,15 +10,11 @@ import SwiftUI
 struct HomeView : View {
     
     @State var show = false
-    @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
+    //@State var logged = UserDefaults.standard.value(forKey: "logged") as? Bool ?? false
     
-    @AppStorage("appleLogStatus") var appleLogStatus = false
-    
-    @AppStorage("fbLogged") var fbLogged = false
-    @AppStorage("fbEmail") var fbEmail = ""
-    
-    @AppStorage("googleLogged") var googleLogged = false
-    @AppStorage("googleEmail") var googleEmail = ""
+    @AppStorage("logged") var logged = true
+    @AppStorage("loggedViaEmail") var loggedViaEmail = ""
+
 
     var body: some View{
         
@@ -26,7 +22,7 @@ struct HomeView : View {
             
             VStack{
                 
-                if self.status || self.appleLogStatus || self.fbLogged || self.googleLogged {
+                if self.logged {
                     HomeScreenView()
                 }
                 else{
@@ -46,26 +42,12 @@ struct HomeView : View {
             .navigationBarBackButtonHidden(true)
             .onAppear {
                 
-                NotificationCenter.default.addObserver(forName: NSNotification.Name("status"), object: nil, queue: .main) { (_) in
+                NotificationCenter.default.addObserver(forName: NSNotification.Name("logged"), object: nil, queue: .main) { (_) in
                     
-                    self.status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
+                    self.logged = UserDefaults.standard.value(forKey: "logged") as? Bool ?? false
                 }
                 
-                NotificationCenter.default.addObserver(forName: NSNotification.Name("appleLogStatus"), object: nil, queue: .main) { (_) in
-                    
-                    self.appleLogStatus = UserDefaults.standard.value(forKey: "appleLogStatus") as? Bool ?? false
-                }
-                
-                NotificationCenter.default.addObserver(forName: NSNotification.Name("fbLogged"), object: nil, queue: .main) { (_) in
-                                    
-                                    self.fbLogged = UserDefaults.standard.value(forKey: "fbLogged") as? Bool ?? false
-                                }
-                
-                NotificationCenter.default.addObserver(forName: NSNotification.Name("googleLogged"), object: nil, queue: .main) { (_) in
-                                    
-                                    self.googleLogged = UserDefaults.standard.value(forKey: "googleLogged") as? Bool ?? false
-                                }
-                print("\(fbEmail)")
+                print("\(loggedViaEmail)")
                 }
 
         }

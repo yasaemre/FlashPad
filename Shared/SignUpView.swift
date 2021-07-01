@@ -11,7 +11,7 @@ import QuartzCore
 struct SignUpView : View {
     
     @State var color = Color.black.opacity(0.7)
-    @State var email = ""
+  //  @State var email = ""
     @State var pass = ""
     @State var repass = ""
     @State var visible = false
@@ -22,25 +22,29 @@ struct SignUpView : View {
     
     @Environment(\.presentationMode) var presentation
     
+    @AppStorage("logged") var logged = false
+    @AppStorage("loggedViaEmail") var loggedViaEmail = ""
+    
     var body: some View {
         
         Color.white.ignoresSafeArea()
             .overlay(
                 ZStack(alignment: .center) {
                 VStack(alignment: .center) {
-
                     Image("signUp")
                         .frame(minWidth: 50, idealWidth: 100, maxWidth: 200, minHeight: 25, idealHeight: 50, maxHeight: 100, alignment: .center)
+                        .padding(.top, 75)
                         .aspectRatio(contentMode: .fit)
                 
                     Text("Log in to your account")
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundColor(self.color)
-                    TextField("Email", text: self.$email)
+                        .padding(.top, 100)
+                    TextField("Email", text: self.$loggedViaEmail)
                         .autocapitalization(.none)
                         .padding()
-                        .background(RoundedRectangle(cornerRadius: 4).stroke(self.email != "" ? Color("Color") : self.color,lineWidth: 2))
+                        .background(RoundedRectangle(cornerRadius: 4).stroke(self.loggedViaEmail != "" ? Color("Color") : self.color,lineWidth: 2))
                         .padding(.top, 1)
                     
                     HStack(spacing: 15){
@@ -113,13 +117,16 @@ struct SignUpView : View {
                     }) {
                         
                         Text("Register")
+                            .fontWeight(.semibold)
+                            .multilineTextAlignment(.trailing)
                             .foregroundColor(.white)
                             .padding(.vertical)
                             .frame(width: UIScreen.main.bounds.width - 50)
                     }
-                    .background(.pink)
+                    .background(Color.init(hex: "6C63FF"))
                     .cornerRadius(10)
                     .padding(.top, 35)
+                    .padding(.bottom, 100)
                     
                 }
                 .padding(.horizontal, 25)
@@ -138,7 +145,7 @@ struct SignUpView : View {
                     .toolbar(content: {
                 ToolbarItem (placement: .navigationBarLeading)  {
                    Image(systemName: "arrow.left")
-                        .foregroundColor(.pink)
+                        .foregroundColor(Color.init(hex: "6C63FF"))
                    .onTapGesture {
                        // code to dismiss the view
                        self.presentation.wrappedValue.dismiss()
@@ -149,9 +156,9 @@ struct SignUpView : View {
     }
 
     func register() {
-        if !self.email.isEmpty {
+        if !self.loggedViaEmail.isEmpty {
             if self.pass == self.repass {
-                Auth.auth().createUser(withEmail: self.email, password: self.pass) { result, error in
+                Auth.auth().createUser(withEmail: self.loggedViaEmail, password: self.pass) { result, error in
                     if error != nil {
                         self.error = error!.localizedDescription
                         self.alert.toggle()
@@ -159,8 +166,8 @@ struct SignUpView : View {
                     }
                     
                     print("success")
-                    UserDefaults.standard.set(true, forKey: "status")
-                    NotificationCenter.default.post(name: NSNotification.Name("status"), object: nil)
+                    UserDefaults.standard.set(true, forKey: "logged")
+                    NotificationCenter.default.post(name: NSNotification.Name("logged"), object: nil)
                 }
             } else {
                 self.error = "Password mismatch"
@@ -176,7 +183,9 @@ struct SignUpView : View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView(show: .constant(false))
+        Group {
+            SignUpView(show: .constant(false))
+        }
     }
 }
 

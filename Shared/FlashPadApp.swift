@@ -25,8 +25,8 @@ struct FlashCardsApp: App {
 class AppDelegate: NSObject, UIApplicationDelegate, GIDSignInDelegate {
     
     
-    @AppStorage("googleLogged") var googleLogged = false
-    @AppStorage("googleEmail") var googleEmail = ""
+    @AppStorage("logged") var logged = false
+    @AppStorage("loggedViaEmail") var loggedViaEmail = ""
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
          // ...
          if let error = error {
@@ -42,10 +42,10 @@ class AppDelegate: NSObject, UIApplicationDelegate, GIDSignInDelegate {
              print(error.localizedDescription)
              return
            }
-             self.googleLogged = true
-             self.googleEmail = authResult!.user.email!
+             self.logged = true
+             self.loggedViaEmail = authResult!.user.email!
                
-             print("google email \(self.googleEmail), googleLogged: \(self.googleLogged) ")
+             print("google email \(self.loggedViaEmail), googleLogged: \(self.logged) ")
          }
            
        }

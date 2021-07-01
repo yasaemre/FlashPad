@@ -14,7 +14,7 @@ struct ContentView: View {
 
     private var walkthrough = WalkthroughView()
     @State var show = false
-    @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
+    @State var logged = UserDefaults.standard.value(forKey: "logged") as? Bool ?? false
     //@State var appleLogStatus = UserDefaults.standard.value(forKey: "appleLogStatus") as? Bool ?? false
     var body: some View {
         if currentPage > totalPages {

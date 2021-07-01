@@ -141,12 +141,12 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		C6243190268AD75800C01F24 /* LoginView */ = {
+		C6243190268AD75800C01F24 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				C6243191268AD79400C01F24 /* AppleLoginViewModel.swift */,
 			);
-			path = LoginView;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		C6243193268AD7AC00C01F24 /* Extention */ = {
@@ -163,7 +163,7 @@
 				C6D50CD1268AF0FA00A60A7F /* FlashPad.entitlements */,
 				C6D50CD0268AE8F200A60A7F /* FlashPad--iOS--Info.plist */,
 				C6243193268AD7AC00C01F24 /* Extention */,
-				C6243190268AD75800C01F24 /* LoginView */,
+				C6243190268AD75800C01F24 /* ViewModel */,
 				C67413A8268ABAEB00128E2D /* Shared */,
 				C67413BE268ABAEC00128E2D /* Tests iOS */,
 				C67413C8268ABAEC00128E2D /* Tests macOS */,
@@ -177,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				C67413A9268ABAEB00128E2D /* FlashPadApp.swift */,
+				C67413E5268ABBED00128E2D /* ScreenView.swift */,
 				C67413EB268ABC3200128E2D /* WalkthroughView.swift */,
 				C67413AA268ABAEB00128E2D /* ContentView.swift */,
 				C6F6B80D268CF59400A3D9C9 /* HomeView.swift */,
@@ -184,7 +185,6 @@
 				C67413E8268ABC1400128E2D /* SignUpView.swift */,
 				C622151A268AF67B00139D46 /* GoogleLoginView.swift */,
 				C6F6B80A268CF4BC00A3D9C9 /* HomeScreenView.swift */,
-				C67413E5268ABBED00128E2D /* ScreenView.swift */,
 				C67413DF268ABB2800128E2D /* ErrorView.swift */,
 				C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */,
 				C67413AB268ABAEC00128E2D /* Assets.xcassets */,
