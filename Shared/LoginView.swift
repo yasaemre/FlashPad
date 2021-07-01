@@ -22,7 +22,6 @@ struct LoginView: View {
     
     @StateObject var loginData = AppleLoginViewModel()
     
-    
     @AppStorage("logged") var logged = false
     @AppStorage("loggedViaEmail") var loggedViaEmail = ""
     

@@ -1,6 +1,6 @@
 //
 //  SignUpView.swift
-//  FlashCards
+//  FlashPad
 //
 //  Created by Emre Yasa on 6/18/21.
 //
@@ -11,19 +11,16 @@ import QuartzCore
 struct SignUpView : View {
     
     @State var color = Color.black.opacity(0.7)
-  //  @State var email = ""
-    @State var pass = ""
-    @State var repass = ""
     @State var visible = false
     @State var revisible = false
     @Binding var show : Bool
-    @State var alert = false
-    @State var error = ""
-    
+
     @Environment(\.presentationMode) var presentation
     
     @AppStorage("logged") var logged = false
     @AppStorage("loggedViaEmail") var loggedViaEmail = ""
+    @ObservedObject var signUpVM = SignUpViewModel()
+    
     
     var body: some View {
         
@@ -41,10 +38,10 @@ struct SignUpView : View {
                         .fontWeight(.bold)
                         .foregroundColor(self.color)
                         .padding(.top, 100)
-                    TextField("Email", text: self.$loggedViaEmail)
+                    TextField("Email", text: self.signUpVM.$loggedViaEmail)
                         .autocapitalization(.none)
                         .padding()
-                        .background(RoundedRectangle(cornerRadius: 4).stroke(self.loggedViaEmail != "" ? Color("Color") : self.color,lineWidth: 2))
+                        .background(RoundedRectangle(cornerRadius: 4).stroke(self.signUpVM.loggedViaEmail != "" ? Color("Color") : self.color,lineWidth: 2))
                         .padding(.top, 1)
                     
                     HStack(spacing: 15){
@@ -53,12 +50,12 @@ struct SignUpView : View {
                             
                             if self.visible{
                                 
-                                TextField("Password", text: self.$pass)
+                                TextField("Password", text: self.$signUpVM.pass)
                                     .autocapitalization(.none)
                             }
                             else{
                                 
-                                SecureField("Password", text: self.$pass)
+                                SecureField("Password", text: self.$signUpVM.pass)
                                     .autocapitalization(.none)
                             }
                         }
@@ -75,7 +72,7 @@ struct SignUpView : View {
                         
                     }
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 4).stroke(self.pass != "" ? Color("Color") : self.color,lineWidth: 2))
+                    .background(RoundedRectangle(cornerRadius: 4).stroke(self.signUpVM.pass != "" ? Color("Color") : self.color,lineWidth: 2))
                     .padding(.top, 5)
                     
                     HStack(spacing: 15){
@@ -84,13 +81,13 @@ struct SignUpView : View {
                             
                             if self.revisible{
                                 
-                                TextField("Re-enter", text: self.$repass)
+                                TextField("Re-enter", text: self.$signUpVM.repass)
                                     .autocapitalization(.none)
                                 
                             }
                             else{
                                 
-                                SecureField("Re-enter", text: self.$repass)
+                                SecureField("Re-enter", text: self.$signUpVM.repass)
                                     .autocapitalization(.none)
                                 
                             }
@@ -108,12 +105,12 @@ struct SignUpView : View {
                         
                     }
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 4).stroke(self.repass != "" ? Color("Color") : self.color,lineWidth: 2))
+                    .background(RoundedRectangle(cornerRadius: 4).stroke(self.signUpVM.repass != "" ? Color("Color") : self.color,lineWidth: 2))
                     .padding(.top, 5)
                     
                     Button(action: {
                         
-                        self.register()
+                        signUpVM.register()
                     }) {
                         
                         Text("Register")
@@ -133,9 +130,9 @@ struct SignUpView : View {
                 Spacer()
                 
                 
-                if self.alert {
+                if self.signUpVM.alert {
                     Spacer()
-                    ErrorView(alert: self.$alert, error: self.$error)
+                    ErrorView(alert: self.$signUpVM.alert, error: self.$signUpVM.error)
                         .frame(width: 300, height: 250, alignment: .center)
                         .cornerRadius(22)
                         .opacity(0.9)
@@ -153,30 +150,6 @@ struct SignUpView : View {
                 }
              })
         )
-    }
-
-    func register() {
-        if !self.loggedViaEmail.isEmpty {
-            if self.pass == self.repass {
-                Auth.auth().createUser(withEmail: self.loggedViaEmail, password: self.pass) { result, error in
-                    if error != nil {
-                        self.error = error!.localizedDescription
-                        self.alert.toggle()
-                        return
-                    }
-                    
-                    print("success")
-                    UserDefaults.standard.set(true, forKey: "logged")
-                    NotificationCenter.default.post(name: NSNotification.Name("logged"), object: nil)
-                }
-            } else {
-                self.error = "Password mismatch"
-                self.alert.toggle()
-            }
-        } else {
-            self.error = "Please fill the all contents properly"
-            self.alert.toggle()
-        }
     }
     
 }
