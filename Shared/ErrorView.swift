@@ -14,9 +14,9 @@ struct ErrorView: View {
     
     var body: some View{
         
-        GeometryReader{_ in
+        GeometryReader{ _ in
             
-            VStack{
+            VStack(){
                 
                 HStack{
                     
@@ -33,6 +33,7 @@ struct ErrorView: View {
                 .foregroundColor(self.color)
                 .padding(.top)
                 .padding(.horizontal, 25)
+                .lineLimit(nil)
                 
                 Button(action: {
                     
@@ -51,7 +52,7 @@ struct ErrorView: View {
                 
             }
             .padding(.vertical, 25)
-            .frame(width: UIScreen.main.bounds.width - 70)
+            //.frame(width: UIScreen.main.bounds.width - 70)
             .background(Color.white)
             .cornerRadius(15)
         }
@@ -61,7 +62,7 @@ struct ErrorView: View {
 
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorView(alert: .constant(false), error: .constant("Error"))
+        ErrorView(alert: .constant(false), error: .constant("There is no user recor corresponding to this identifier with this email and password"))
     }
 }
 

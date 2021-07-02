@@ -236,9 +236,7 @@ struct LoginView: View {
             )
         if self.loginVM.alert {
             ErrorView(alert: self.$loginVM.alert, error: self.$loginVM.error)
-                .font(.system(size: 14))
-                .frame(width: 300, height: 150, alignment: .center)
-                .opacity(0.9)
+                
         }
     
     }

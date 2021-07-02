@@ -133,9 +133,6 @@ struct SignUpView : View {
                 if self.signUpVM.alert {
                     Spacer()
                     ErrorView(alert: self.$signUpVM.alert, error: self.$signUpVM.error)
-                        .frame(width: 300, height: 250, alignment: .center)
-                        .cornerRadius(22)
-                        .opacity(0.9)
                 }
             }
             .navigationBarBackButtonHidden(true)
