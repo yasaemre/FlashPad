@@ -28,11 +28,12 @@ struct SignUpView : View {
             .overlay(
                 ZStack(alignment: .center) {
                 VStack(alignment: .center) {
-                    Image("signUp")
-                        .frame(minWidth: 50, idealWidth: 100, maxWidth: 200, minHeight: 25, idealHeight: 50, maxHeight: 100, alignment: .center)
-                        .padding(.top, 75)
-                        .aspectRatio(contentMode: .fit)
-                
+                    GeometryReader { geo in
+                        Image("signup")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: geo.size.width, height:geo.size.height)
+                    }
                     Text("Log in to your account")
                         .font(.title)
                         .fontWeight(.bold)
