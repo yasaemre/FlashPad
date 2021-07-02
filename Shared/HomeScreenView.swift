@@ -11,8 +11,8 @@ import Firebase
 struct HomeScreenView : View {
     
     var body: some View{
-        
-        LogoutButtonView()
+        TabBarView()
+        //LogoutButtonView()
     }
 }
 

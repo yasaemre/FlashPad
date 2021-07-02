@@ -13,6 +13,8 @@
 		C6243192268AD79400C01F24 /* AppleLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6243191268AD79400C01F24 /* AppleLoginViewModel.swift */; };
 		C6243195268AD7D600C01F24 /* ColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6243194268AD7D600C01F24 /* ColorExtention.swift */; };
 		C6243196268AD7D600C01F24 /* ColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6243194268AD7D600C01F24 /* ColorExtention.swift */; };
+		C6289094268F924B005EAE7F /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6289093268F924B005EAE7F /* TabBarView.swift */; };
+		C6289095268F924B005EAE7F /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6289093268F924B005EAE7F /* TabBarView.swift */; };
 		C67413C0268ABAEC00128E2D /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413BF268ABAEC00128E2D /* Tests_iOS.swift */; };
 		C67413CA268ABAEC00128E2D /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413C9268ABAEC00128E2D /* Tests_macOS.swift */; };
 		C67413CB268ABAEC00128E2D /* FlashPadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413A9268ABAEB00128E2D /* FlashPadApp.swift */; };
@@ -71,6 +73,7 @@
 		C622151A268AF67B00139D46 /* GoogleLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLoginView.swift; sourceTree = "<group>"; };
 		C6243191268AD79400C01F24 /* AppleLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginViewModel.swift; sourceTree = "<group>"; };
 		C6243194268AD7D600C01F24 /* ColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtention.swift; sourceTree = "<group>"; };
+		C6289093268F924B005EAE7F /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		C67413A9268ABAEB00128E2D /* FlashPadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashPadApp.swift; sourceTree = "<group>"; };
 		C67413AA268ABAEB00128E2D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C67413AB268ABAEC00128E2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -196,6 +199,7 @@
 				C67413E8268ABC1400128E2D /* SignUpView.swift */,
 				C622151A268AF67B00139D46 /* GoogleLoginView.swift */,
 				C6F6B80A268CF4BC00A3D9C9 /* HomeScreenView.swift */,
+				C6289093268F924B005EAE7F /* TabBarView.swift */,
 				C6849533268E36A3003BC08C /* LogoutButtonView.swift */,
 				C67413DF268ABB2800128E2D /* ErrorView.swift */,
 				C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */,
@@ -478,6 +482,7 @@
 			files = (
 				C6243195268AD7D600C01F24 /* ColorExtention.swift in Sources */,
 				C622151B268AF67B00139D46 /* GoogleLoginView.swift in Sources */,
+				C6289094268F924B005EAE7F /* TabBarView.swift in Sources */,
 				C67413CD268ABAEC00128E2D /* ContentView.swift in Sources */,
 				C67413E0268ABB2800128E2D /* ErrorView.swift in Sources */,
 				C67413E3268ABBCC00128E2D /* LoginView.swift in Sources */,
@@ -500,6 +505,7 @@
 			files = (
 				C67413CE268ABAEC00128E2D /* ContentView.swift in Sources */,
 				C67413E1268ABB2800128E2D /* ErrorView.swift in Sources */,
+				C6289095268F924B005EAE7F /* TabBarView.swift in Sources */,
 				C67413E4268ABBCC00128E2D /* LoginView.swift in Sources */,
 				C6F6B80F268CF59400A3D9C9 /* HomeView.swift in Sources */,
 				C6F6B80C268CF4BC00A3D9C9 /* HomeScreenView.swift in Sources */,
