@@ -12,7 +12,8 @@ import Firebase
 class AppleLoginViewModel: ObservableObject {
     @Published var nonce = ""
     @AppStorage("logged") var logged = false
-    
+    @AppStorage("loggedViaEmail") var loggedViaEmail = ""
+
     func authenticate(credential: ASAuthorizationAppleIDCredential) {
         //getting token
         guard let token = credential.identityToken else {
@@ -37,7 +38,9 @@ class AppleLoginViewModel: ObservableObject {
             //User successfully logged into Firebase
             print("Logged in Success")
             withAnimation(.easeOut) {
+                self.loggedViaEmail = (result?.user.email)!
                 self.logged = true
+                
             }
         }
     }
