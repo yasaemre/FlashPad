@@ -21,7 +21,7 @@ struct LoginView: View {
     @State var error = ""
     
     @StateObject var loginData = AppleLoginViewModel()
-    
+    @ObservedObject var loginVM = LoginViewModel()
     @AppStorage("logged") var logged = false
     @AppStorage("loggedViaEmail") var loggedViaEmail = ""
     
@@ -163,10 +163,10 @@ struct LoginView: View {
                     
                     VStack {
                         if self.isVisible {
-                            TextField("Password", text: self.$pass)
+                            TextField("Password", text: self.$loginVM.pass)
                                 .autocapitalization(.none)
                         } else {
-                            SecureField("Password", text: self.$pass)
+                            SecureField("Password", text: self.$loginVM.pass)
                                 .autocapitalization(.none)
                         }
                     }
@@ -187,7 +187,7 @@ struct LoginView: View {
                     Spacer()
                     
                     Button(action: {
-                        self.reset()
+                        loginVM.reset()
                     }) {
                         Text("Forget password")
                             .fontWeight(.bold)
@@ -199,7 +199,7 @@ struct LoginView: View {
                     
                     Button(action: {
                         print("Login button was tapped")
-                        self.verify()
+                        loginVM.verify()
                     }) {
                         Text("Login")
                             .fontWeight(.semibold)
@@ -234,51 +234,13 @@ struct LoginView: View {
                     .padding(.horizontal, 25)
                 
             )
-        if self.alert {
-            ErrorView(alert: self.$alert, error: self.$error)
+        if self.loginVM.alert {
+            ErrorView(alert: self.$loginVM.alert, error: self.$loginVM.error)
                 .font(.system(size: 14))
                 .frame(width: 300, height: 150, alignment: .center)
                 .opacity(0.9)
         }
     
-    }
-
-    
-    func verify() {
-        if self.loggedViaEmail != "" && self.pass != "" {
-            Auth.auth().signIn(withEmail: self.loggedViaEmail, password: self.pass) { res, error in
-                if error != nil {
-                    self.error = error!.localizedDescription
-                    self.alert.toggle()
-                    return
-                }
-                UserDefaults.standard.set(true, forKey: "logged")
-                NotificationCenter.default.post(name: NSNotification.Name("logged"), object: nil)
-            }
-        } else {
-            self.error = "Please fill all the contents properly"
-            self.alert.toggle()
-        }
-        
-    }
-    
-    func reset() {
-        if self.loggedViaEmail != "" {
-            Auth.auth().sendPasswordReset(withEmail: self.loggedViaEmail) { error in
-                if let error = error {
-                    self.error = error.localizedDescription
-                    self.alert.toggle()
-                    return
-                }
-                
-                self.error = "RESET"
-                self.alert.toggle()
-            }
-        } else {
-            self.error = "Email ID is empty"
-            self.alert.toggle()
-        }
-        
     }
 
 }

@@ -12,7 +12,7 @@ struct HomeView : View {
     @State var show = false
     //@State var logged = UserDefaults.standard.value(forKey: "logged") as? Bool ?? false
     
-    @AppStorage("logged") var logged = true
+    @AppStorage("logged") var logged = false
     @AppStorage("loggedViaEmail") var loggedViaEmail = ""
 
 
