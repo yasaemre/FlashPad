@@ -50,7 +50,7 @@ struct TabBarView: View {
                                 .frame(width: 35, height: 35)
                                 //.foregroundColor(selectedTab == image ? getColor(image: image) : Color.gray)
                                 .padding(selectedTab == image ? 15 : 0)
-                                .background(Color.white.opacity(selectedTab == image ? 1 : 0)).clipShape(Circle())
+                                .background(Color.white.opacity(selectedTab == image ? 5 : 0)).clipShape(Circle())
                                 .matchedGeometryEffect(id: image, in: animation)
                                 .offset(x: selectedTab == image ? (reader.frame(in: .global).minX - reader.frame(in: .global).midX) : 0,y: selectedTab == image ? -60 : 0)
                         })
@@ -85,12 +85,6 @@ struct TabBarView: View {
         default:
             return Color.blue
         }
-    }
-}
-
-struct TabBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabBarView()
     }
 }
 
@@ -129,5 +123,11 @@ struct CustomShape:Shape {
             path.addCurve(to: to2, control1: control3, control2: control4)
             
         }
+    }
+}
+
+struct TabBarView_Previews: PreviewProvider {
+    static var previews: some View {
+        TabBarView()
     }
 }
