@@ -228,6 +228,7 @@ struct LoginView: View {
                     Text("Continue without sign in")
                         .fontWeight(.light)
                         .foregroundColor(.white)
+                        .hoverEffect()
                 }
                 
             }

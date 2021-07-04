@@ -57,6 +57,7 @@ struct ErrorView: View {
             .cornerRadius(15)
         }
         .background(Color.black.opacity(0.35).edgesIgnoringSafeArea(.all))
+        
     }
 }
 
