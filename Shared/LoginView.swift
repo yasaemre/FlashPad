@@ -28,18 +28,18 @@ struct LoginView: View {
     @State var manager = LoginManager()
     
     var body: some View {
-
-            Color.init(hex: "C8D4F5").ignoresSafeArea()
+        
+        Color.init(hex: "C8D4F5").ignoresSafeArea()
             .overlay(
                 VStack(alignment: .center, spacing: 20) {
-                    GeometryReader { geo in
-                        Image("welcome")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: geo.size.width, height:geo.size.height)
-                    }
-                    //Spacer()
-            
+                GeometryReader { geo in
+                    Image("welcome")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geo.size.width, height:geo.size.height)
+                }
+                //Spacer()
+                
                 SignInWithAppleButton { request in
                     //requesting parameters from Apple login
                     loginData.nonce = loginData.randomNonceString(length: 10)
@@ -75,19 +75,19 @@ struct LoginView: View {
                             .resizable()
                             .frame(width: 17.0, height: 17.0)
                             .padding(.leading, 0)
-
-                            Text("Sign in with Google")
-                                .fontWeight(.semibold)
-                                .font(.system(size: 18))
-                                .multilineTextAlignment(.trailing)
+                        
+                        Text("Sign in with Google")
+                            .fontWeight(.semibold)
+                            .font(.system(size: 18))
+                            .multilineTextAlignment(.trailing)
                     }
-
+                    
                 }
-                    .frame(width: 300, height: 50, alignment: .center)
-                    .background(Color.white)
-                    .foregroundColor(.black)
-                    .clipShape(Capsule())
-
+                .frame(width: 300, height: 50, alignment: .center)
+                .background(Color.white)
+                .foregroundColor(.black)
+                .clipShape(Capsule())
+                
                 Button(action: {
                     print("Facebook button was tapped")
                     if logged {
@@ -133,14 +133,14 @@ struct LoginView: View {
                             .resizable()
                             .frame(width: 15.0, height: 15.0)
                             .padding(.leading, 20)
-
-                            Text("Sign in with Facebook")
-                                .fontWeight(.semibold)
-                                .font(.system(size: 18))
-                                .padding(.leading, 0)
-                                .multilineTextAlignment(.trailing)
+                        
+                        Text("Sign in with Facebook")
+                            .fontWeight(.semibold)
+                            .font(.system(size: 18))
+                            .padding(.leading, 0)
+                            .multilineTextAlignment(.trailing)
                     }
-
+                    
                 }
                 .frame(width: 300, height: 50, alignment: .center)
                 .background(Color.white)
@@ -176,12 +176,12 @@ struct LoginView: View {
                     }) {
                         Image(systemName: self.isVisible ? "eye.slash.fill" : "eye.fill").foregroundColor(self.color)
                     }
-
+                    
                 }
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 4).stroke(self.pass != "" ? Color("Color") : self.color, lineWidth: 2))
                 //.padding(.top)
-                   
+                
                 HStack {
                     
                     Spacer()
@@ -237,11 +237,11 @@ struct LoginView: View {
             )
         if self.loginVM.alert {
             ErrorView(alert: self.$loginVM.alert, error: self.$loginVM.error)
-                
+            
         }
-    
+        
     }
-
+    
 }
 
 struct LoginView_Previews: PreviewProvider {
