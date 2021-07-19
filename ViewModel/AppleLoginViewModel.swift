@@ -34,7 +34,6 @@ class AppleLoginViewModel: ObservableObject {
                 print(error.localizedDescription)
                 return
             }
-            
             //User successfully logged into Firebase
             print("Logged in Success")
             withAnimation(.easeOut) {
