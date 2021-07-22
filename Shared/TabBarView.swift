@@ -121,7 +121,6 @@ struct CustomShape:Shape {
             
             path.addCurve(to: to1, control1: control1, control2: control2)
             path.addCurve(to: to2, control1: control3, control2: control4)
-            
         }
     }
 }
