@@ -16,8 +16,14 @@ struct TabBarView: View {
     @State var selectedTab = "home"
     @State var xAxis:CGFloat = 0
     @Namespace var animation
+    
+    
+    @StateObject var pageData = PageViewModel()
+    let columns = Array(repeating: GridItem(.flexible(), spacing:45), count: 2)
+    
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
+           
             TabView(selection: $selectedTab) {
                 Color.yellow
                     .ignoresSafeArea(.all, edges: .all)
@@ -32,6 +38,29 @@ struct TabBarView: View {
                     .ignoresSafeArea(.all, edges: .all)
                     .tag("about")
             }
+            
+            
+            ScrollView {
+                //Tabs With Pages...
+                
+                LazyVGrid(columns: columns, spacing: 20, content: {
+                    ForEach(pageData.urls) { page in
+                        WebView(url: page.url)
+                            .frame(height: 200)
+                            .cornerRadius(15)
+                            .onDrag ({
+                                //setting Current Page...
+                                pageData.currentPage = page
+                                
+                               //Sending ID for Sample..
+                                return NSItemProvider(contentsOf: URL(string: "\(page.id)")!)!
+                                
+                            })
+                            .onDrop(of: [.url], delegate: DropViewDelegate(page: page, pageData: pageData))
+                    }
+                })
+            }
+            .frame(width: .infinity, height: .infinity, alignment: .center)
             
             //Custom tabbar
             HStack(spacing: 0) {
@@ -64,12 +93,31 @@ struct TabBarView: View {
                     if image != tabs.last { Spacer(minLength: 0)}
                 }
             }
+            
             .padding(.horizontal, 30)
             .padding(.vertical)
-            .background(Color.white.clipShape(CustomShape(xAxis: xAxis)))
+            
+            .background(Color.cyan.clipShape(CustomShape(xAxis: xAxis)))
+            //.cornerRadius(1)
             .padding(.horizontal)
             //Bottom edge
             .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
+            HStack {
+                Spacer()
+                Button(action: {
+                    print("Tapped")
+                }, label: {
+                    Image(systemName: "plus")
+                        .font(.largeTitle)
+                        .frame(width: 70, height: 70)
+                        .background(Color.blue)
+                        .clipShape(Circle())
+                        .foregroundColor(.white)
+                })
+            }
+                .padding(.vertical, 140)
+                .padding(.horizontal, 32)
+            
         }
         .ignoresSafeArea(.all, edges: .bottom)
     }
