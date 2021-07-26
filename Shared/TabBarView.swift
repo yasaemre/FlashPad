@@ -88,7 +88,6 @@ struct TabBarView: View {
     }
 }
 
-
 var tabs = ["home", "donate", "liked", "about"]
 
 //Curve..
