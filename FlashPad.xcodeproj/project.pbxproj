@@ -39,6 +39,10 @@
 		C6849538268E385C003BC08C /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6849536268E385C003BC08C /* SignUpViewModel.swift */; };
 		C6AC1384268F6FEA005815F3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC1383268F6FEA005815F3 /* LoginViewModel.swift */; };
 		C6AC1385268F6FEA005815F3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC1383268F6FEA005815F3 /* LoginViewModel.swift */; };
+		C6BB306126AF0A9F00B6710C /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BB306026AF0A9F00B6710C /* Page.swift */; };
+		C6BB306326AF0B0700B6710C /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BB306226AF0B0700B6710C /* PageViewModel.swift */; };
+		C6BB306526AF0EB900B6710C /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BB306426AF0EB900B6710C /* WebView.swift */; };
+		C6BB306726AF120900B6710C /* DropViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BB306626AF120900B6710C /* DropViewDelegate.swift */; };
 		C6F4134D268AD65000ACBC78 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */; };
 		C6F4134E268AD65000ACBC78 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */; };
 		C6F6B80B268CF4BC00A3D9C9 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F6B80A268CF4BC00A3D9C9 /* HomeScreenView.swift */; };
@@ -91,6 +95,10 @@
 		C6849533268E36A3003BC08C /* LogoutButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutButtonView.swift; sourceTree = "<group>"; };
 		C6849536268E385C003BC08C /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		C6AC1383268F6FEA005815F3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		C6BB306026AF0A9F00B6710C /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		C6BB306226AF0B0700B6710C /* PageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewModel.swift; sourceTree = "<group>"; };
+		C6BB306426AF0EB900B6710C /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		C6BB306626AF120900B6710C /* DropViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewDelegate.swift; sourceTree = "<group>"; };
 		C6D50CD0268AE8F200A60A7F /* FlashPad--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "FlashPad--iOS--Info.plist"; sourceTree = "<group>"; };
 		C6D50CD1268AF0FA00A60A7F /* FlashPad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlashPad.entitlements; sourceTree = "<group>"; };
 		C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -159,6 +167,8 @@
 				C6243191268AD79400C01F24 /* AppleLoginViewModel.swift */,
 				C6849536268E385C003BC08C /* SignUpViewModel.swift */,
 				C6AC1383268F6FEA005815F3 /* LoginViewModel.swift */,
+				C6BB306226AF0B0700B6710C /* PageViewModel.swift */,
+				C6BB306626AF120900B6710C /* DropViewDelegate.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -176,6 +186,7 @@
 			children = (
 				C6D50CD1268AF0FA00A60A7F /* FlashPad.entitlements */,
 				C6D50CD0268AE8F200A60A7F /* FlashPad--iOS--Info.plist */,
+				C6BB305F26AF0A4E00B6710C /* Model */,
 				C6243193268AD7AC00C01F24 /* Extention */,
 				C6243190268AD75800C01F24 /* ViewModel */,
 				C67413A8268ABAEB00128E2D /* Shared */,
@@ -202,6 +213,7 @@
 				C6289093268F924B005EAE7F /* TabBarView.swift */,
 				C6849533268E36A3003BC08C /* LogoutButtonView.swift */,
 				C67413DF268ABB2800128E2D /* ErrorView.swift */,
+				C6BB306426AF0EB900B6710C /* WebView.swift */,
 				C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */,
 				C67413AB268ABAEC00128E2D /* Assets.xcassets */,
 			);
@@ -233,6 +245,14 @@
 				C67413C9268ABAEC00128E2D /* Tests_macOS.swift */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		C6BB305F26AF0A4E00B6710C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C6BB306026AF0A9F00B6710C /* Page.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -485,12 +505,16 @@
 				C6289094268F924B005EAE7F /* TabBarView.swift in Sources */,
 				C67413CD268ABAEC00128E2D /* ContentView.swift in Sources */,
 				C67413E0268ABB2800128E2D /* ErrorView.swift in Sources */,
+				C6BB306126AF0A9F00B6710C /* Page.swift in Sources */,
 				C67413E3268ABBCC00128E2D /* LoginView.swift in Sources */,
+				C6BB306326AF0B0700B6710C /* PageViewModel.swift in Sources */,
+				C6BB306726AF120900B6710C /* DropViewDelegate.swift in Sources */,
 				C67413CB268ABAEC00128E2D /* FlashPadApp.swift in Sources */,
 				C6849537268E385C003BC08C /* SignUpViewModel.swift in Sources */,
 				C6243192268AD79400C01F24 /* AppleLoginViewModel.swift in Sources */,
 				C6AC1384268F6FEA005815F3 /* LoginViewModel.swift in Sources */,
 				C6F6B80B268CF4BC00A3D9C9 /* HomeScreenView.swift in Sources */,
+				C6BB306526AF0EB900B6710C /* WebView.swift in Sources */,
 				C67413EC268ABC3200128E2D /* WalkthroughView.swift in Sources */,
 				C6849534268E36A4003BC08C /* LogoutButtonView.swift in Sources */,
 				C6F6B80E268CF59400A3D9C9 /* HomeView.swift in Sources */,
