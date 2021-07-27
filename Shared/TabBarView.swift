@@ -25,10 +25,53 @@ struct TabBarView: View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
            
             TabView(selection: $selectedTab) {
+                ZStack {
+                    Color.black
+                        .ignoresSafeArea(.all, edges: .all)
+                    ScrollView {
+                        //Tabs With Pages...
+                        
+                        LazyVGrid(columns: columns, spacing: 20, content: {
+                            ForEach(pageData.urls) { page in
+                                WebView(url: page.url)
+                                    .frame(height: 200)
+                                    .cornerRadius(15)
+                                    .onDrag ({
+                                        //setting Current Page...
+                                        pageData.currentPage = page
+                                        
+                                        //Sending ID for Sample..
+                                        return NSItemProvider(contentsOf: URL(string: "\(page.id)")!)!
+                                        
+                                    })
+                                    .onDrop(of: [.url], delegate: DropViewDelegate(page: page, pageData: pageData))
+                            }
+                        })
+                    }
+                    VStack {
+                        Spacer()
+                        HStack {
+                            
+                            Button(action: {
+                                print("Tapped")
+                            }, label: {
+                                Image(systemName: "plus")
+                                    .font(.largeTitle)
+                                    .frame(width: 60, height: 60)
+                                    .background(Color.blue)
+                                    .clipShape(Circle())
+                                    .foregroundColor(.white)
+                            })
+                        }
+                        .padding(.vertical, 70)
+                        .padding(.horizontal, 33)
+                        
+                    }
+                    
+
+                }
+                .tag("home")
                 Color.yellow
-                    .ignoresSafeArea(.all, edges: .all)
-                    .tag("home")
-                Color.black
                     .ignoresSafeArea(.all, edges: .all)
                     .tag("donate")
                 Color.green
@@ -40,27 +83,7 @@ struct TabBarView: View {
             }
             
             
-            ScrollView {
-                //Tabs With Pages...
-                
-                LazyVGrid(columns: columns, spacing: 20, content: {
-                    ForEach(pageData.urls) { page in
-                        WebView(url: page.url)
-                            .frame(height: 200)
-                            .cornerRadius(15)
-                            .onDrag ({
-                                //setting Current Page...
-                                pageData.currentPage = page
-                                
-                               //Sending ID for Sample..
-                                return NSItemProvider(contentsOf: URL(string: "\(page.id)")!)!
-                                
-                            })
-                            .onDrop(of: [.url], delegate: DropViewDelegate(page: page, pageData: pageData))
-                    }
-                })
-            }
-            .frame(width: .infinity, height: .infinity, alignment: .center)
+            
             
             //Custom tabbar
             HStack(spacing: 0) {
@@ -100,21 +123,7 @@ struct TabBarView: View {
             .padding(.horizontal)
             //Bottom edge
             .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
-            HStack {
-                Spacer()
-                Button(action: {
-                    print("Tapped")
-                }, label: {
-                    Image(systemName: "plus")
-                        .font(.largeTitle)
-                        .frame(width: 60, height: 60)
-                        .background(Color.blue)
-                        .clipShape(Circle())
-                        .foregroundColor(.white)
-                })
-            }
-                .padding(.vertical, 140)
-                .padding(.horizontal, 32)
+            
             
         }
         .ignoresSafeArea(.all, edges: .bottom)

@@ -13,6 +13,9 @@ class PageViewModel: ObservableObject {
         Page(url: URL(string: "https://www.facebook.com")!),
         Page(url: URL(string: "https://www.apple.com")!),
         Page(url: URL(string: "https://www.twitter.com")!),
+        Page(url: URL(string: "https://www.google.com")!),
+        Page(url: URL(string: "https://www.apple.com")!),
+        Page(url: URL(string: "https://www.twitter.com")!),
         Page(url: URL(string: "https://www.google.com")!)
     ]
     
