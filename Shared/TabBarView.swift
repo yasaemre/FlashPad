@@ -28,13 +28,13 @@ struct TabBarView: View {
                 Color.yellow
                     .ignoresSafeArea(.all, edges: .all)
                     .tag("home")
-                Color.red
+                Color.black
                     .ignoresSafeArea(.all, edges: .all)
                     .tag("donate")
                 Color.green
                     .ignoresSafeArea(.all, edges: .all)
                     .tag("liked")
-                Color.blue
+                Color.gray
                     .ignoresSafeArea(.all, edges: .all)
                     .tag("about")
             }
@@ -77,11 +77,11 @@ struct TabBarView: View {
                                 .renderingMode(.original)
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 35, height: 35)
-                                //.foregroundColor(selectedTab == image ? getColor(image: image) : Color.gray)
+                                .foregroundColor(selectedTab == image ? getColor(image: image) : Color.gray)
                                 .padding(selectedTab == image ? 15 : 0)
-                                .background(Color.white.opacity(selectedTab == image ? 5 : 0)).clipShape(Circle())
+                                .background(Color.orange.opacity(selectedTab == image ? 1 : 0).clipShape(Circle()))
                                 .matchedGeometryEffect(id: image, in: animation)
-                                .offset(x: selectedTab == image ? (reader.frame(in: .global).minX - reader.frame(in: .global).midX) : 0,y: selectedTab == image ? -60 : 0)
+                                .offset(x: selectedTab == image ? (reader.frame(in: .global).minX - reader.frame(in: .global).midX):0, y: selectedTab == image ? -60 : 0)
                         })
                             .onAppear {
                                 if image == tabs.first {
@@ -96,9 +96,7 @@ struct TabBarView: View {
             
             .padding(.horizontal, 30)
             .padding(.vertical)
-            
-            .background(Color.cyan.clipShape(CustomShape(xAxis: xAxis)))
-            //.cornerRadius(1)
+            .background(Color.orange.clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
             .padding(.horizontal)
             //Bottom edge
             .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
@@ -109,7 +107,7 @@ struct TabBarView: View {
                 }, label: {
                     Image(systemName: "plus")
                         .font(.largeTitle)
-                        .frame(width: 70, height: 70)
+                        .frame(width: 60, height: 60)
                         .background(Color.blue)
                         .clipShape(Circle())
                         .foregroundColor(.white)
@@ -127,7 +125,7 @@ struct TabBarView: View {
         case "home":
             return Color.yellow
         case "donate":
-            return Color.red
+            return Color.black
         case "liked":
             return Color.green
         default:
