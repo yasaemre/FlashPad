@@ -17,6 +17,10 @@ struct TabBarView: View {
     @State var xAxis:CGFloat = 0
     @Namespace var animation
     
+    @State var customAlert = false
+    @State var HUD = false
+    @State var nameOfCard = ""
+    
     
     @StateObject var cardData = CardViewModel()
     let columns = Array(repeating: GridItem(.flexible(), spacing:25), count: 2)
@@ -38,33 +42,31 @@ struct TabBarView: View {
                                         .resizable()
                                         .frame(width:150, height: 200)
                                         .cornerRadius(16)
-                                        //.stroke(Color.pink, lineWidth: 4)
-//                                        .overlay(
-//                                            RoundedRectangle(cornerRadius: 16)
-//                                                .stroke(Color.pink, lineWidth: 4)
-//                                                .shadow(color: .black, radius: 10)
-//                                        )
-                                    Text("\(card.cardName)")
-                                        .font(.title).bold()
-                                        .foregroundColor(.white)
-                                        .frame(width:150, height: 200)
-//                                        .overlay(
-//                                                RoundedRectangle(cornerRadius: 16)
-//                                                    .stroke(Color.orange, lineWidth: 4)
-//                                                    .shadow(color: .black, radius: 10)
-//                                            )
-                                        
-                                        .onDrag ({
-                                            //setting Current Page...
-                                            cardData.currentCard = card
+
+                                    VStack(spacing: 10) {
+                                        Text("\(card.cardName)")
+                                            .font(.title).bold()
+                                            .foregroundColor(.white)
                                             
-                                            //Sending ID for Sample..
-                                            return NSItemProvider(object: card.cardName as NSString)
-                                            
-                                        })
-                                        .onDrop(of: ["public.image"], delegate: DropViewDelegate(card: card, cardData: cardData))
+
+                                            .onDrag ({
+                                                //setting Current Page...
+                                                cardData.currentCard = card
+                                                
+                                                //Sending ID for Sample..
+                                                return NSItemProvider(object: card.cardName as NSString)
+                                                
+                                            })
+                                            .onDrop(of: ["public.image"], delegate: DropViewDelegate(card: card, cardData: cardData))
+                                        Text("\(card.numberOfCards) cards")
+                                            .font(.title2)
+                                            .foregroundColor(.white)
+                                        Text("created on \n\(card.getTodayDate())")
+                                            .font(.system(size: 12.0))
+                                            .foregroundColor(.white)
+                                    }
+                                    .frame(width:150, height: 200)
                                 }
-                                
                             }
                         })
                     }
@@ -74,13 +76,17 @@ struct TabBarView: View {
                             
                             Button(action: {
                                 print("Card added")
+                                withAnimation {
+                                    alertView()
+                                }
                             }, label: {
                                 Image(systemName: "plus")
                                     .font(.largeTitle)
                                     .frame(width: 60, height: 60)
-                                    .background(Color.init(hex: "6C63FF"))
+                                    .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
                                     .clipShape(Circle())
                                     .foregroundColor(.white)
+                                    .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.pink]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
                             })
                         }
                         .padding(.vertical, 70)
@@ -122,7 +128,7 @@ struct TabBarView: View {
                                 .frame(width: 35, height: 35)
                                 .foregroundColor(selectedTab == image ? getColor(image: image) : Color.gray)
                                 .padding(selectedTab == image ? 15 : 0)
-                                .background(Color.init(hex: "c8d4f5").opacity(selectedTab == image ? 1 : 0).clipShape(Circle()))
+                                .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "c8d4f5"), Color.init(hex: "6C63FF")]),  center: .center, startRadius: 5, endRadius: 120).opacity(selectedTab == image ? 1 : 0).clipShape(Circle()))
                                 .matchedGeometryEffect(id: image, in: animation)
                                 .offset(x: selectedTab == image ? (reader.frame(in: .global).minX - reader.frame(in: .global).midX):0, y: selectedTab == image ? -60 : 0)
                         })
@@ -139,14 +145,82 @@ struct TabBarView: View {
             
             .padding(.horizontal, 30)
             .padding(.vertical)
-            .background(Color.init(hex: "c8d4f5").clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
+            .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "c8d4f5"), Color.init(hex: "6C63FF")]),  center: .center, startRadius: 5, endRadius: 120).clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
             .padding(.horizontal)
             //Bottom edge
             .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
             
             
         }
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+
+                HStack(alignment: .center, spacing: 90) {
+                        Button(action: {
+                            print("Slide in menu tapped")
+                        }) {
+                            Image(systemName: "text.justify")
+                        }
+                        .symbolRenderingMode(.hierarchical)
+                        .font(.system(size: 24))
+                        .foregroundColor(Color.init(hex: "6C63FF"))
+                        .padding(.leading, 10)
+                        
+                        Button(action: {
+                            print("iCloud button tapped")
+                        }) {
+                            Image(systemName: "icloud.and.arrow.down")
+                        }
+                        //.frame(width: 60, height: 60, alignment: .center)
+                        .symbolRenderingMode(.palette)
+                        .font(.system(size: 24))
+                        .foregroundStyle(Color.init(hex: "6C63FF"), .black)
+                        //.padding(100)
+                        
+
+                        Button(action: {
+                            print("Profile button tapped")
+                        }) {
+                            Image("profilePhoto")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 50, height: 70)
+                        }
+                        .padding(.trailing, 10)
+                    }
+                
+                    
+                
+            }
+        }
         .ignoresSafeArea(.all, edges: .bottom)
+    }
+    
+    func alertView() {
+        let alert = UIAlertController(title: "Deck", message: "Create FlashPad Deck", preferredStyle: .alert)
+        
+        alert.addTextField { pass in
+            pass.placeholder = "Enter name of deck"
+        }
+        
+        //Action Buttons
+        
+        let create = UIAlertAction(title: "Create", style: .default) { (_) in
+            //do your stuff..
+            nameOfCard = alert.textFields![0].text!
+            cardData.cards.append(Card(cardName: nameOfCard, numberOfCards: 10, dateCreated: nil))
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .destructive) { _ in
+            //same
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(create)
+        
+        UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: {
+            //code
+        })
     }
     
     func getColor(image: String) -> Color {
