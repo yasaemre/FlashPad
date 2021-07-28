@@ -18,33 +18,53 @@ struct TabBarView: View {
     @Namespace var animation
     
     
-    @StateObject var pageData = PageViewModel()
-    let columns = Array(repeating: GridItem(.flexible(), spacing:45), count: 2)
+    @StateObject var cardData = CardViewModel()
+    let columns = Array(repeating: GridItem(.flexible(), spacing:25), count: 2)
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
            
             TabView(selection: $selectedTab) {
                 ZStack {
-                    Color.black
+                    Color(UIColor.systemBackground)
                         .ignoresSafeArea(.all, edges: .all)
                     ScrollView {
                         //Tabs With Pages...
                         
-                        LazyVGrid(columns: columns, spacing: 20, content: {
-                            ForEach(pageData.urls) { page in
-                                WebView(url: page.url)
-                                    .frame(height: 200)
-                                    .cornerRadius(15)
-                                    .onDrag ({
-                                        //setting Current Page...
-                                        pageData.currentPage = page
+                        LazyVGrid(columns: columns, spacing: 30, content: {
+                            ForEach(cardData.cards) { card in
+                                ZStack {
+                                   Image("cardBackg")
+                                        .resizable()
+                                        .frame(width:150, height: 200)
+                                        .cornerRadius(16)
+                                        //.stroke(Color.pink, lineWidth: 4)
+//                                        .overlay(
+//                                            RoundedRectangle(cornerRadius: 16)
+//                                                .stroke(Color.pink, lineWidth: 4)
+//                                                .shadow(color: .black, radius: 10)
+//                                        )
+                                    Text("\(card.cardName)")
+                                        .font(.title).bold()
+                                        .foregroundColor(.white)
+                                        .frame(width:150, height: 200)
+//                                        .overlay(
+//                                                RoundedRectangle(cornerRadius: 16)
+//                                                    .stroke(Color.orange, lineWidth: 4)
+//                                                    .shadow(color: .black, radius: 10)
+//                                            )
                                         
-                                        //Sending ID for Sample..
-                                        return NSItemProvider(contentsOf: URL(string: "\(page.id)")!)!
-                                        
-                                    })
-                                    .onDrop(of: [.url], delegate: DropViewDelegate(page: page, pageData: pageData))
+                                        .onDrag ({
+                                            //setting Current Page...
+                                            cardData.currentCard = card
+                                            
+                                            //Sending ID for Sample..
+                                            return NSItemProvider(object: card.cardName as NSString)
+                                            
+                                        })
+                                        .onDrop(of: ["public.image"], delegate: DropViewDelegate(card: card, cardData: cardData))
+                                }
+                                
                             }
                         })
                     }
@@ -53,12 +73,12 @@ struct TabBarView: View {
                         HStack {
                             
                             Button(action: {
-                                print("Tapped")
+                                print("Card added")
                             }, label: {
                                 Image(systemName: "plus")
                                     .font(.largeTitle)
                                     .frame(width: 60, height: 60)
-                                    .background(Color.blue)
+                                    .background(Color.init(hex: "6C63FF"))
                                     .clipShape(Circle())
                                     .foregroundColor(.white)
                             })
@@ -71,13 +91,13 @@ struct TabBarView: View {
 
                 }
                 .tag("home")
-                Color.yellow
+                Color(UIColor.systemBackground)
                     .ignoresSafeArea(.all, edges: .all)
                     .tag("donate")
-                Color.green
+                Color(UIColor.systemBackground)
                     .ignoresSafeArea(.all, edges: .all)
                     .tag("liked")
-                Color.gray
+                Color(UIColor.systemBackground)
                     .ignoresSafeArea(.all, edges: .all)
                     .tag("about")
             }
@@ -102,7 +122,7 @@ struct TabBarView: View {
                                 .frame(width: 35, height: 35)
                                 .foregroundColor(selectedTab == image ? getColor(image: image) : Color.gray)
                                 .padding(selectedTab == image ? 15 : 0)
-                                .background(Color.orange.opacity(selectedTab == image ? 1 : 0).clipShape(Circle()))
+                                .background(Color.init(hex: "c8d4f5").opacity(selectedTab == image ? 1 : 0).clipShape(Circle()))
                                 .matchedGeometryEffect(id: image, in: animation)
                                 .offset(x: selectedTab == image ? (reader.frame(in: .global).minX - reader.frame(in: .global).midX):0, y: selectedTab == image ? -60 : 0)
                         })
@@ -119,7 +139,7 @@ struct TabBarView: View {
             
             .padding(.horizontal, 30)
             .padding(.vertical)
-            .background(Color.orange.clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
+            .background(Color.init(hex: "c8d4f5").clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
             .padding(.horizontal)
             //Bottom edge
             .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)

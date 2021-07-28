@@ -8,31 +8,31 @@
 import SwiftUI
 
 struct DropViewDelegate: DropDelegate {
-    var page:Page
-    var pageData: PageViewModel
+    var card:Card
+    var cardData: CardViewModel
     func performDrop(info: DropInfo) -> Bool {
         return true
     }
     
     //When User Dragged Into New Page...
     func dropEntered(info: DropInfo) {
-        print("\(page.url)")
+        print("\(card.cardName)")
         
-        let fromIndex = pageData.urls.firstIndex { (page) -> Bool in
-            return page.id == pageData.currentPage?.id
+        let fromIndex = cardData.cards.firstIndex { (card) -> Bool in
+            return card.id == cardData.currentCard?.id
         } ?? 0
         
-        let toIndex = pageData.urls.firstIndex { (page) -> Bool in
-            return page.id == self.page.id
+        let toIndex = cardData.cards.firstIndex { (card) -> Bool in
+            return card.id == self.card.id
         } ?? 0
         
         //Safe Check if both are not same...
         if fromIndex != toIndex {
             withAnimation {
                 //Swapping Data...
-                let fromPage = pageData.urls[fromIndex]
-                pageData.urls[fromIndex] = pageData.urls[toIndex]
-                pageData.urls[toIndex] = fromPage
+                let fromPage = cardData.cards[fromIndex]
+                cardData.cards[fromIndex] = cardData.cards[toIndex]
+                cardData.cards[toIndex] = fromPage
             }
         }
         

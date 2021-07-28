@@ -10,7 +10,7 @@ import Foundation
 
 //Sample URL Pages...
 
-struct Page: Identifiable {
+struct Card: Identifiable {
     var id = UUID().uuidString
-    var url: URL
+    var cardName: String
 }
