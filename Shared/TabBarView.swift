@@ -21,6 +21,8 @@ struct TabBarView: View {
     @State var HUD = false
     @State var nameOfCard = ""
     
+    @Environment(\.colorScheme) var colorScheme
+    
     
     @StateObject var cardData = CardViewModel()
     let columns = Array(repeating: GridItem(.flexible(), spacing:25), count: 2)
@@ -153,43 +155,46 @@ struct TabBarView: View {
             
         }
         .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-
-                HStack(alignment: .center, spacing: 90) {
-                        Button(action: {
-                            print("Slide in menu tapped")
-                        }) {
-                            Image(systemName: "text.justify")
+            ToolbarItemGroup(placement: .navigationBarLeading) {
+                VStack(alignment: .center) {
+                    HStack(alignment: .center, spacing: 105) {
+                        NavigationLink(destination: MenuView()) {
+                            Image(systemName: "list.bullet")
+                            .symbolRenderingMode(.hierarchical)
+                            .font(.system(size: 24))
+                            .foregroundColor(Color.init(hex: "6C63FF"))
                         }
-                        .symbolRenderingMode(.hierarchical)
-                        .font(.system(size: 24))
-                        .foregroundColor(Color.init(hex: "6C63FF"))
-                        .padding(.leading, 10)
-                        
-                        Button(action: {
-                            print("iCloud button tapped")
-                        }) {
-                            Image(systemName: "icloud.and.arrow.down")
-                        }
-                        //.frame(width: 60, height: 60, alignment: .center)
-                        .symbolRenderingMode(.palette)
-                        .font(.system(size: 24))
-                        .foregroundStyle(Color.init(hex: "6C63FF"), .black)
-                        //.padding(100)
-                        
-
-                        Button(action: {
-                            print("Profile button tapped")
-                        }) {
-                            Image("profilePhoto")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 50, height: 70)
-                        }
+//                            Button(action: {
+//                                print("Slide in menu tapped")
+//                            }) {
+//                                Image(systemName: "list.bullet")
+//                            }
+//                            .symbolRenderingMode(.hierarchical)
+//                            .font(.system(size: 24))
+//                            .foregroundColor(Color.init(hex: "6C63FF"))
+                            //.padding(.leading, 10)
+                            Button(action: {
+                                print("iCloud button tapped")
+                            }) {
+                                Image(systemName: "icloud.and.arrow.down")
+                            }
+                            //.frame(width: 60, height: 60, alignment: .center)
+                            .symbolRenderingMode(.palette)
+                            .font(.system(size: 24))
+                            .foregroundStyle(Color.init(hex: "6C63FF"), (colorScheme == .dark ? Color.white : Color.black))
+                            //.padding(100)
+                            Button(action: {
+                                print("Profile button tapped")
+                            }) {
+                                Image("profilePhoto")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 50, height: 70)
+                            }
                         .padding(.trailing, 10)
                     }
-                
-                    
+                }
+                .padding()          
                 
             }
         }

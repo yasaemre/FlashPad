@@ -14,8 +14,7 @@ struct HomeScreenView : View {
     
     var body: some View{
         ZStack {
-            LogoutButtonView()
-                .frame(width: .infinity, height: 140, alignment: .top )
+            //LogoutButtonView()
             
             TabBarView()
         }
