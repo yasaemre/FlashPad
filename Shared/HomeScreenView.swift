@@ -17,7 +17,9 @@ struct HomeScreenView : View {
             //LogoutButtonView()
             
             TabBarView()
+            
         }
+        .navigationBarBackButtonHidden(true)
         
     }
 }

@@ -39,15 +39,16 @@ struct MenuView: View {
 //                    Spacer()
 //                }
             }
-    //        HStack {
-                SlideMenu(dark: $dark, show: $show)
+            HStack {
+            SlideMenu(dark: self.$dark, show: self.$show)
                     .preferredColorScheme(self.dark ? .dark : .light)
 //                     .offset(x: self.show ? 0 : -UIScreen.main.bounds.width / 1.5)
                 
-//                Spacer(minLength: 0)
-//            }
-//            .background(Color.primary.opacity(self.show ? (self.dark ? 0.05 : 0.2) : 0).edgesIgnoringSafeArea(.all))
+                Spacer(minLength: 0)
+            }
+            .background(Color.primary.opacity(self.show ? (self.dark ? 0.05 : 0.2) : 0).edgesIgnoringSafeArea(.all))
         }
+        .navigationBarHidden(true)
     }
 }
 
@@ -57,31 +58,35 @@ struct SlideMenu: View {
     
     var body: some View {
         VStack {
-            HStack {
-                NavigationLink(destination: HomeScreenView()) {
-                    Button(action: {
+            
+            HStack(spacing:22) {
+                
+//                NavigationLink(destination: HomeScreenView()) {
+//                    Image(systemName: "arrowshape.turn.up.backward.fill")
+//                    .symbolRenderingMode(.hierarchical)
+//                    .font(.system(size: 24))
+//                    .foregroundColor(Color.init(hex: "6C63FF"))
+//                }
+                Button(action: {
+                    withAnimation {
                         self.show.toggle()
                         print("Back button tapped")
-                    }) {
-                        Image(systemName: "arrowshape.turn.up.backward.fill")
-                            .symbolRenderingMode(.hierarchical)
-                            .font(.system(size: 24))
-                            .foregroundColor(Color.init(hex: "6C63FF"))
+                        print(show)
                     }
-                }
-                
-                Spacer()
-                
-                Button(action: {
-                    print("Tweet button tapped")
                 }) {
-                    Image(systemName:"square.and.pencil")
-                        .font(.title)
+                    Image(systemName: "arrowshape.turn.up.backward.fill")
+                        .frame(minWidth: 24, maxWidth: .infinity, minHeight: 24, maxHeight: 33, alignment: .leading)
+                        .foregroundColor(Color.init(hex: "6C63FF"))
                 }
+                .contentShape(Rectangle())
+
+                Spacer()
+
             }
             .padding(.top)
             .padding(.bottom, 25)
-            
+
+
             Image("profilePhoto")
                 .resizable()
                 .frame(width: 80, height: 80)
@@ -113,6 +118,8 @@ struct SlideMenu: View {
                 
             }
             .padding(.top,25)
+            
+            
             
             Group {
                 Button(action: {

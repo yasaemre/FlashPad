@@ -194,8 +194,8 @@ struct TabBarView: View {
                         .padding(.trailing, 10)
                     }
                 }
-                .padding()          
-                
+                .padding()
+
             }
         }
         .ignoresSafeArea(.all, edges: .bottom)
