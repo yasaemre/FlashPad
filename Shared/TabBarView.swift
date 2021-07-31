@@ -21,6 +21,9 @@ struct TabBarView: View {
     @State var HUD = false
     @State var nameOfCard = ""
     
+    @State var dark = false
+    @State var show = false
+    
     @Environment(\.colorScheme) var colorScheme
     
     
@@ -29,8 +32,9 @@ struct TabBarView: View {
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
-           
+            
             TabView(selection: $selectedTab) {
+                
                 ZStack {
                     Color(UIColor.systemBackground)
                         .ignoresSafeArea(.all, edges: .all)
@@ -87,7 +91,7 @@ struct TabBarView: View {
                                     .frame(width: 60, height: 60)
                                     .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
                                     .clipShape(Circle())
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.primary)
                                     .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.pink]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
                             })
                         }
@@ -95,10 +99,9 @@ struct TabBarView: View {
                         .padding(.horizontal, 33)
                         
                     }
-                    
-
                 }
                 .tag("home")
+                
                 Color(UIColor.systemBackground)
                     .ignoresSafeArea(.all, edges: .all)
                     .tag("donate")
@@ -144,7 +147,6 @@ struct TabBarView: View {
                     if image != tabs.last { Spacer(minLength: 0)}
                 }
             }
-            
             .padding(.horizontal, 30)
             .padding(.vertical)
             .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "c8d4f5"), Color.init(hex: "6C63FF")]),  center: .center, startRadius: 5, endRadius: 120).clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
@@ -152,27 +154,31 @@ struct TabBarView: View {
             //Bottom edge
             .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
             
-            
+//            HStack {
+//            SlideMenu(dark: self.$dark, show: self.$show)
+//                    .preferredColorScheme(self.dark ? .dark : .light)
+//                    .offset(x: self.show ? 0 : -UIScreen.main.bounds.width / 1.5)
+//
+//                Spacer(minLength: 0)
+//            }
+//            .background(Color.primary.opacity(self.show ? (self.dark ? 0.05 : 0.2) : 0).edgesIgnoringSafeArea(.all))
         }
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarLeading) {
                 VStack(alignment: .center) {
                     HStack(alignment: .center, spacing: 105) {
-                        NavigationLink(destination: MenuView()) {
-                            Image(systemName: "list.bullet")
+
+                            Button(action: {
+                                print("Slide in menu tapped")
+                                self.show.toggle()
+                            }) {
+                                Image(systemName: "list.bullet")
+                            }
                             .symbolRenderingMode(.hierarchical)
                             .font(.system(size: 24))
                             .foregroundColor(Color.init(hex: "6C63FF"))
-                        }
-//                            Button(action: {
-//                                print("Slide in menu tapped")
-//                            }) {
-//                                Image(systemName: "list.bullet")
-//                            }
-//                            .symbolRenderingMode(.hierarchical)
-//                            .font(.system(size: 24))
-//                            .foregroundColor(Color.init(hex: "6C63FF"))
-                            //.padding(.leading, 10)
+                            .padding(.leading, 10)
+                        
                             Button(action: {
                                 print("iCloud button tapped")
                             }) {
@@ -193,12 +199,25 @@ struct TabBarView: View {
                             }
                         .padding(.trailing, 10)
                     }
+                    
                 }
                 .padding()
 
             }
         }
         .ignoresSafeArea(.all, edges: .bottom)
+        .foregroundColor(.primary)
+        .overlay(Rectangle().stroke(Color.primary.opacity(0.1), lineWidth: 1).shadow(radius: 3).edgesIgnoringSafeArea(.top))
+        
+        HStack {
+        SlideMenu(dark: self.$dark, show: self.$show)
+                .preferredColorScheme(self.dark ? .dark : .light)
+                .offset(x: self.show ? 0 : -UIScreen.main.bounds.width / 1.5)
+            
+            Spacer(minLength: 0)
+        }
+        .background(Color.primary.opacity(self.show ? (self.dark ? 0.05 : 0.2) : 0).edgesIgnoringSafeArea(.all))
+        
     }
     
     func alertView() {
