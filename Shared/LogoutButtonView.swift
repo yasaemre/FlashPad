@@ -15,11 +15,7 @@ struct LogoutButtonView: View {
     var body: some View{
         
         VStack{
-            Text(verbatim: "Logged = \(logged)")
-                .font(.body)
-                .fontWeight(.bold)
-                .foregroundColor(Color.black.opacity(0.7))
-            Text("Email: \(loggedViaEmail)")
+            
             Button(action: {
 
                 UserDefaults.standard.set(false, forKey: "logged")
@@ -34,13 +30,14 @@ struct LogoutButtonView: View {
                 
             }) {
                 
-                Text("Log out")
-                    .foregroundColor(.white)
-                    .padding(.vertical)
-                    .frame(width: UIScreen.main.bounds.width - 50)
+                HStack(alignment: .center, spacing:22) {
+                    Image(systemName: "pip.exit")
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                    Text("Log out")
+                }
+                Spacer()
             }
-            .background(Color("Color"))
-            .cornerRadius(10)
             .padding(.top, 25)
         }
     }

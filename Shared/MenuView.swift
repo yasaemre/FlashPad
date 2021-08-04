@@ -159,18 +159,7 @@ struct SlideMenu: View {
                 .padding(.top, 25)
                 Divider()
                     .padding(.top, 25)
-                Button(action: {
-                    
-                }) {
-                    HStack(alignment: .center, spacing:22) {
-                        Image(systemName: "pip.exit")
-                            .resizable()
-                            .frame(width: 25, height: 25)
-                        Text("Log out")
-                    }
-                    Spacer()
-                }
-                .padding(.top, 25)
+                LogoutButtonView()
             }
             Spacer()
         }

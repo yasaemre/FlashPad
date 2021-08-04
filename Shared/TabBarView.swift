@@ -36,8 +36,8 @@ struct TabBarView: View {
             TabView(selection: $selectedTab) {
                 
                 ZStack {
-                    Color(UIColor.systemBackground)
-                        .ignoresSafeArea(.all, edges: .all)
+//                    Color(UIColor.systemBackground)
+//                        .ignoresSafeArea(.all, edges: .all)
                     ScrollView {
                         //Tabs With Pages...
                         
