@@ -34,10 +34,10 @@ struct TabBarView: View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
             
             TabView(selection: $selectedTab) {
-                
+
                 ZStack {
-//                    Color(UIColor.systemBackground)
-//                        .ignoresSafeArea(.all, edges: .all)
+                    Color(UIColor.systemBackground)
+                        .ignoresSafeArea(.all, edges: .all)
                     ScrollView {
                         //Tabs With Pages...
                         
@@ -153,15 +153,6 @@ struct TabBarView: View {
             .padding(.horizontal)
             //Bottom edge
             .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
-            
-//            HStack {
-//            SlideMenu(dark: self.$dark, show: self.$show)
-//                    .preferredColorScheme(self.dark ? .dark : .light)
-//                    .offset(x: self.show ? 0 : -UIScreen.main.bounds.width / 1.5)
-//
-//                Spacer(minLength: 0)
-//            }
-//            .background(Color.primary.opacity(self.show ? (self.dark ? 0.05 : 0.2) : 0).edgesIgnoringSafeArea(.all))
         }
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarLeading) {
@@ -208,16 +199,15 @@ struct TabBarView: View {
         .ignoresSafeArea(.all, edges: .bottom)
         .foregroundColor(.primary)
         .overlay(Rectangle().stroke(Color.primary.opacity(0.1), lineWidth: 1).shadow(radius: 3).edgesIgnoringSafeArea(.top))
-        
+
         HStack {
-        SlideMenu(dark: self.$dark, show: self.$show)
-                .preferredColorScheme(self.dark ? .dark : .light)
-                .offset(x: self.show ? 0 : -UIScreen.main.bounds.width / 1.5)
-            
-            Spacer(minLength: 0)
-        }
-        .background(Color.primary.opacity(self.show ? (self.dark ? 0.05 : 0.2) : 0))
-        
+            SlideMenu(dark: self.$dark, show: self.$show)
+                .preferredColorScheme(colorScheme == .dark ? .dark : .light)
+                    .offset(x: self.show ? 0 : -UIScreen.main.bounds.width / 1.5)
+
+                Spacer(minLength: 0)
+            }
+            .background(Color.primary.opacity(self.show ? (self.dark ? 0.05 : 0.2) : 0))
     }
     
     func alertView() {

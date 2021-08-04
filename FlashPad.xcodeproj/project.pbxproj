@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		087DFC0A86E01D73443403E7 /* Pods_FlashPad__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C001D30FFD5961535C533F5 /* Pods_FlashPad__iOS_.framework */; };
 		74DD7C0CEEC204363C609EEC /* Pods_FlashPad__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F063BDFB06F350AA0582D8DE /* Pods_FlashPad__macOS_.framework */; };
-		C60929EF26B39D670048DE83 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60929EE26B39D670048DE83 /* MenuView.swift */; };
-		C60929F026B39D670048DE83 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60929EE26B39D670048DE83 /* MenuView.swift */; };
+		C60929EF26B39D670048DE83 /* SlideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60929EE26B39D670048DE83 /* SlideMenu.swift */; };
+		C60929F026B39D670048DE83 /* SlideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60929EE26B39D670048DE83 /* SlideMenu.swift */; };
 		C622151B268AF67B00139D46 /* GoogleLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C622151A268AF67B00139D46 /* GoogleLoginView.swift */; };
 		C6243192268AD79400C01F24 /* AppleLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6243191268AD79400C01F24 /* AppleLoginViewModel.swift */; };
 		C6243195268AD7D600C01F24 /* ColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6243194268AD7D600C01F24 /* ColorExtention.swift */; };
@@ -75,7 +75,7 @@
 		33717D2F4C2015FDC8F6AE57 /* Pods-FlashPad (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashPad (iOS).release.xcconfig"; path = "Target Support Files/Pods-FlashPad (iOS)/Pods-FlashPad (iOS).release.xcconfig"; sourceTree = "<group>"; };
 		5B8F4DD70226C0250BCA8CF3 /* Pods-FlashPad (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashPad (macOS).release.xcconfig"; path = "Target Support Files/Pods-FlashPad (macOS)/Pods-FlashPad (macOS).release.xcconfig"; sourceTree = "<group>"; };
 		7C001D30FFD5961535C533F5 /* Pods_FlashPad__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashPad__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C60929EE26B39D670048DE83 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		C60929EE26B39D670048DE83 /* SlideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenu.swift; sourceTree = "<group>"; };
 		C622151A268AF67B00139D46 /* GoogleLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLoginView.swift; sourceTree = "<group>"; };
 		C6243191268AD79400C01F24 /* AppleLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginViewModel.swift; sourceTree = "<group>"; };
 		C6243194268AD7D600C01F24 /* ColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtention.swift; sourceTree = "<group>"; };
@@ -212,7 +212,7 @@
 				C622151A268AF67B00139D46 /* GoogleLoginView.swift */,
 				C6F6B80A268CF4BC00A3D9C9 /* HomeScreenView.swift */,
 				C6289093268F924B005EAE7F /* TabBarView.swift */,
-				C60929EE26B39D670048DE83 /* MenuView.swift */,
+				C60929EE26B39D670048DE83 /* SlideMenu.swift */,
 				C6849533268E36A3003BC08C /* LogoutButtonView.swift */,
 				C67413DF268ABB2800128E2D /* ErrorView.swift */,
 				C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */,
@@ -506,7 +506,7 @@
 				C6289094268F924B005EAE7F /* TabBarView.swift in Sources */,
 				C67413CD268ABAEC00128E2D /* ContentView.swift in Sources */,
 				C67413E0268ABB2800128E2D /* ErrorView.swift in Sources */,
-				C60929EF26B39D670048DE83 /* MenuView.swift in Sources */,
+				C60929EF26B39D670048DE83 /* SlideMenu.swift in Sources */,
 				C6BB306126AF0A9F00B6710C /* Card.swift in Sources */,
 				C67413E3268ABBCC00128E2D /* LoginView.swift in Sources */,
 				C6BB306326AF0B0700B6710C /* CardViewModel.swift in Sources */,
@@ -538,7 +538,7 @@
 				C6243196268AD7D600C01F24 /* ColorExtention.swift in Sources */,
 				C67413ED268ABC3200128E2D /* WalkthroughView.swift in Sources */,
 				C6AC1385268F6FEA005815F3 /* LoginViewModel.swift in Sources */,
-				C60929F026B39D670048DE83 /* MenuView.swift in Sources */,
+				C60929F026B39D670048DE83 /* SlideMenu.swift in Sources */,
 				C6849535268E36A4003BC08C /* LogoutButtonView.swift in Sources */,
 				C67413EA268ABC1400128E2D /* SignUpView.swift in Sources */,
 				C6849538268E385C003BC08C /* SignUpViewModel.swift in Sources */,
