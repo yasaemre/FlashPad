@@ -91,7 +91,7 @@ struct TabBarView: View {
                                     .frame(width: 60, height: 60)
                                     .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
                                     .clipShape(Circle())
-                                    .foregroundColor(.primary)
+                                    .foregroundColor(.white)
                                     .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.pink]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
                             })
                         }
@@ -216,7 +216,7 @@ struct TabBarView: View {
             
             Spacer(minLength: 0)
         }
-        .background(Color.primary.opacity(self.show ? (self.dark ? 0.05 : 0.2) : 0).edgesIgnoringSafeArea(.all))
+        .background(Color.primary.opacity(self.show ? (self.dark ? 0.05 : 0.2) : 0))
         
     }
     
