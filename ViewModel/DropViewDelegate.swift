@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct DropViewDelegate: DropDelegate {
-    var card:Card
-    var cardData: CardViewModel
+    var card:Deck
+    var cardData: DeckViewModel
     func performDrop(info: DropInfo) -> Bool {
         return true
     }
     
     //When User Dragged Into New Page...
     func dropEntered(info: DropInfo) {
-        print("\(card.cardName)")
+        print("\(card.deckName)")
         
         let fromIndex = cardData.cards.firstIndex { (card) -> Bool in
             return card.id == cardData.currentCard?.id

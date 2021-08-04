@@ -27,7 +27,7 @@ struct TabBarView: View {
     @Environment(\.colorScheme) var colorScheme
     
     
-    @StateObject var cardData = CardViewModel()
+    @StateObject var deckData = DeckViewModel()
     let columns = Array(repeating: GridItem(.flexible(), spacing:25), count: 2)
     
     var body: some View {
@@ -42,32 +42,36 @@ struct TabBarView: View {
                         //Tabs With Pages...
                         
                         LazyVGrid(columns: columns, spacing: 30, content: {
-                            ForEach(cardData.cards) { card in
+                            ForEach(deckData.cards) { deck in
+                                
+                                
                                 ZStack {
-                                   Image("cardBackg")
-                                        .resizable()
-                                        .frame(width:150, height: 200)
-                                        .cornerRadius(16)
+                                    NavigationLink(destination: EditScreenView()) {
+                                        Image("cardBackg")
+                                             .resizable()
+                                             .frame(width:150, height: 200)
+                                             .cornerRadius(16)
+                                    }
 
                                     VStack(spacing: 10) {
-                                        Text("\(card.cardName)")
+                                        Text("\(deck.deckName)")
                                             .font(.title).bold()
                                             .foregroundColor(.white)
                                             
 
                                             .onDrag ({
                                                 //setting Current Page...
-                                                cardData.currentCard = card
+                                                deckData.currentCard = deck
                                                 
                                                 //Sending ID for Sample..
-                                                return NSItemProvider(object: card.cardName as NSString)
+                                                return NSItemProvider(object: deck.deckName as NSString)
                                                 
                                             })
-                                            .onDrop(of: ["public.image"], delegate: DropViewDelegate(card: card, cardData: cardData))
-                                        Text("\(card.numberOfCards) cards")
+                                            .onDrop(of: ["public.image"], delegate: DropViewDelegate(card: deck, cardData: deckData))
+                                        Text("\(deck.numberOfCardsInDeck) cards")
                                             .font(.title2)
                                             .foregroundColor(.white)
-                                        Text("created on \n\(card.getTodayDate())")
+                                        Text("created on \n\(deck.getTodayDate())")
                                             .font(.system(size: 12.0))
                                             .foregroundColor(.white)
                                     }
@@ -222,7 +226,7 @@ struct TabBarView: View {
         let create = UIAlertAction(title: "Create", style: .default) { (_) in
             //do your stuff..
             nameOfCard = alert.textFields![0].text!
-            cardData.cards.append(Card(cardName: nameOfCard, numberOfCards: 10, dateCreated: nil))
+            deckData.cards.append(Deck(deckName: nameOfCard, numberOfCardsInDeck: 10, deckCreatedAt: nil))
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .destructive) { _ in
