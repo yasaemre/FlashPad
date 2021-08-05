@@ -23,24 +23,24 @@ struct SlideMenu: View {
 ////                    .font(.system(size: 24))
 ////                    .foregroundColor(Color.init(hex: "6C63FF"))
 ////                }
-//                Button(action: {
-//                    withAnimation {
-//                        self.show.toggle()
-//                        print("Back button tapped")
-//                        print(show)
-//                    }
-//                }) {
-//                    Image(systemName: "arrowshape.turn.up.backward.fill")
-//                        .frame(minWidth: 24, maxWidth: .infinity, minHeight: 24, maxHeight: 33, alignment: .leading)
-//                        .foregroundColor(Color.init(hex: "6C63FF"))
-//                }
-//                .contentShape(Rectangle())
-//
-//                Spacer()
-//
-//            }
-//            .padding(.top)
-//            .padding(.bottom, 25)
+                Button(action: {
+                    withAnimation {
+                        self.show.toggle()
+                        print("Back button tapped")
+                        print(show)
+                    }
+                }) {
+                    Image(systemName: "arrowshape.turn.up.backward.fill")
+                        .font(.title)
+                        .foregroundColor(Color.init(hex: "6C63FF"))
+                
+                .contentShape(Rectangle())
+
+                Spacer()
+
+            }
+            .padding(.top)
+            .padding(.bottom, 25)
 
 
             Image("profilePhoto")

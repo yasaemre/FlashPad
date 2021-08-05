@@ -25,144 +25,148 @@ struct TabBarView: View {
     @State var show = false
     
     @Environment(\.colorScheme) var colorScheme
+//    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     
     
     @StateObject var deckData = DeckViewModel()
     let columns = Array(repeating: GridItem(.flexible(), spacing:25), count: 2)
-    
+
+
     var body: some View {
-        ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
-            
-            TabView(selection: $selectedTab) {
-
-                ZStack {
-                    Color(UIColor.systemBackground)
-                        .ignoresSafeArea(.all, edges: .all)
-                    ScrollView {
-                        //Tabs With Pages...
-                        
-                        LazyVGrid(columns: columns, spacing: 30, content: {
-                            ForEach(deckData.cards) { deck in
-                                
-                                
-                                ZStack {
-                                    NavigationLink(destination: EditScreenView()) {
-                                        Image("cardBackg")
-                                             .resizable()
-                                             .frame(width:150, height: 200)
-                                             .cornerRadius(16)
-                                    }
-
-                                    VStack(spacing: 10) {
-                                        Text("\(deck.deckName)")
-                                            .font(.title).bold()
-                                            .foregroundColor(.white)
-                                            
-
-                                            .onDrag ({
-                                                //setting Current Page...
-                                                deckData.currentCard = deck
-                                                
-                                                //Sending ID for Sample..
-                                                return NSItemProvider(object: deck.deckName as NSString)
-                                                
-                                            })
-                                            .onDrop(of: ["public.image"], delegate: DropViewDelegate(card: deck, cardData: deckData))
-                                        Text("\(deck.numberOfCardsInDeck) cards")
-                                            .font(.title2)
-                                            .foregroundColor(.white)
-                                        Text("created on \n\(deck.getTodayDate())")
-                                            .font(.system(size: 12.0))
-                                            .foregroundColor(.white)
-                                    }
-                                    .frame(width:150, height: 200)
-                                }
-                            }
-                        })
-                    }
-                    VStack {
-                        Spacer()
-                        HStack {
+        NavigationView {
+            ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
+                
+                TabView(selection: $selectedTab) {
+                    
+                    ZStack {
+                        Color(UIColor.systemBackground)
+                            .ignoresSafeArea(.all, edges: .all)
+                        ScrollView {
+                            //Tabs With Pages...
                             
-                            Button(action: {
-                                print("Card added")
-                                withAnimation {
-                                    alertView()
+                            LazyVGrid(columns: columns, spacing: 30, content: {
+                                ForEach(deckData.cards) { deck in
+                                    
+                                    
+                                    ZStack {
+                                        NavigationLink(destination: EditScreenView()) {
+                                            Image("cardBackg")
+                                                .resizable()
+                                                .frame(width:150, height: 200)
+                                                .cornerRadius(16)
+                                        }
+                                        
+                                        VStack(spacing: 10) {
+                                            Text("\(deck.deckName)")
+                                                .font(.title).bold()
+                                                .foregroundColor(.white)
+                                            
+                                            
+                                                .onDrag ({
+                                                    //setting Current Page...
+                                                    deckData.currentCard = deck
+                                                    
+                                                    //Sending ID for Sample..
+                                                    return NSItemProvider(object: deck.deckName as NSString)
+                                                    
+                                                })
+                                                .onDrop(of: ["public.image"], delegate: DropViewDelegate(card: deck, cardData: deckData))
+                                            Text("\(deck.numberOfCardsInDeck) cards")
+                                                .font(.title2)
+                                                .foregroundColor(.white)
+                                            Text("created on \n\(deck.getTodayDate())")
+                                                .font(.system(size: 12.0))
+                                                .foregroundColor(.white)
+                                        }
+                                        .frame(width:150, height: 200)
+                                    }
                                 }
-                            }, label: {
-                                Image(systemName: "plus")
-                                    .font(.largeTitle)
-                                    .frame(width: 60, height: 60)
-                                    .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
-                                    .clipShape(Circle())
-                                    .foregroundColor(.white)
-                                    .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.pink]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
                             })
                         }
-                        .padding(.vertical, 70)
-                        .padding(.horizontal, 33)
-                        
-                    }
-                }
-                .tag("home")
-                
-                Color(UIColor.systemBackground)
-                    .ignoresSafeArea(.all, edges: .all)
-                    .tag("donate")
-                Color(UIColor.systemBackground)
-                    .ignoresSafeArea(.all, edges: .all)
-                    .tag("liked")
-                Color(UIColor.systemBackground)
-                    .ignoresSafeArea(.all, edges: .all)
-                    .tag("about")
-            }
-            
-            
-            
-            
-            //Custom tabbar
-            HStack(spacing: 0) {
-                ForEach(tabs, id: \.self) { image in
-                    GeometryReader { reader in
-                        Button(action: {
-                            withAnimation(.spring()) {
-                                selectedTab = image
-                                xAxis = reader.frame(in: .global).minX
+                        VStack {
+                            Spacer()
+                            HStack {
+                                
+                                Button(action: {
+                                    print("Card added")
+                                    withAnimation {
+                                        alertView()
+                                    }
+                                }, label: {
+                                    Image(systemName: "plus")
+                                        .font(.largeTitle)
+                                        .frame(width: 60, height: 60)
+                                        .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
+                                        .clipShape(Circle())
+                                        .foregroundColor(.white)
+                                        .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.pink]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                                })
                             }
-                        }, label: {
-                            Image(image)
-                                .resizable()
-                                .renderingMode(.original)
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 35, height: 35)
-                                .foregroundColor(selectedTab == image ? getColor(image: image) : Color.gray)
-                                .padding(selectedTab == image ? 15 : 0)
-                                .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "c8d4f5"), Color.init(hex: "6C63FF")]),  center: .center, startRadius: 5, endRadius: 120).opacity(selectedTab == image ? 1 : 0).clipShape(Circle()))
-                                .matchedGeometryEffect(id: image, in: animation)
-                                .offset(x: selectedTab == image ? (reader.frame(in: .global).minX - reader.frame(in: .global).midX):0, y: selectedTab == image ? -60 : 0)
-                        })
-                            .onAppear {
-                                if image == tabs.first {
+                            .padding(.vertical, 70)
+                            .padding(.horizontal, 33)
+                            
+                        }
+                    }
+                    .tag("home")
+                    
+                    Color(UIColor.systemBackground)
+                        .ignoresSafeArea(.all, edges: .all)
+                        .tag("donate")
+                    Color(UIColor.systemBackground)
+                        .ignoresSafeArea(.all, edges: .all)
+                        .tag("liked")
+                    Color(UIColor.systemBackground)
+                        .ignoresSafeArea(.all, edges: .all)
+                        .tag("about")
+                }
+                
+                
+                
+                
+                //Custom tabbar
+                HStack(spacing: 0) {
+                    ForEach(tabs, id: \.self) { image in
+                        GeometryReader { reader in
+                            Button(action: {
+                                withAnimation(.spring()) {
+                                    selectedTab = image
                                     xAxis = reader.frame(in: .global).minX
                                 }
-                            }
+                            }, label: {
+                                Image(image)
+                                    .resizable()
+                                    .renderingMode(.original)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 35, height: 35)
+                                    .foregroundColor(selectedTab == image ? getColor(image: image) : Color.gray)
+                                    .padding(selectedTab == image ? 15 : 0)
+                                    .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "c8d4f5"), Color.init(hex: "6C63FF")]),  center: .center, startRadius: 5, endRadius: 120).opacity(selectedTab == image ? 1 : 0).clipShape(Circle()))
+                                    .matchedGeometryEffect(id: image, in: animation)
+                                    .offset(x: selectedTab == image ? (reader.frame(in: .global).minX - reader.frame(in: .global).midX):0, y: selectedTab == image ? -60 : 0)
+                            })
+                                .onAppear {
+                                    if image == tabs.first {
+                                        xAxis = reader.frame(in: .global).minX
+                                    }
+                                }
+                        }
+                        .frame(width: 35, height: 35)
+                        if image != tabs.last { Spacer(minLength: 0)}
                     }
-                    .frame(width: 35, height: 35)
-                    if image != tabs.last { Spacer(minLength: 0)}
                 }
+                .padding(.horizontal, 30)
+                .padding(.vertical)
+                .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "c8d4f5"), Color.init(hex: "6C63FF")]),  center: .center, startRadius: 5, endRadius: 120).clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
+                .padding(.horizontal)
+                //Bottom edge
+                .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
             }
-            .padding(.horizontal, 30)
-            .padding(.vertical)
-            .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "c8d4f5"), Color.init(hex: "6C63FF")]),  center: .center, startRadius: 5, endRadius: 120).clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
-            .padding(.horizontal)
-            //Bottom edge
-            .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
-        }
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarLeading) {
-                VStack(alignment: .center) {
-                    HStack(alignment: .center, spacing: 105) {
-
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    VStack(alignment: .center) {
+                        HStack(alignment: .center, spacing: 105) {
+                            
                             Button(action: {
                                 print("Slide in menu tapped")
                                 self.show.toggle()
@@ -173,7 +177,7 @@ struct TabBarView: View {
                             .font(.system(size: 24))
                             .foregroundColor(Color.init(hex: "6C63FF"))
                             .padding(.leading, 10)
-                        
+                            
                             Button(action: {
                                 print("iCloud button tapped")
                             }) {
@@ -192,18 +196,19 @@ struct TabBarView: View {
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 50, height: 70)
                             }
-                        .padding(.trailing, 10)
+                            .padding(.trailing, 10)
+                        }
+                        
                     }
+                    .padding()
                     
                 }
-                .padding()
-
             }
+            //        .navigationBarBackButtonHidden(true)
+            .ignoresSafeArea(.all, edges: .bottom)
+            .foregroundColor(.primary)
+            .overlay(Rectangle().stroke(Color.primary.opacity(0.1), lineWidth: 1).shadow(radius: 3).edgesIgnoringSafeArea(.top))
         }
-        .ignoresSafeArea(.all, edges: .bottom)
-        .foregroundColor(.primary)
-        .overlay(Rectangle().stroke(Color.primary.opacity(0.1), lineWidth: 1).shadow(radius: 3).edgesIgnoringSafeArea(.top))
-
         HStack {
             SlideMenu(dark: self.$dark, show: self.$show)
                 .preferredColorScheme(colorScheme == .dark ? .dark : .light)
