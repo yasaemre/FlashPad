@@ -16,22 +16,25 @@ struct EditScreenView: View {
 
     var btnBack : some View { Button(action: {
         self.presentationMode.wrappedValue.dismiss()
+        print("back tapped")
         }) {
             HStack {
                 Image(systemName: "arrowshape.turn.up.left.fill")
                     .font(.system(size: 24))
                     .padding(.leading, 10)
-                Text("Go back")
             }
         }
     }
+
     
     var body: some View {
             ZStack {
-               VStack {
+               VStack  {
                    HStack(spacing: 10) {
                        Button {
-                           //
+                           withAnimation {
+                               flip = false
+                           }
                        } label: {
                            Text("Question")
                                .font(.title)
@@ -44,7 +47,9 @@ struct EditScreenView: View {
                        }
                        
                        Button {
-                           //
+                           withAnimation {
+                               flip = true
+                       }
                        } label: {
                            Text("Answer")
                                .font(.title)
@@ -65,11 +70,11 @@ struct EditScreenView: View {
            //                .cornerRadius(16)
                    }
                    .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
-                   .onTapGesture {
-                       withAnimation {
-                           flip.toggle()
-                       }
-                   }
+//                   .onTapGesture {
+//                       withAnimation {
+//                           flip.toggle()
+//                       }
+//                   }
                    .padding(.top, 15)
                    
                    Text("1 of 14")
@@ -107,7 +112,6 @@ struct EditScreenView: View {
                    }
 
                }
-               .navigationBarTitle("Edit")
 
 //               .toolbar {
 //                   ToolbarItemGroup(placement: .navigationBarLeading) {
@@ -121,18 +125,10 @@ struct EditScreenView: View {
 ////                                       .padding(.leading, 10)
 ////
 ////                               }
-//                               Button(action: {
-//                                          self.presentationMode.wrappedValue.dismiss()
-//                                       }) {
-//                                           Image(systemName: "arrowshape.turn.up.left.fill")
-//                                               .symbolRenderingMode(.hierarchical)
-//                                               .font(.system(size: 24))
-//                                               .foregroundColor(Color.init(hex: "6C63FF"))
-//                                               .padding(.leading, 10)
-//                                       }
-//                                       .navigationBarHidden(true)
-//
-////                               Button(action: goBack) {
+////                               Button(action: {
+////                                          self.presentationMode.wrappedValue.dismiss()
+////                                   print("Back tapped")
+////                                       }) {
 ////                                           Image(systemName: "arrowshape.turn.up.left.fill")
 ////                                               .symbolRenderingMode(.hierarchical)
 ////                                               .font(.system(size: 24))
@@ -140,6 +136,15 @@ struct EditScreenView: View {
 ////                                               .padding(.leading, 10)
 ////                                       }
 ////                                       .navigationBarHidden(true)
+//
+//                               Button(action: goBack) {
+//                                           Image(systemName: "arrowshape.turn.up.left.fill")
+//                                               .symbolRenderingMode(.hierarchical)
+//                                               .font(.system(size: 24))
+//                                               .foregroundColor(Color.init(hex: "6C63FF"))
+//                                               .padding(.leading, 10)
+//                                       }
+//                                       .navigationBarHidden(true)
 //
 //                                   Spacer()
 //                                   //.padding(100)
@@ -163,12 +168,12 @@ struct EditScreenView: View {
 //
 //               }
            }
-//            .navigationBarBackButtonHidden(true)
-//            .navigationBarItems(leading: btnBack)
+
 
 
 //            .navigationBarItems(leading: Button(action: {
-//                self.presentationMode.wrappedValue.dismiss()
+//                dismiss()
+//                print("back tapped")
 //            }) {
 //                Image(systemName: "arrowshape.turn.up.left.fill")
 //                    .symbolRenderingMode(.hierarchical)
@@ -186,16 +191,11 @@ struct EditScreenView: View {
 //                    .foregroundColor(.white)
 //            })
 //            .navigationBarBackButtonHidden(false)
-            .background(Color(UIColor.systemBackground))
+//            .background(Color(UIColor.systemBackground))
 
 
     }
-    
-    func goBack(){
-           //here I save CoreData context if it changes
-           self.presentationMode.wrappedValue.dismiss()
-        print("Back button tapped")
-       }
+
 }
 
 struct FlipEffect: GeometryEffect {

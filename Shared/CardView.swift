@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CardView: View {
     @State var card:Card
+    @State private var word: String = "Done"
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
             .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]), startPoint: .topLeading, endPoint: .bottomTrailing))
@@ -16,7 +17,8 @@ struct CardView: View {
             .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
             .overlay(
                 VStack(alignment: card.image != "" ? .center : .leading, spacing: 10) {
-                
+//                TextField("Enter your word", text: $word)
+//                            Text("Hello, \(word)!")
                 
                 if card.image != "" {
                     Image(card.image)
