@@ -11,20 +11,21 @@ struct EditScreenView: View {
     @StateObject var cardData = CardViewModel()
     @State var flipped = false
     @State var flip = false
+    //@Binding var showEdit:Bool
 
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
-    var btnBack : some View { Button(action: {
-        self.presentationMode.wrappedValue.dismiss()
-        print("back tapped")
-        }) {
-            HStack {
-                Image(systemName: "arrowshape.turn.up.left.fill")
-                    .font(.system(size: 24))
-                    .padding(.leading, 10)
-            }
-        }
-    }
+//    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+//
+//    var btnBack : some View { Button(action: {
+//        self.presentationMode.wrappedValue.dismiss()
+//        print("back tapped")
+//        }) {
+//            HStack {
+//                Image(systemName: "arrowshape.turn.up.left.fill")
+//                    .font(.system(size: 24))
+//                    .padding(.leading, 10)
+//            }
+//        }
+//    }
 
     
     var body: some View {
@@ -42,7 +43,6 @@ struct EditScreenView: View {
                                .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
                                .clipShape(Capsule())
                                .foregroundColor(.white)
-       //                        .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.blue]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
                            
                        }
                        
@@ -168,12 +168,15 @@ struct EditScreenView: View {
 //
 //               }
            }
-
-
+//            .navigationBarHidden(true)
+//            .navigationBarItems(leading: btnBack)
 
 //            .navigationBarItems(leading: Button(action: {
-//                dismiss()
+//                withAnimation {
+//                    self.showEdit.toggle()
+//                }
 //                print("back tapped")
+//                print(showEdit)
 //            }) {
 //                Image(systemName: "arrowshape.turn.up.left.fill")
 //                    .symbolRenderingMode(.hierarchical)

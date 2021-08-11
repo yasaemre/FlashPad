@@ -24,6 +24,8 @@ struct TabBarView: View {
     @State var dark = false
     @State var show = false
     
+    @State var showEdit = false
+    
     @Environment(\.colorScheme) var colorScheme
 
     
@@ -206,7 +208,7 @@ struct TabBarView: View {
             //        .navigationBarBackButtonHidden(true)
             .ignoresSafeArea(.all, edges: .bottom)
             .foregroundColor(.primary)
-            .overlay(Rectangle().stroke(Color.primary.opacity(0.1), lineWidth: 1).shadow(radius: 3).edgesIgnoringSafeArea(.top))
+            //.overlay(Rectangle().stroke(Color.primary.opacity(0.1), lineWidth: 1).shadow(radius: 3).edgesIgnoringSafeArea(.top))
         }
         HStack {
             SlideMenu(dark: self.$dark, show: self.$show)
