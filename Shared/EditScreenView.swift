@@ -11,11 +11,43 @@ struct EditScreenView: View {
     @StateObject var cardData = CardViewModel()
     @State var flipped = false
     @State var flip = false
+
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var body: some View {
 
         ZStack(alignment: .center) {
-               VStack  {
+            VStack(alignment: .center)  {
+                   HStack() {
+
+                       Button {
+                           self.presentationMode.wrappedValue.dismiss()
+                           print("Back tapped")
+                       } label: {
+                           Image(systemName: "arrowshape.turn.up.backward.fill")
+                               .font(.title)
+                               .foregroundColor(Color.init(hex: "6C63FF"))
+                               .contentShape(Rectangle())
+
+                       }
+                       .padding(.leading, 15)
+                       Spacer()
+                       Button {
+                           withAnimation {
+
+                           }
+                       } label: {
+                           Text("Study")
+                               .font(.title)
+                               .frame(width: 130, height: 40)
+                               .background(RadialGradient(gradient: Gradient(colors: [Color(UIColor.red), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
+                               .clipShape(Capsule())
+                               .foregroundColor(.white)
+
+                       }
+                       .padding(.trailing, 15)
+
+                   }
                    
                    HStack(spacing: 10) {
                        
@@ -48,7 +80,7 @@ struct EditScreenView: View {
                            .foregroundColor(.white)
                        }
                    }
-                   .padding(.top, 60)
+                   .padding(.top, 70)
 
                    ZStack {
                        CardView(card: Card(word: "Rambling(adj)", definition: "basi bos, derme capma "))
@@ -101,27 +133,11 @@ struct EditScreenView: View {
                    }
 
                }
-               .toolbar {
-                   Button {
-                       withAnimation {
-                           
-                       }
-                   } label: {
-                       Text("Study")
-                           .font(.title)
-                           .frame(width: 130, height: 40)
-                           .background(RadialGradient(gradient: Gradient(colors: [Color(UIColor.red), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
-                           .clipShape(Capsule())
-                           .foregroundColor(.white)
-
-                   }
-               }
-            
+ 
         }
+        .navigationBarHidden(true)
 
-        
     }
-
 }
 
 struct FlipEffect: GeometryEffect {

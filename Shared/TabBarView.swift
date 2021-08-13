@@ -23,16 +23,14 @@ struct TabBarView: View {
     
     @State var dark = false
     @State var show = false
-    
-    @State var showEdit = false
-    
+        
     @Environment(\.colorScheme) var colorScheme
-
-    
     
     @StateObject var deckData = DeckViewModel()
     let columns = Array(repeating: GridItem(.flexible(), spacing:25), count: 2)
 
+    
+    @State private var navBarHidden = false
 
     var body: some View {
         NavigationView {
@@ -51,12 +49,20 @@ struct TabBarView: View {
                                     
                                     
                                     ZStack {
-                                        NavigationLink(destination: EditScreenView()) {
+                                        
+                                        Button(action: {
+                                            withAnimation(.easeInOut) {
+                                                navBarHidden = true
+                                            }
+                                        }, label:{
                                             Image("cardBackg")
                                                 .resizable()
                                                 .frame(width:150, height: 200)
                                                 .cornerRadius(16)
-                                        }
+                                            
+                                        })
+                                            .fullScreenCover(isPresented: $navBarHidden, content: EditScreenView.init)
+                                            
                                         
                                         
                                         VStack(spacing: 10) {
@@ -124,6 +130,7 @@ struct TabBarView: View {
                         .tag("about")
                 }
                 
+                
 
                 //Custom tabbar
                 HStack(spacing: 0) {
@@ -162,8 +169,8 @@ struct TabBarView: View {
                 .padding(.horizontal)
                 //Bottom edge
                 .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
-            }
 
+            }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     VStack(alignment: .center) {
