@@ -16,7 +16,9 @@ struct EditScreenView: View {
 
         ZStack(alignment: .center) {
                VStack  {
+                   
                    HStack(spacing: 10) {
+                       
                        Button {
                            withAnimation {
                                flip = false
@@ -25,7 +27,8 @@ struct EditScreenView: View {
                            Text("Question")
                                .font(.title)
                                .frame(width: 130, height: 40)
-                               .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
+                               .background(!flip ? Color.init(hex: "6C63FF") : .gray)
+                               //.background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
                                .clipShape(Capsule())
                                .foregroundColor(.white)
 
@@ -39,12 +42,13 @@ struct EditScreenView: View {
                            Text("Answer")
                                .font(.title)
                            .frame(width: 130, height: 40)
-                           .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
+                           .background(flip ? Color.init(hex: "6C63FF") : .gray)
+//                           .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
                            .clipShape(Capsule())
                            .foregroundColor(.white)
                        }
                    }
-                   //.padding(.top, 5)
+                   .padding(.top, 60)
 
                    ZStack {
                        CardView(card: Card(word: "Rambling(adj)", definition: "basi bos, derme capma "))
@@ -96,6 +100,21 @@ struct EditScreenView: View {
                        }
                    }
 
+               }
+               .toolbar {
+                   Button {
+                       withAnimation {
+                           
+                       }
+                   } label: {
+                       Text("Study")
+                           .font(.title)
+                           .frame(width: 130, height: 40)
+                           .background(RadialGradient(gradient: Gradient(colors: [Color(UIColor.red), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
+                           .clipShape(Capsule())
+                           .foregroundColor(.white)
+
+                   }
                }
             
         }
