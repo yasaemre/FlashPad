@@ -58,6 +58,7 @@ struct TabBarView: View {
                                                 .cornerRadius(16)
                                         }
                                         
+                                        
                                         VStack(spacing: 10) {
                                             Text("\(deck.deckName)")
                                                 .font(.title).bold()
@@ -85,6 +86,7 @@ struct TabBarView: View {
                                 }
                             })
                         }
+                        
                         VStack {
                             Spacer()
                             HStack {
@@ -122,9 +124,7 @@ struct TabBarView: View {
                         .tag("about")
                 }
                 
-                
-                
-                
+
                 //Custom tabbar
                 HStack(spacing: 0) {
                     ForEach(tabs, id: \.self) { image in
@@ -163,6 +163,7 @@ struct TabBarView: View {
                 //Bottom edge
                 .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
             }
+
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     VStack(alignment: .center) {
@@ -205,11 +206,13 @@ struct TabBarView: View {
                     
                 }
             }
-            //        .navigationBarBackButtonHidden(true)
             .ignoresSafeArea(.all, edges: .bottom)
             .foregroundColor(.primary)
             //.overlay(Rectangle().stroke(Color.primary.opacity(0.1), lineWidth: 1).shadow(radius: 3).edgesIgnoringSafeArea(.top))
+
         }
+        
+
         HStack {
             SlideMenu(dark: self.$dark, show: self.$show)
                 .preferredColorScheme(colorScheme == .dark ? .dark : .light)
@@ -218,6 +221,7 @@ struct TabBarView: View {
                 Spacer(minLength: 0)
             }
             .background(Color.primary.opacity(self.show ? (self.dark ? 0.05 : 0.2) : 0))
+
     }
     
     func alertView() {
