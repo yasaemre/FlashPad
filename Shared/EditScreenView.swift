@@ -17,7 +17,7 @@ struct EditScreenView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var body: some View {
 
-        ZStack(alignment: .center) {
+        ZStack(alignment: .top) {
             VStack(alignment: .center)  {
                    HStack() {
 
@@ -49,6 +49,7 @@ struct EditScreenView: View {
                        .padding(.trailing, 15)
 
                    }
+                   .padding(.top,1)
                    
                    HStack(spacing: 10) {
                        
@@ -61,7 +62,6 @@ struct EditScreenView: View {
                                .font(.title)
                                .frame(width: 130, height: 40)
                                .background(!flip ? Color.init(hex: "6C63FF") : .gray)
-                               //.background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
                                .clipShape(Capsule())
                                .foregroundColor(.white)
 
@@ -76,34 +76,26 @@ struct EditScreenView: View {
                                .font(.title)
                            .frame(width: 130, height: 40)
                            .background(flip ? Color.init(hex: "6C63FF") : .gray)
-//                           .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
                            .clipShape(Capsule())
                            .foregroundColor(.white)
                        }
                    }
                    .padding(.top, 70)
 
-                   ZStack {
-                       
-
-                       CardView(card: Card(word: "", definition: "Front"))
-                           .opacity(flipped ? 1 : 0)
-                       CardView(card: Card(word: "", definition: "Back"))
-                           .opacity(flipped ? 0 : 1)
-           //                .frame(width: 250, height: 350)
-           //                .cornerRadius(16)
+                   VStack {
+                        if flipped == true {
+                            CardView(card: Card(word: ""), flip: $flip)
+                       } else {
+                           CardView(card: Card(word: "", definition: ""), flip: $flip)
+                       }
                    }
                    .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
-//                   .onTapGesture {
-//                       withAnimation {
-//                           flip.toggle()
-//                       }
-//                   }
                    .padding(.top, 15)
 
                    Text("1 of 14")
                        .font(.title2)
                        .padding(.top, 10)
+                
 
                    HStack(spacing: 30){
                        Button {
@@ -136,7 +128,8 @@ struct EditScreenView: View {
                    }
 
                }
- 
+            .padding(.top, 4)
+            
         }
         .navigationBarHidden(true)
 

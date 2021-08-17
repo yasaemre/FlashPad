@@ -9,7 +9,8 @@ import SwiftUI
 
 struct CardView: View {
     @State var card:Card
-    @State private var word: String = "Done"
+    
+    @Binding var flip:Bool
     
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
@@ -20,27 +21,109 @@ struct CardView: View {
                 VStack(alignment: card.image != "" ? .center : .leading, spacing: 10) {
 //                TextField("Enter your word", text: $word)
 //                            Text("Hello, \(word)!")
-                
+
                 if card.image != "" {
                     Image(card.image)
-                    
-                }
-                TextField("Enter the word", text: $card.word)
-                //Text(card.word)
-                    .font(.title)
-                    .foregroundColor(.white)
 
-                    TextField("Enter definition", text: $card.definition)
-                    //Text(card.definition)
-                        .font(.body)
-                        .foregroundColor(.white)
+                }
+                if flip == false {
+//                    TextEditor(text: $card.word)
+                    TextView(text: $card.word)
+                        //.frame(width: 250, height: 350)
+
+
+                } else {
+                    TextView(text: $card.definition)
+                    
+
+                }
             }
             )
+
+        
+//        if flip == false {
+////                    TextEditor(text: $card.word)
+//            TextField("Enter the word", text: $card.word)
+//                .frame(width: 250, height: 350)
+//                .background(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]), startPoint: .topLeading, endPoint: .bottomTrailing))
+//                .font(.title)
+//                .foregroundColor(.black)
+//                .frame(width: 250, height: 350)
+//                .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
+//
+//        } else {
+//            TextEditor(text: $card.definition)
+////                    TextField("Enter the word", text: $card.word)
+////                    //Text(card.word)
+//                .background(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]), startPoint: .topLeading, endPoint: .bottomTrailing))
+//                .font(.title)
+//                .foregroundColor(Color.init(hex: "6C63FF"))
+//                .frame(width: 250, height: 350)
+//                .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
+//
+//        }
+    }
+
+}
+struct TextView: UIViewRepresentable {
+    @Binding var text: String
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    func makeUIView(context: Context) -> UITextView {
+
+        let myTextView = UITextView()
+        myTextView.delegate = context.coordinator
+
+        myTextView.font = UIFont(name: "HelveticaNeue", size: 34)
+        myTextView.isScrollEnabled = true
+        myTextView.centerVertically()
+        myTextView.text = "Type here"
+        myTextView.isEditable = true
+        myTextView.isUserInteractionEnabled = true
+        myTextView.textAlignment = .center
+        myTextView.backgroundColor = UIColor(white: 0.0, alpha: 0.05)
+
+        return myTextView
+    }
+
+    func updateUIView(_ uiView: UITextView, context: Context) {
+        uiView.text = text
+    }
+
+    class Coordinator : NSObject, UITextViewDelegate {
+
+        var parent: TextView
+
+        init(_ uiTextView: TextView) {
+            self.parent = uiTextView
+        }
+
+        func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            return true
+        }
+
+        func textViewDidChange(_ textView: UITextView) {
+            print("text now: \(String(describing: textView.text!))")
+            self.parent.text = textView.text
+        }
+    }
+}
+struct CardView_Previews: PreviewProvider {
+    static var previews: some View {
+        CardView(card: Card(word: "asa", definition: "dafds", image: "sdf"), flip: .constant(false))
     }
 }
 
-struct CardView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardView(card: Card(word: "asa", definition: "dafds", image: "sdf"))
+
+extension UITextView {
+    func centerVertically() {
+        let fittingSize = CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude)
+        let size = sizeThatFits(fittingSize)
+        let topOffset = (bounds.size.height - size.height * zoomScale) / 2
+        let positiveTopOffset = max(1, topOffset)
+        contentOffset.y = -positiveTopOffset
     }
 }
