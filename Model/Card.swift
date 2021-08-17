@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 
-struct Card {
+struct Card{
     var word:String
     var definition:String = ""
     var image:String = ""

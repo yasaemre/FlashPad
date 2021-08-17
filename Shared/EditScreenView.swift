@@ -11,6 +11,7 @@ struct EditScreenView: View {
     @StateObject var cardData = CardViewModel()
     @State var flipped = false
     @State var flip = false
+    @State var card = Card(word: "Ornek")
 
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -83,10 +84,12 @@ struct EditScreenView: View {
                    .padding(.top, 70)
 
                    ZStack {
-                       CardView(card: Card(word: "Rambling(adj)", definition: "basi bos, derme capma "))
-                           .opacity(flipped ? 0 : 1)
-                       CardView(card: Card(word: "Rambling(adj)",image: ""))
+                       
+
+                       CardView(card: Card(word: "", definition: "Front"))
                            .opacity(flipped ? 1 : 0)
+                       CardView(card: Card(word: "", definition: "Back"))
+                           .opacity(flipped ? 0 : 1)
            //                .frame(width: 250, height: 350)
            //                .cornerRadius(16)
                    }

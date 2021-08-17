@@ -10,6 +10,7 @@ import SwiftUI
 struct CardView: View {
     @State var card:Card
     @State private var word: String = "Done"
+    
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
             .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]), startPoint: .topLeading, endPoint: .bottomTrailing))
@@ -24,16 +25,15 @@ struct CardView: View {
                     Image(card.image)
                     
                 }
-                //Image(card.image)
-                Text(card.word)
-                    .font(.title2)
+                TextField("Enter the word", text: $card.word)
+                //Text(card.word)
+                    .font(.title)
                     .foregroundColor(.white)
-                
-                if card.definition != "" {
-                    Text(card.definition)
+
+                    TextField("Enter definition", text: $card.definition)
+                    //Text(card.definition)
                         .font(.body)
                         .foregroundColor(.white)
-                }
             }
             )
     }
