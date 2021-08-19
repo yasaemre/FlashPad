@@ -12,6 +12,7 @@ struct CardView: View {
     @Binding var flip:Bool
     @State private var word = ""
     //@State var word = ""
+    @FetchRequest(sortDescriptors:[]) private var cards: FetchedResults<CardCore>
     
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
@@ -22,13 +23,24 @@ struct CardView: View {
                 VStack(alignment:.center, spacing: 10) {
             
                 if flip == false {
-                    TextView(text: $card.word)
+                    //TextView(text: $card.word)
                     //TextEditor(text: $card.word)
                     //word = $card.word
-                    //Text("\(word)")
-                } else {
-                    TextView(text: $card.definition)
+                    if let cards = cards, cards.count > 0 {
+                        Text(cards[0].word ?? "No word")
+                        //Text(cards[0].definition ?? "No def")
+                    }
+                    
+                    //TextView(text: $card.word)
+                    
+                }
+                else {
+                    //TextView(text: $card.definition)
                     //TextEditor(text: $card.definition)
+                    //Text("\(cards[0].definition)")
+                    if let cards = cards, cards.count > 0 {
+                        Text(cards[0].definition ?? "No def")
+                    }
                 }
                 
             }

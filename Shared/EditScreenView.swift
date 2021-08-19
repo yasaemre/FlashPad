@@ -88,8 +88,22 @@ struct EditScreenView: View {
                            .foregroundColor(.white)
                        }
                    }
-                   .padding(.top, 70)
+                   .padding(.top, 50)
 
+                if flipped == true {
+                    TextField("Enter a word", text: $card.word)
+                        .padding(.top, 15)
+//                        .padding(.leading, 40)
+//                        .padding(.trailing, 40)
+                        .frame(width: 250, height: 75, alignment: .center)
+                } else {
+                    TextField("Enter a definition", text: $card.definition)
+                        .padding(.top, 15)
+//                        .padding(.leading, 40)
+//                        .padding(.trailing, 40)
+                        .frame(width: 250, height: 75, alignment: .center)
+                }
+                
                    VStack {
                         if flipped == true {
                             CardView(card: card, flip: $flip)
@@ -142,6 +156,7 @@ struct EditScreenView: View {
 //                }
                 if let cards = cards, cards.count > 0 {
                     Text("\(cards[0].word ?? "No word") \(cards[0].definition ?? "No def.")")
+                    
                 }
                }
             
@@ -171,6 +186,7 @@ struct EditScreenView: View {
         }
             cards[0].word = newCard.word
             cards[0].definition = newCard.definition
+        
             saveContext()
 
             print("cards array is \(cards[0].definition)")
