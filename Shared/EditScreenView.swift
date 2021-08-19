@@ -11,13 +11,19 @@ struct EditScreenView: View {
     @StateObject var cardData = CardViewModel()
     @State var flipped = false
     @State var flip = false
-    @State var card = Card(word: "Ornek")
+    //@ObservedObject var card: Card
+    @StateObject var card = Card()
 
-    
+   
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(sortDescriptors:[]) private var cards: FetchedResults<CardCore>
+    
     var body: some View {
 
         ZStack(alignment: .top) {
+            Color(.orange).opacity(0.2).edgesIgnoringSafeArea(.all)
             VStack(alignment: .center)  {
                    HStack() {
 
@@ -56,6 +62,7 @@ struct EditScreenView: View {
                        Button {
                            withAnimation {
                                flip = false
+                               addCard()
                            }
                        } label: {
                            Text("Question")
@@ -70,6 +77,7 @@ struct EditScreenView: View {
                        Button {
                            withAnimation {
                                flip = true
+                               addCard()
                        }
                        } label: {
                            Text("Answer")
@@ -84,9 +92,9 @@ struct EditScreenView: View {
 
                    VStack {
                         if flipped == true {
-                            CardView(card: Card(word: ""), flip: $flip)
+                            CardView(card: card, flip: $flip)
                        } else {
-                           CardView(card: Card(word: "", definition: ""), flip: $flip)
+                           CardView(card: card, flip: $flip)
                        }
                    }
                    .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
@@ -108,6 +116,7 @@ struct EditScreenView: View {
 
                        Button {
                            //
+                           addCard()
                        } label: {
                            Text("Add Card")
                                .font(.title)
@@ -126,14 +135,47 @@ struct EditScreenView: View {
                                .foregroundColor(Color.init(hex: "6C63FF"))
                        }
                    }
+                
 
+//                ForEach(cards) { card in
+//                    Text("\(card.word ?? "No word") \(card.definition ?? "No def.")")
+//                }
+                if let cards = cards {
+                    Text("\(cards[0].word ?? "No word") \(cards[0].definition ?? "No def.")")
+                }
                }
-            .padding(.top, 4)
             
         }
         .navigationBarHidden(true)
 
     }
+    private func saveContext() {
+        
+        if viewContext.hasChanges {
+            do {
+                try viewContext.save()
+            } catch {
+                let error = error as NSError
+                fatalError("Unresolved Error: \(error)")
+            }
+        }
+    }
+    
+    private func addCard() {
+
+            let newCard = CardCore(context: viewContext)
+            newCard.word = card.word
+            newCard.definition = card.definition
+        guard cards != nil && cards.count > 0 else {
+            return
+        }
+            cards[0].word = newCard.word
+            cards[0].definition = newCard.definition
+            saveContext()
+
+            print("cards array is \(cards[0].definition)")
+    }
+
 }
 
 struct FlipEffect: GeometryEffect {

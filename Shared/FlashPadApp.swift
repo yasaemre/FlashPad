@@ -14,10 +14,13 @@ import GoogleSignIn
 @main
 struct FlashCardsApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-
+    let persistenceContainer = PersistenceController.shared
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, persistenceContainer.container.viewContext)
+            
         }
     }
 }
@@ -58,6 +61,8 @@ class AppDelegate: NSObject, UIApplicationDelegate, GIDSignInDelegate {
            // Perform any operations when the user disconnects from app here.
            // ...
        }
+    
+    
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         

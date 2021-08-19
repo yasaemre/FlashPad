@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct CardView: View {
-    @State var card:Card
-    
+    @ObservedObject var card: Card
     @Binding var flip:Bool
+    @State private var word = ""
+    //@State var word = ""
     
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
@@ -18,53 +19,25 @@ struct CardView: View {
             .frame(width: 250, height: 350)
             .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
             .overlay(
-                VStack(alignment: card.image != "" ? .center : .leading, spacing: 10) {
-//                TextField("Enter your word", text: $word)
-//                            Text("Hello, \(word)!")
-
-                if card.image != "" {
-                    Image(card.image)
-
-                }
+                VStack(alignment:.center, spacing: 10) {
+            
                 if flip == false {
-//                    TextEditor(text: $card.word)
                     TextView(text: $card.word)
-                        //.frame(width: 250, height: 350)
-
-
+                    //TextEditor(text: $card.word)
+                    //word = $card.word
+                    //Text("\(word)")
                 } else {
                     TextView(text: $card.definition)
-                    
-
+                    //TextEditor(text: $card.definition)
                 }
+                
             }
             )
-
         
-//        if flip == false {
-////                    TextEditor(text: $card.word)
-//            TextField("Enter the word", text: $card.word)
-//                .frame(width: 250, height: 350)
-//                .background(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]), startPoint: .topLeading, endPoint: .bottomTrailing))
-//                .font(.title)
-//                .foregroundColor(.black)
-//                .frame(width: 250, height: 350)
-//                .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
-//
-//        } else {
-//            TextEditor(text: $card.definition)
-////                    TextField("Enter the word", text: $card.word)
-////                    //Text(card.word)
-//                .background(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]), startPoint: .topLeading, endPoint: .bottomTrailing))
-//                .font(.title)
-//                .foregroundColor(Color.init(hex: "6C63FF"))
-//                .frame(width: 250, height: 350)
-//                .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
-//
-//        }
     }
 
 }
+
 struct TextView: UIViewRepresentable {
     @Binding var text: String
 
@@ -81,6 +54,7 @@ struct TextView: UIViewRepresentable {
         myTextView.isScrollEnabled = true
         myTextView.centerVertically()
         myTextView.text = "Type here"
+        myTextView.textColor = UIColor.white
         myTextView.isEditable = true
         myTextView.isUserInteractionEnabled = true
         myTextView.textAlignment = .center
@@ -113,7 +87,7 @@ struct TextView: UIViewRepresentable {
 }
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card: Card(word: "asa", definition: "dafds", image: "sdf"), flip: .constant(false))
+        CardView(card: Card(), flip: .constant(false))
     }
 }
 

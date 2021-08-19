@@ -52,6 +52,10 @@
 		C6BB306126AF0A9F00B6710C /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BB306026AF0A9F00B6710C /* Deck.swift */; };
 		C6BB306326AF0B0700B6710C /* DeckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BB306226AF0B0700B6710C /* DeckViewModel.swift */; };
 		C6BB306726AF120900B6710C /* DropViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BB306626AF120900B6710C /* DropViewDelegate.swift */; };
+		C6D2CF0626CD82B300C868A9 /* FlashPad.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C6D2CF0426CD82B300C868A9 /* FlashPad.xcdatamodeld */; };
+		C6D2CF0726CD82B300C868A9 /* FlashPad.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C6D2CF0426CD82B300C868A9 /* FlashPad.xcdatamodeld */; };
+		C6D2CF0926CD864A00C868A9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D2CF0826CD864A00C868A9 /* Persistence.swift */; };
+		C6D2CF0A26CD864A00C868A9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D2CF0826CD864A00C868A9 /* Persistence.swift */; };
 		C6F4134D268AD65000ACBC78 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */; };
 		C6F4134E268AD65000ACBC78 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */; };
 		C6F6B80B268CF4BC00A3D9C9 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F6B80A268CF4BC00A3D9C9 /* HomeScreenView.swift */; };
@@ -112,6 +116,8 @@
 		C6BB306026AF0A9F00B6710C /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		C6BB306226AF0B0700B6710C /* DeckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckViewModel.swift; sourceTree = "<group>"; };
 		C6BB306626AF120900B6710C /* DropViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewDelegate.swift; sourceTree = "<group>"; };
+		C6D2CF0526CD82B300C868A9 /* FlashPad.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlashPad.xcdatamodel; sourceTree = "<group>"; };
+		C6D2CF0826CD864A00C868A9 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		C6D50CD0268AE8F200A60A7F /* FlashPad--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "FlashPad--iOS--Info.plist"; sourceTree = "<group>"; };
 		C6D50CD1268AF0FA00A60A7F /* FlashPad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlashPad.entitlements; sourceTree = "<group>"; };
 		C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -198,6 +204,8 @@
 		C67413A3268ABAEB00128E2D = {
 			isa = PBXGroup;
 			children = (
+				C6D2CF0826CD864A00C868A9 /* Persistence.swift */,
+				C6D2CF0426CD82B300C868A9 /* FlashPad.xcdatamodeld */,
 				C6D50CD1268AF0FA00A60A7F /* FlashPad.entitlements */,
 				C6D50CD0268AE8F200A60A7F /* FlashPad--iOS--Info.plist */,
 				C6BB305F26AF0A4E00B6710C /* Model */,
@@ -517,12 +525,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6D2CF0626CD82B300C868A9 /* FlashPad.xcdatamodeld in Sources */,
 				C6243195268AD7D600C01F24 /* ColorExtention.swift in Sources */,
 				C622151B268AF67B00139D46 /* GoogleLoginView.swift in Sources */,
 				C6289094268F924B005EAE7F /* TabBarView.swift in Sources */,
 				C67413CD268ABAEC00128E2D /* ContentView.swift in Sources */,
 				C67413E0268ABB2800128E2D /* ErrorView.swift in Sources */,
 				C60929EF26B39D670048DE83 /* SlideMenu.swift in Sources */,
+				C6D2CF0926CD864A00C868A9 /* Persistence.swift in Sources */,
 				C6BB306126AF0A9F00B6710C /* Deck.swift in Sources */,
 				C68726B126BA6C47006BD793 /* CardView.swift in Sources */,
 				C68726BA26BA7160006BD793 /* EditScreenView.swift in Sources */,
@@ -548,8 +558,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6D2CF0726CD82B300C868A9 /* FlashPad.xcdatamodeld in Sources */,
 				C67413CE268ABAEC00128E2D /* ContentView.swift in Sources */,
 				C67413E1268ABB2800128E2D /* ErrorView.swift in Sources */,
+				C6D2CF0A26CD864A00C868A9 /* Persistence.swift in Sources */,
 				C6289095268F924B005EAE7F /* TabBarView.swift in Sources */,
 				C67413E4268ABBCC00128E2D /* LoginView.swift in Sources */,
 				C6F6B80F268CF59400A3D9C9 /* HomeView.swift in Sources */,
@@ -996,6 +1008,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C6D2CF0426CD82B300C868A9 /* FlashPad.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C6D2CF0526CD82B300C868A9 /* FlashPad.xcdatamodel */,
+			);
+			currentVersion = C6D2CF0526CD82B300C868A9 /* FlashPad.xcdatamodel */;
+			path = FlashPad.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C67413A4268ABAEB00128E2D /* Project object */;
 }

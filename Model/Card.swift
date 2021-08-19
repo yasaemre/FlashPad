@@ -9,8 +9,7 @@ import Foundation
 import SwiftUI
 
 
-struct Card{
-    var word:String
-    var definition:String = ""
-    var image:String = ""
+class Card:ObservableObject{
+   @Published var word:String = ""
+    @Published var definition:String = ""
 }
