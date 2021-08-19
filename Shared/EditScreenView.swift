@@ -23,7 +23,7 @@ struct EditScreenView: View {
     var body: some View {
 
         ZStack(alignment: .top) {
-            Color(.orange).opacity(0.2).edgesIgnoringSafeArea(.all)
+            Color(.systemBackground).opacity(0.2).edgesIgnoringSafeArea(.all)
             VStack(alignment: .center)  {
                    HStack() {
 
@@ -140,7 +140,7 @@ struct EditScreenView: View {
 //                ForEach(cards) { card in
 //                    Text("\(card.word ?? "No word") \(card.definition ?? "No def.")")
 //                }
-                if let cards = cards {
+                if let cards = cards, cards.count > 0 {
                     Text("\(cards[0].word ?? "No word") \(cards[0].definition ?? "No def.")")
                 }
                }
