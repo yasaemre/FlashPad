@@ -10,13 +10,7 @@ import SwiftUI
 import SwiftUI
 
 class CardViewModel: ObservableObject {
-    @Published var cards = [
-        Card(),
-        Card(),
-        Card(),
-        Card(),
-        Card()
-    ]
+    @Published var cards = [Card]()
     
     //Currently Dragging Page...
     @Published var currentCard: Card?

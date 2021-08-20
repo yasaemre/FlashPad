@@ -9,10 +9,12 @@ import SwiftUI
 
 struct CardView: View {
     @ObservedObject var card: Card
+    @StateObject var cardVM = CardViewModel()
     @Binding var flip:Bool
+    @Binding var addCardTapped:Bool
     @State private var word = ""
-    //@State var word = ""
     @FetchRequest(sortDescriptors:[]) private var cards: FetchedResults<CardCore>
+
     
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
@@ -23,24 +25,29 @@ struct CardView: View {
                 VStack(alignment:.center, spacing: 10) {
             
                 if flip == false {
-                    //TextView(text: $card.word)
-                    //TextEditor(text: $card.word)
-                    //word = $card.word
                     if let cards = cards, cards.count > 0 {
-                        Text(cards[0].word ?? "No word")
-                        //Text(cards[0].definition ?? "No def")
+                        if addCardTapped == true {
+                            Text("")
+                        } else {
+                            Text(cards.last?.word ?? "No word")
+                                .font(.custom("HelveticaNeue", size: 40))
+                                .foregroundColor(.white)
+                        }
                     }
                     
-                    //TextView(text: $card.word)
                     
                 }
                 else {
-                    //TextView(text: $card.definition)
-                    //TextEditor(text: $card.definition)
-                    //Text("\(cards[0].definition)")
-                    if let cards = cards, cards.count > 0 {
-                        Text(cards[0].definition ?? "No def")
+                    if addCardTapped == true {
+                        Text("")
+                    } else {
+                        if let cards = cards, cards.count > 0 {
+                            Text(cards.last?.definition ?? "No def")
+                                .font(.custom("HelveticaNeue", size: 40))
+                                .foregroundColor(.white)
+                        }
                     }
+                   
                 }
                 
             }
@@ -99,7 +106,7 @@ struct TextView: UIViewRepresentable {
 }
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card: Card(), flip: .constant(false))
+        CardView(card: Card(), flip: .constant(false), addCardTapped: .constant(false))
     }
 }
 

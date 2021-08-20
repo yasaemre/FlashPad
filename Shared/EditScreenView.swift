@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct EditScreenView: View {
-    @StateObject var cardData = CardViewModel()
+    @StateObject var cardVM = CardViewModel()
     @State var flipped = false
     @State var flip = false
+    @State var addCardTapped = false
     //@ObservedObject var card: Card
     @StateObject var card = Card()
 
@@ -18,7 +19,7 @@ struct EditScreenView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(sortDescriptors:[]) private var cards: FetchedResults<CardCore>
+    @FetchRequest(sortDescriptors:[]) var cardsArrPersistent: FetchedResults<CardCore>
     
     var body: some View {
 
@@ -62,10 +63,11 @@ struct EditScreenView: View {
                        Button {
                            withAnimation {
                                flip = false
-                               addCard()
+                               //addCard()
+                               saveContext()
                            }
                        } label: {
-                           Text("Question")
+                           Text("Word")
                                .font(.title)
                                .frame(width: 130, height: 40)
                                .background(!flip ? Color.init(hex: "6C63FF") : .gray)
@@ -77,10 +79,11 @@ struct EditScreenView: View {
                        Button {
                            withAnimation {
                                flip = true
-                               addCard()
+                               //addCard()
+                               saveContext()
                        }
                        } label: {
-                           Text("Answer")
+                           Text("Meaning")
                                .font(.title)
                            .frame(width: 130, height: 40)
                            .background(flip ? Color.init(hex: "6C63FF") : .gray)
@@ -91,30 +94,35 @@ struct EditScreenView: View {
                    .padding(.top, 50)
 
                 if flipped == true {
+
                     TextField("Enter a word", text: $card.word)
-                        .padding(.top, 15)
+                        .padding(.top, 10)
 //                        .padding(.leading, 40)
 //                        .padding(.trailing, 40)
                         .frame(width: 250, height: 75, alignment: .center)
+                        .textFieldStyle(.roundedBorder)
+                        .modifier(TextFieldClearButton(text: $card.word))
                 } else {
                     TextField("Enter a definition", text: $card.definition)
-                        .padding(.top, 15)
+                        .padding(.top, 10)
 //                        .padding(.leading, 40)
 //                        .padding(.trailing, 40)
                         .frame(width: 250, height: 75, alignment: .center)
+                        .textFieldStyle(.roundedBorder)
+                        .modifier(TextFieldClearButton(text: $card.definition))
                 }
                 
                    VStack {
                         if flipped == true {
-                            CardView(card: card, flip: $flip)
+                            CardView(card: card, flip: $flip, addCardTapped: $addCardTapped)
                        } else {
-                           CardView(card: card, flip: $flip)
+                           CardView(card: card, flip: $flip, addCardTapped: $addCardTapped)
                        }
                    }
                    .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
                    .padding(.top, 15)
 
-                   Text("1 of 14")
+                Text("1 of \(cardsArrPersistent.count)")
                        .font(.title2)
                        .padding(.top, 10)
                 
@@ -131,6 +139,7 @@ struct EditScreenView: View {
                        Button {
                            //
                            addCard()
+                           
                        } label: {
                            Text("Add Card")
                                .font(.title)
@@ -143,6 +152,8 @@ struct EditScreenView: View {
 
                        Button {
                            //
+                           card.word = ""
+                           card.definition = ""
                        } label: {
                            Image(systemName: "arrowshape.turn.up.right")
                                .font(.largeTitle)
@@ -150,14 +161,10 @@ struct EditScreenView: View {
                        }
                    }
                 
-
-//                ForEach(cards) { card in
-//                    Text("\(card.word ?? "No word") \(card.definition ?? "No def.")")
+//                if let cards = cardsArrPersistent, cardsArrPersistent.count > 0 {
+//                    Text("\(cards[0].word ?? "No word") \(cards[0].definition ?? "No def.")")
+//
 //                }
-                if let cards = cards, cards.count > 0 {
-                    Text("\(cards[0].word ?? "No word") \(cards[0].definition ?? "No def.")")
-                    
-                }
                }
             
         }
@@ -181,17 +188,40 @@ struct EditScreenView: View {
             let newCard = CardCore(context: viewContext)
             newCard.word = card.word
             newCard.definition = card.definition
-        guard cards != nil && cards.count > 0 else {
+        guard cardsArrPersistent != nil && cardsArrPersistent.count > 0 else {
             return
         }
-            cards[0].word = newCard.word
-            cards[0].definition = newCard.definition
+        cardsArrPersistent.last?.word = newCard.word
+        cardsArrPersistent.last?.definition = newCard.definition
+        for card in cardsArrPersistent {
+            print(card.word)
+            print(card.definition)
+        }
+        addCardTapped.toggle()
+        saveContext()
         
-            saveContext()
-
-            print("cards array is \(cards[0].definition)")
     }
 
+}
+
+struct TextFieldClearButton: ViewModifier {
+    @Binding var text: String
+    
+    func body(content: Content) -> some View {
+        HStack {
+            content
+            
+            if !text.isEmpty {
+                Button(
+                    action: { self.text = "" },
+                    label: {
+                        Image(systemName: "delete.left")
+                            .foregroundColor(Color(UIColor.opaqueSeparator))
+                    }
+                )
+            }
+        }
+    }
 }
 
 struct FlipEffect: GeometryEffect {
