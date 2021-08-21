@@ -11,7 +11,11 @@ struct EditScreenView: View {
     @StateObject var cardVM = CardViewModel()
     @State var flipped = false
     @State var flip = false
-    @State var addCardTapped = false
+    @State var rightArrowTapped = false
+   // @State var numOfCard = 0
+    @State private var numOfCard = UserDefaults.standard.integer(forKey: "numOfCard")
+
+   
     //@ObservedObject var card: Card
     @StateObject var card = Card()
 
@@ -64,7 +68,8 @@ struct EditScreenView: View {
                            withAnimation {
                                flip = false
                                //addCard()
-                               saveContext()
+                               //saveContext()
+
                            }
                        } label: {
                            Text("Word")
@@ -79,8 +84,7 @@ struct EditScreenView: View {
                        Button {
                            withAnimation {
                                flip = true
-                               //addCard()
-                               saveContext()
+                               //saveContext()
                        }
                        } label: {
                            Text("Meaning")
@@ -114,22 +118,24 @@ struct EditScreenView: View {
                 
                    VStack {
                         if flipped == true {
-                            CardView(card: card, flip: $flip, addCardTapped: $addCardTapped)
+                            CardView(card: card, flip: $flip, rightArrowTapped: $rightArrowTapped, numOfCard: $numOfCard)
                        } else {
-                           CardView(card: card, flip: $flip, addCardTapped: $addCardTapped)
+                           CardView(card: card, flip: $flip, rightArrowTapped: $rightArrowTapped, numOfCard: $numOfCard)
                        }
                    }
                    .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
                    .padding(.top, 15)
 
-                Text("1 of \(cardsArrPersistent.count)")
+                Text("\(numOfCard+1) of \(cardsArrPersistent.count)")
                        .font(.title2)
                        .padding(.top, 10)
                 
 
                    HStack(spacing: 30){
                        Button {
-                           //
+                           if  numOfCard >= 1 {
+                               numOfCard -= 1
+                           }
                        } label: {
                            Image(systemName: "arrowshape.turn.up.backward")
                                .font(.largeTitle)
@@ -152,8 +158,10 @@ struct EditScreenView: View {
 
                        Button {
                            //
-                           card.word = ""
-                           card.definition = ""
+                           if numOfCard
+                                != cardsArrPersistent.count-1 {
+                               numOfCard += 1
+                           }
                        } label: {
                            Image(systemName: "arrowshape.turn.up.right")
                                .font(.largeTitle)
@@ -191,13 +199,18 @@ struct EditScreenView: View {
         guard cardsArrPersistent != nil && cardsArrPersistent.count > 0 else {
             return
         }
-        cardsArrPersistent.last?.word = newCard.word
-        cardsArrPersistent.last?.definition = newCard.definition
+        //cardsArrPersistent.last?.word = newCard.word
+        //cardsArrPersistent.last?.definition = newCard.definition
+        numOfCard += 1
+        UserDefaults.standard.set(self.numOfCard, forKey: "numOfCard")
+        newCard.numOfCard = Int32(numOfCard)
+        
+        print("\(Int(newCard.numOfCard))")
         for card in cardsArrPersistent {
             print(card.word)
             print(card.definition)
         }
-        addCardTapped.toggle()
+        
         saveContext()
         
     }

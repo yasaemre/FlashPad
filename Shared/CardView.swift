@@ -11,7 +11,8 @@ struct CardView: View {
     @ObservedObject var card: Card
     @StateObject var cardVM = CardViewModel()
     @Binding var flip:Bool
-    @Binding var addCardTapped:Bool
+    @Binding var rightArrowTapped:Bool
+    @Binding var numOfCard:Int
     @State private var word = ""
     @FetchRequest(sortDescriptors:[]) private var cards: FetchedResults<CardCore>
 
@@ -26,10 +27,10 @@ struct CardView: View {
             
                 if flip == false {
                     if let cards = cards, cards.count > 0 {
-                        if addCardTapped == true {
+                        if rightArrowTapped == true {
                             Text("")
                         } else {
-                            Text(cards.last?.word ?? "No word")
+                            Text(cards[numOfCard].word ?? "No word")
                                 .font(.custom("HelveticaNeue", size: 40))
                                 .foregroundColor(.white)
                         }
@@ -38,11 +39,11 @@ struct CardView: View {
                     
                 }
                 else {
-                    if addCardTapped == true {
+                    if rightArrowTapped == true {
                         Text("")
                     } else {
                         if let cards = cards, cards.count > 0 {
-                            Text(cards.last?.definition ?? "No def")
+                            Text(cards[numOfCard].definition ?? "No def")
                                 .font(.custom("HelveticaNeue", size: 40))
                                 .foregroundColor(.white)
                         }
@@ -106,7 +107,7 @@ struct TextView: UIViewRepresentable {
 }
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card: Card(), flip: .constant(false), addCardTapped: .constant(false))
+        CardView(card: Card(), flip: .constant(false), rightArrowTapped: .constant(false), numOfCard: .constant(0))
     }
 }
 
