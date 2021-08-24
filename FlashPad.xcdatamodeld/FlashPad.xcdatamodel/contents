@@ -8,10 +8,11 @@
     <entity name="DeckCore" representedClassName="DeckCore" syncable="YES" codeGenerationType="class">
         <attribute name="deckCreatedAt" optional="YES" attributeType="String"/>
         <attribute name="deckName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="numberOfCardsInDeck" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
         <element name="CardCore" positionX="-63" positionY="-18" width="128" height="74"/>
-        <element name="DeckCore" positionX="-63" positionY="9" width="128" height="74"/>
+        <element name="DeckCore" positionX="-63" positionY="9" width="128" height="89"/>
     </elements>
 </model>

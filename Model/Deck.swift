@@ -10,11 +10,11 @@ import Foundation
 
 //Sample URL Pages...
 
-class Deck: Identifiable, ObservableObject {
-    @Published var id = UUID().uuidString
-    @Published var deckName: String = ""
-    @Published var numberOfCardsInDeck: Int = 0
-    @Published var deckCreatedAt: String = ""
+struct Deck: Identifiable {
+     var id = UUID()
+     var deckName: String = ""
+     var numberOfCardsInDeck: Int = 0
+     var deckCreatedAt: String = ""
     
     func getTodayDate() -> String
     {
