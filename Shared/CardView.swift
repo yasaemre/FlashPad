@@ -29,7 +29,7 @@ struct CardView: View {
                     if let cards = cards, cards.count > 0 {
                         if rightArrowTapped == true {
                             Text("")
-                        } else {
+                        } else { 
                             Text(cards[numOfCard].word ?? "No word")
                                 .font(.custom("HelveticaNeue", size: 40))
                                 .foregroundColor(.white)

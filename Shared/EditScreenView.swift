@@ -13,8 +13,7 @@ struct EditScreenView: View {
     @State var flip = false
     @State var rightArrowTapped = false
    // @State var numOfCard = 0
-    @State private var numOfCard = UserDefaults.standard.integer(forKey: "numOfCard")
-
+    @State var numOfCard = UserDefaults.standard.integer(forKey: "numOfCard")
    
     //@ObservedObject var card: Card
     @StateObject var card = Card()
@@ -52,9 +51,9 @@ struct EditScreenView: View {
                            Text("Study")
                                .font(.title)
                                .frame(width: 130, height: 40)
-                               .background(RadialGradient(gradient: Gradient(colors: [Color(UIColor.red), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
                                .clipShape(Capsule())
-                               .foregroundColor(.white)
+                               .foregroundColor(Color.init(hex: "6C63FF"))
+                           
 
                        }
                        .padding(.trailing, 15)
@@ -213,6 +212,14 @@ struct EditScreenView: View {
         
         saveContext()
         
+    }
+    
+    //Use with tap gesture or delete button
+    private func deleteCard(offsets: IndexSet) {
+        withAnimation {
+            offsets.map {cardsArrPersistent[$0]}.forEach(viewContext.delete)
+            saveContext()
+        }
     }
 
 }

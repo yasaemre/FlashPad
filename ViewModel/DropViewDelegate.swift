@@ -18,11 +18,11 @@ struct DropViewDelegate: DropDelegate {
     func dropEntered(info: DropInfo) {
         print("\(card.deckName)")
         
-        let fromIndex = cardData.cards.firstIndex { (card) -> Bool in
+        let fromIndex = cardData.decks.firstIndex { (card) -> Bool in
             return card.id == cardData.currentCard?.id
         } ?? 0
         
-        let toIndex = cardData.cards.firstIndex { (card) -> Bool in
+        let toIndex = cardData.decks.firstIndex { (card) -> Bool in
             return card.id == self.card.id
         } ?? 0
         
@@ -30,9 +30,9 @@ struct DropViewDelegate: DropDelegate {
         if fromIndex != toIndex {
             withAnimation {
                 //Swapping Data...
-                let fromPage = cardData.cards[fromIndex]
-                cardData.cards[fromIndex] = cardData.cards[toIndex]
-                cardData.cards[toIndex] = fromPage
+                let fromPage = cardData.decks[fromIndex]
+                cardData.decks[fromIndex] = cardData.decks[toIndex]
+                cardData.decks[toIndex] = fromPage
             }
         }
         

@@ -19,18 +19,24 @@ struct TabBarView: View {
     
     @State var customAlert = false
     @State var HUD = false
-    @State var nameOfCard = ""
+    //@State var nameOfDeck = ""
     
     @State var dark = false
     @State var show = false
         
     @Environment(\.colorScheme) var colorScheme
-    
-    @StateObject var deckData = DeckViewModel()
+    @StateObject var deck = Deck()
+    @StateObject var deckVM = DeckViewModel()
     let columns = Array(repeating: GridItem(.flexible(), spacing:25), count: 2)
-
     
     @State private var navBarHidden = false
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(sortDescriptors:[]) var decksArrPersistent: FetchedResults<DeckCore>
+//    @State private var numOfDeck = UserDefaults.standard.integer(forKey: "numOfCard")
+    var editScreenView = EditScreenView()
 
     var body: some View {
         NavigationView {
@@ -45,7 +51,7 @@ struct TabBarView: View {
                             //Tabs With Pages...
                             
                             LazyVGrid(columns: columns, spacing: 30, content: {
-                                ForEach(deckData.cards) { deck in
+                                ForEach(deckVM.decks) { deck in
                                     
                                     
                                     ZStack {
@@ -53,7 +59,7 @@ struct TabBarView: View {
                                         Button(action: {
                                             withAnimation(.easeInOut) {
                                                 navBarHidden = true
-                                            }
+]                                            }
                                         }, label:{
                                             Image("cardBackg")
                                                 .resizable()
@@ -69,18 +75,18 @@ struct TabBarView: View {
                                             Text("\(deck.deckName)")
                                                 .font(.title).bold()
                                                 .foregroundColor(.white)
-                                            
-                                            
                                                 .onDrag ({
                                                     //setting Current Page...
-                                                    deckData.currentCard = deck
+                                                    deckVM.currentCard = deck
                                                     
                                                     //Sending ID for Sample..
-                                                    return NSItemProvider(object: deck.deckName as NSString)
+                                                   // return NSItemProvider(object: deck.deckName as NSString)
+                                                    return NSItemProvider(object: UIImage(named: "cardBackg" ) ?? UIImage())
+
                                                     
                                                 })
-                                                .onDrop(of: ["public.image"], delegate: DropViewDelegate(card: deck, cardData: deckData))
-                                            Text("\(deck.numberOfCardsInDeck) cards")
+                                                .onDrop(of: ["public.image"], delegate: DropViewDelegate(card: deck, cardData: deckVM))
+                                            Text("\(editScreenView.numOfCard+1) cards")
                                                 .font(.title2)
                                                 .foregroundColor(.white)
                                             Text("created on \n\(deck.getTodayDate())")
@@ -101,6 +107,7 @@ struct TabBarView: View {
                                     print("Card added")
                                     withAnimation {
                                         alertView()
+                                        saveContext()
                                     }
                                 }, label: {
                                     Image(systemName: "plus")
@@ -231,7 +238,56 @@ struct TabBarView: View {
 
     }
     
+    private func saveContext() {
+        
+        if viewContext.hasChanges {
+            do {
+                try viewContext.save()
+            } catch {
+                let error = error as NSError
+                fatalError("Unresolved Error: \(error)")
+            }
+        }
+    }
+    
+//    private func addDeck() {
+//
+//        let newDeck = DeckCore(context: viewContext)
+//
+//        newDeck.deckName = deck.deckName
+//        newDeck.numberOfCardsInDeck = Int16(editScreenView.numOfCard)
+//        newDeck.deckCreatedAt = deck.getTodayDate()
+//        guard decksArrPersistent != nil && decksArrPersistent.count > 0 else {
+//            return
+//        }
+//        //cardsArrPersistent.last?.word = newCard.word
+//        //cardsArrPersistent.last?.definition = newCard.definition
+//        //numOfCard += 1
+//        // UserDefaults.standard.set(self.numOfCard, forKey: "numOfCard")
+//        //newCard.numOfCard = Int32(numOfCard)
+//        print("\(Int(newDeck.deckName ?? "No name"))")
+//        print("\(Int(newDeck.numberOfCardsInDeck))")
+//
+////        for card in decksArrPersistent {
+////            print(card.word)
+////            print(card.definition)
+////        }
+//
+//        saveContext()
+//
+//    }
+    
+    //Use with tap gesture or delete button
+    private func deleteCard(offsets: IndexSet) {
+        withAnimation {
+            offsets.map {decksArrPersistent[$0]}.forEach(viewContext.delete)
+            saveContext()
+        }
+    }
+    
     func alertView() {
+        
+        
         let alert = UIAlertController(title: "Deck", message: "Create FlashPad Deck", preferredStyle: .alert)
         
         alert.addTextField { pass in
@@ -239,11 +295,28 @@ struct TabBarView: View {
         }
         
         //Action Buttons
+        let newDeck = DeckCore(context: viewContext)
+        
+        guard decksArrPersistent != nil && decksArrPersistent.count > 0 else {
+            return
+        }
         
         let create = UIAlertAction(title: "Create", style: .default) { (_) in
             //do your stuff..
-            nameOfCard = alert.textFields![0].text!
-            deckData.cards.append(Deck(deckName: nameOfCard, numberOfCardsInDeck: 10, deckCreatedAt: nil))
+            deck.deckName = alert.textFields![0].text!
+            newDeck.deckName = deck.deckName
+            newDeck.numberOfCardsInDeck = Int16(editScreenView.numOfCard)
+            deck.numberOfCardsInDeck = Int(Int16(editScreenView.numOfCard))
+            
+            newDeck.deckCreatedAt = deck.getTodayDate()
+            deck.deckCreatedAt = deck.getTodayDate()
+            saveContext()
+            deckVM.decks.append(deck)
+           
+            print(deck.deckName)
+            print(deck.numberOfCardsInDeck)
+            print(deck.deckCreatedAt)
+            print(newDeck.deckName)
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .destructive) { _ in
@@ -255,6 +328,7 @@ struct TabBarView: View {
         
         UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: {
             //code
+            
         })
     }
     
