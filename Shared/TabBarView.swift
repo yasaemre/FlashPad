@@ -59,7 +59,7 @@ struct TabBarView: View {
                                         Button(action: {
                                             withAnimation(.easeInOut) {
                                                 navBarHidden = true
-]                                            }
+                                            }
                                         }, label:{
                                             Image("cardBackg")
                                                 .resizable()
