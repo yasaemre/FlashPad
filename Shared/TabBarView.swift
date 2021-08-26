@@ -63,7 +63,7 @@ struct TabBarView: View {
                             
                             LazyVGrid(columns: columns, spacing: 30, content: {
                                 ForEach(decksArrPersistent, id: \.self) { deck in
-                                    NavigationLink(destination: EditScreenView(deckCore: deck), isActive: $navBarHidden) {
+                                    NavigationLink(destination: EditScreenView(deckCore: deck)) {
                                         ZStack {
                                             Image("cardBackg")
                                                 .resizable()
@@ -75,11 +75,11 @@ struct TabBarView: View {
                                                     .font(.title).bold()
                                                     .foregroundColor(.white)
                                                 
-                                                Text("\(deck.numberOfCardsInDeck+1) cards")
+                                                Text("\(deck.numberOfCardsInDeck) cards")
                                                     .font(.title2)
                                                     .foregroundColor(.white)
                                                     .onAppear {
-                                                        deck.numberOfCardsInDeck = Int16(indexOfCard)
+                                                        deck.numberOfCardsInDeck = Int16(deck.cardsArray.count)
                                                     }
                                                 Text("created on \n\(deck.deckCreatedAt ?? "")")
                                                     .font(.system(size: 12.0))
@@ -90,48 +90,6 @@ struct TabBarView: View {
                                     }.simultaneousGesture(TapGesture().onEnded{
                                         print("Navigated to EditScreen")
                                     })
-                                    
-//                                    ZStack {
-//
-//                                        Button(action: {
-//                                            withAnimation(.easeInOut) {
-//                                                navBarHidden = true
-//                                            }
-//                                        }, label:{
-//                                            Image("cardBackg")
-//                                                .resizable()
-//                                                .frame(width:150, height: 200)
-//                                                .cornerRadius(16)
-//
-//                                        })
-////                                            .fullScreenCover(isPresented: $navBarHidden, content: EditScreenView.init)
-//
-//
-//
-////                                        VStack(spacing: 10) {
-////                                            Text(deck.unwrappedDeckName)
-////                                                .font(.title).bold()
-////                                                .foregroundColor(.white)
-//////                                                .onDrag ({
-//////                                                    //setting Current Page...
-//////                                                    deckVM.currentCard = deck
-//////
-//////                                                    //Sending ID for Sample..
-//////                                                    return NSItemProvider(object: deck.deckName as NSString)
-//////
-//////
-//////
-//////                                                })
-//////                                                .onDrop(of: ["public.image"], delegate: DropViewDelegate(card: deck, cardData: deckVM))
-////                                            Text("\(numOfCardsInDeck) cards")
-////                                                .font(.title2)
-////                                                .foregroundColor(.white)
-////                                            Text("created on \n\(deck.deckCreatedAt ?? "")")
-////                                                .font(.system(size: 12.0))
-////                                                .foregroundColor(.white)
-////                                        }
-////                                        .frame(width:150, height: 200)
-//                                    }
                                 }
                             })
                         }
@@ -287,7 +245,7 @@ struct TabBarView: View {
 //    }
     
     private func addDeck() {
-
+        indexOfCard = 0
         let newDeck = DeckCore(context: viewContext)
 
         
@@ -295,6 +253,7 @@ struct TabBarView: View {
         newDeck.numberOfCardsInDeck = Int16(numOfCardsInDeck)
         newDeck.deckCreatedAt = deckCreatedAt
         PersistenceController.shared.saveContext()
+       
         guard decksArrPersistent != nil && decksArrPersistent.count > 0 else {
             return
         }
@@ -338,15 +297,6 @@ struct TabBarView: View {
             
             //deckVM.decks.append(Deck( deckName: deck.deckName, numberOfCardsInDeck: deck.numberOfCardsInDeck, deckCreatedAt: deck.deckCreatedAt))
             addDeck()
-            //decksArrPersistent
-//            print(deck.deckName)
-//            print(deck.numberOfCardsInDeck)
-//            print(deck.deckCreatedAt)
-//            print(newDeck.deckName)
-//            print(deckVM.decks.first)
-            
-
-            
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .destructive) { _ in

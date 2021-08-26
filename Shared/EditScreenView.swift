@@ -13,8 +13,8 @@ struct EditScreenView: View {
     @State var flip = false
     @State var rightArrowTapped = false
    // @State var numOfCard = 0
-    @State var indexOfCard = UserDefaults.standard.integer(forKey: "indexOfCard")
-   
+    //@State var indexOfCard = UserDefaults.standard.integer(forKey: "indexOfCard")
+   @State var indexCard = 0
     //@ObservedObject var card: Card
     @StateObject var card = Card()
     @StateObject var deckCore:DeckCore
@@ -114,25 +114,65 @@ struct EditScreenView: View {
                         .modifier(TextFieldClearButton(text: $card.definition))
                 }
                 
-                   VStack {
-                        if flipped == true {
-                            CardView(card: card, flip: $flip, rightArrowTapped: $rightArrowTapped, numOfCard: $indexOfCard, deckCore: deckCore)
-                       } else {
-                           CardView(card: card, flip: $flip, rightArrowTapped: $rightArrowTapped, numOfCard: $indexOfCard, deckCore: deckCore)
-                       }
-                   }
-                   .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
-                   .padding(.top, 15)
+//                   VStack {
+//                        if flipped == true {
+//                            CardView(card: card, flip: $flip, rightArrowTapped: $rightArrowTapped, numOfCard: $indexOfCard, deckCore: deckCore)
+//                       } else {
+//                           CardView(card: card, flip: $flip, rightArrowTapped: $rightArrowTapped, numOfCard: $indexOfCard, deckCore: deckCore)
+//                       }
+//                   }
+//                   .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
+//                   .padding(.top, 15)
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .frame(width: 250, height: 350)
+                    .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
+                    .overlay(
+                        VStack(alignment:.center, spacing: 10) {
+                        ForEach(0..<deckCore.cardsArray.count) { index in
+                            if flip == false {
+                                if rightArrowTapped == true {
+                                    Text("")
+                                } else {
+                                    Text(deckCore.cardsArray[index].unwrappedWord)
+                                        .font(.custom("HelveticaNeue", size: 40))
+                                        .foregroundColor(.white)
+                                        .onAppear {
+//                                            for card in deckCore.cardsArray {
+//                                                print("\(deckCore.cardsArray)")
+//                                            }
+                                            indexCard = index
+                                        }
+                                }
+                            } else {
+                                if rightArrowTapped == true {
+                                    Text("")
+                                } else {
+                                    Text(deckCore.cardsArray[index].unwrappedDefinition)
+                                        .font(.custom("HelveticaNeue", size: 40))
+                                        .foregroundColor(.white)
+                                }
+                            }
+                            
+                            
+                            
+                        }
+                        
+                    }
+                            
+                    )
+                    .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
+                    .padding(.top, 15)
 
-                Text("\(indexOfCard+1) of \(deckCore.cardsArray.count)")
+               
+                Text("\(indexCard+1) of \(deckCore.cardsArray.count)")
                        .font(.title2)
                        .padding(.top, 10)
-                
 
                    HStack(spacing: 30){
                        Button {
-                           if  indexOfCard >= 1 {
-                               indexOfCard -= 1
+                           if  indexCard >= 1 {
+                               indexCard -= 1
                            }
                        } label: {
                            Image(systemName: "arrowshape.turn.up.backward")
@@ -156,9 +196,9 @@ struct EditScreenView: View {
 
                        Button {
                            //
-                           if indexOfCard
+                           if indexCard
                                 != deckCore.cardsArray.count-1 {
-                               indexOfCard += 1
+                               indexCard += 1
                            }
                        } label: {
                            Image(systemName: "arrowshape.turn.up.right")
@@ -201,9 +241,9 @@ struct EditScreenView: View {
         //cardsArrPersistent.last?.definition = newCard.definition
         deckCore.addToCards(newCard)
         PersistenceController.shared.saveContext()
-        indexOfCard += 1
-        UserDefaults.standard.set(self.indexOfCard, forKey: "indexOfCard")
-        newCard.totalNumOfCards = Int16(deckCore.cardsArray.count)
+        
+       //indexOfCard += 1
+        //UserDefaults.standard.set(self.indexOfCard, forKey: "indexOfCard")
         //print("\(Int(newCard.numOfCard))")
         for card in deckCore.cardsArray {
             print(card.word)

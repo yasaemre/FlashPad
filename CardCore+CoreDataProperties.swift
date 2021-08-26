@@ -17,7 +17,6 @@ extension CardCore {
     }
 
     @NSManaged public var definition: String?
-    @NSManaged public var totalNumOfCards: Int16
     @NSManaged public var word: String?
     @NSManaged public var deck: DeckCore?
 

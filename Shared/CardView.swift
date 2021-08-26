@@ -32,6 +32,11 @@ struct CardView: View {
                             Text(card.unwrappedWord)
                                 .font(.custom("HelveticaNeue", size: 40))
                                 .foregroundColor(.white)
+                                .onAppear {
+                                    for card in deckCore.cardsArray {
+                                        print("\(deckCore.cardsArray)")
+                                    }
+                                }
                         }
                     } else {
                         if rightArrowTapped == true {
@@ -44,31 +49,6 @@ struct CardView: View {
                     }
                     
                 }
-//                if flip == false {
-//                    if let cards = cardsArrayPersistent, cardsArrayPersistent.count > 0 {
-//                        if rightArrowTapped == true {
-//                            Text("")
-//                        } else {
-//                            Text(cardsArrayPersistent[numOfCard].word ?? "No word")
-//                                .font(.custom("HelveticaNeue", size: 40))
-//                                .foregroundColor(.white)
-//                        }
-//                    }
-//
-//
-//                }
-//                else {
-//                    if rightArrowTapped == true {
-//                        Text("")
-//                    } else {
-//                        if let cards = cardsArrayPersistent, cardsArrayPersistent.count > 0 {
-//                            Text(cardsArrayPersistent[numOfCard].definition ?? "No def")
-//                                .font(.custom("HelveticaNeue", size: 40))
-//                                .foregroundColor(.white)
-//                        }
-//                    }
-//
-//                }
                 
             }
             )
