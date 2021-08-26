@@ -200,6 +200,7 @@ struct EditScreenView: View {
         }
         //cardsArrPersistent.last?.word = newCard.word
         //cardsArrPersistent.last?.definition = newCard.definition
+        saveContext()
         numOfCard += 1
         UserDefaults.standard.set(self.numOfCard, forKey: "numOfCard")
         newCard.numOfCard = Int32(numOfCard)
@@ -210,7 +211,7 @@ struct EditScreenView: View {
             print(card.definition)
         }
         
-        saveContext()
+        
         
     }
     
