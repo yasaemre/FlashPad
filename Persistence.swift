@@ -8,16 +8,49 @@
 import CoreData
 
 struct PersistenceController {
-    static let shared = PersistenceController()
-    
     let container: NSPersistentContainer
-    
-    init (inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "FlashPad")
+
+    static let shared = PersistenceController()
+
+    // Convenience
+    var viewContext: NSManagedObjectContext {
+        return container.viewContext
+    }
+
+    static var preview: PersistenceController = {
+        let result = PersistenceController(inMemory: true)
+        let viewContext = result.container.viewContext
+
+        // Companies
+        let deckCore = DeckCore(context: viewContext)
+        deckCore.deckName = "Apple"
+
+        shared.saveContext()
         
-        container.loadPersistentStores { storeDescription, error in
-            if let error = error as? NSError {
-                fatalError("Unresolved error: \(error)")
+        return result
+    }()
+
+    init(inMemory: Bool = false) {
+        container = NSPersistentContainer(name: "FlashPad") // else UnsafeRawBufferPointer with negative count
+        if inMemory {
+            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+        }
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+    }
+    
+    // Better save
+    func saveContext() {
+        let context = container.viewContext
+
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                fatalError("Error: \(error.localizedDescription)")
             }
         }
     }

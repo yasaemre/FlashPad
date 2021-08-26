@@ -33,10 +33,21 @@ struct TabBarView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     //@FetchRequest(sortDescriptors:[]) var decksArrPersistent: FetchedResults<DeckCore>
-    @FetchRequest(entity: DeckCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \DeckCore.deckCreatedAt, ascending: true)]) var decksArrPersistent: FetchedResults<DeckCore>
+//    @FetchRequest(entity: DeckCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \DeckCore.deckCreatedAt, ascending: true)]) var decksArrPersistent: FetchedResults<DeckCore>
+    
+    @FetchRequest(
+           sortDescriptors: [NSSortDescriptor(keyPath: \DeckCore.deckName, ascending: true)],
+           animation: .default)
+       private var decksArrPersistent: FetchedResults<DeckCore>
+    
+    @State private var deckName = ""
+    @State private var deckCreatedAt = ""
+    @State private var numOfCardsInDeck = 0
+    @State private var currentTotalNumOfCards = 0
 
-//    @State private var numOfDeck = UserDefaults.standard.integer(forKey: "numOfCard")
-    var editScreenView = EditScreenView()
+
+  @State private var indexOfCard = UserDefaults.standard.integer(forKey: "indexOfCard")
+   // var editScreenView = EditScreenView()
 
     var body: some View {
         NavigationView {
@@ -52,49 +63,75 @@ struct TabBarView: View {
                             
                             LazyVGrid(columns: columns, spacing: 30, content: {
                                 ForEach(decksArrPersistent, id: \.self) { deck in
-                                    
-                                    
-                                    ZStack {
-                                        
-                                        Button(action: {
-                                            withAnimation(.easeInOut) {
-                                                navBarHidden = true
-                                            }
-                                        }, label:{
+                                    NavigationLink(destination: EditScreenView(deckCore: deck), isActive: $navBarHidden) {
+                                        ZStack {
                                             Image("cardBackg")
                                                 .resizable()
                                                 .frame(width:150, height: 200)
                                                 .cornerRadius(16)
                                             
-                                        })
-                                            .fullScreenCover(isPresented: $navBarHidden, content: EditScreenView.init)
-                                            
-                                        
-                                        
-                                        VStack(spacing: 10) {
-                                            Text(deck.deckName ?? "No name")
-                                                .font(.title).bold()
-                                                .foregroundColor(.white)
-//                                                .onDrag ({
-//                                                    //setting Current Page...
-//                                                    deckVM.currentCard = deck
-//
-//                                                    //Sending ID for Sample..
-//                                                    return NSItemProvider(object: deck.deckName as NSString)
-//
-//
-//
-//                                                })
-//                                                .onDrop(of: ["public.image"], delegate: DropViewDelegate(card: deck, cardData: deckVM))
-                                            Text("\(editScreenView.numOfCard+1) cards")
-                                                .font(.title2)
-                                                .foregroundColor(.white)
-                                            Text("created on \n\(deck.deckCreatedAt ?? "")")
-                                                .font(.system(size: 12.0))
-                                                .foregroundColor(.white)
+                                            VStack(spacing: 10) {
+                                                Text(deck.unwrappedDeckName)
+                                                    .font(.title).bold()
+                                                    .foregroundColor(.white)
+                                                
+                                                Text("\(deck.numberOfCardsInDeck+1) cards")
+                                                    .font(.title2)
+                                                    .foregroundColor(.white)
+                                                    .onAppear {
+                                                        deck.numberOfCardsInDeck = Int16(indexOfCard)
+                                                    }
+                                                Text("created on \n\(deck.deckCreatedAt ?? "")")
+                                                    .font(.system(size: 12.0))
+                                                    .foregroundColor(.white)
+                                            }
+                                            .frame(width:150, height: 200)
                                         }
-                                        .frame(width:150, height: 200)
-                                    }
+                                    }.simultaneousGesture(TapGesture().onEnded{
+                                        print("Navigated to EditScreen")
+                                    })
+                                    
+//                                    ZStack {
+//
+//                                        Button(action: {
+//                                            withAnimation(.easeInOut) {
+//                                                navBarHidden = true
+//                                            }
+//                                        }, label:{
+//                                            Image("cardBackg")
+//                                                .resizable()
+//                                                .frame(width:150, height: 200)
+//                                                .cornerRadius(16)
+//
+//                                        })
+////                                            .fullScreenCover(isPresented: $navBarHidden, content: EditScreenView.init)
+//
+//
+//
+////                                        VStack(spacing: 10) {
+////                                            Text(deck.unwrappedDeckName)
+////                                                .font(.title).bold()
+////                                                .foregroundColor(.white)
+//////                                                .onDrag ({
+//////                                                    //setting Current Page...
+//////                                                    deckVM.currentCard = deck
+//////
+//////                                                    //Sending ID for Sample..
+//////                                                    return NSItemProvider(object: deck.deckName as NSString)
+//////
+//////
+//////
+//////                                                })
+//////                                                .onDrop(of: ["public.image"], delegate: DropViewDelegate(card: deck, cardData: deckVM))
+////                                            Text("\(numOfCardsInDeck) cards")
+////                                                .font(.title2)
+////                                                .foregroundColor(.white)
+////                                            Text("created on \n\(deck.deckCreatedAt ?? "")")
+////                                                .font(.system(size: 12.0))
+////                                                .foregroundColor(.white)
+////                                        }
+////                                        .frame(width:150, height: 200)
+//                                    }
                                 }
                             })
                         }
@@ -237,26 +274,27 @@ struct TabBarView: View {
 
     }
     
-    private func saveContext() {
-        
-        if viewContext.hasChanges {
-            do {
-                try viewContext.save()
-            } catch {
-                let error = error as NSError
-                fatalError("Unresolved Error: \(error)")
-            }
-        }
-    }
+//    private func saveContext() {
+//
+//        if viewContext.hasChanges {
+//            do {
+//                try viewContext.save()
+//            } catch {
+//                let error = error as NSError
+//                fatalError("Unresolved Error: \(error)")
+//            }
+//        }
+//    }
     
     private func addDeck() {
 
         let newDeck = DeckCore(context: viewContext)
 
-        newDeck.id = deck.id
-        newDeck.deckName = deck.deckName
-        newDeck.numberOfCardsInDeck = Int16(editScreenView.numOfCard)
-        newDeck.deckCreatedAt = deck.deckCreatedAt
+        
+        newDeck.deckName = deckName
+        newDeck.numberOfCardsInDeck = Int16(numOfCardsInDeck)
+        newDeck.deckCreatedAt = deckCreatedAt
+        PersistenceController.shared.saveContext()
         guard decksArrPersistent != nil && decksArrPersistent.count > 0 else {
             return
         }
@@ -266,7 +304,7 @@ struct TabBarView: View {
             print("")
         }
 
-        saveContext()
+       
 
     }
     
@@ -274,7 +312,7 @@ struct TabBarView: View {
     private func deleteCard(offsets: IndexSet) {
         withAnimation {
             offsets.map {decksArrPersistent[$0]}.forEach(viewContext.delete)
-            saveContext()
+            PersistenceController.shared.saveContext()
         }
     }
     
@@ -293,12 +331,12 @@ struct TabBarView: View {
         
         let create = UIAlertAction(title: "Create", style: .default) { (_) in
             //do your stuff..
-            deck.deckName = alert.textFields![0].text!
+            self.deckName = alert.textFields![0].text!
             
-            deck.numberOfCardsInDeck = Int(Int16(editScreenView.numOfCard))
-            deck.deckCreatedAt = deck.getTodayDate()
+            self.numOfCardsInDeck = Int(Int16(indexOfCard))
+            self.deckCreatedAt = deck.getTodayDate()
             
-            deckVM.decks.append(Deck( deckName: deck.deckName, numberOfCardsInDeck: deck.numberOfCardsInDeck, deckCreatedAt: deck.deckCreatedAt))
+            //deckVM.decks.append(Deck( deckName: deck.deckName, numberOfCardsInDeck: deck.numberOfCardsInDeck, deckCreatedAt: deck.deckCreatedAt))
             addDeck()
             //decksArrPersistent
 //            print(deck.deckName)

@@ -13,16 +13,15 @@ struct EditScreenView: View {
     @State var flip = false
     @State var rightArrowTapped = false
    // @State var numOfCard = 0
-    @State var numOfCard = UserDefaults.standard.integer(forKey: "numOfCard")
+    @State var indexOfCard = UserDefaults.standard.integer(forKey: "indexOfCard")
    
     //@ObservedObject var card: Card
     @StateObject var card = Card()
-
+    @StateObject var deckCore:DeckCore
    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(sortDescriptors:[]) var cardsArrPersistent: FetchedResults<CardCore>
     
     var body: some View {
 
@@ -117,23 +116,23 @@ struct EditScreenView: View {
                 
                    VStack {
                         if flipped == true {
-                            CardView(card: card, flip: $flip, rightArrowTapped: $rightArrowTapped, numOfCard: $numOfCard)
+                            CardView(card: card, flip: $flip, rightArrowTapped: $rightArrowTapped, numOfCard: $indexOfCard, deckCore: deckCore)
                        } else {
-                           CardView(card: card, flip: $flip, rightArrowTapped: $rightArrowTapped, numOfCard: $numOfCard)
+                           CardView(card: card, flip: $flip, rightArrowTapped: $rightArrowTapped, numOfCard: $indexOfCard, deckCore: deckCore)
                        }
                    }
                    .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
                    .padding(.top, 15)
 
-                Text("\(numOfCard+1) of \(cardsArrPersistent.count)")
+                Text("\(indexOfCard+1) of \(deckCore.cardsArray.count)")
                        .font(.title2)
                        .padding(.top, 10)
                 
 
                    HStack(spacing: 30){
                        Button {
-                           if  numOfCard >= 1 {
-                               numOfCard -= 1
+                           if  indexOfCard >= 1 {
+                               indexOfCard -= 1
                            }
                        } label: {
                            Image(systemName: "arrowshape.turn.up.backward")
@@ -157,9 +156,9 @@ struct EditScreenView: View {
 
                        Button {
                            //
-                           if numOfCard
-                                != cardsArrPersistent.count-1 {
-                               numOfCard += 1
+                           if indexOfCard
+                                != deckCore.cardsArray.count-1 {
+                               indexOfCard += 1
                            }
                        } label: {
                            Image(systemName: "arrowshape.turn.up.right")
@@ -178,35 +177,35 @@ struct EditScreenView: View {
         .navigationBarHidden(true)
 
     }
-    private func saveContext() {
-        
-        if viewContext.hasChanges {
-            do {
-                try viewContext.save()
-            } catch {
-                let error = error as NSError
-                fatalError("Unresolved Error: \(error)")
-            }
-        }
-    }
+//    private func saveContext() {
+//
+//        if viewContext.hasChanges {
+//            do {
+//                try viewContext.save()
+//            } catch {
+//                let error = error as NSError
+//                fatalError("Unresolved Error: \(error)")
+//            }
+//        }
+//    }
     
     private func addCard() {
-
-            let newCard = CardCore(context: viewContext)
-            newCard.word = card.word
-            newCard.definition = card.definition
-        guard cardsArrPersistent != nil && cardsArrPersistent.count > 0 else {
-            return
-        }
+        
+        let newCard = CardCore(context: viewContext)
+        newCard.word = card.word
+        newCard.definition = card.definition
+//        guard cardsArrPersistent != nil && cardsArrPersistent.count > 0 else {
+//            return
+//        }
         //cardsArrPersistent.last?.word = newCard.word
         //cardsArrPersistent.last?.definition = newCard.definition
-        saveContext()
-        numOfCard += 1
-        UserDefaults.standard.set(self.numOfCard, forKey: "numOfCard")
-        newCard.numOfCard = Int32(numOfCard)
-        
-        print("\(Int(newCard.numOfCard))")
-        for card in cardsArrPersistent {
+        deckCore.addToCards(newCard)
+        PersistenceController.shared.saveContext()
+        indexOfCard += 1
+        UserDefaults.standard.set(self.indexOfCard, forKey: "indexOfCard")
+        newCard.totalNumOfCards = Int16(deckCore.cardsArray.count)
+        //print("\(Int(newCard.numOfCard))")
+        for card in deckCore.cardsArray {
             print(card.word)
             print(card.definition)
         }
@@ -218,8 +217,8 @@ struct EditScreenView: View {
     //Use with tap gesture or delete button
     private func deleteCard(offsets: IndexSet) {
         withAnimation {
-            offsets.map {cardsArrPersistent[$0]}.forEach(viewContext.delete)
-            saveContext()
+            offsets.map {deckCore.cardsArray[$0]}.forEach(viewContext.delete)
+            PersistenceController.shared.saveContext()
         }
     }
 
@@ -276,6 +275,19 @@ struct FlipEffect: GeometryEffect {
 
 struct EditScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        EditScreenView()
+        let viewContext = PersistenceController.preview.container.viewContext
+        let newDeck = DeckCore(context: viewContext)
+        newDeck.deckName = "Prev1"
+        
+        let card1 = CardCore(context: viewContext)
+        card1.word = "Jobs"
+        
+        let card2 = CardCore(context: viewContext)
+        card2.word = "Jobs"
+        
+        newDeck.addToCards(card1)
+        newDeck.addToCards(card2)
+        return EditScreenView(deckCore: newDeck)
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

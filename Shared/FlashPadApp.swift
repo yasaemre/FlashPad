@@ -14,13 +14,15 @@ import GoogleSignIn
 @main
 struct FlashCardsApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    let persistenceContainer = PersistenceController.shared
-    
+    let persistenceController = PersistenceController.shared
+    @Environment(\.scenePhase) var scenePhase
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceContainer.container.viewContext)
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
             
+        }.onChange(of: scenePhase) { _ in
+            persistenceController.saveContext()
         }
     }
 }

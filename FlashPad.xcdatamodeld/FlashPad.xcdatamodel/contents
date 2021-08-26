@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19141.11" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="CardCore" representedClassName="CardCore" syncable="YES" codeGenerationType="class">
+    <entity name="CardCore" representedClassName="CardCore" syncable="YES">
         <attribute name="definition" optional="YES" attributeType="String"/>
-        <attribute name="numOfCard" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalNumOfCards" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="word" optional="YES" attributeType="String"/>
+        <relationship name="deck" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DeckCore" inverseName="cards" inverseEntity="DeckCore"/>
     </entity>
-    <entity name="DeckCore" representedClassName="DeckCore" syncable="YES" codeGenerationType="class">
+    <entity name="DeckCore" representedClassName="DeckCore" syncable="YES">
         <attribute name="deckCreatedAt" optional="YES" attributeType="String"/>
         <attribute name="deckName" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="numberOfCardsInDeck" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CardCore" inverseName="deck" inverseEntity="CardCore"/>
     </entity>
     <elements>
-        <element name="CardCore" positionX="-63" positionY="-18" width="128" height="74"/>
-        <element name="DeckCore" positionX="-63" positionY="9" width="128" height="89"/>
+        <element name="CardCore" positionX="-63" positionY="-18" width="128" height="89"/>
+        <element name="DeckCore" positionX="-63" positionY="9" width="128" height="104"/>
     </elements>
 </model>
