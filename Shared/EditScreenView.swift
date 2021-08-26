@@ -14,7 +14,7 @@ struct EditScreenView: View {
     @State var rightArrowTapped = false
    // @State var numOfCard = 0
     //@State var indexOfCard = UserDefaults.standard.integer(forKey: "indexOfCard")
-   @State var indexCard = 0
+   //@State var indexCard = 0
     //@ObservedObject var card: Card
     @StateObject var card = Card()
     @StateObject var deckCore:DeckCore
@@ -22,7 +22,8 @@ struct EditScreenView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @Environment(\.managedObjectContext) private var viewContext
-    
+    @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
+
     var body: some View {
 
         ZStack(alignment: .top) {
@@ -128,35 +129,35 @@ struct EditScreenView: View {
                     .frame(width: 250, height: 350)
                     .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
                     .overlay(
-                        VStack(alignment:.center, spacing: 10) {
-                        ForEach(0..<deckCore.cardsArray.count) { index in
-                            if flip == false {
-                                if rightArrowTapped == true {
-                                    Text("")
+                        VStack(alignment:.center, spacing: 5) {
+                            ForEach(0..<deckCore.cardsArray.count, id:\.self) { index in
+                            
+                                if flip == false {
+    //                                if rightArrowTapped == true {
+    //                                    Text("")
+    //                                } else {
+                                        Text(deckCore.cardsArray[indexCard].unwrappedWord)
+                                            .font(.custom("HelveticaNeue", size: 40))
+                                            .foregroundColor(.white)
+                                            .onAppear {
+                                                print("\(indexCard)")
+                                            }
+                                            
+                                    //}
                                 } else {
-                                    Text(deckCore.cardsArray[index].unwrappedWord)
-                                        .font(.custom("HelveticaNeue", size: 40))
-                                        .foregroundColor(.white)
-                                        .onAppear {
-//                                            for card in deckCore.cardsArray {
-//                                                print("\(deckCore.cardsArray)")
-//                                            }
-                                            indexCard = index
-                                        }
+    //                                if rightArrowTapped == true {
+    //                                    Text("")
+    //                                } else {
+                                    Text(deckCore.cardsArray[indexCard].unwrappedDefinition)
+                                            .font(.custom("HelveticaNeue", size: 40))
+                                            .foregroundColor(.white)
+                                            
+                                    //}
                                 }
-                            } else {
-                                if rightArrowTapped == true {
-                                    Text("")
-                                } else {
-                                    Text(deckCore.cardsArray[index].unwrappedDefinition)
-                                        .font(.custom("HelveticaNeue", size: 40))
-                                        .foregroundColor(.white)
-                                }
+                                
+                        
+                                
                             }
-                            
-                            
-                            
-                        }
                         
                     }
                             
@@ -239,16 +240,16 @@ struct EditScreenView: View {
 //        }
         //cardsArrPersistent.last?.word = newCard.word
         //cardsArrPersistent.last?.definition = newCard.definition
+        //indexCard += 1
         deckCore.addToCards(newCard)
         PersistenceController.shared.saveContext()
-        
-       //indexOfCard += 1
+       
         //UserDefaults.standard.set(self.indexOfCard, forKey: "indexOfCard")
         //print("\(Int(newCard.numOfCard))")
-        for card in deckCore.cardsArray {
-            print(card.word)
-            print(card.definition)
-        }
+//        for card in deckCore.cardsArray {
+//            print(card.word)
+//            print(card.definition)
+//        }
         
         
         

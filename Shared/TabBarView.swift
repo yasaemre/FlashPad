@@ -30,7 +30,7 @@ struct TabBarView: View {
     let columns = Array(repeating: GridItem(.flexible(), spacing:25), count: 2)
     
     @State private var navBarHidden = false
-    
+    @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
     @Environment(\.managedObjectContext) private var viewContext
     //@FetchRequest(sortDescriptors:[]) var decksArrPersistent: FetchedResults<DeckCore>
 //    @FetchRequest(entity: DeckCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \DeckCore.deckCreatedAt, ascending: true)]) var decksArrPersistent: FetchedResults<DeckCore>
@@ -88,7 +88,8 @@ struct TabBarView: View {
                                             .frame(width:150, height: 200)
                                         }
                                     }.simultaneousGesture(TapGesture().onEnded{
-                                        print("Navigated to EditScreen")
+                                        indexCard = 0 
+                                        UserDefaults.standard.set(self.indexCard, forKey: "indexCard")
                                     })
                                 }
                             })
@@ -252,8 +253,9 @@ struct TabBarView: View {
         newDeck.deckName = deckName
         newDeck.numberOfCardsInDeck = Int16(numOfCardsInDeck)
         newDeck.deckCreatedAt = deckCreatedAt
+        
         PersistenceController.shared.saveContext()
-       
+        print("new deck card count\(newDeck.cardsArray.count)")
         guard decksArrPersistent != nil && decksArrPersistent.count > 0 else {
             return
         }
