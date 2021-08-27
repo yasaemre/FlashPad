@@ -130,13 +130,36 @@ struct EditScreenView: View {
                     .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
                     .overlay(
                         VStack(alignment:.center, spacing: 5) {
+                        if deckCore.cardsArray.count > 0 {
+                            if flip == false {
+//                                if rightArrowTapped == true {
+//                                    Text("")
+//                                } else {
+                                    Text(deckCore.cardsArray[indexCard].unwrappedWord)
+                                        .font(.custom("HelveticaNeue", size: 40))
+                                        .foregroundColor(.white)
+                                        .onAppear {
+                                            print("\(indexCard)")
+                                        }
+                                        
+                                //}
+                            } else {
+//                                if rightArrowTapped == true {
+//                                    Text("")
+//                                } else {
+                                Text(deckCore.cardsArray[indexCard].unwrappedDefinition)
+                                        .font(.custom("HelveticaNeue", size: 40))
+                                        .foregroundColor(.white)
+                                        
+                                //}
+                            }
+                        } else {
                             ForEach(0..<deckCore.cardsArray.count, id:\.self) { index in
-                            
                                 if flip == false {
     //                                if rightArrowTapped == true {
     //                                    Text("")
     //                                } else {
-                                        Text(deckCore.cardsArray[indexCard].unwrappedWord)
+                                        Text(deckCore.cardsArray[index].unwrappedWord)
                                             .font(.custom("HelveticaNeue", size: 40))
                                             .foregroundColor(.white)
                                             .onAppear {
@@ -148,16 +171,19 @@ struct EditScreenView: View {
     //                                if rightArrowTapped == true {
     //                                    Text("")
     //                                } else {
-                                    Text(deckCore.cardsArray[indexCard].unwrappedDefinition)
+                                    Text(deckCore.cardsArray[index].unwrappedDefinition)
                                             .font(.custom("HelveticaNeue", size: 40))
                                             .foregroundColor(.white)
                                             
                                     //}
                                 }
                                 
+                                
                         
                                 
                             }
+                        }
+                            
                         
                     }
                             
