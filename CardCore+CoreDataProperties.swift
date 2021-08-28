@@ -23,6 +23,7 @@ extension CardCore {
     public var unwrappedWord:String {
         word ?? "Unknown deckName"
     }
+    
     public var unwrappedDefinition:String {
         definition ?? "Unknown deckName"
     }

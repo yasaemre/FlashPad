@@ -23,10 +23,11 @@ struct EditScreenView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
-
+    
+    
     var body: some View {
 
-        ZStack(alignment: .top) {
+        ZStack {
             Color(.systemBackground).opacity(0.2).edgesIgnoringSafeArea(.all)
             VStack(alignment: .center)  {
                    HStack() {
@@ -138,9 +139,6 @@ struct EditScreenView: View {
                                     Text(deckCore.cardsArray[indexCard].unwrappedWord)
                                         .font(.custom("HelveticaNeue", size: 40))
                                         .foregroundColor(.white)
-                                        .onAppear {
-                                            print("\(indexCard)")
-                                        }
                                         
                                 //}
                             } else {
@@ -162,9 +160,8 @@ struct EditScreenView: View {
                                         Text(deckCore.cardsArray[index].unwrappedWord)
                                             .font(.custom("HelveticaNeue", size: 40))
                                             .foregroundColor(.white)
-                                            .onAppear {
-                                                print("\(indexCard)")
-                                            }
+
+                                    
                                             
                                     //}
                                 } else {
@@ -233,15 +230,11 @@ struct EditScreenView: View {
                                .foregroundColor(Color.init(hex: "6C63FF"))
                        }
                    }
-                
-//                if let cards = cardsArrPersistent, cardsArrPersistent.count > 0 {
-//                    Text("\(cards[0].word ?? "No word") \(cards[0].definition ?? "No def.")")
-//
-//                }
                }
-            
         }
         .navigationBarHidden(true)
+        
+
 
     }
 //    private func saveContext() {
