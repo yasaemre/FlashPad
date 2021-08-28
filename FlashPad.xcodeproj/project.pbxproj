@@ -39,6 +39,14 @@
 		C6849535268E36A4003BC08C /* LogoutButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6849533268E36A3003BC08C /* LogoutButtonView.swift */; };
 		C6849537268E385C003BC08C /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6849536268E385C003BC08C /* SignUpViewModel.swift */; };
 		C6849538268E385C003BC08C /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6849536268E385C003BC08C /* SignUpViewModel.swift */; };
+		C685EE8B26D7CBEB00A7503D /* CardCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C685EE8726D7CBEB00A7503D /* CardCore+CoreDataClass.swift */; };
+		C685EE8C26D7CBEB00A7503D /* CardCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C685EE8726D7CBEB00A7503D /* CardCore+CoreDataClass.swift */; };
+		C685EE8D26D7CBEB00A7503D /* CardCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C685EE8826D7CBEB00A7503D /* CardCore+CoreDataProperties.swift */; };
+		C685EE8E26D7CBEB00A7503D /* CardCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C685EE8826D7CBEB00A7503D /* CardCore+CoreDataProperties.swift */; };
+		C685EE8F26D7CBEB00A7503D /* DeckCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C685EE8926D7CBEB00A7503D /* DeckCore+CoreDataClass.swift */; };
+		C685EE9026D7CBEB00A7503D /* DeckCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C685EE8926D7CBEB00A7503D /* DeckCore+CoreDataClass.swift */; };
+		C685EE9126D7CBEB00A7503D /* DeckCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C685EE8A26D7CBEB00A7503D /* DeckCore+CoreDataProperties.swift */; };
+		C685EE9226D7CBEB00A7503D /* DeckCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C685EE8A26D7CBEB00A7503D /* DeckCore+CoreDataProperties.swift */; };
 		C68726B126BA6C47006BD793 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68726B026BA6C47006BD793 /* CardView.swift */; };
 		C68726B226BA6C47006BD793 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68726B026BA6C47006BD793 /* CardView.swift */; };
 		C68726B426BA6E29006BD793 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68726B326BA6E29006BD793 /* Card.swift */; };
@@ -108,6 +116,10 @@
 		C67413EB268ABC3200128E2D /* WalkthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughView.swift; sourceTree = "<group>"; };
 		C6849533268E36A3003BC08C /* LogoutButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutButtonView.swift; sourceTree = "<group>"; };
 		C6849536268E385C003BC08C /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		C685EE8726D7CBEB00A7503D /* CardCore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardCore+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C685EE8826D7CBEB00A7503D /* CardCore+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardCore+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C685EE8926D7CBEB00A7503D /* DeckCore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeckCore+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C685EE8A26D7CBEB00A7503D /* DeckCore+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeckCore+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C68726B026BA6C47006BD793 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		C68726B326BA6E29006BD793 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		C68726B626BA6EF5006BD793 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
@@ -204,6 +216,10 @@
 		C67413A3268ABAEB00128E2D = {
 			isa = PBXGroup;
 			children = (
+				C685EE8726D7CBEB00A7503D /* CardCore+CoreDataClass.swift */,
+				C685EE8826D7CBEB00A7503D /* CardCore+CoreDataProperties.swift */,
+				C685EE8926D7CBEB00A7503D /* DeckCore+CoreDataClass.swift */,
+				C685EE8A26D7CBEB00A7503D /* DeckCore+CoreDataProperties.swift */,
 				C6D2CF0826CD864A00C868A9 /* Persistence.swift */,
 				C6D2CF0426CD82B300C868A9 /* FlashPad.xcdatamodeld */,
 				C6D50CD1268AF0FA00A60A7F /* FlashPad.entitlements */,
@@ -539,8 +555,12 @@
 				C67413E3268ABBCC00128E2D /* LoginView.swift in Sources */,
 				C6BB306326AF0B0700B6710C /* DeckViewModel.swift in Sources */,
 				C6BB306726AF120900B6710C /* DropViewDelegate.swift in Sources */,
+				C685EE8D26D7CBEB00A7503D /* CardCore+CoreDataProperties.swift in Sources */,
+				C685EE8B26D7CBEB00A7503D /* CardCore+CoreDataClass.swift in Sources */,
 				C67413CB268ABAEC00128E2D /* FlashPadApp.swift in Sources */,
 				C6849537268E385C003BC08C /* SignUpViewModel.swift in Sources */,
+				C685EE8F26D7CBEB00A7503D /* DeckCore+CoreDataClass.swift in Sources */,
+				C685EE9126D7CBEB00A7503D /* DeckCore+CoreDataProperties.swift in Sources */,
 				C68726B726BA6EF5006BD793 /* CardViewModel.swift in Sources */,
 				C6243192268AD79400C01F24 /* AppleLoginViewModel.swift in Sources */,
 				C6AC1384268F6FEA005815F3 /* LoginViewModel.swift in Sources */,
@@ -558,8 +578,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C685EE8E26D7CBEB00A7503D /* CardCore+CoreDataProperties.swift in Sources */,
 				C6D2CF0726CD82B300C868A9 /* FlashPad.xcdatamodeld in Sources */,
 				C67413CE268ABAEC00128E2D /* ContentView.swift in Sources */,
+				C685EE9026D7CBEB00A7503D /* DeckCore+CoreDataClass.swift in Sources */,
 				C67413E1268ABB2800128E2D /* ErrorView.swift in Sources */,
 				C6D2CF0A26CD864A00C868A9 /* Persistence.swift in Sources */,
 				C6289095268F924B005EAE7F /* TabBarView.swift in Sources */,
@@ -570,12 +592,14 @@
 				C68726B526BA6E29006BD793 /* Card.swift in Sources */,
 				C67413CC268ABAEC00128E2D /* FlashPadApp.swift in Sources */,
 				C68726B826BA6EF5006BD793 /* CardViewModel.swift in Sources */,
+				C685EE9226D7CBEB00A7503D /* DeckCore+CoreDataProperties.swift in Sources */,
 				C6243196268AD7D600C01F24 /* ColorExtention.swift in Sources */,
 				C67413ED268ABC3200128E2D /* WalkthroughView.swift in Sources */,
 				C6AC1385268F6FEA005815F3 /* LoginViewModel.swift in Sources */,
 				C60929F026B39D670048DE83 /* SlideMenu.swift in Sources */,
 				C6849535268E36A4003BC08C /* LogoutButtonView.swift in Sources */,
 				C67413EA268ABC1400128E2D /* SignUpView.swift in Sources */,
+				C685EE8C26D7CBEB00A7503D /* CardCore+CoreDataClass.swift in Sources */,
 				C6849538268E385C003BC08C /* SignUpViewModel.swift in Sources */,
 				C68726B226BA6C47006BD793 /* CardView.swift in Sources */,
 				C67413E7268ABBED00128E2D /* ScreenView.swift in Sources */,

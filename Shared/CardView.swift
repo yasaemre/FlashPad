@@ -14,9 +14,9 @@ struct CardView: View {
     @Binding var rightArrowTapped:Bool
     @Binding var numOfCard:Int
     @State private var word = ""
-    @FetchRequest(sortDescriptors:[]) private var cards: FetchedResults<CardCore>
+    //@FetchRequest(sortDescriptors:[]) private var cardsArrayPersistent: FetchedResults<CardCore>
+    @StateObject var deckCore:DeckCore
 
-    
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
             .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]), startPoint: .topLeading, endPoint: .bottomTrailing))
@@ -24,31 +24,30 @@ struct CardView: View {
             .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
             .overlay(
                 VStack(alignment:.center, spacing: 10) {
-            
-                if flip == false {
-                    if let cards = cards, cards.count > 0 {
+                ForEach(deckCore.cardsArray) { card in
+                    if flip == false {
                         if rightArrowTapped == true {
                             Text("")
-                        } else { 
-                            Text(cards[numOfCard].word ?? "No word")
+                        } else {
+                            Text(card.unwrappedWord)
                                 .font(.custom("HelveticaNeue", size: 40))
                                 .foregroundColor(.white)
+                                .onAppear {
+                                    for card in deckCore.cardsArray {
+                                        print("\(deckCore.cardsArray)")
+                                    }
+                                }
                         }
-                    }
-                    
-                    
-                }
-                else {
-                    if rightArrowTapped == true {
-                        Text("")
                     } else {
-                        if let cards = cards, cards.count > 0 {
-                            Text(cards[numOfCard].definition ?? "No def")
+                        if rightArrowTapped == true {
+                            Text("")
+                        } else {
+                            Text(card.unwrappedDefinition)
                                 .font(.custom("HelveticaNeue", size: 40))
                                 .foregroundColor(.white)
                         }
                     }
-                   
+                    
                 }
                 
             }
@@ -105,11 +104,11 @@ struct TextView: UIViewRepresentable {
         }
     }
 }
-struct CardView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardView(card: Card(), flip: .constant(false), rightArrowTapped: .constant(false), numOfCard: .constant(0))
-    }
-}
+//struct CardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CardView(card: Card(), flip: .constant(false), rightArrowTapped: .constant(false), numOfCard: .constant(0), deckCore: <#DeckCore#>)
+//    }
+//}
 
 
 extension UITextView {

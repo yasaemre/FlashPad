@@ -30,75 +30,120 @@ struct TabBarView: View {
     let columns = Array(repeating: GridItem(.flexible(), spacing:25), count: 2)
     
     @State private var navBarHidden = false
-    
+   // @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
     @Environment(\.managedObjectContext) private var viewContext
-    //@FetchRequest(sortDescriptors:[]) var decksArrPersistent: FetchedResults<DeckCore>
-    @FetchRequest(entity: DeckCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \DeckCore.deckCreatedAt, ascending: true)]) var decksArrPersistent: FetchedResults<DeckCore>
 
-//    @State private var numOfDeck = UserDefaults.standard.integer(forKey: "numOfCard")
-    var editScreenView = EditScreenView()
+    
+    @FetchRequest(
+           sortDescriptors: [NSSortDescriptor(keyPath: \DeckCore.deckName, ascending: true)],
+           animation: .default)
+       private var decksArrPersistent: FetchedResults<DeckCore>
+    
+    @State private var deckName = ""
+    @State private var deckCreatedAt = ""
+    @State private var numOfCardsInDeck = 0
+    @State private var currentTotalNumOfCards = 0
+
+
+  @State private var indexOfCard = UserDefaults.standard.integer(forKey: "indexOfCard")
+   // var editScreenView = EditScreenView()
 
     var body: some View {
-        NavigationView {
+       // ZStack {
             ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
                 
                 TabView(selection: $selectedTab) {
-                    
+                    Color(UIColor.systemBackground)
+                        .ignoresSafeArea(.all, edges: .all)
                     ZStack {
-                        Color(UIColor.systemBackground)
-                            .ignoresSafeArea(.all, edges: .all)
+                        //--
+//                        Color(UIColor.systemBackground)
+//                            .ignoresSafeArea(.all, edges: .all)
+                        
+                        //custom back button works here
+                        NavigationView {
                         ScrollView {
                             //Tabs With Pages...
-                            
+                            //--
                             LazyVGrid(columns: columns, spacing: 30, content: {
                                 ForEach(decksArrPersistent, id: \.self) { deck in
-                                    
-                                    
-                                    ZStack {
-                                        
-                                        Button(action: {
-                                            withAnimation(.easeInOut) {
-                                                navBarHidden = true
-                                            }
-                                        }, label:{
+                                    NavigationLink(destination: EditScreenView(deckCore: deck)){
+                                        ZStack {
                                             Image("cardBackg")
                                                 .resizable()
                                                 .frame(width:150, height: 200)
                                                 .cornerRadius(16)
+
+                                            VStack(spacing: 10) {
+                                                Text(deck.unwrappedDeckName)
+                                                    .font(.title).bold()
+                                                    .foregroundColor(.white)
+
+                                                Text("\(deck.numberOfCardsInDeck) cards")
+                                                    .font(.title2)
+                                                    .foregroundColor(.white)
+                                                    .onAppear {
+                                                        deck.numberOfCardsInDeck = Int16(deck.cardsArray.count)
+                                                    }
+                                                Text("created on \n\(deck.deckCreatedAt ?? "")")
+                                                    .font(.system(size: 12.0))
+                                                    .foregroundColor(.white)
+                                            }
+                                            .frame(width:150, height: 200)
                                             
-                                        })
-                                            .fullScreenCover(isPresented: $navBarHidden, content: EditScreenView.init)
-                                            
-                                        
-                                        
-                                        VStack(spacing: 10) {
-                                            Text(deck.deckName ?? "No name")
-                                                .font(.title).bold()
-                                                .foregroundColor(.white)
-//                                                .onDrag ({
-//                                                    //setting Current Page...
-//                                                    deckVM.currentCard = deck
-//
-//                                                    //Sending ID for Sample..
-//                                                    return NSItemProvider(object: deck.deckName as NSString)
-//
-//
-//
-//                                                })
-//                                                .onDrop(of: ["public.image"], delegate: DropViewDelegate(card: deck, cardData: deckVM))
-                                            Text("\(editScreenView.numOfCard+1) cards")
-                                                .font(.title2)
-                                                .foregroundColor(.white)
-                                            Text("created on \n\(deck.deckCreatedAt ?? "")")
-                                                .font(.system(size: 12.0))
-                                                .foregroundColor(.white)
                                         }
-                                        .frame(width:150, height: 200)
+                                        
+
                                     }
                                 }
                             })
+                                .toolbar {
+                                    //Top custom Navigation bar
+                                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                                        VStack(alignment: .center) {
+                                            HStack(alignment: .center, spacing: 105) {
+
+                                                Button(action: {
+                                                    print("Slide in menu tapped")
+                                                    self.show.toggle()
+                                                }) {
+                                                    Image(systemName: "list.bullet")
+                                                }
+                                                .symbolRenderingMode(.hierarchical)
+                                                .font(.system(size: 24))
+                                                .foregroundColor(Color.init(hex: "6C63FF"))
+                                                .padding(.leading, 10)
+
+                                                Button(action: {
+                                                    print("iCloud button tapped")
+                                                }) {
+                                                    Image(systemName: "icloud.and.arrow.down")
+                                                }
+                                                //.frame(width: 60, height: 60, alignment: .center)
+                                                .symbolRenderingMode(.palette)
+                                                .font(.system(size: 24))
+                                                .foregroundStyle(Color.init(hex: "6C63FF"), (colorScheme == .dark ? Color.white : Color.black))
+                                                //.padding(100)
+                                                Button(action: {
+                                                    print("Profile button tapped")
+                                                }) {
+                                                    Image("profilePhoto")
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fit)
+                                                        .frame(width: 50, height: 70)
+                                                }
+                                                .padding(.trailing, 10)
+                                            }
+
+                                        }
+                                        .padding()
+
+                                    }
+                                }
+                                .ignoresSafeArea(.all, edges: .all)
+                                .foregroundColor(.primary)
                         }
-                        
+                    }
                         VStack {
                             Spacer()
                             HStack {
@@ -124,21 +169,38 @@ struct TabBarView: View {
                         }
                     }
                     .tag("home")
+                    .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
+
+                    .navigationBarHidden(true)
+                    .ignoresSafeArea(.all, edges: .all)
+                    
                     
                     Color(UIColor.systemBackground)
-                        .ignoresSafeArea(.all, edges: .all)
                         .tag("donate")
-                    Color(UIColor.systemBackground)
-                        .ignoresSafeArea(.all, edges: .all)
-                        .tag("liked")
-                    Color(UIColor.systemBackground)
-                        .ignoresSafeArea(.all, edges: .all)
-                        .tag("about")
-                }
-                
-                
+                        .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
+                        .navigationBarHidden(true)
 
-                //Custom tabbar
+                        .ignoresSafeArea(.all, edges: .all)
+                    
+                    Color(UIColor.systemBackground)
+                        .tag("liked")
+                        .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
+                        .navigationBarHidden(true)
+
+                        .ignoresSafeArea(.all, edges: .all)
+                    
+                    Color(UIColor.systemBackground)
+                        .tag("about")
+                        .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
+                        .navigationBarHidden(true)
+
+                        .ignoresSafeArea(.all, edges: .all)
+                    
+                    
+                }
+                .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
+
+                //Custom bottom tabbar
                 HStack(spacing: 0) {
                     ForEach(tabs, id: \.self) { image in
                         GeometryReader { reader in
@@ -152,12 +214,12 @@ struct TabBarView: View {
                                     .resizable()
                                     .renderingMode(.original)
                                     .aspectRatio(contentMode: .fit)
-                                    .frame(width: 35, height: 35)
+                                    .frame(width: 25, height: 25)
                                     .foregroundColor(selectedTab == image ? getColor(image: image) : Color.gray)
                                     .padding(selectedTab == image ? 15 : 0)
                                     .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "c8d4f5"), Color.init(hex: "6C63FF")]),  center: .center, startRadius: 5, endRadius: 120).opacity(selectedTab == image ? 1 : 0).clipShape(Circle()))
                                     .matchedGeometryEffect(id: image, in: animation)
-                                    .offset(x: selectedTab == image ? (reader.frame(in: .global).minX - reader.frame(in: .global).midX):0, y: selectedTab == image ? -60 : 0)
+                                    .offset(x: selectedTab == image ? (reader.frame(in: .global).minX - reader.frame(in: .global).midX) : 0, y: selectedTab == image ? -50 : 0)
                             })
                                 .onAppear {
                                     if image == tabs.first {
@@ -165,66 +227,28 @@ struct TabBarView: View {
                                     }
                                 }
                         }
-                        .frame(width: 35, height: 35)
+                        .frame(width: 25, height: 30)
                         if image != tabs.last { Spacer(minLength: 0)}
                     }
                 }
                 .padding(.horizontal, 30)
                 .padding(.vertical)
-                .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "c8d4f5"), Color.init(hex: "6C63FF")]),  center: .center, startRadius: 5, endRadius: 120).clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
+                //.padding(.bottom, 1)
+                .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "c8d4f5"), Color.init(hex: "6C63FF")]),  center: .center, startRadius: 5, endRadius: 120).clipShape(CustomShape(xAxis: xAxis))
+                .cornerRadius(12))
                 .padding(.horizontal)
                 //Bottom edge
                 .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
 
             }
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarLeading) {
-                    VStack(alignment: .center) {
-                        HStack(alignment: .center, spacing: 105) {
-                            
-                            Button(action: {
-                                print("Slide in menu tapped")
-                                self.show.toggle()
-                            }) {
-                                Image(systemName: "list.bullet")
-                            }
-                            .symbolRenderingMode(.hierarchical)
-                            .font(.system(size: 24))
-                            .foregroundColor(Color.init(hex: "6C63FF"))
-                            .padding(.leading, 10)
-                            
-                            Button(action: {
-                                print("iCloud button tapped")
-                            }) {
-                                Image(systemName: "icloud.and.arrow.down")
-                            }
-                            //.frame(width: 60, height: 60, alignment: .center)
-                            .symbolRenderingMode(.palette)
-                            .font(.system(size: 24))
-                            .foregroundStyle(Color.init(hex: "6C63FF"), (colorScheme == .dark ? Color.white : Color.black))
-                            //.padding(100)
-                            Button(action: {
-                                print("Profile button tapped")
-                            }) {
-                                Image("profilePhoto")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 50, height: 70)
-                            }
-                            .padding(.trailing, 10)
-                        }
-                        
-                    }
-                    .padding()
-                    
-                }
-            }
             .ignoresSafeArea(.all, edges: .bottom)
-            .foregroundColor(.primary)
+            .navigationBarHidden(true)
             //.overlay(Rectangle().stroke(Color.primary.opacity(0.1), lineWidth: 1).shadow(radius: 3).edgesIgnoringSafeArea(.top))
 
-        }
-        
+//        }
+//        .navigationBarTitle("")
+//        .navigationBarHidden(true)
+//        .accentColor(Color.init(hex: "6C63FF"))
 
         HStack {
             SlideMenu(dark: self.$dark, show: self.$show)
@@ -237,26 +261,17 @@ struct TabBarView: View {
 
     }
     
-    private func saveContext() {
-        
-        if viewContext.hasChanges {
-            do {
-                try viewContext.save()
-            } catch {
-                let error = error as NSError
-                fatalError("Unresolved Error: \(error)")
-            }
-        }
-    }
-    
     private func addDeck() {
-
+        indexOfCard = 0
         let newDeck = DeckCore(context: viewContext)
 
-        newDeck.id = deck.id
-        newDeck.deckName = deck.deckName
-        newDeck.numberOfCardsInDeck = Int16(editScreenView.numOfCard)
-        newDeck.deckCreatedAt = deck.deckCreatedAt
+        
+        newDeck.deckName = deckName
+        newDeck.numberOfCardsInDeck = Int16(numOfCardsInDeck)
+        newDeck.deckCreatedAt = deckCreatedAt
+        
+        PersistenceController.shared.saveContext()
+        print("new deck card count\(newDeck.cardsArray.count)")
         guard decksArrPersistent != nil && decksArrPersistent.count > 0 else {
             return
         }
@@ -266,7 +281,7 @@ struct TabBarView: View {
             print("")
         }
 
-        saveContext()
+       
 
     }
     
@@ -274,7 +289,7 @@ struct TabBarView: View {
     private func deleteCard(offsets: IndexSet) {
         withAnimation {
             offsets.map {decksArrPersistent[$0]}.forEach(viewContext.delete)
-            saveContext()
+            PersistenceController.shared.saveContext()
         }
     }
     
@@ -293,22 +308,13 @@ struct TabBarView: View {
         
         let create = UIAlertAction(title: "Create", style: .default) { (_) in
             //do your stuff..
-            deck.deckName = alert.textFields![0].text!
+            self.deckName = alert.textFields![0].text!
             
-            deck.numberOfCardsInDeck = Int(Int16(editScreenView.numOfCard))
-            deck.deckCreatedAt = deck.getTodayDate()
+            self.numOfCardsInDeck = Int(Int16(indexOfCard))
+            self.deckCreatedAt = deck.getTodayDate()
             
-            deckVM.decks.append(Deck( deckName: deck.deckName, numberOfCardsInDeck: deck.numberOfCardsInDeck, deckCreatedAt: deck.deckCreatedAt))
+            //deckVM.decks.append(Deck( deckName: deck.deckName, numberOfCardsInDeck: deck.numberOfCardsInDeck, deckCreatedAt: deck.deckCreatedAt))
             addDeck()
-            //decksArrPersistent
-//            print(deck.deckName)
-//            print(deck.numberOfCardsInDeck)
-//            print(deck.deckCreatedAt)
-//            print(newDeck.deckName)
-//            print(deckVM.decks.first)
-            
-
-            
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .destructive) { _ in

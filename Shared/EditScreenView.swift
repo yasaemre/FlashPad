@@ -13,20 +13,21 @@ struct EditScreenView: View {
     @State var flip = false
     @State var rightArrowTapped = false
    // @State var numOfCard = 0
-    @State var numOfCard = UserDefaults.standard.integer(forKey: "numOfCard")
-   
+    //@State var indexOfCard = UserDefaults.standard.integer(forKey: "indexOfCard")
+   //@State var indexCard = 0
     //@ObservedObject var card: Card
     @StateObject var card = Card()
-
+    @StateObject var deckCore:DeckCore
    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(sortDescriptors:[]) var cardsArrPersistent: FetchedResults<CardCore>
+    @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
+    
     
     var body: some View {
 
-        ZStack(alignment: .top) {
+        ZStack {
             Color(.systemBackground).opacity(0.2).edgesIgnoringSafeArea(.all)
             VStack(alignment: .center)  {
                    HStack() {
@@ -115,25 +116,87 @@ struct EditScreenView: View {
                         .modifier(TextFieldClearButton(text: $card.definition))
                 }
                 
-                   VStack {
-                        if flipped == true {
-                            CardView(card: card, flip: $flip, rightArrowTapped: $rightArrowTapped, numOfCard: $numOfCard)
-                       } else {
-                           CardView(card: card, flip: $flip, rightArrowTapped: $rightArrowTapped, numOfCard: $numOfCard)
-                       }
-                   }
-                   .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
-                   .padding(.top, 15)
+//                   VStack {
+//                        if flipped == true {
+//                            CardView(card: card, flip: $flip, rightArrowTapped: $rightArrowTapped, numOfCard: $indexOfCard, deckCore: deckCore)
+//                       } else {
+//                           CardView(card: card, flip: $flip, rightArrowTapped: $rightArrowTapped, numOfCard: $indexOfCard, deckCore: deckCore)
+//                       }
+//                   }
+//                   .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
+//                   .padding(.top, 15)
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .frame(width: 250, height: 350)
+                    .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
+                    .overlay(
+                        VStack(alignment:.center, spacing: 5) {
+                        if deckCore.cardsArray.count > 0 {
+                            if flip == false {
+//                                if rightArrowTapped == true {
+//                                    Text("")
+//                                } else {
+                                    Text(deckCore.cardsArray[indexCard].unwrappedWord)
+                                        .font(.custom("HelveticaNeue", size: 40))
+                                        .foregroundColor(.white)
+                                        
+                                //}
+                            } else {
+//                                if rightArrowTapped == true {
+//                                    Text("")
+//                                } else {
+                                Text(deckCore.cardsArray[indexCard].unwrappedDefinition)
+                                        .font(.custom("HelveticaNeue", size: 40))
+                                        .foregroundColor(.white)
+                                        
+                                //}
+                            }
+                        } else {
+                            ForEach(0..<deckCore.cardsArray.count, id:\.self) { index in
+                                if flip == false {
+    //                                if rightArrowTapped == true {
+    //                                    Text("")
+    //                                } else {
+                                        Text(deckCore.cardsArray[index].unwrappedWord)
+                                            .font(.custom("HelveticaNeue", size: 40))
+                                            .foregroundColor(.white)
 
-                Text("\(numOfCard+1) of \(cardsArrPersistent.count)")
+                                    
+                                            
+                                    //}
+                                } else {
+    //                                if rightArrowTapped == true {
+    //                                    Text("")
+    //                                } else {
+                                    Text(deckCore.cardsArray[index].unwrappedDefinition)
+                                            .font(.custom("HelveticaNeue", size: 40))
+                                            .foregroundColor(.white)
+                                            
+                                    //}
+                                }
+                                
+                                
+                        
+                                
+                            }
+                        }
+                            
+                        
+                    }
+                            
+                    )
+                    .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
+                    .padding(.top, 15)
+
+               
+                Text("\(indexCard+1) of \(deckCore.cardsArray.count)")
                        .font(.title2)
                        .padding(.top, 10)
-                
 
                    HStack(spacing: 30){
                        Button {
-                           if  numOfCard >= 1 {
-                               numOfCard -= 1
+                           if  indexCard >= 1 {
+                               indexCard -= 1
                            }
                        } label: {
                            Image(systemName: "arrowshape.turn.up.backward")
@@ -157,9 +220,9 @@ struct EditScreenView: View {
 
                        Button {
                            //
-                           if numOfCard
-                                != cardsArrPersistent.count-1 {
-                               numOfCard += 1
+                           if indexCard
+                                != deckCore.cardsArray.count-1 {
+                               indexCard += 1
                            }
                        } label: {
                            Image(systemName: "arrowshape.turn.up.right")
@@ -167,49 +230,45 @@ struct EditScreenView: View {
                                .foregroundColor(Color.init(hex: "6C63FF"))
                        }
                    }
-                
-//                if let cards = cardsArrPersistent, cardsArrPersistent.count > 0 {
-//                    Text("\(cards[0].word ?? "No word") \(cards[0].definition ?? "No def.")")
-//
-//                }
                }
-            
         }
         .navigationBarHidden(true)
+        
+
 
     }
-    private func saveContext() {
-        
-        if viewContext.hasChanges {
-            do {
-                try viewContext.save()
-            } catch {
-                let error = error as NSError
-                fatalError("Unresolved Error: \(error)")
-            }
-        }
-    }
+//    private func saveContext() {
+//
+//        if viewContext.hasChanges {
+//            do {
+//                try viewContext.save()
+//            } catch {
+//                let error = error as NSError
+//                fatalError("Unresolved Error: \(error)")
+//            }
+//        }
+//    }
     
     private func addCard() {
-
-            let newCard = CardCore(context: viewContext)
-            newCard.word = card.word
-            newCard.definition = card.definition
-        guard cardsArrPersistent != nil && cardsArrPersistent.count > 0 else {
-            return
-        }
+        
+        let newCard = CardCore(context: viewContext)
+        newCard.word = card.word
+        newCard.definition = card.definition
+//        guard cardsArrPersistent != nil && cardsArrPersistent.count > 0 else {
+//            return
+//        }
         //cardsArrPersistent.last?.word = newCard.word
         //cardsArrPersistent.last?.definition = newCard.definition
-        saveContext()
-        numOfCard += 1
-        UserDefaults.standard.set(self.numOfCard, forKey: "numOfCard")
-        newCard.numOfCard = Int32(numOfCard)
-        
-        print("\(Int(newCard.numOfCard))")
-        for card in cardsArrPersistent {
-            print(card.word)
-            print(card.definition)
-        }
+        //indexCard += 1
+        deckCore.addToCards(newCard)
+        PersistenceController.shared.saveContext()
+       
+        //UserDefaults.standard.set(self.indexOfCard, forKey: "indexOfCard")
+        //print("\(Int(newCard.numOfCard))")
+//        for card in deckCore.cardsArray {
+//            print(card.word)
+//            print(card.definition)
+//        }
         
         
         
@@ -218,8 +277,8 @@ struct EditScreenView: View {
     //Use with tap gesture or delete button
     private func deleteCard(offsets: IndexSet) {
         withAnimation {
-            offsets.map {cardsArrPersistent[$0]}.forEach(viewContext.delete)
-            saveContext()
+            offsets.map {deckCore.cardsArray[$0]}.forEach(viewContext.delete)
+            PersistenceController.shared.saveContext()
         }
     }
 
@@ -276,6 +335,19 @@ struct FlipEffect: GeometryEffect {
 
 struct EditScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        EditScreenView()
+        let viewContext = PersistenceController.preview.container.viewContext
+        let newDeck = DeckCore(context: viewContext)
+        newDeck.deckName = "Prev1"
+        
+        let card1 = CardCore(context: viewContext)
+        card1.word = "Jobs"
+        
+        let card2 = CardCore(context: viewContext)
+        card2.word = "Jobs"
+        
+        newDeck.addToCards(card1)
+        newDeck.addToCards(card2)
+        return EditScreenView(deckCore: newDeck)
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
