@@ -51,6 +51,8 @@ struct TabBarView: View {
     @State private var calendarWiggles = false
     var body: some View {
        // ZStack {
+        NavigationView {
+
             ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
                 
                 TabView(selection: $selectedTab) {
@@ -62,13 +64,13 @@ struct TabBarView: View {
 //                            .ignoresSafeArea(.all, edges: .all)
                         
                         //custom back button works here
-                        NavigationView {
                         ScrollView {
                             //Tabs With Pages...
                             //--
                             LazyVGrid(columns: columns, spacing: 30, content: {
                                 ForEach(0..<decksArrPersistent.count, id: \.self) { index in
-                                    NavigationLink(destination: EditScreenView(deckCore: decksArrPersistent[index])){
+                                    NavigationLink(destination: EditScreenView(deckCore: decksArrPersistent[index])
+                                                    .modifier(NavigationBarModifier(backgroundColor: UIColor(Color.init(hex: "D0CEEF"))))){
                                         ZStack {
                                             Image("cardBackg")
                                                 .resizable()
@@ -109,53 +111,11 @@ struct TabBarView: View {
                                     }
                                 }
                             })
-                                .toolbar {
-                                    //Top custom Navigation bar
-                                    ToolbarItemGroup(placement: .navigationBarLeading) {
-                                        VStack(alignment: .center) {
-                                            HStack(alignment: .center, spacing: 105) {
-
-                                                Button(action: {
-                                                    print("Slide in menu tapped")
-                                                    self.show.toggle()
-                                                }) {
-                                                    Image(systemName: "list.bullet")
-                                                }
-                                                .symbolRenderingMode(.hierarchical)
-                                                .font(.system(size: 24))
-                                                .foregroundColor(Color.init(hex: "6C63FF"))
-                                                .padding(.leading, 10)
-
-                                                Button(action: {
-                                                    print("iCloud button tapped")
-                                                }) {
-                                                    Image(systemName: "icloud.and.arrow.down")
-                                                }
-                                                //.frame(width: 60, height: 60, alignment: .center)
-                                                .symbolRenderingMode(.palette)
-                                                .font(.system(size: 24))
-                                                .foregroundStyle(Color.init(hex: "6C63FF"), (colorScheme == .dark ? Color.white : Color.black))
-                                                //.padding(100)
-                                                Button(action: {
-                                                    print("Profile button tapped")
-                                                }) {
-                                                    Image("profilePhoto")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width: 50, height: 70)
-                                                }
-                                                .padding(.trailing, 10)
-                                            }
-
-                                        }
-                                        .padding()
-
-                                    }
-                                }
-                                .ignoresSafeArea(.all, edges: .all)
-                                .foregroundColor(.primary)
+ 
                         }
-                    }
+                   // }
+                        
+                        
                         VStack {
                             Spacer()
                             HStack {
@@ -180,42 +140,26 @@ struct TabBarView: View {
                             
                         }
                     }
-
                     .tag("home")
-
-                    .navigationBarHidden(true)
-                    .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
-
-                    .ignoresSafeArea(.all, edges: .all)
-                    
-                    
                     Color(UIColor.systemBackground)
+                        .ignoresSafeArea(.all, edges: .all)
                         .tag("donate")
 
-                        .navigationBarHidden(true)
-                        .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
-                        .ignoresSafeArea(.all, edges: .all)
-
                     Color(UIColor.systemBackground)
+                        .ignoresSafeArea(.all, edges: .all)
                         .tag("liked")
 
-                        .navigationBarHidden(true)
-                        .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
-
-                        .ignoresSafeArea(.all, edges: .all)
-
                     Color(UIColor.systemBackground)
-                        .tag("about")
-
-                        .navigationBarHidden(true)
-                        .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
-
                         .ignoresSafeArea(.all, edges: .all)
+                        .tag("about")
+                    
                     
                     
                 }
+                
 
 
+                
                 //Custom bottom tabbar
                 HStack(spacing: 0) {
                     ForEach(tabs, id: \.self) { image in
@@ -253,19 +197,60 @@ struct TabBarView: View {
                 .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "c8d4f5"), Color.init(hex: "6C63FF")]),  center: .center, startRadius: 5, endRadius: 120).clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
                 .padding(.horizontal)
                 //Bottom edge
+                .ignoresSafeArea(.all, edges: .bottom)
+
                 .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
+                
+                .toolbar {
+                    //Top custom Navigation bar
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        VStack(alignment: .center) {
+                            HStack(alignment: .center, spacing: 105) {
+
+                                Button(action: {
+                                    print("Slide in menu tapped")
+                                    self.show.toggle()
+                                }) {
+                                    Image(systemName: "list.bullet")
+                                }
+                                .symbolRenderingMode(.hierarchical)
+                                .font(.system(size: 24))
+                                .foregroundColor(Color.init(hex: "6C63FF"))
+                                .padding(.leading, 10)
+
+                                Button(action: {
+                                    print("iCloud button tapped")
+                                }) {
+                                    Image(systemName: "icloud.and.arrow.down")
+                                }
+                                //.frame(width: 60, height: 60, alignment: .center)
+                                .symbolRenderingMode(.palette)
+                                .font(.system(size: 24))
+                                .foregroundStyle(Color.init(hex: "6C63FF"), (colorScheme == .dark ? Color.white : Color.black))
+                                //.padding(100)
+                                Button(action: {
+                                    print("Profile button tapped")
+                                }) {
+                                    Image("profilePhoto")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 50, height: 70)
+                                }
+                                .padding(.trailing, 10)
+                            }
+
+                        }
+
+                    }
+                }
+                .ignoresSafeArea(.all, edges: .all)
+                .foregroundColor(.primary)
 
             }
             .ignoresSafeArea(.all, edges: .bottom)
-            .navigationBarHidden(true)
-
-            //.overlay(Rectangle().stroke(Color.primary.opacity(0.1), lineWidth: 1).shadow(radius: 3).edgesIgnoringSafeArea(.top))
-
-//        }
-//        .navigationBarTitle("")
-//        .navigationBarHidden(true)
-//        .accentColor(Color.init(hex: "6C63FF"))
-
+    }
+        .accentColor(Color.init(hex: "6C63FF"))
+        
         HStack {
             SlideMenu(dark: self.$dark, show: self.$show)
                 .preferredColorScheme(colorScheme == .dark ? .dark : .light)
@@ -440,3 +425,38 @@ struct TabBarView_Previews: PreviewProvider {
         TabBarView()
     }
 }
+
+struct NavigationBarModifier: ViewModifier {
+
+var backgroundColor: UIColor?
+
+init(backgroundColor: UIColor?) {
+    UITabBar.appearance().isHidden = true
+    self.backgroundColor = backgroundColor
+
+    let coloredAppearance = UINavigationBarAppearance()
+    coloredAppearance.configureWithTransparentBackground()
+    coloredAppearance.backgroundColor = backgroundColor
+    coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+    coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+
+    
+    UINavigationBar.appearance().standardAppearance = coloredAppearance
+    UINavigationBar.appearance().compactAppearance = coloredAppearance
+    UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+    UINavigationBar.appearance().tintColor = .white
+}
+
+func body(content: Content) -> some View {
+    ZStack{
+        content
+        VStack {
+            GeometryReader { geometry in
+                Color(self.backgroundColor ?? .clear)
+                    .frame(height: geometry.safeAreaInsets.top)
+                    .edgesIgnoringSafeArea(.top)
+                Spacer()
+            }
+        }
+    }
+}}

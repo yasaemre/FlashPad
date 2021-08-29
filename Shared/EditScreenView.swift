@@ -28,41 +28,41 @@ struct EditScreenView: View {
     var body: some View {
 
         ZStack {
-            Color(.systemBackground).opacity(0.2).edgesIgnoringSafeArea(.all)
+           // Color(.systemBackground).opacity(0.2).edgesIgnoringSafeArea(.all)
             VStack(alignment: .center)  {
-                   HStack() {
-
-                       Button {
-                           self.presentationMode.wrappedValue.dismiss()
-                           print("Back tapped")
-                       } label: {
-                           Image(systemName: "arrowshape.turn.up.backward.fill")
-                               .font(.title)
-                               .foregroundColor(Color.init(hex: "6C63FF"))
-                               .contentShape(Rectangle())
-
-                       }
-                       .padding(.leading, 15)
-                       Spacer()
-                       Button {
-                           withAnimation {
-
-                           }
-                       } label: {
-                           Text("Study")
-                               .font(.title)
-                               .frame(width: 130, height: 40)
-                               .clipShape(Capsule())
-                               .foregroundColor(Color.init(hex: "6C63FF"))
-                           
-
-                       }
-                       .padding(.trailing, 15)
-
-                   }
-                   .padding(.top,1)
+//                   HStack() {
+//
+//                       Button {
+//                           self.presentationMode.wrappedValue.dismiss()
+//                           print("Back tapped")
+//                       } label: {
+//                           Image(systemName: "arrowshape.turn.up.backward.fill")
+//                               .font(.title)
+//                               .foregroundColor(Color.init(hex: "6C63FF"))
+//                               .contentShape(Rectangle())
+//
+//                       }
+//                       .padding(.leading, 15)
+//                       Spacer()
+//                       Button {
+//                           withAnimation {
+//
+//                           }
+//                       } label: {
+//                           Text("Study")
+//                               .font(.title)
+//                               .frame(width: 130, height: 40)
+//                               .clipShape(Capsule())
+//                               .foregroundColor(Color.init(hex: "6C63FF"))
+//
+//
+//                       }
+//                       .padding(.trailing, 15)
+//
+//                   }
+//                   .padding(.top,1)
                    
-                   HStack(spacing: 10) {
+                   HStack(spacing: 5) {
                        
                        Button {
                            withAnimation {
@@ -95,12 +95,12 @@ struct EditScreenView: View {
                            .foregroundColor(.white)
                        }
                    }
-                   .padding(.top, 50)
+                   .padding(.top, 10)
 
                 if flipped == true {
 
                     TextField("Enter a word", text: $card.word)
-                        .padding(.top, 10)
+                        .padding(.top, 1)
 //                        .padding(.leading, 40)
 //                        .padding(.trailing, 40)
                         .frame(width: 250, height: 75, alignment: .center)
@@ -108,7 +108,7 @@ struct EditScreenView: View {
                         .modifier(TextFieldClearButton(text: $card.word))
                 } else {
                     TextField("Enter a definition", text: $card.definition)
-                        .padding(.top, 10)
+                        .padding(.top, 1)
 //                        .padding(.leading, 40)
 //                        .padding(.trailing, 40)
                         .frame(width: 250, height: 75, alignment: .center)
@@ -133,14 +133,13 @@ struct EditScreenView: View {
                         VStack(alignment:.center, spacing: 5) {
                         if deckCore.cardsArray.count > 0 {
                             if flip == false {
-//                                if rightArrowTapped == true {
-//                                    Text("")
-//                                } else {
+                                if rightArrowTapped == true {
+                                    Text("")
+                                } else {
                                     Text(deckCore.cardsArray[indexCard].unwrappedWord)
                                         .font(.custom("HelveticaNeue", size: 40))
                                         .foregroundColor(.white)
-                                        
-                                //}
+                                }
                             } else {
 //                                if rightArrowTapped == true {
 //                                    Text("")
@@ -186,7 +185,8 @@ struct EditScreenView: View {
                             
                     )
                     .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
-                    .padding(.top, 15)
+                    .padding(.top, 5)
+
 
                
                 Text("\(indexCard+1) of \(deckCore.cardsArray.count)")
@@ -231,8 +231,10 @@ struct EditScreenView: View {
                        }
                    }
                }
+
         }
-        .navigationBarHidden(true)
+        //.navigationBarHidden(true)
+
         
 
 
