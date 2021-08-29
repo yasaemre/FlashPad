@@ -48,6 +48,7 @@ struct TabBarView: View {
   @State private var indexOfCard = UserDefaults.standard.integer(forKey: "indexOfCard")
    // var editScreenView = EditScreenView()
 
+    @State private var calendarWiggles = false
     var body: some View {
        // ZStack {
             ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
@@ -66,32 +67,43 @@ struct TabBarView: View {
                             //Tabs With Pages...
                             //--
                             LazyVGrid(columns: columns, spacing: 30, content: {
-                                ForEach(decksArrPersistent, id: \.self) { deck in
-                                    NavigationLink(destination: EditScreenView(deckCore: deck)){
+                                ForEach(0..<decksArrPersistent.count, id: \.self) { index in
+                                    NavigationLink(destination: EditScreenView(deckCore: decksArrPersistent[index])){
                                         ZStack {
                                             Image("cardBackg")
                                                 .resizable()
                                                 .frame(width:150, height: 200)
                                                 .cornerRadius(16)
+                                                .overlay(Image(systemName: "minus.circle.fill")
+                                                            .font(.title)
+                                                            .foregroundColor(Color(.systemGray))
+                                                            .offset(x: -70, y: -95)
+                                                            .onTapGesture{
+                                                    //deleteDeck(at: IndexSet.init(integer: index))
+                                                    alertViewDeleteDeck(at: IndexSet.init(integer: index))
+                                                })
+                                                
+                                                
 
                                             VStack(spacing: 10) {
-                                                Text(deck.unwrappedDeckName)
+                                                Text(decksArrPersistent[index].unwrappedDeckName)
                                                     .font(.title).bold()
                                                     .foregroundColor(.white)
 
-                                                Text("\(deck.numberOfCardsInDeck) cards")
+                                                Text("\(decksArrPersistent[index].numberOfCardsInDeck) cards")
                                                     .font(.title2)
                                                     .foregroundColor(.white)
                                                     .onAppear {
-                                                        deck.numberOfCardsInDeck = Int16(deck.cardsArray.count)
+                                                        decksArrPersistent[index].numberOfCardsInDeck = Int16(decksArrPersistent[index].cardsArray.count)
                                                     }
-                                                Text("created on \n\(deck.deckCreatedAt ?? "")")
+                                                Text("created on \n\(decksArrPersistent[index].deckCreatedAt ?? "")")
                                                     .font(.system(size: 12.0))
                                                     .foregroundColor(.white)
                                             }
                                             .frame(width:150, height: 200)
                                             
                                         }
+
                                         
 
                                     }
@@ -168,37 +180,41 @@ struct TabBarView: View {
                             
                         }
                     }
+
                     .tag("home")
-                    .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
 
                     .navigationBarHidden(true)
+                    .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
+
                     .ignoresSafeArea(.all, edges: .all)
                     
                     
                     Color(UIColor.systemBackground)
                         .tag("donate")
-                        .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
-                        .navigationBarHidden(true)
 
+                        .navigationBarHidden(true)
+                        .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
                         .ignoresSafeArea(.all, edges: .all)
-                    
+
                     Color(UIColor.systemBackground)
                         .tag("liked")
-                        .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
+
                         .navigationBarHidden(true)
+                        .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
 
                         .ignoresSafeArea(.all, edges: .all)
-                    
+
                     Color(UIColor.systemBackground)
                         .tag("about")
-                        .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
+
                         .navigationBarHidden(true)
+                        .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
 
                         .ignoresSafeArea(.all, edges: .all)
                     
                     
                 }
-                .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
+
 
                 //Custom bottom tabbar
                 HStack(spacing: 0) {
@@ -234,8 +250,7 @@ struct TabBarView: View {
                 .padding(.horizontal, 30)
                 .padding(.vertical)
                 //.padding(.bottom, 1)
-                .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "c8d4f5"), Color.init(hex: "6C63FF")]),  center: .center, startRadius: 5, endRadius: 120).clipShape(CustomShape(xAxis: xAxis))
-                .cornerRadius(12))
+                .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "c8d4f5"), Color.init(hex: "6C63FF")]),  center: .center, startRadius: 5, endRadius: 120).clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
                 .padding(.horizontal)
                 //Bottom edge
                 .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
@@ -243,6 +258,7 @@ struct TabBarView: View {
             }
             .ignoresSafeArea(.all, edges: .bottom)
             .navigationBarHidden(true)
+
             //.overlay(Rectangle().stroke(Color.primary.opacity(0.1), lineWidth: 1).shadow(radius: 3).edgesIgnoringSafeArea(.top))
 
 //        }
@@ -286,10 +302,14 @@ struct TabBarView: View {
     }
     
     //Use with tap gesture or delete button
-    private func deleteCard(offsets: IndexSet) {
+    private func deleteDeck(at offsets: IndexSet) {
         withAnimation {
-            offsets.map {decksArrPersistent[$0]}.forEach(viewContext.delete)
-            PersistenceController.shared.saveContext()
+//            offsets.map {decksArrPersistent[$0]}.forEach(viewContext.delete)
+            for index in offsets {
+                let deck = decksArrPersistent[index]
+                viewContext.delete(deck)
+                PersistenceController.shared.saveContext()
+            }
         }
     }
     
@@ -329,6 +349,41 @@ struct TabBarView: View {
             
         })
     }
+    
+    func alertViewDeleteDeck(at index: IndexSet) {
+        
+        
+        let alert = UIAlertController(title: "Delete Deck", message: "Do you want to delete this deck?", preferredStyle: .alert)
+        
+//        alert.addTextField { pass in
+//            pass.placeholder = "Enter name of deck"
+//        }
+        
+        //Action Buttons
+        
+
+        
+        let delete = UIAlertAction(title: "Delete", style: .default) { (_) in
+            //do your stuff..
+            
+            
+            //deckVM.decks.append(Deck( deckName: deck.deckName, numberOfCardsInDeck: deck.numberOfCardsInDeck, deckCreatedAt: deck.deckCreatedAt))
+            deleteDeck(at: index)
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .destructive) { _ in
+            //same
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(delete)
+        
+        UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: {
+            //code
+            
+        })
+    }
+
     
     func getColor(image: String) -> Color {
         switch image {
