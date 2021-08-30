@@ -12,7 +12,7 @@ struct TabBarView: View {
     init() {
         UITabBar.appearance().isHidden = true
     }
-    
+
     @State var selectedTab = "home"
     @State var xAxis:CGFloat = 0
     @Namespace var animation
@@ -248,6 +248,7 @@ struct TabBarView: View {
 
             }
             .ignoresSafeArea(.all, edges: .bottom)
+            
     }
         .accentColor(Color.init(hex: "6C63FF"))
         

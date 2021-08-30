@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EditScreenView: View {
+    
     @StateObject var cardVM = CardViewModel()
     @State var flipped = false
     @State var flip = false
@@ -24,40 +25,75 @@ struct EditScreenView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
     
-    
-    var body: some View {
+    @GestureState private var dragOffset = CGSize.zero
 
+    var body: some View {
+       // NavigationView {
         ZStack {
            // Color(.systemBackground).opacity(0.2).edgesIgnoringSafeArea(.all)
             VStack(alignment: .center)  {
 //                   HStack() {
 //
-//                       Button {
-//                           self.presentationMode.wrappedValue.dismiss()
-//                           print("Back tapped")
-//                       } label: {
-//                           Image(systemName: "arrowshape.turn.up.backward.fill")
-//                               .font(.title)
-//                               .foregroundColor(Color.init(hex: "6C63FF"))
-//                               .contentShape(Rectangle())
-//
-//                       }
-//                       .padding(.leading, 15)
+////                       Button {
+////                           self.presentationMode.wrappedValue.dismiss()
+////                           print("Back tapped")
+////                       } label: {
+////                           Image(systemName: "arrowshape.turn.up.backward.fill")
+////                               .font(.title)
+////                               .foregroundColor(Color.init(hex: "6C63FF"))
+////                               .contentShape(Rectangle())
+////
+////                       }
+////                       .padding(.leading, 15)
+////                       NavigationLink(destination: TabBarView().navigationBarHidden(true)) {
+////                           Image(systemName: "arrowshape.turn.up.backward.fill")
+////                               .font(.title)
+////                               .foregroundColor(Color.init(hex: "6C63FF"))
+////                               .contentShape(Rectangle())
+////                       }
+////                       .padding(.leading, 15)
+////                       Image(systemName: "arrowshape.turn.up.backward.fill")
+////                           .font(.title)
+////                           .foregroundColor(Color.init(hex: "6C63FF"))
+////                           .contentShape(Rectangle())
+////                           .onTapGesture {
+////                               self.presentationMode.wrappedValue.dismiss()
+////                           }
+//                       
+////                       Group {
+////                           Image(systemName: "arrowshape.turn.up.backward.fill")
+////                               .font(.title)
+////                               .foregroundColor(Color.init(hex: "6C63FF"))
+////                               .contentShape(Rectangle())
+////                       }
+////                       .gesture(DragGesture().updating($dragOffset, body: { (value, state, transaction) in
+////                            if(value.startLocation.x < 20 &&
+////                                       value.translation.width > 100) {
+////                                self.presentationMode.wrappedValue.dismiss()
+////                            }
+////                       }))
 //                       Spacer()
-//                       Button {
-//                           withAnimation {
-//
-//                           }
-//                       } label: {
-//                           Text("Study")
-//                               .font(.title)
-//                               .frame(width: 130, height: 40)
-//                               .clipShape(Capsule())
-//                               .foregroundColor(Color.init(hex: "6C63FF"))
-//
-//
-//                       }
-//                       .padding(.trailing, 15)
+////                       Button {
+////                           withAnimation {
+////
+////                           }
+////                       } label: {
+////                           Text("Study")
+////                               .font(.title)
+////                               .frame(width: 130, height: 40)
+////                               .clipShape(Capsule())
+////                               .foregroundColor(Color.init(hex: "6C63FF"))
+////
+////
+////                       }
+////                       .padding(.trailing, 15)
+////                       NavigationLink(destination: StudyScreenView()) {
+////                           Text("Study")
+////                               .font(.title)
+////                               .frame(width: 130, height: 40)
+////                               .clipShape(Capsule())
+////                               .foregroundColor(Color.init(hex: "6C63FF"))
+////                       }
 //
 //                   }
 //                   .padding(.top,1)
@@ -78,6 +114,14 @@ struct EditScreenView: View {
                                .background(!flip ? Color.init(hex: "6C63FF") : .gray)
                                .clipShape(Capsule())
                                .foregroundColor(.white)
+                               .navigationBarItems(trailing: NavigationLink(destination: StudyScreenView()) {
+                                       Text("Study")
+                                           .font(.title3)
+                                           .frame(width: 100, height: 40)
+                                           .foregroundColor(Color.init(hex: "6C63FF"))
+                                   }
+                               )
+                           
 
                        }
 
@@ -231,11 +275,19 @@ struct EditScreenView: View {
                        }
                    }
                }
+            .accentColor(Color.init(hex: "6C63FF"))
+            .onAppear {
+                UINavigationBar.appearance().titleTextAttributes = [
+                .font : UIFont(name: "HelveticaNeue-Thin", size: 2)!]
+            }
 
-        }
+            
+            
+
+        //}
         //.navigationBarHidden(true)
 
-        
+        }
 
 
     }
