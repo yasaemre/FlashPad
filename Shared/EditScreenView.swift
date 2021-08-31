@@ -25,7 +25,7 @@ struct EditScreenView: View {
 
     var body: some View {
        // NavigationView {
-        ZStack {
+        ZStack(alignment: .topLeading) {
            // Color(.systemBackground).opacity(0.2).edgesIgnoringSafeArea(.all)
             VStack(alignment: .center)  {
 //                   HStack() {
@@ -110,7 +110,7 @@ struct EditScreenView: View {
                                .background(!flip ? Color.init(hex: "6C63FF") : .gray)
                                .clipShape(Capsule())
                                .foregroundColor(.white)
-                               .navigationBarItems(trailing: NavigationLink(destination: StudyScreenView()) {
+                               .navigationBarItems(trailing: NavigationLink(destination: StudyScreenView(card: card, deckCore: deckCore)) {
                                        Text("Study")
                                            .font(.title)
                                            .foregroundColor(Color.init(hex: "6C63FF"))
