@@ -86,6 +86,7 @@ struct TabBarView: View {
                                                 })
                                                 
                                                 
+                                                
 
                                             VStack(spacing: 10) {
                                                 Text(decksArrPersistent[index].unwrappedDeckName)

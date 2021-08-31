@@ -183,6 +183,14 @@ struct EditScreenView: View {
                                     Text(deckCore.cardsArray[indexCard].unwrappedWord)
                                         .font(.custom("HelveticaNeue", size: 40))
                                         .foregroundColor(.white)
+                                        .overlay(Image(systemName: "minus.circle.fill")
+                                                    .font(.title)
+                                                    .foregroundColor(Color(.systemGray))
+                                                    .offset(x: -123, y: -175)
+                                                    .onTapGesture{
+                                            //deleteDeck(at: IndexSet.init(integer: index))
+                                            alertViewDeleteCard(at: IndexSet.init(integer: indexCard))
+                                        })
                                 }
                             } else {
 //                                if rightArrowTapped == true {
@@ -191,7 +199,14 @@ struct EditScreenView: View {
                                 Text(deckCore.cardsArray[indexCard].unwrappedDefinition)
                                         .font(.custom("HelveticaNeue", size: 40))
                                         .foregroundColor(.white)
-                                        
+                                        .overlay(Image(systemName: "minus.circle.fill")
+                                                    .font(.title)
+                                                    .foregroundColor(Color(.systemGray))
+                                                    .offset(x: -123, y: -175)
+                                                  .onTapGesture{
+                                            //deleteDeck(at: IndexSet.init(integer: index))
+                                            alertViewDeleteCard(at: IndexSet.init(integer: indexCard))
+                                        })
                                 //}
                             }
                         } else {
@@ -203,7 +218,14 @@ struct EditScreenView: View {
                                         Text(deckCore.cardsArray[index].unwrappedWord)
                                             .font(.custom("HelveticaNeue", size: 40))
                                             .foregroundColor(.white)
-
+                                            .overlay(Image(systemName: "minus.circle.fill")
+                                                        .font(.title)
+                                                        .foregroundColor(Color(.systemGray))
+                                                        .offset(x: -123, y: -175)
+                                                       .onTapGesture{
+                                                //deleteDeck(at: IndexSet.init(integer: index))
+                                                alertViewDeleteCard(at: IndexSet.init(integer: index))
+                                            })
                                     
                                             
                                     //}
@@ -214,7 +236,14 @@ struct EditScreenView: View {
                                     Text(deckCore.cardsArray[index].unwrappedDefinition)
                                             .font(.custom("HelveticaNeue", size: 40))
                                             .foregroundColor(.white)
-                                            
+                                            .overlay(Image(systemName: "minus.circle.fill")
+                                                        .font(.title)
+                                                        .foregroundColor(Color(.systemGray))
+                                                        .offset(x: -123, y: -175)
+                                                       .onTapGesture{
+                                                //deleteDeck(at: IndexSet.init(integer: index))
+                                                alertViewDeleteCard(at: IndexSet.init(integer: index))
+                                            })
                                     //}
                                 }
                                 
@@ -265,7 +294,7 @@ struct EditScreenView: View {
                        Button {
                            //
                            if indexCard
-                                != deckCore.cardsArray.count-1 {
+                                != deckCore.cardsArray.count-1, !deckCore.cardsArray.isEmpty {
                                indexCard += 1
                            }
                        } label: {
@@ -285,23 +314,13 @@ struct EditScreenView: View {
             
 
         //}
-        //.navigationBarHidden(true)
+        .navigationBarHidden(true)
 
         }
 
 
     }
-//    private func saveContext() {
-//
-//        if viewContext.hasChanges {
-//            do {
-//                try viewContext.save()
-//            } catch {
-//                let error = error as NSError
-//                fatalError("Unresolved Error: \(error)")
-//            }
-//        }
-//    }
+  
     
     private func addCard() {
         
@@ -329,13 +348,44 @@ struct EditScreenView: View {
     }
     
     //Use with tap gesture or delete button
-    private func deleteCard(offsets: IndexSet) {
+    private func deleteCard(at offsets: IndexSet) {
         withAnimation {
-            offsets.map {deckCore.cardsArray[$0]}.forEach(viewContext.delete)
-            PersistenceController.shared.saveContext()
+
+            for index in offsets {
+                let card = deckCore.cardsArray[index]
+                viewContext.delete(card)
+                PersistenceController.shared.saveContext()
+            }
         }
     }
-
+    
+    func alertViewDeleteCard(at index: IndexSet) {
+        
+        
+        let alert = UIAlertController(title: "Delete Card", message: "Do you want to delete this card?", preferredStyle: .alert)
+ 
+        
+        let delete = UIAlertAction(title: "Delete", style: .default) { (_) in
+            //do your stuff..
+            
+            
+            //deckVM.decks.append(Deck( deckName: deck.deckName, numberOfCardsInDeck: deck.numberOfCardsInDeck, deckCreatedAt: deck.deckCreatedAt))
+            deleteCard(at: index)
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .destructive) { _ in
+            //same
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(delete)
+        
+        UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: {
+            //code
+            
+        })
+    }
+    
 }
 
 struct TextFieldClearButton: ViewModifier {
