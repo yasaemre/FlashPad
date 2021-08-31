@@ -98,7 +98,7 @@ struct EditScreenView: View {
 //                   }
 //                   .padding(.top,1)
                    
-                   HStack(spacing: 5) {
+                   HStack(spacing: 15) {
                        
                        Button {
                            withAnimation {
@@ -116,15 +116,15 @@ struct EditScreenView: View {
                                .foregroundColor(.white)
                                .navigationBarItems(trailing: NavigationLink(destination: StudyScreenView()) {
                                        Text("Study")
-                                           .font(.title3)
-                                           .frame(width: 100, height: 40)
+                                           .font(.title)
                                            .foregroundColor(Color.init(hex: "6C63FF"))
+                                           .padding(.trailing, 1)
                                    }
                                )
                            
 
                        }
-
+                    
                        Button {
                            withAnimation {
                                flip = true
