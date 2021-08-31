@@ -22,6 +22,7 @@ struct EditScreenView: View {
     @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
     
     @GestureState private var dragOffset = CGSize.zero
+    
 
     var body: some View {
        // NavigationView {
@@ -323,6 +324,7 @@ struct EditScreenView: View {
         let newCard = CardCore(context: viewContext)
         newCard.word = card.word
         newCard.definition = card.definition
+        newCard.imageName = "cardBackg"
 //        guard cardsArrPersistent != nil && cardsArrPersistent.count > 0 else {
 //            return
 //        }

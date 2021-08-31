@@ -18,6 +18,7 @@ extension CardCore {
 
     @NSManaged public var definition: String?
     @NSManaged public var word: String?
+    @NSManaged public var imageName: String?
     @NSManaged public var deck: DeckCore?
 
     public var unwrappedWord:String {
