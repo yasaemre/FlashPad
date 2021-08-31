@@ -17,7 +17,7 @@ struct ContentView: View {
     //@State var appleLogStatus = UserDefaults.standard.value(forKey: "appleLogStatus") as? Bool ?? false
     var body: some View {
         if currentPage > totalPages {
-            HomeView()
+            HomeView().navigationBarHidden(true)
         } else {
             walkthrough
         }

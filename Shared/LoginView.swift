@@ -31,6 +31,7 @@ struct LoginView: View {
         
         Color.init(hex: "C8D4F5").ignoresSafeArea()
             .overlay(
+                
                 VStack(alignment: .center, spacing: 20) {
                 GeometryReader { geo in
                     Image("welcome")
@@ -235,6 +236,7 @@ struct LoginView: View {
                     .padding(.horizontal, 25)
                 
             )
+        
         if self.loginVM.alert {
             ErrorView(alert: self.$loginVM.alert, error: self.$loginVM.error)
             

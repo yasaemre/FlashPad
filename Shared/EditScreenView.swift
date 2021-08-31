@@ -9,14 +9,10 @@ import SwiftUI
 
 struct EditScreenView: View {
     
-    @StateObject var cardVM = CardViewModel()
     @State var flipped = false
     @State var flip = false
     @State var rightArrowTapped = false
-   // @State var numOfCard = 0
-    //@State var indexOfCard = UserDefaults.standard.integer(forKey: "indexOfCard")
-   //@State var indexCard = 0
-    //@ObservedObject var card: Card
+
     @StateObject var card = Card()
     @StateObject var deckCore:DeckCore
    
@@ -34,17 +30,17 @@ struct EditScreenView: View {
             VStack(alignment: .center)  {
 //                   HStack() {
 //
-////                       Button {
-////                           self.presentationMode.wrappedValue.dismiss()
-////                           print("Back tapped")
-////                       } label: {
-////                           Image(systemName: "arrowshape.turn.up.backward.fill")
-////                               .font(.title)
-////                               .foregroundColor(Color.init(hex: "6C63FF"))
-////                               .contentShape(Rectangle())
-////
-////                       }
-////                       .padding(.leading, 15)
+//                       Button {
+//                           self.presentationMode.wrappedValue.dismiss()
+//                           print("Back tapped")
+//                       } label: {
+//                           Image(systemName: "arrowshape.turn.up.backward.fill")
+//                               .font(.title)
+//                               .foregroundColor(Color.init(hex: "6C63FF"))
+//                               .contentShape(Rectangle())
+//
+//                       }
+//                       .padding(.leading, 15)
 ////                       NavigationLink(destination: TabBarView().navigationBarHidden(true)) {
 ////                           Image(systemName: "arrowshape.turn.up.backward.fill")
 ////                               .font(.title)
@@ -73,19 +69,19 @@ struct EditScreenView: View {
 ////                            }
 ////                       }))
 //                       Spacer()
-////                       Button {
-////                           withAnimation {
-////
-////                           }
-////                       } label: {
-////                           Text("Study")
-////                               .font(.title)
-////                               .frame(width: 130, height: 40)
-////                               .clipShape(Capsule())
-////                               .foregroundColor(Color.init(hex: "6C63FF"))
-////
-////
-////                       }
+//                       Button {
+//                           withAnimation {
+//
+//                           }
+//                       } label: {
+//                           Text("Study")
+//                               .font(.title)
+//                               .frame(width: 130, height: 40)
+//                               .clipShape(Capsule())
+//                               .foregroundColor(Color.init(hex: "6C63FF"))
+//
+//
+//                       }
 ////                       .padding(.trailing, 15)
 ////                       NavigationLink(destination: StudyScreenView()) {
 ////                           Text("Study")
@@ -314,7 +310,7 @@ struct EditScreenView: View {
             
 
         //}
-        .navigationBarHidden(true)
+            //.fnavigationBarHidden(true)
 
         }
 

@@ -22,7 +22,7 @@ struct HomeView : View {
             VStack{
                 
                 if self.logged {
-                    HomeScreenView()
+                    HomeScreenView().navigationBarHidden(true)
                 }
                 else{
                     

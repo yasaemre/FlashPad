@@ -19,7 +19,7 @@ struct HomeScreenView : View {
             TabBarView()
             
         }
-        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
         
     }
 }
