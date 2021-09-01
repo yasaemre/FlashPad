@@ -26,6 +26,7 @@ struct TabBarView: View {
         
     @Environment(\.colorScheme) var colorScheme
     @State var deck = Deck()
+    @State var card = Card()
     @StateObject var deckVM = DeckViewModel()
     let columns = Array(repeating: GridItem(.flexible(), spacing:25), count: 2)
     
@@ -69,7 +70,7 @@ struct TabBarView: View {
                             //--
                             LazyVGrid(columns: columns, spacing: 30, content: {
                                 ForEach(0..<decksArrPersistent.count, id: \.self) { index in
-                                    NavigationLink(destination: EditScreenView(deckCore: decksArrPersistent[index])
+                                    NavigationLink(destination: EditScreenView(card: card, deckCore: decksArrPersistent[index])
                                                     .modifier(NavigationBarModifier(backgroundColor: UIColor(Color.init(hex: "D0CEEF"))))){
                                         ZStack {
                                             Image("cardBackg")

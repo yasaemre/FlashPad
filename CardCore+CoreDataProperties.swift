@@ -18,8 +18,12 @@ extension CardCore {
 
     @NSManaged public var definition: String?
     @NSManaged public var word: String?
-    @NSManaged public var imageName: String?
+    @NSManaged public var imageName: String
     @NSManaged public var deck: DeckCore?
+    
+    @NSManaged public var x: Double
+    @NSManaged public var y: Double
+    @NSManaged public var degree: Double
 
     public var unwrappedWord:String {
         word ?? "Unknown deckName"
