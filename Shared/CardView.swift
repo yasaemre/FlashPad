@@ -13,7 +13,7 @@ struct CardView: View {
     var body: some View {
         ZStack(alignment: .center) {
                    Image(cardCore.imageName)
-                .resizable()
+                    .resizable()
 
                         .frame(width: 250, height: 350)
                         .clipped()
@@ -23,13 +23,15 @@ struct CardView: View {
                        Image("correct")
                            .resizable()
                            .aspectRatio(contentMode: .fit)
-                           .frame(width:150)
+                           .frame(width:75,height: 75)
+                           .offset(x: 60, y: -140)
                            .opacity(Double(card.x/10 - 1))
                        Spacer()
                        Image("false")
                            .resizable()
                            .aspectRatio(contentMode: .fit)
-                           .frame(width:150)
+                           .frame(width:75,height: 75)
+                           .offset(x: -60, y: -140)
                            .opacity(Double(card.x/10 * -1 - 1))
                    }
                    
@@ -134,7 +136,7 @@ struct CardView: View {
 ////                                Image("correct")
 ////                                    .resizable()
 ////                                    .aspectRatio(contentMode: .fit)
-////                                    .frame(width:75,height: 75)
+////                                    c
 ////                                    .opacity(Double(card.x/10 - 1))
 ////                                Spacer()
 ////                                Image("false")
