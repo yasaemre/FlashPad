@@ -8,13 +8,31 @@
 import SwiftUI
 
 struct StudyScreenView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+    
+    @State var flipped = false
+    @State var flip = false
+    @State var rightArrowTapped = false
+    
+   // @State var card: Card
+        // MARK: - Drawing Constant
+    @StateObject var deckCore:DeckCore
+    @State var card:Card
+    @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
 
-struct StudyScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        StudyScreenView()
+    var body: some View {
+        ZStack(alignment: .center){
+            ForEach(deckCore.cardsArray.reversed()) { cardCore in
+                CardView(cardCore: cardCore, card: card)
+            }
+        }
+        .padding(8)
+        .zIndex(1.0)
     }
 }
+    
+
+//struct StudyScreenView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        StudyScreenView(card: Card(), deckCore: DeckCore())
+//    }
+//}

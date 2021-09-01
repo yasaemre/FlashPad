@@ -9,7 +9,15 @@ import Foundation
 import SwiftUI
 
 
-class Card:ObservableObject{
-   @Published var word:String = ""
-    @Published var definition:String = ""
+struct Card: Identifiable{
+     var word:String = ""
+     var definition:String = ""
+     var id = UUID()
+    /// Card x position
+     var x: CGFloat = 0.0
+        /// Card y position
+     var y: CGFloat = 0.0
+        /// Card rotation angle
+     var degree: Double = 0.0
+    var imageName = "cardBackg"
 }

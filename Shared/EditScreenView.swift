@@ -13,7 +13,7 @@ struct EditScreenView: View {
     @State var flip = false
     @State var rightArrowTapped = false
 
-    @StateObject var card = Card()
+    @State var card: Card
     @StateObject var deckCore:DeckCore
    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -22,10 +22,11 @@ struct EditScreenView: View {
     @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
     
     @GestureState private var dragOffset = CGSize.zero
+    
 
     var body: some View {
        // NavigationView {
-        ZStack {
+        ZStack(alignment: .topLeading) {
            // Color(.systemBackground).opacity(0.2).edgesIgnoringSafeArea(.all)
             VStack(alignment: .center)  {
 //                   HStack() {
@@ -110,7 +111,7 @@ struct EditScreenView: View {
                                .background(!flip ? Color.init(hex: "6C63FF") : .gray)
                                .clipShape(Capsule())
                                .foregroundColor(.white)
-                               .navigationBarItems(trailing: NavigationLink(destination: StudyScreenView()) {
+                               .navigationBarItems(trailing: NavigationLink(destination: StudyScreenView(deckCore: deckCore, card: card)) {
                                        Text("Study")
                                            .font(.title)
                                            .foregroundColor(Color.init(hex: "6C63FF"))
@@ -323,6 +324,7 @@ struct EditScreenView: View {
         let newCard = CardCore(context: viewContext)
         newCard.word = card.word
         newCard.definition = card.definition
+        newCard.imageName = "cardBackg"
 //        guard cardsArrPersistent != nil && cardsArrPersistent.count > 0 else {
 //            return
 //        }
@@ -433,21 +435,21 @@ struct FlipEffect: GeometryEffect {
     }
 }
 
-struct EditScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewContext = PersistenceController.preview.container.viewContext
-        let newDeck = DeckCore(context: viewContext)
-        newDeck.deckName = "Prev1"
-        
-        let card1 = CardCore(context: viewContext)
-        card1.word = "Jobs"
-        
-        let card2 = CardCore(context: viewContext)
-        card2.word = "Jobs"
-        
-        newDeck.addToCards(card1)
-        newDeck.addToCards(card2)
-        return EditScreenView(deckCore: newDeck)
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
-}
+//struct EditScreenView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let viewContext = PersistenceController.preview.container.viewContext
+//        let newDeck = DeckCore(context: viewContext)
+//        newDeck.deckName = "Prev1"
+//        
+//        let card1 = CardCore(context: viewContext)
+//        card1.word = "Jobs"
+//        
+//        let card2 = CardCore(context: viewContext)
+//        card2.word = "Jobs"
+//        
+//        newDeck.addToCards(card1)
+//        newDeck.addToCards(card2)
+//        return EditScreenView(deckCore: newDeck)
+//            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+//    }
+//}
