@@ -20,7 +20,7 @@ struct StudyScreenView: View {
     @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
 
     var body: some View {
-        ZStack(alignment: .center){
+        ZStack(alignment: .top){
             ForEach(deckCore.cardsArray.reversed()) { cardCore in
                 CardView(cardCore: cardCore, card: card)
             }

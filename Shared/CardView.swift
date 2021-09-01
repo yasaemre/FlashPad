@@ -11,9 +11,12 @@ struct CardView: View {
     @State var cardCore: CardCore
     @State var card: Card
     var body: some View {
-        ZStack(alignment: .topLeading) {
+        ZStack(alignment: .center) {
                    Image(cardCore.imageName)
+                .resizable()
+
                         .frame(width: 250, height: 350)
+                        .clipped()
                         .cornerRadius(12)
 
                    HStack {
