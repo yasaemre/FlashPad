@@ -19,10 +19,26 @@ struct CardView: View {
         // MARK: - Drawing Constant
     @StateObject var deckCore:DeckCore
     @Binding var indexCard:Int
-    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     var body: some View {
-        VStack {
-            
+        VStack(spacing:10) {
+
+            HStack {
+                Button {
+                    self.presentationMode.wrappedValue.dismiss()
+                    print("Back tapped")
+                } label: {
+                    Image(systemName: "arrowshape.turn.up.backward.fill")
+                        .font(.title)
+                        .foregroundColor(Color.init(hex: "6C63FF"))
+                        .contentShape(Rectangle())
+                    
+                }
+                .padding(.leading, 15)
+                .padding(.top, 10)
+                Spacer()
+            }
             HStack(spacing: 15) {
                 
                 Button {
@@ -54,6 +70,7 @@ struct CardView: View {
                         .foregroundColor(.white)
                 }
             }
+            .padding(.top, 20)
 
             
             ZStack(alignment: .center) {
@@ -91,43 +108,6 @@ struct CardView: View {
                         
                     }
                 }
-                    //else {
-                       // ForEach(0..<deckCore.cardsArray.count, id:\.self) { index in
-//                            if flip == false {
-//                                //                                if rightArrowTapped == true {
-//                                //                                    Text("")
-//                                //                                } else {
-//                                ZStack {
-//
-//                                    Text(deckCore.cardsArray[index].unwrappedWord)
-//                                        .font(.custom("HelveticaNeue", size: 40))
-//                                        .foregroundColor(.white)
-//                                }
-//
-//                                //}
-//                            } else {
-//                                //                                if rightArrowTapped == true {
-//                                //                                    Text("")
-//                                //                                } else {
-//                                ZStack {
-//                                    Text(deckCore.cardsArray[index].unwrappedDefinition)
-//                                        .font(.custom("HelveticaNeue", size: 40))
-//                                        .foregroundColor(.white)
-//                                }
-//
-//                                //}
-//                            }
-                            
-                            
-                            
-                            
-                       // }
-                    //}
-                //}
-
-                    
-                
-
                        HStack {
                            Image("correct")
                                .resizable()
@@ -145,11 +125,11 @@ struct CardView: View {
                        }
                        
                    }
-                    .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
-
-                   .cornerRadius(8)
-                   .offset(x: card.x, y: card.y)
-                   .rotationEffect(.init(degrees: card.degree))
+            .padding(.top, 10)
+            .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
+            .cornerRadius(8)
+            .offset(x: card.x, y: card.y)
+            .rotationEffect(.init(degrees: card.degree))
                    .gesture (
                        DragGesture()
                            .onChanged { value in
@@ -180,9 +160,7 @@ struct CardView: View {
                        if  indexCard > 0 {
                            indexCard -= 1
                        }
-                       // print("View tapped! \(indexCard ?? 0)")
-                                   
-                                       
+   
                                    
                                
                            }
@@ -194,27 +172,41 @@ struct CardView: View {
                 .font(.title2)
                 .padding(.top, 10)
             
-            HStack(spacing: 30){
-                Button {
-                   
-                } label: {
-                    Image(systemName: "arrowshape.turn.up.backward")
-                        .font(.largeTitle)
-                        .foregroundColor(Color.init(hex: "6C63FF"))
-                }
-                Spacer()
-                Button {
-                    //
-                    
-                } label: {
-                    Image(systemName: "arrowshape.turn.up.right")
-                        .font(.largeTitle)
-                        .foregroundColor(Color.init(hex: "6C63FF"))
-                }
+            HStack(spacing: 40){
+                
+                Text("Correct: 4")
+                    .font(.title)
+                    .frame(width: 130, height: 40)
+                    .background(Color.init(hex: "1EAE61"))
+                    .clipShape(Capsule())
+                    .foregroundColor(.white)
+                
+                
+                
+                Text("False: 7")
+                    .font(.title)
+                    .frame(width: 130, height: 40)
+                    .background(Color.init(hex: "B60D0D"))
+                    .clipShape(Capsule())
+                    .foregroundColor(.white)
             }
+            
+            Button {
+                //some code
+                print("Like button tapped")
+            } label: {
+                Image("red-heart")
+                    .resizable()
+                    .clipped()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width:75)
+            }
+
             
             
         }
+        .navigationBarHidden(true)
+        .padding(.top, 10)
     }
     
 }

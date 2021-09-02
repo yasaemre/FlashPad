@@ -311,10 +311,9 @@ struct EditScreenView: View {
             
 
         //}
-            //.fnavigationBarHidden(true)
 
         }
-
+        .navigationBarHidden(true)
 
     }
   

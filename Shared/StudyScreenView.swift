@@ -28,7 +28,6 @@ struct StudyScreenView: View {
             indexCard = deckCore.cardsArray.count-1
             print("\(indexCard)")
         })
-        .padding(8)
         .zIndex(1.0)
     }
 }
