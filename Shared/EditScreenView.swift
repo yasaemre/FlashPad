@@ -9,9 +9,7 @@ import SwiftUI
 
 struct EditScreenView: View {
     
-    @State var flipped = false
-    @State var flip = false
-    @State var rightArrowTapped = false
+    
 
     @State var card: Card
     @StateObject var deckCore:DeckCore
@@ -20,9 +18,7 @@ struct EditScreenView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
-    
-    @GestureState private var dragOffset = CGSize.zero
-    
+        
 
     var body: some View {
        // NavigationView {
