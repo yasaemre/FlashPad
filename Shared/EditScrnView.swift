@@ -15,24 +15,19 @@ struct EditScrnView: View {
     //@State var cardCore: CardCore
     @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
     @FetchRequest(
-           sortDescriptors: [NSSortDescriptor(keyPath: \DeckCore.deckName, ascending: true)],
-           animation: .default)
-       private var decksArrPersistent: FetchedResults<DeckCore>
-   
+        sortDescriptors: [NSSortDescriptor(keyPath: \DeckCore.deckName, ascending: true)],
+        animation: .default)
+    private var decksArrPersistent: FetchedResults<DeckCore>
+    
     var body: some View {
         ZStack(){
-            
-                
-                EditView(card: card, deckCore: deckCore)
-           
-            
-            
+            EditView(card: card, deckCore: deckCore)
         }
         .onAppear(perform: {
             if deckCore.cardsArray.isEmpty {
                 indexCard = deckCore.cardsArray.count
             } else {
-            indexCard = deckCore.cardsArray.count-1
+                indexCard = deckCore.cardsArray.count-1
             }
             print("Index in EditScrnView: \(indexCard)")
         })

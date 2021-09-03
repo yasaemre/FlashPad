@@ -20,9 +20,12 @@ struct CardView: View {
     @StateObject var deckCore:DeckCore
     @Binding var indexCard:Int
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    @Binding var correctAnswer:Int
+    @Binding var falseAnswer:Int
 
     var body: some View {
-        VStack(spacing:10) {
+        VStack(spacing:20) {
 
             HStack {
                 Button {
@@ -39,6 +42,10 @@ struct CardView: View {
                 .padding(.top, 10)
                 Spacer()
             }
+            
+            Spacer()
+
+            
             HStack(spacing: 15) {
                 
                 Button {
@@ -70,9 +77,7 @@ struct CardView: View {
                         .foregroundColor(.white)
                 }
             }
-            .padding(.top, 20)
 
-            
             ZStack(alignment: .center) {
                 Image(cardCore.imageName)
                     .resizable()
@@ -146,21 +151,29 @@ struct CardView: View {
                                    switch value.translation.width {
                                    case 0...100:
                                        card.x = 0; card.degree = 0; card.y = 0
+                                       
                                    case let x where x > 100:
                                        card.x = 500; card.degree = 12
+                                       correctAnswer += 1
+                                       if  indexCard > 0 {
+                                           indexCard -= 1
+                                       }
                                    case (-100)...(-1):
                                        card.x = 0; card.degree = 0; card.y = 0
                                    case let x where x < -100:
                                        card.x  = -500; card.degree = -12
+                                       falseAnswer += 1
+                                       if  indexCard > 0 {
+                                           indexCard -= 1
+                                       }
                                    default:
                                        card.x = 0; card.y = 0
                                    }
                                    
                                }
-                       if  indexCard > 0 {
-                           indexCard -= 1
-                       }
-   
+
+                       print("Correct:\(correctAnswer)")
+                       print("False: \(falseAnswer)")
                                    
                                
                            }
@@ -174,7 +187,7 @@ struct CardView: View {
             
             HStack(spacing: 40){
                 
-                Text("Correct: 4")
+                Text("Correct: \(correctAnswer)")
                     .font(.title)
                     .frame(width: 130, height: 40)
                     .background(Color.init(hex: "1EAE61"))
@@ -183,7 +196,7 @@ struct CardView: View {
                 
                 
                 
-                Text("False: 7")
+                Text("False: \(falseAnswer)")
                     .font(.title)
                     .frame(width: 130, height: 40)
                     .background(Color.init(hex: "B60D0D"))

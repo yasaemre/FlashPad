@@ -17,6 +17,8 @@
 		C6243196268AD7D600C01F24 /* ColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6243194268AD7D600C01F24 /* ColorExtention.swift */; };
 		C6289094268F924B005EAE7F /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6289093268F924B005EAE7F /* TabBarView.swift */; };
 		C6289095268F924B005EAE7F /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6289093268F924B005EAE7F /* TabBarView.swift */; };
+		C62D509526E2BD0900761457 /* HeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62D509426E2BD0900761457 /* HeartView.swift */; };
+		C62D509626E2BD0900761457 /* HeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62D509426E2BD0900761457 /* HeartView.swift */; };
 		C655B8CC26DC4EB900555434 /* StudyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C655B8CB26DC4EB900555434 /* StudyScreenView.swift */; };
 		C655B8CD26DC4EB900555434 /* StudyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C655B8CB26DC4EB900555434 /* StudyScreenView.swift */; };
 		C67413C0268ABAEC00128E2D /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413BF268ABAEC00128E2D /* Tests_iOS.swift */; };
@@ -53,8 +55,6 @@
 		C68726B526BA6E29006BD793 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68726B326BA6E29006BD793 /* Card.swift */; };
 		C68726B726BA6EF5006BD793 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68726B626BA6EF5006BD793 /* CardViewModel.swift */; };
 		C68726B826BA6EF5006BD793 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68726B626BA6EF5006BD793 /* CardViewModel.swift */; };
-		C68726BA26BA7160006BD793 /* EditScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68726B926BA7160006BD793 /* EditScreenView.swift */; };
-		C68726BB26BA7160006BD793 /* EditScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68726B926BA7160006BD793 /* EditScreenView.swift */; };
 		C6AC1384268F6FEA005815F3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC1383268F6FEA005815F3 /* LoginViewModel.swift */; };
 		C6AC1385268F6FEA005815F3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC1383268F6FEA005815F3 /* LoginViewModel.swift */; };
 		C6B634B226DF502E00DCC3BF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B634B126DF502E00DCC3BF /* CardView.swift */; };
@@ -106,6 +106,7 @@
 		C6243191268AD79400C01F24 /* AppleLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginViewModel.swift; sourceTree = "<group>"; };
 		C6243194268AD7D600C01F24 /* ColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtention.swift; sourceTree = "<group>"; };
 		C6289093268F924B005EAE7F /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		C62D509426E2BD0900761457 /* HeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartView.swift; sourceTree = "<group>"; };
 		C655B8CB26DC4EB900555434 /* StudyScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyScreenView.swift; sourceTree = "<group>"; };
 		C67413A9268ABAEB00128E2D /* FlashPadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashPadApp.swift; sourceTree = "<group>"; };
 		C67413AA268ABAEB00128E2D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -129,7 +130,6 @@
 		C685EE8A26D7CBEB00A7503D /* DeckCore+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeckCore+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C68726B326BA6E29006BD793 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		C68726B626BA6EF5006BD793 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
-		C68726B926BA7160006BD793 /* EditScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScreenView.swift; sourceTree = "<group>"; };
 		C6AC1383268F6FEA005815F3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C6B634B126DF502E00DCC3BF /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		C6BB306026AF0A9F00B6710C /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
@@ -260,9 +260,9 @@
 				C60929EE26B39D670048DE83 /* SlideMenu.swift */,
 				C6DB9B5A26E1E6A200BBF9F5 /* EditScrnView.swift */,
 				C6DB9B5D26E1E6AB00BBF9F5 /* EditView.swift */,
+				C62D509426E2BD0900761457 /* HeartView.swift */,
 				C6849533268E36A3003BC08C /* LogoutButtonView.swift */,
 				C6289093268F924B005EAE7F /* TabBarView.swift */,
-				C68726B926BA7160006BD793 /* EditScreenView.swift */,
 				C655B8CB26DC4EB900555434 /* StudyScreenView.swift */,
 				C6B634B126DF502E00DCC3BF /* CardView.swift */,
 				C67413DF268ABB2800128E2D /* ErrorView.swift */,
@@ -565,7 +565,6 @@
 				C6D2CF0926CD864A00C868A9 /* Persistence.swift in Sources */,
 				C6BB306126AF0A9F00B6710C /* Deck.swift in Sources */,
 				C6B634B226DF502E00DCC3BF /* CardView.swift in Sources */,
-				C68726BA26BA7160006BD793 /* EditScreenView.swift in Sources */,
 				C67413E3268ABBCC00128E2D /* LoginView.swift in Sources */,
 				C6BB306326AF0B0700B6710C /* DeckViewModel.swift in Sources */,
 				C6BB306726AF120900B6710C /* DropViewDelegate.swift in Sources */,
@@ -576,6 +575,7 @@
 				C6849537268E385C003BC08C /* SignUpViewModel.swift in Sources */,
 				C685EE8F26D7CBEB00A7503D /* DeckCore+CoreDataClass.swift in Sources */,
 				C685EE9126D7CBEB00A7503D /* DeckCore+CoreDataProperties.swift in Sources */,
+				C62D509526E2BD0900761457 /* HeartView.swift in Sources */,
 				C68726B726BA6EF5006BD793 /* CardViewModel.swift in Sources */,
 				C6243192268AD79400C01F24 /* AppleLoginViewModel.swift in Sources */,
 				C6AC1384268F6FEA005815F3 /* LoginViewModel.swift in Sources */,
@@ -595,6 +595,7 @@
 			files = (
 				C685EE8E26D7CBEB00A7503D /* CardCore+CoreDataProperties.swift in Sources */,
 				C6D2CF0726CD82B300C868A9 /* FlashPad.xcdatamodeld in Sources */,
+				C62D509626E2BD0900761457 /* HeartView.swift in Sources */,
 				C67413CE268ABAEC00128E2D /* ContentView.swift in Sources */,
 				C6DB9B5C26E1E6A200BBF9F5 /* EditScrnView.swift in Sources */,
 				C685EE9026D7CBEB00A7503D /* DeckCore+CoreDataClass.swift in Sources */,
@@ -604,7 +605,6 @@
 				C6289095268F924B005EAE7F /* TabBarView.swift in Sources */,
 				C67413E4268ABBCC00128E2D /* LoginView.swift in Sources */,
 				C6F6B80F268CF59400A3D9C9 /* HomeView.swift in Sources */,
-				C68726BB26BA7160006BD793 /* EditScreenView.swift in Sources */,
 				C6F6B80C268CF4BC00A3D9C9 /* HomeScreenView.swift in Sources */,
 				C68726B526BA6E29006BD793 /* Card.swift in Sources */,
 				C67413CC268ABAEC00128E2D /* FlashPadApp.swift in Sources */,

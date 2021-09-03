@@ -16,11 +16,13 @@ struct StudyScreenView: View {
     @StateObject var deckCore:DeckCore
     @State var card:Card
     @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
+    @State var correctAnswer:Int
+    @State var falseAnswer:Int
 
     var body: some View {
         ZStack(alignment: .top){
             ForEach(deckCore.cardsArray.reversed()) { cardCore in
-                CardView(cardCore: cardCore, card: card, deckCore: deckCore, indexCard: $indexCard)
+                CardView(cardCore: cardCore, card: card, deckCore: deckCore, indexCard: $indexCard, correctAnswer: $correctAnswer, falseAnswer: $falseAnswer)
             }
         }
         .onAppear(perform: {

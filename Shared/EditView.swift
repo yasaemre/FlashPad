@@ -15,7 +15,7 @@ struct EditView: View {
     //@State var cardCore: CardCore
     @State var card: Card
     @StateObject var deckCore:DeckCore
-   
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -37,46 +37,46 @@ struct EditView: View {
                         .background(!flip ? Color.init(hex: "6C63FF") : .gray)
                         .clipShape(Capsule())
                         .foregroundColor(.white)
-                        .navigationBarItems(trailing: NavigationLink(destination: StudyScreenView(deckCore: deckCore, card: card)) {
-                                Text("Study")
-                                    .font(.title)
-                                    .foregroundColor(Color.init(hex: "6C63FF"))
-                                    .padding(.trailing, 1)
-                            }
+                        .navigationBarItems(trailing: NavigationLink(destination: StudyScreenView(deckCore: deckCore, card: card, correctAnswer: 0,falseAnswer: 0)) {
+                            Text("Study")
+                                .font(.title)
+                                .foregroundColor(Color.init(hex: "6C63FF"))
+                                .padding(.trailing, 1)
+                        }
                         )
                     
-
+                    
                 }
-             
+                
                 Button {
                     withAnimation {
                         flip = true
                         //saveContext()
-                }
+                    }
                 } label: {
                     Text("Meaning")
                         .font(.title)
-                    .frame(width: 130, height: 40)
-                    .background(flip ? Color.init(hex: "6C63FF") : .gray)
-                    .clipShape(Capsule())
-                    .foregroundColor(.white)
+                        .frame(width: 130, height: 40)
+                        .background(flip ? Color.init(hex: "6C63FF") : .gray)
+                        .clipShape(Capsule())
+                        .foregroundColor(.white)
                 }
             }
             
             if flipped == true {
-
+                
                 TextField("Enter a word", text: $card.word)
                     .padding(.top, 1)
-//                        .padding(.leading, 40)
-//                        .padding(.trailing, 40)
+                //                        .padding(.leading, 40)
+                //                        .padding(.trailing, 40)
                     .frame(width: 250, height: 75, alignment: .center)
                     .textFieldStyle(.roundedBorder)
                     .modifier(TextFieldClearButton(text: $card.word))
             } else {
                 TextField("Enter a definition", text: $card.definition)
                     .padding(.top, 1)
-//                        .padding(.leading, 40)
-//                        .padding(.trailing, 40)
+                //                        .padding(.leading, 40)
+                //                        .padding(.trailing, 40)
                     .frame(width: 250, height: 75, alignment: .center)
                     .textFieldStyle(.roundedBorder)
                     .modifier(TextFieldClearButton(text: $card.definition))
@@ -106,20 +106,20 @@ struct EditView: View {
                                     })
                             }
                         } else {
-//                                if rightArrowTapped == true {
-//                                    Text("")
-//                                } else {
+                            //                                if rightArrowTapped == true {
+                            //                                    Text("")
+                            //                                } else {
                             Text(deckCore.cardsArray[indexCard].unwrappedDefinition)
-                                    .font(.custom("HelveticaNeue", size: 40))
-                                    .foregroundColor(.white)
-                                    .overlay(Image(systemName: "minus.circle.fill")
-                                                .font(.title)
-                                                .foregroundColor(Color(.systemGray))
-                                                .offset(x: -123, y: -175)
-                                              .onTapGesture{
-                                        //deleteDeck(at: IndexSet.init(integer: index))
-                                        alertViewDeleteCard(at: IndexSet.init(integer: indexCard))
-                                    })
+                                .font(.custom("HelveticaNeue", size: 40))
+                                .foregroundColor(.white)
+                                .overlay(Image(systemName: "minus.circle.fill")
+                                            .font(.title)
+                                            .foregroundColor(Color(.systemGray))
+                                            .offset(x: -123, y: -175)
+                                            .onTapGesture{
+                                    //deleteDeck(at: IndexSet.init(integer: index))
+                                    alertViewDeleteCard(at: IndexSet.init(integer: indexCard))
+                                })
                             //}
                         }
                     } else {
@@ -216,6 +216,8 @@ struct EditView: View {
                 }
             }
         }
+        .navigationBarHidden(true)
+
     }
     
     
@@ -261,7 +263,7 @@ struct EditView: View {
         
         
         let alert = UIAlertController(title: "Delete Card", message: "Do you want to delete this card?", preferredStyle: .alert)
- 
+        
         
         let delete = UIAlertAction(title: "Delete", style: .default) { (_) in
             //do your stuff..
@@ -297,9 +299,9 @@ struct TextFieldClearButton: ViewModifier {
                 Button(
                     action: { self.text = "" },
                     label: {
-                        Image(systemName: "delete.left")
-                            .foregroundColor(Color(UIColor.opaqueSeparator))
-                    }
+                    Image(systemName: "delete.left")
+                        .foregroundColor(Color(UIColor.opaqueSeparator))
+                }
                 )
             }
         }
@@ -307,30 +309,30 @@ struct TextFieldClearButton: ViewModifier {
 }
 
 struct FlipEffect: GeometryEffect {
-
+    
     @Binding var flipped:Bool
     var angle:Double
-
+    
     var animatableData: Double {
         get { angle }
         set { angle = newValue }
     }
-
+    
     func effectValue(size: CGSize) -> ProjectionTransform {
         DispatchQueue.main.async {
             flipped = angle >= 90 && angle < 270
         }
         let newAngle = flipped ? -180 + angle : angle
-
+        
         let angleInRadians = CGFloat(Angle(degrees: newAngle).radians)
-
+        
         var transform3d = CATransform3DIdentity
         transform3d.m34 = -1/max(size.width, size.height)
         transform3d = CATransform3DRotate(transform3d, angleInRadians, 0, 1, 0)
         transform3d = CATransform3DTranslate(transform3d, -size.width / 2, -size.height/2, 0)
         let affineTransform = ProjectionTransform(CGAffineTransform(translationX: size.width / 2, y: size.height / 2))
-
-
+        
+        
         return ProjectionTransform(transform3d).concatenating(affineTransform)
     }
 }
