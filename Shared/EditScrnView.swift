@@ -8,13 +8,44 @@
 import SwiftUI
 
 struct EditScrnView: View {
+    
+    @State var card =  Card()
+    @StateObject var deckCore = DeckCore()
+    //@State var cardCore: CardCore
+    @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
+    @FetchRequest(
+           sortDescriptors: [NSSortDescriptor(keyPath: \DeckCore.deckName, ascending: true)],
+           animation: .default)
+       private var decksArrPersistent: FetchedResults<DeckCore>
+   
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack(){
+            if deckCore.cardsArray.isEmpty {
+                EditView(card: card, deckCore: decksArrPersistent[])
+            } else {
+                ForEach(deckCore.cardsArray) { cardCore in
+
+                    EditView(card: card, deckCore: deckCore)
+                }
+            }
+            
+        }
+        .onAppear(perform: {
+            if deckCore.cardsArray.isEmpty {
+                indexCard = deckCore.cardsArray.count
+            } else {
+            indexCard = deckCore.cardsArray.count-1
+            }
+            print("Index in EditScrnView: \(indexCard)")
+        })
+        .zIndex(1.0)
+        
+        
     }
 }
 
-struct EditScrnView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditScrnView()
-    }
-}
+//struct EditScrnView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditScrnView()
+//    }
+//}

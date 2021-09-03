@@ -48,7 +48,7 @@ struct TabBarView: View {
 
   @State private var indexOfCard = UserDefaults.standard.integer(forKey: "indexOfCard")
    // var editScreenView = EditScreenView()
-
+    @StateObject var deckCore = DeckCore()
     @State private var calendarWiggles = false
     var body: some View {
        // ZStack {
@@ -70,8 +70,8 @@ struct TabBarView: View {
                             //--
                             LazyVGrid(columns: columns, spacing: 30, content: {
                                 ForEach(0..<decksArrPersistent.count, id: \.self) { index in
-                                    NavigationLink(destination: EditScreenView(card: card, deckCore: decksArrPersistent[index])
-                                                    .modifier(NavigationBarModifier(backgroundColor: UIColor(Color.init(hex: "D0CEEF"))))){
+                                    NavigationLink(destination: EditScrnView(card: card, deckCore: decksArrPersistent[index])){
+                                        
                                         ZStack {
                                             Image("cardBackg")
                                                 .resizable()
@@ -85,7 +85,7 @@ struct TabBarView: View {
                                                     //deleteDeck(at: IndexSet.init(integer: index))
                                                     alertViewDeleteDeck(at: IndexSet.init(integer: index))
                                                 })
-                                                
+                                               
                                                 
                                                 
 
@@ -275,15 +275,16 @@ struct TabBarView: View {
         newDeck.deckCreatedAt = deckCreatedAt
         
         PersistenceController.shared.saveContext()
-        print("new deck card count\(newDeck.cardsArray.count)")
-        guard decksArrPersistent != nil && decksArrPersistent.count > 0 else {
-            return
-        }
-        for deck1 in decksArrPersistent {
-            print("deck name \(deck1.deckName)")
-            print("Num of card \(deck1.numberOfCardsInDeck)")
-            print("")
-        }
+        
+//        print("new deck card count\(newDeck.cardsArray.count)")
+//        guard decksArrPersistent != nil && decksArrPersistent.count > 0 else {
+//            return
+//        }
+//        for deck1 in decksArrPersistent {
+//            print("deck name \(deck1.deckName)")
+//            print("Num of card \(deck1.numberOfCardsInDeck)")
+//            print("")
+//        }
 
        
 
