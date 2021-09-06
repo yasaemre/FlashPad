@@ -23,6 +23,38 @@ struct EditView: View {
     
     var body: some View {
         VStack{
+            
+//            HStack {
+//                Button {
+//                    self.presentationMode.wrappedValue.dismiss()
+//                    print("Back tapped")
+//                } label: {
+//                    Image(systemName: "arrowshape.turn.up.backward.fill")
+//                        .font(.title)
+//                        .foregroundColor(Color.init(hex: "6C63FF"))
+//                        .contentShape(Rectangle())
+//
+//                }
+//                .padding(.leading, 15)
+//                .padding(.top, 10)
+//                Spacer()
+//
+//
+//
+//                NavigationLink(destination: StudyScreenView(deckCore: deckCore, card: card, correctAnswer: 0, falseAnswer: 0)) {
+//                    Text("Study")
+//                        .font(.title)
+//                        .foregroundColor(Color.init(hex: "6C63FF"))
+//                        .contentShape(Rectangle())
+//                        .padding(.top, 10)
+//                }
+//
+//
+//
+//                .padding(.trailing, 15)
+//                .padding(.top, 10)
+//            }
+            
             HStack(spacing: 15) {
                 
                 Button {
@@ -216,7 +248,8 @@ struct EditView: View {
                 }
             }
         }
-        .navigationBarHidden(true)
+        //.navigationBarHidden(true)
+        //navigationBarHidden work on real device iPhone x, but not in simulator for now keep it in active.
 
     }
     

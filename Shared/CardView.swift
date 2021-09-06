@@ -24,12 +24,17 @@ struct CardView: View {
     @Binding var correctAnswer:Int
     @Binding var falseAnswer:Int
     
-    @State private var showStrokeBorder = false
-    @Binding var animationActivated:Bool
-    @State private var showSplash = false
-    @State private var showSplashTilted = false
-    @State private var showHearth = false
-    @State private var opacity = 1
+//    @State var isTapped = false
+//    @State var startAnimation = false
+//    @State var bgAnimaton = false
+   @Binding var resetBg:Bool
+    //@State var fireworkAnimation = false
+    //@Binding var isTapped:Bool
+    
+    
+    //To avoid Taps during animation..
+    
+    
     
     var body: some View {
         VStack(spacing:20) {
@@ -167,12 +172,8 @@ struct CardView: View {
                         if  indexCard > 0 {
                             indexCard -= 1
                         }
-                        self.animationActivated = false
-                        
-                        //                                       self.showStrokeBorder = false
-                        //                                       self.showHearth = false
-                        //                                       self.showSplashTilted = false
-                        //                                       self.showSplash = false
+                       // self.isTapped = true
+                        self.resetBg = false
                         
                     case (-100)...(-1):
                         card.x = 0; card.degree = 0; card.y = 0
@@ -183,19 +184,17 @@ struct CardView: View {
                             indexCard -= 1
                             
                         }
-                        self.animationActivated = false
-                        
+                       // self.isTapped = true
+                        self.resetBg = false
+
                         
                     default:
                         card.x = 0; card.y = 0
-                        // self.animationActivated = false
                         
                     }
                     
                 }
-                print("Correct:\(correctAnswer)")
-                print("False: \(falseAnswer)")
-                print("animationActivated is \(animationActivated)")
+                
                 
                 
             }
@@ -226,52 +225,46 @@ struct CardView: View {
                     .foregroundColor(.white)
             }
             
+            
+            Button {
+                //some code
+                print("Like button tapped")
+            } label: {
                 
-                Button {
-                    //some code
-                    print("Like button tapped")
-                    self.animationActivated.toggle()
-                    print("Animation is \(animationActivated) in Like button")
-                    //print("Animation is \(s) in Like button")
-                } label: {
-                    Image(systemName: "suit.heart")
-                        .resizable()
-                        .frame(width: 45, height: 45)
-//                        .foregroundColor(animationActivated ? .pink : Color.init(hex: "6C63FF"))
-                        .foregroundColor(Color.init(hex: "6C63FF"))
-                    
+                HeartView(resetBg: $resetBg)
                 
-                    ZStack {
-                        if animationActivated == true {
-                           HeartView()
-                        }
-                    }
+                
+                
             }
-            
-            
-            
-            
-            
-            
-            //            Image(systemName: "suit.heart")
-            //                .frame(width: 26, height: 26)
-            //                .foregroundColor(.black)
-            //                //.offset(x: 50, y: 340)
-            //                .onTapGesture {
-            //                    self.showLikeButton.toggle()
-            //                    animation(likeTapped: showLikeButton)
-            //                }
-            
-            
-            
-            
-            
+            .navigationBarHidden(true)
+            .padding(.top, 10)
         }
-        .navigationBarHidden(true)
-        .padding(.top, 10)
+        
     }
-
 }
+
+//Custom shape for resetting center
+//struct CustomShapeLike: Shape {
+//    var radius: CGFloat
+//
+//    var animatableData: CGFloat {
+//        get { return radius}
+//        set { radius = newValue }
+//    }
+//
+//    func path(in rect: CGRect) -> Path {
+//        return Path { path in
+//            path.move(to: CGPoint(x: 0, y: 0))
+//            path.addLine(to: CGPoint(x: 0, y: rect.height))
+//            path.addLine(to: CGPoint(x: rect.width, y: rect.height))
+//            path.addLine(to: CGPoint(x: rect.width, y: 0))
+//
+//            //adding center to circle
+//            let center = CGPoint(x: rect.width / 2, y: rect.height / 2)
+//            path.move(to: center)
+//            path.addArc(center: center, radius: radius, startAngle: .zero, endAngle: .init(degrees: 360), clockwise: false)
+//        }
+//    }
 
 //struct CardView_Previews: PreviewProvider {
 //    static var previews: some View {
