@@ -15,21 +15,23 @@ struct StudyScreenView: View {
         // MARK: - Drawing Constant
     @StateObject var deckCore:DeckCore
     @State var card:Card
-    @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
+   // @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
+    @State var indexCard = 0
     @State var correctAnswer:Int
     @State var falseAnswer:Int
+    //@State var isTapped = false
+    
+    @State var resetBg = false
+    //@Binding var resetBg:Bool
+
 
     var body: some View {
+        
         ZStack(alignment: .top){
             ForEach(deckCore.cardsArray.reversed()) { cardCore in
-                CardView(cardCore: cardCore, card: card, deckCore: deckCore, indexCard: $indexCard, correctAnswer: $correctAnswer, falseAnswer: $falseAnswer)
+                CardView(cardCore: cardCore, card: card, deckCore: deckCore, indexCard: $indexCard, correctAnswer: $correctAnswer, falseAnswer: $falseAnswer, resetBg: $resetBg)
             }
         }
-        .onAppear(perform: {
-            
-            indexCard = deckCore.cardsArray.count-1
-            print("\(indexCard)")
-        })
         .zIndex(1.0)
     }
 }

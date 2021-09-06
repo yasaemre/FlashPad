@@ -15,18 +15,30 @@ struct CardView: View {
     @State var flip = false
     @State var rightArrowTapped = false
     
-   // @State var card: Card
-        // MARK: - Drawing Constant
+    // @State var card: Card
+    // MARK: - Drawing Constant
     @StateObject var deckCore:DeckCore
     @Binding var indexCard:Int
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @Binding var correctAnswer:Int
     @Binding var falseAnswer:Int
-
+    
+//    @State var isTapped = false
+//    @State var startAnimation = false
+//    @State var bgAnimaton = false
+   @Binding var resetBg:Bool
+    //@State var fireworkAnimation = false
+    //@Binding var isTapped:Bool
+    
+    
+    //To avoid Taps during animation..
+    
+    
+    
     var body: some View {
         VStack(spacing:20) {
-
+            
             HStack {
                 Button {
                     self.presentationMode.wrappedValue.dismiss()
@@ -44,13 +56,13 @@ struct CardView: View {
             }
             
             Spacer()
-
+            
             
             HStack(spacing: 15) {
                 
                 Button {
                     withAnimation {
-                        flip = false   
+                        flip = false
                     }
                 } label: {
                     Text("Word")
@@ -77,29 +89,29 @@ struct CardView: View {
                         .foregroundColor(.white)
                 }
             }
-
+            
             ZStack(alignment: .center) {
                 Image(cardCore.imageName)
                     .resizable()
                     .frame(width: 250, height: 350)
                     .clipped()
                     .cornerRadius(12)
-                    .onAppear {
-                        print("Image appear\(indexCard)")
-                    }
-                    
+                
+                
+                
                 
                 //ForEach(0..<deckCore.cardsArray.count) { index in
-                    
+                
                 if deckCore.cardsArray.count >= 0 {
                     if flip == false {
                         //indexCard = deckCore.cardsArray.count
-
+                        
                         ZStack {
                             Text(deckCore.cardsArray[indexCard].unwrappedWord)
                                 .font(.custom("HelveticaNeue", size: 40))
                                 .foregroundColor(.white)
                         }
+                        
                         
                         
                     } else {
@@ -113,72 +125,81 @@ struct CardView: View {
                         
                     }
                 }
-                       HStack {
-                           Image("correct")
-                               .resizable()
-                               .aspectRatio(contentMode: .fit)
-                               .frame(width:75,height: 75)
-                               .offset(x: 60, y: -140)
-                               .opacity(Double(card.x/10 - 1))
-                           Spacer()
-                           Image("false")
-                               .resizable()
-                               .aspectRatio(contentMode: .fit)
-                               .frame(width:75,height: 75)
-                               .offset(x: -60, y: -140)
-                               .opacity(Double(card.x/10 * -1 - 1))
-                       }
-                       
-                   }
+                HStack {
+                    Image("correct")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width:75,height: 75)
+                        .offset(x: 60, y: -140)
+                        .opacity(Double(card.x/10 - 1))
+                    
+                    Spacer()
+                    Image("false")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width:75,height: 75)
+                        .offset(x: -60, y: -140)
+                        .opacity(Double(card.x/10 * -1 - 1))
+                }
+                
+            }
             .padding(.top, 10)
             .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
             .cornerRadius(8)
             .offset(x: card.x, y: card.y)
             .rotationEffect(.init(degrees: card.degree))
-                   .gesture (
-                       DragGesture()
-                           .onChanged { value in
-                               withAnimation(.default) {
-                                   card.x = value.translation.width
-                                   // MARK: - BUG 5
-                                   card.y = value.translation.height
-                                   card.degree = 7 * (value.translation.width > 0 ? 1 : -1)
-                                   
-                               }
-                           }
-                           .onEnded { (value) in
-                               withAnimation(.interpolatingSpring(mass: 1.0, stiffness: 50, damping: 8, initialVelocity: 0)) {
-                                   switch value.translation.width {
-                                   case 0...100:
-                                       card.x = 0; card.degree = 0; card.y = 0
-                                       
-                                   case let x where x > 100:
-                                       card.x = 500; card.degree = 12
-                                       correctAnswer += 1
-                                       if  indexCard > 0 {
-                                           indexCard -= 1
-                                       }
-                                   case (-100)...(-1):
-                                       card.x = 0; card.degree = 0; card.y = 0
-                                   case let x where x < -100:
-                                       card.x  = -500; card.degree = -12
-                                       falseAnswer += 1
-                                       if  indexCard > 0 {
-                                           indexCard -= 1
-                                       }
-                                   default:
-                                       card.x = 0; card.y = 0
-                                   }
-                                   
-                               }
+            .gesture (
+                DragGesture()
+                    .onChanged { value in
+                withAnimation(.default) {
+                    card.x = value.translation.width
+                    // MARK: - BUG 5
+                    card.y = value.translation.height
+                    card.degree = 7 * (value.translation.width > 0 ? 1 : -1)
+                    
+                }
+            }
+                    .onEnded { (value) in
+                withAnimation(.interpolatingSpring(mass: 1.0, stiffness: 50, damping: 8, initialVelocity: 0)) {
+                    switch value.translation.width {
+                    case 0...100:
+                        card.x = 0; card.degree = 0; card.y = 0
+                        //self.animationActivated = false
+                        
+                    case let x where x > 100:
+                        card.x = 500; card.degree = 12
+                        correctAnswer += 1
+                        if  indexCard > 0 {
+                            indexCard -= 1
+                        }
+                       // self.isTapped = true
+                        self.resetBg = false
+                        
+                    case (-100)...(-1):
+                        card.x = 0; card.degree = 0; card.y = 0
+                    case let x where x < -100:
+                        card.x  = -500; card.degree = -12
+                        falseAnswer += 1
+                        if  indexCard > 0 {
+                            indexCard -= 1
+                            
+                        }
+                       // self.isTapped = true
+                        self.resetBg = false
 
-                       print("Correct:\(correctAnswer)")
-                       print("False: \(falseAnswer)")
-                                   
-                               
-                           }
-                   )
-                   
+                        
+                    default:
+                        card.x = 0; card.y = 0
+                        
+                    }
+                    
+                }
+                
+                
+                
+            }
+            )
+            
             
             
             Text("\(indexCard+1) of \(deckCore.cardsArray.count)")
@@ -204,25 +225,46 @@ struct CardView: View {
                     .foregroundColor(.white)
             }
             
+            
             Button {
                 //some code
                 print("Like button tapped")
             } label: {
-                Image("red-heart")
-                    .resizable()
-                    .clipped()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width:75)
+                
+                HeartView(resetBg: $resetBg)
+                
+                
+                
             }
-
-            
-            
+            .navigationBarHidden(true)
+            .padding(.top, 10)
         }
-        .navigationBarHidden(true)
-        .padding(.top, 10)
+        
     }
-    
 }
+
+//Custom shape for resetting center
+//struct CustomShapeLike: Shape {
+//    var radius: CGFloat
+//
+//    var animatableData: CGFloat {
+//        get { return radius}
+//        set { radius = newValue }
+//    }
+//
+//    func path(in rect: CGRect) -> Path {
+//        return Path { path in
+//            path.move(to: CGPoint(x: 0, y: 0))
+//            path.addLine(to: CGPoint(x: 0, y: rect.height))
+//            path.addLine(to: CGPoint(x: rect.width, y: rect.height))
+//            path.addLine(to: CGPoint(x: rect.width, y: 0))
+//
+//            //adding center to circle
+//            let center = CGPoint(x: rect.width / 2, y: rect.height / 2)
+//            path.move(to: center)
+//            path.addArc(center: center, radius: radius, startAngle: .zero, endAngle: .init(degrees: 360), clockwise: false)
+//        }
+//    }
 
 //struct CardView_Previews: PreviewProvider {
 //    static var previews: some View {

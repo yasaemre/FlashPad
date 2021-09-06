@@ -22,6 +22,9 @@ struct EditScrnView: View {
     var body: some View {
         ZStack(){
             EditView(card: card, deckCore: deckCore)
+                //.navigationBarHidden(true)
+            //navigationBarHidden work on real device iPhone x, but not in simulator for now keep it in active.
+
         }
         .onAppear(perform: {
             if deckCore.cardsArray.isEmpty {
