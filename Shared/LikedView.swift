@@ -1,66 +1,52 @@
 //
-//  CardView.swift
-//  
+//  LikedScreen.swift
+//  FlashPad
 //
-//  Created by Emre Yasa on 8/31/21.
+//  Created by Emre Yasa on 9/6/21.
 //
 
 import SwiftUI
 
-struct CardView: View {
-    @State var cardCore: CardCore
-    @State var card: Card
+struct LikedView: View {
+    //@State var cardCore:CardCore
+    @StateObject var likedCore = LikedCore()
+    @State var card = Card()
     
     @State var flipped = false
     @State var flip = false
     @State var rightArrowTapped = false
     
+
+    @State var indexCard = 0
+    @State var correctAnswer = 0
+    @State var falseAnswer = 0
+    
     // @State var card: Card
     // MARK: - Drawing Constant
-    @StateObject var deckCore:DeckCore
-   
-    @Binding var indexCard:Int
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @Binding var correctAnswer:Int
-    @Binding var falseAnswer:Int
+ //@Binding var indexCard:Int
+//    @Binding var correctAnswer:Int
+//    @Binding var falseAnswer:Int
+    //@Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+   // @StateObject var deckCore:DeckCore
+    //@StateObject var likedCore:LikedCore
+//            @FetchRequest(
+//                entity: LikedCore.entity(),
+//                sortDescriptors: []
+//            ) var likedArrPersistent: FetchedResults<LikedCore>
     
-//    @State var isTapped = false
-//    @State var startAnimation = false
-//    @State var bgAnimaton = false
-   @Binding var resetBg:Bool
-    //@StateObject var likedCore: LikedCore
-    //@State var fireworkAnimation = false
-    //@Binding var isTapped:Bool
-    
-    
-    //To avoid Taps during animation..
-    
-    
-    
+//    @FetchRequest(entity: LikedCore.entity(),
+//        sortDescriptors: [
+//            NSSortDescriptor(keyPath: \LikedCore.word, ascending: true)
+//            ]
+//        ) var likedArrPersistent: FetchedResults<LikedCore>
+    @FetchRequest(
+           sortDescriptors: [NSSortDescriptor(keyPath: \LikedCore.word, ascending: true)],
+           animation: .default)
+       private var likedArrPersistent: FetchedResults<LikedCore>
     var body: some View {
-        VStack(spacing:20) {
-            
-            HStack {
-                Button {
-                    self.presentationMode.wrappedValue.dismiss()
-                    print("Back tapped")
-                } label: {
-                    Image(systemName: "arrowshape.turn.up.backward.fill")
-                        .font(.title)
-                        .foregroundColor(Color.init(hex: "6C63FF"))
-                        .contentShape(Rectangle())
-                    
-                }
-                .padding(.leading, 15)
-                .padding(.top, 10)
-                Spacer()
-            }
-            
+        VStack(spacing:5) {
             Spacer()
-            
-            
+
             HStack(spacing: 15) {
                 
                 Button {
@@ -92,9 +78,14 @@ struct CardView: View {
                         .foregroundColor(.white)
                 }
             }
-            
+            .padding(.bottom, 20)
+           // ForEach(0..<likedArrPersistent.count) { index in
+
             ZStack(alignment: .center) {
-                Image(cardCore.imageName ?? "cardBackg")
+                //if likedArrPersistent.count > 0 {
+                //ForEach(0..<likedArrPersistent.count) { index in
+
+                Image(likedArrPersistent[indexCard].unwrappedImage)
                     .resizable()
                     .frame(width: 250, height: 350)
                     .clipped()
@@ -102,31 +93,35 @@ struct CardView: View {
                 
                 
                 
-                
                 //ForEach(0..<deckCore.cardsArray.count) { index in
-                
-                if deckCore.cardsArray.count >= 0 {
+                //ForEach(0..<likedArrPersistent.count) { index in
+               // if likedArrPersistent.count >= 0 {
                     if flip == false {
+                        //indexCard = deckCore.cardsArray.count
                         
-                        ZStack {
-                            Text(deckCore.cardsArray[indexCard].unwrappedWord)
-                                .font(.custom("HelveticaNeue", size: 40))
-                                .foregroundColor(.white)
-                        }
-                        
-                        
-                        
-                    } else {
-                        ZStack {
+                            ZStack {
+                                
+                                Text(likedArrPersistent[indexCard].unwrappedWord)
+                                    .font(.custom("HelveticaNeue", size: 40))
+                                    .foregroundColor(.black)
+                            }
                             
-                            Text(deckCore.cardsArray[indexCard].unwrappedDefinition)
-                                .font(.custom("HelveticaNeue", size: 40))
-                                .foregroundColor(.white)
+                            
+                            
+                        } else {
+                            ZStack {
+                                
+                                Text(likedArrPersistent[indexCard].unwrappedDefinition)
+                                    .font(.custom("HelveticaNeue", size: 40))
+                                    .foregroundColor(.black)
+                            }
+                            
+                            
                         }
-                        
-                        
-                    }
-                }
+                   // }
+
+                //}
+                
                 HStack {
                     Image("correct")
                         .resizable()
@@ -145,7 +140,6 @@ struct CardView: View {
                 }
                 
             }
-            .padding(.top, 10)
             .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
             .cornerRadius(8)
             .offset(x: card.x, y: card.y)
@@ -175,7 +169,7 @@ struct CardView: View {
                             indexCard -= 1
                         }
                        // self.isTapped = true
-                        self.resetBg = false
+                        //self.resetBg = false
                         
                     case (-100)...(-1):
                         card.x = 0; card.degree = 0; card.y = 0
@@ -187,7 +181,7 @@ struct CardView: View {
                             
                         }
                        // self.isTapped = true
-                        self.resetBg = false
+                       // self.resetBg = false
 
                         
                     default:
@@ -197,14 +191,12 @@ struct CardView: View {
                     
                 }
                 
-
+                
                 
             }
             )
-            
-            
-            
-            Text("\(indexCard+1) of \(deckCore.cardsArray.count)")
+        //}
+            Text("\(indexCard+1) of \(likedArrPersistent.count)")
                 .font(.title2)
                 .padding(.top, 10)
             
@@ -226,51 +218,25 @@ struct CardView: View {
                     .clipShape(Capsule())
                     .foregroundColor(.white)
             }
-            
-            
-            Button {
-                //some code
-              //  let newLikedCard = PersonCore(context: viewContext)
-               
-                print("Like button tapped")
-            } label: {
-                
-                HeartView(resetBg: $resetBg, deckCore:deckCore, indexCard: $indexCard)
-
-            }
-            .navigationBarHidden(true)
-            .padding(.top, 10)
+            Spacer()
         }
+        .onAppear {
+            print("Liked Screen View")
+            indexCard = likedArrPersistent.count-1
+            for likedCard in likedArrPersistent {
+                print(likedCard.unwrappedWord)
+            }
+        }
+        //.navigationBarHidden(true)
+        .padding(.top, 1)
+        .ignoresSafeArea(.all, edges: .all)
+
         
     }
 }
 
-//Custom shape for resetting center
-//struct CustomShapeLike: Shape {
-//    var radius: CGFloat
-//
-//    var animatableData: CGFloat {
-//        get { return radius}
-//        set { radius = newValue }
-//    }
-//
-//    func path(in rect: CGRect) -> Path {
-//        return Path { path in
-//            path.move(to: CGPoint(x: 0, y: 0))
-//            path.addLine(to: CGPoint(x: 0, y: rect.height))
-//            path.addLine(to: CGPoint(x: rect.width, y: rect.height))
-//            path.addLine(to: CGPoint(x: rect.width, y: 0))
-//
-//            //adding center to circle
-//            let center = CGPoint(x: rect.width / 2, y: rect.height / 2)
-//            path.move(to: center)
-//            path.addArc(center: center, radius: radius, startAngle: .zero, endAngle: .init(degrees: 360), clockwise: false)
-//        }
-//    }
-
-//struct CardView_Previews: PreviewProvider {
+//struct LikedView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        CardView(card: DeckCore.cardsArray[0])
-//                    .previewLayout(.sizeThatFits)
+//        LikedView(cardCore: CardCore(), card: Card(), flipped: .constant(false), flip: .constant(false), rightArrowTapped: .constant(false), indexCard: 0, correctAnswer: 0, falseAnswer: 0)
 //    }
 //}

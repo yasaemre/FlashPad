@@ -32,19 +32,25 @@ struct TabBarView: View {
     
     @State private var navBarHidden = false
    // @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
-    @Environment(\.managedObjectContext) private var viewContext
+   @Environment(\.managedObjectContext) private var viewContext
 
     
     @FetchRequest(
            sortDescriptors: [NSSortDescriptor(keyPath: \DeckCore.deckName, ascending: true)],
            animation: .default)
        private var decksArrPersistent: FetchedResults<DeckCore>
-    
+    @StateObject var likedCore = LikedCore()
+
+    //@State var indexCard = 0
+
     @State private var deckName = ""
     @State private var deckCreatedAt = ""
     @State private var numOfCardsInDeck = 0
     @State private var currentTotalNumOfCards = 0
-
+    @FetchRequest(
+           sortDescriptors: [NSSortDescriptor(keyPath: \LikedCore.word, ascending: true)],
+           animation: .default)
+       private var likedArrPersistent: FetchedResults<LikedCore>
 
   @State private var indexOfCard = UserDefaults.standard.integer(forKey: "indexOfCard")
    // var editScreenView = EditScreenView()
@@ -70,7 +76,7 @@ struct TabBarView: View {
                             //--
                             LazyVGrid(columns: columns, spacing: 30, content: {
                                 ForEach(0..<decksArrPersistent.count, id: \.self) { index in
-                                    NavigationLink(destination: EditScrnView(card: card, deckCore: decksArrPersistent[index])){
+                                    NavigationLink(destination: EditScrnView(card: card, deckCore: decksArrPersistent[index], likedCore: likedCore)){
                                         
                                         ZStack {
                                             Image("cardBackg")
@@ -143,13 +149,18 @@ struct TabBarView: View {
                         }
                     }
                     .tag("home")
+                    
                     Color(UIColor.systemBackground)
                         .ignoresSafeArea(.all, edges: .all)
                         .tag("donate")
 
-                    Color(UIColor.systemBackground)
-                        .ignoresSafeArea(.all, edges: .all)
-                        .tag("liked")
+                  
+                    LikedView()
+
+
+                    
+                  //}
+                    .tag("liked")
 
                     Color(UIColor.systemBackground)
                         .ignoresSafeArea(.all, edges: .all)
@@ -289,6 +300,8 @@ struct TabBarView: View {
        
 
     }
+    
+    
     
     //Use with tap gesture or delete button
     private func deleteDeck(at offsets: IndexSet) {

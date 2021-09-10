@@ -18,10 +18,11 @@ struct EditScrnView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \DeckCore.deckName, ascending: true)],
         animation: .default)
     private var decksArrPersistent: FetchedResults<DeckCore>
-    
+    @StateObject var likedCore:LikedCore
+
     var body: some View {
         ZStack(){
-            EditView(card: card, deckCore: deckCore)
+            EditView(card: card, deckCore: deckCore, likedCore: likedCore)
                 //.navigationBarHidden(true)
             //navigationBarHidden work on real device iPhone x, but not in simulator for now keep it in active.
 

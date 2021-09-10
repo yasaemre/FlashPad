@@ -20,7 +20,18 @@ struct HeartView: View {
     @State var tapCompleted = false
     //@State var resetBg = false
    // @Binding var cardSwiped: Bool
+    @StateObject var deckCore:DeckCore
+    @Binding var indexCard:Int
+
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.managedObjectContext) private var viewContext
     
+//    @FetchRequest(
+//        entity: LikedCore.entity(),
+//        sortDescriptors: []
+//    ) var likedArrPersistent: FetchedResults<LikedCore>
+   // @StateObject var likedCore:LikedCore
+
     var body: some View {
         
         Image(systemName: resetBg ? "suit.heart.fill" : "suit.heart")
@@ -84,6 +95,14 @@ struct HeartView: View {
 ////                        .foregroundColor( .gray)
 //                    return
 //
+//                }
+                let likedCard = LikedCore(context: viewContext)
+                likedCard.word = deckCore.cardsArray[indexCard].unwrappedWord
+                likedCard.definition = deckCore.cardsArray[indexCard].unwrappedDefinition
+                likedCard.imageName = "cardBackg"
+                PersistenceController.shared.saveContext()
+//                for likedWord in likedCore.likedArray {
+//                    print("likedWord is \(likedWord)")
 //                }
                 
                 //isTapped = true

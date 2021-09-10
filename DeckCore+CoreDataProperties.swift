@@ -2,7 +2,7 @@
 //  DeckCore+CoreDataProperties.swift
 //  FlashPad
 //
-//  Created by Emre Yasa on 8/26/21.
+//  Created by Emre Yasa on 9/9/21.
 //
 //
 
@@ -21,6 +21,8 @@ extension DeckCore {
     @NSManaged public var id: UUID?
     @NSManaged public var numberOfCardsInDeck: Int16
     @NSManaged public var cards: NSSet?
+    @NSManaged public var likedCards: NSSet?
+
 
     public var unwrappedDeckName:String {
         deckName ?? "Unknown deckName"
@@ -34,6 +36,13 @@ extension DeckCore {
         }
     }
     
+    public var likedCardsArray: [CardCore] {
+        let cardsSet = likedCards as? Set<CardCore> ?? []
+        
+        return cardsSet.sorted {
+            $0.unwrappedWord < $1.unwrappedWord
+        }
+    }
     
 }
 
@@ -51,6 +60,23 @@ extension DeckCore {
 
     @objc(removeCards:)
     @NSManaged public func removeFromCards(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for likedCards
+extension DeckCore {
+
+    @objc(addLikedCardsObject:)
+    @NSManaged public func addToLikedCards(_ value: CardCore)
+
+    @objc(removeLikedCardsObject:)
+    @NSManaged public func removeFromLikedCards(_ value: CardCore)
+
+    @objc(addLikedCards:)
+    @NSManaged public func addToLikedCards(_ values: NSSet)
+
+    @objc(removeLikedCards:)
+    @NSManaged public func removeFromLikedCards(_ values: NSSet)
 
 }
 
