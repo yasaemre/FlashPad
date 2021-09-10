@@ -79,7 +79,7 @@ struct LikedView: View {
                 }
             }
             .padding(.bottom, 20)
-           // ForEach(0..<likedArrPersistent.count) { index in
+            ForEach(0..<likedArrPersistent.count) { index in
 
             ZStack(alignment: .center) {
                 //if likedArrPersistent.count > 0 {
@@ -195,7 +195,7 @@ struct LikedView: View {
                 
             }
             )
-        //}
+        }
             Text("\(indexCard+1) of \(likedArrPersistent.count)")
                 .font(.title2)
                 .padding(.top, 10)
