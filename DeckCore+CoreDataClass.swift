@@ -2,7 +2,7 @@
 //  DeckCore+CoreDataClass.swift
 //  FlashPad
 //
-//  Created by Emre Yasa on 8/26/21.
+//  Created by Emre Yasa on 9/9/21.
 //
 //
 
