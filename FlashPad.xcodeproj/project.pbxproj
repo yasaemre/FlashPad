@@ -19,8 +19,6 @@
 		C6289095268F924B005EAE7F /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6289093268F924B005EAE7F /* TabBarView.swift */; };
 		C62D509526E2BD0900761457 /* HeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62D509426E2BD0900761457 /* HeartView.swift */; };
 		C62D509626E2BD0900761457 /* HeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62D509426E2BD0900761457 /* HeartView.swift */; };
-		C638573826E7B263001E6F51 /* LikedScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C638573726E7B263001E6F51 /* LikedScreenView.swift */; };
-		C638573926E7B263001E6F51 /* LikedScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C638573726E7B263001E6F51 /* LikedScreenView.swift */; };
 		C655B8CC26DC4EB900555434 /* StudyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C655B8CB26DC4EB900555434 /* StudyScreenView.swift */; };
 		C655B8CD26DC4EB900555434 /* StudyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C655B8CB26DC4EB900555434 /* StudyScreenView.swift */; };
 		C67024E926E6CD22000D226C /* LikedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67024E826E6CD22000D226C /* LikedView.swift */; };
@@ -115,7 +113,6 @@
 		C6243194268AD7D600C01F24 /* ColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtention.swift; sourceTree = "<group>"; };
 		C6289093268F924B005EAE7F /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		C62D509426E2BD0900761457 /* HeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartView.swift; sourceTree = "<group>"; };
-		C638573726E7B263001E6F51 /* LikedScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedScreenView.swift; sourceTree = "<group>"; };
 		C655B8CB26DC4EB900555434 /* StudyScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyScreenView.swift; sourceTree = "<group>"; };
 		C67024E826E6CD22000D226C /* LikedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedView.swift; sourceTree = "<group>"; };
 		C67413A9268ABAEB00128E2D /* FlashPadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashPadApp.swift; sourceTree = "<group>"; };
@@ -279,7 +276,6 @@
 				C655B8CB26DC4EB900555434 /* StudyScreenView.swift */,
 				C6B634B126DF502E00DCC3BF /* CardView.swift */,
 				C62D509426E2BD0900761457 /* HeartView.swift */,
-				C638573726E7B263001E6F51 /* LikedScreenView.swift */,
 				C67024E826E6CD22000D226C /* LikedView.swift */,
 				C67413DF268ABB2800128E2D /* ErrorView.swift */,
 				C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */,
@@ -575,7 +571,6 @@
 				C622151B268AF67B00139D46 /* GoogleLoginView.swift in Sources */,
 				C6289094268F924B005EAE7F /* TabBarView.swift in Sources */,
 				C67024E926E6CD22000D226C /* LikedView.swift in Sources */,
-				C638573826E7B263001E6F51 /* LikedScreenView.swift in Sources */,
 				C6DB9B5B26E1E6A200BBF9F5 /* EditScrnView.swift in Sources */,
 				C67413CD268ABAEC00128E2D /* ContentView.swift in Sources */,
 				C67413E0268ABB2800128E2D /* ErrorView.swift in Sources */,
@@ -641,7 +636,6 @@
 				C6B634B326DF502E00DCC3BF /* CardView.swift in Sources */,
 				C6849535268E36A4003BC08C /* LogoutButtonView.swift in Sources */,
 				C67413EA268ABC1400128E2D /* SignUpView.swift in Sources */,
-				C638573926E7B263001E6F51 /* LikedScreenView.swift in Sources */,
 				C6849538268E385C003BC08C /* SignUpViewModel.swift in Sources */,
 				C696618F26EBAE0500DE06A3 /* LikedCore+CoreDataClass.swift in Sources */,
 				C67413E7268ABBED00128E2D /* ScreenView.swift in Sources */,

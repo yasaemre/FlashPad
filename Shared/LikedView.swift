@@ -83,8 +83,9 @@ struct LikedView: View {
 
             ZStack(alignment: .center) {
                 //if likedArrPersistent.count > 0 {
-                
-                Image(likedArrPersistent[0].unwrappedImage)
+                //ForEach(0..<likedArrPersistent.count) { index in
+
+                Image(likedArrPersistent[indexCard].unwrappedImage)
                     .resizable()
                     .frame(width: 250, height: 350)
                     .clipped()
@@ -117,7 +118,7 @@ struct LikedView: View {
                             
                             
                         }
-                    //}
+                   // }
 
                 //}
                 
