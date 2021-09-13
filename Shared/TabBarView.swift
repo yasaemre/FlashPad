@@ -235,9 +235,15 @@ struct TabBarView: View {
                                 .font(.system(size: 24))
                                 .foregroundStyle(Color.init(hex: "6C63FF"), (colorScheme == .dark ? Color.white : Color.black))
                                 //.padding(100)
-                                Button(action: {
-                                    print("Profile button tapped")
-                                }) {
+//                                Button(action: {
+//                                    print("Profile button tapped")
+//                                }) {
+//                                    Image("profilePhoto")
+//                                        .resizable()
+//                                        .aspectRatio(contentMode: .fit)
+//                                        .frame(width: 50, height: 70)
+//                                }
+                                NavigationLink(destination: ProfileView()) {
                                     Image("profilePhoto")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)

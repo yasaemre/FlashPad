@@ -11,6 +11,8 @@
 		74DD7C0CEEC204363C609EEC /* Pods_FlashPad__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F063BDFB06F350AA0582D8DE /* Pods_FlashPad__macOS_.framework */; };
 		C60929EF26B39D670048DE83 /* SlideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60929EE26B39D670048DE83 /* SlideMenu.swift */; };
 		C60929F026B39D670048DE83 /* SlideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60929EE26B39D670048DE83 /* SlideMenu.swift */; };
+		C61D4A0C26EEFDC500D5CC52 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61D4A0B26EEFDC500D5CC52 /* ProfileView.swift */; };
+		C61D4A0D26EEFDC500D5CC52 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61D4A0B26EEFDC500D5CC52 /* ProfileView.swift */; };
 		C622151B268AF67B00139D46 /* GoogleLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C622151A268AF67B00139D46 /* GoogleLoginView.swift */; };
 		C6243192268AD79400C01F24 /* AppleLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6243191268AD79400C01F24 /* AppleLoginViewModel.swift */; };
 		C6243195268AD7D600C01F24 /* ColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6243194268AD7D600C01F24 /* ColorExtention.swift */; };
@@ -21,8 +23,6 @@
 		C62D509626E2BD0900761457 /* HeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62D509426E2BD0900761457 /* HeartView.swift */; };
 		C655B8CC26DC4EB900555434 /* StudyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C655B8CB26DC4EB900555434 /* StudyScreenView.swift */; };
 		C655B8CD26DC4EB900555434 /* StudyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C655B8CB26DC4EB900555434 /* StudyScreenView.swift */; };
-		C67024E926E6CD22000D226C /* LikedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67024E826E6CD22000D226C /* LikedView.swift */; };
-		C67024EA26E6CD22000D226C /* LikedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67024E826E6CD22000D226C /* LikedView.swift */; };
 		C67413C0268ABAEC00128E2D /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413BF268ABAEC00128E2D /* Tests_iOS.swift */; };
 		C67413CA268ABAEC00128E2D /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413C9268ABAEC00128E2D /* Tests_macOS.swift */; };
 		C67413CB268ABAEC00128E2D /* FlashPadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413A9268ABAEB00128E2D /* FlashPadApp.swift */; };
@@ -110,13 +110,13 @@
 		5B8F4DD70226C0250BCA8CF3 /* Pods-FlashPad (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashPad (macOS).release.xcconfig"; path = "Target Support Files/Pods-FlashPad (macOS)/Pods-FlashPad (macOS).release.xcconfig"; sourceTree = "<group>"; };
 		7C001D30FFD5961535C533F5 /* Pods_FlashPad__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashPad__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C60929EE26B39D670048DE83 /* SlideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenu.swift; sourceTree = "<group>"; };
+		C61D4A0B26EEFDC500D5CC52 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		C622151A268AF67B00139D46 /* GoogleLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLoginView.swift; sourceTree = "<group>"; };
 		C6243191268AD79400C01F24 /* AppleLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginViewModel.swift; sourceTree = "<group>"; };
 		C6243194268AD7D600C01F24 /* ColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtention.swift; sourceTree = "<group>"; };
 		C6289093268F924B005EAE7F /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		C62D509426E2BD0900761457 /* HeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartView.swift; sourceTree = "<group>"; };
 		C655B8CB26DC4EB900555434 /* StudyScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyScreenView.swift; sourceTree = "<group>"; };
-		C67024E826E6CD22000D226C /* LikedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedView.swift; sourceTree = "<group>"; };
 		C67413A9268ABAEB00128E2D /* FlashPadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashPadApp.swift; sourceTree = "<group>"; };
 		C67413AA268ABAEB00128E2D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C67413AB268ABAEC00128E2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -272,15 +272,15 @@
 				C622151A268AF67B00139D46 /* GoogleLoginView.swift */,
 				C6F6B80A268CF4BC00A3D9C9 /* HomeScreenView.swift */,
 				C60929EE26B39D670048DE83 /* SlideMenu.swift */,
-				C6DB9B5A26E1E6A200BBF9F5 /* EditScrnView.swift */,
-				C6DB9B5D26E1E6AB00BBF9F5 /* EditView.swift */,
 				C6849533268E36A3003BC08C /* LogoutButtonView.swift */,
 				C6289093268F924B005EAE7F /* TabBarView.swift */,
-				C696619226EC4D1200DE06A3 /* LikedCardView.swift */,
+				C6DB9B5A26E1E6A200BBF9F5 /* EditScrnView.swift */,
+				C6DB9B5D26E1E6AB00BBF9F5 /* EditView.swift */,
 				C655B8CB26DC4EB900555434 /* StudyScreenView.swift */,
 				C6B634B126DF502E00DCC3BF /* CardView.swift */,
 				C62D509426E2BD0900761457 /* HeartView.swift */,
-				C67024E826E6CD22000D226C /* LikedView.swift */,
+				C696619226EC4D1200DE06A3 /* LikedCardView.swift */,
+				C61D4A0B26EEFDC500D5CC52 /* ProfileView.swift */,
 				C67413DF268ABB2800128E2D /* ErrorView.swift */,
 				C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */,
 				C67413AB268ABAEC00128E2D /* Assets.xcassets */,
@@ -574,8 +574,8 @@
 				C6DB9B5E26E1E6AB00BBF9F5 /* EditView.swift in Sources */,
 				C622151B268AF67B00139D46 /* GoogleLoginView.swift in Sources */,
 				C6289094268F924B005EAE7F /* TabBarView.swift in Sources */,
-				C67024E926E6CD22000D226C /* LikedView.swift in Sources */,
 				C6DB9B5B26E1E6A200BBF9F5 /* EditScrnView.swift in Sources */,
+				C61D4A0C26EEFDC500D5CC52 /* ProfileView.swift in Sources */,
 				C67413CD268ABAEC00128E2D /* ContentView.swift in Sources */,
 				C67413E0268ABB2800128E2D /* ErrorView.swift in Sources */,
 				C60929EF26B39D670048DE83 /* SlideMenu.swift in Sources */,
@@ -622,7 +622,6 @@
 				C6D2CF0A26CD864A00C868A9 /* Persistence.swift in Sources */,
 				C6289095268F924B005EAE7F /* TabBarView.swift in Sources */,
 				C67413E4268ABBCC00128E2D /* LoginView.swift in Sources */,
-				C67024EA26E6CD22000D226C /* LikedView.swift in Sources */,
 				C6F6B80F268CF59400A3D9C9 /* HomeView.swift in Sources */,
 				C696618926EBA87100DE06A3 /* CardCore+CoreDataClass.swift in Sources */,
 				C696619426EC4D1200DE06A3 /* LikedCardView.swift in Sources */,
@@ -638,6 +637,7 @@
 				C68E2F9E26EA534800553135 /* DeckCore+CoreDataProperties.swift in Sources */,
 				C67413ED268ABC3200128E2D /* WalkthroughView.swift in Sources */,
 				C6AC1385268F6FEA005815F3 /* LoginViewModel.swift in Sources */,
+				C61D4A0D26EEFDC500D5CC52 /* ProfileView.swift in Sources */,
 				C60929F026B39D670048DE83 /* SlideMenu.swift in Sources */,
 				C6B634B326DF502E00DCC3BF /* CardView.swift in Sources */,
 				C6849535268E36A4003BC08C /* LogoutButtonView.swift in Sources */,
