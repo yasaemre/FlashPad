@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LikedView: View {
     //@State var cardCore:CardCore
-    @StateObject var likedCore = LikedCore()
+    @StateObject var likedCore: LikedCore
     @State var card = Card()
     
     @State var flipped = false
@@ -21,24 +21,8 @@ struct LikedView: View {
     @State var correctAnswer = 0
     @State var falseAnswer = 0
     
-    // @State var card: Card
+
     // MARK: - Drawing Constant
- //@Binding var indexCard:Int
-//    @Binding var correctAnswer:Int
-//    @Binding var falseAnswer:Int
-    //@Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-   // @StateObject var deckCore:DeckCore
-    //@StateObject var likedCore:LikedCore
-//            @FetchRequest(
-//                entity: LikedCore.entity(),
-//                sortDescriptors: []
-//            ) var likedArrPersistent: FetchedResults<LikedCore>
-    
-//    @FetchRequest(entity: LikedCore.entity(),
-//        sortDescriptors: [
-//            NSSortDescriptor(keyPath: \LikedCore.word, ascending: true)
-//            ]
-//        ) var likedArrPersistent: FetchedResults<LikedCore>
     @FetchRequest(
            sortDescriptors: [NSSortDescriptor(keyPath: \LikedCore.word, ascending: true)],
            animation: .default)
@@ -79,29 +63,22 @@ struct LikedView: View {
                 }
             }
             .padding(.bottom, 20)
-            ForEach(0..<likedArrPersistent.count) { index in
 
             ZStack(alignment: .center) {
-                //if likedArrPersistent.count > 0 {
-                //ForEach(0..<likedArrPersistent.count) { index in
 
-                Image(likedArrPersistent[indexCard].unwrappedImage)
+
+                Image(likedCore.unwrappedImage)
                     .resizable()
                     .frame(width: 250, height: 350)
                     .clipped()
                     .cornerRadius(12)
                 
-                
-                
-                //ForEach(0..<deckCore.cardsArray.count) { index in
-                //ForEach(0..<likedArrPersistent.count) { index in
-               // if likedArrPersistent.count >= 0 {
                     if flip == false {
                         //indexCard = deckCore.cardsArray.count
                         
                             ZStack {
                                 
-                                Text(likedArrPersistent[indexCard].unwrappedWord)
+                                Text(likedCore.unwrappedWord)
                                     .font(.custom("HelveticaNeue", size: 40))
                                     .foregroundColor(.black)
                             }
@@ -111,17 +88,13 @@ struct LikedView: View {
                         } else {
                             ZStack {
                                 
-                                Text(likedArrPersistent[indexCard].unwrappedDefinition)
+                                Text(likedCore.unwrappedDefinition)
                                     .font(.custom("HelveticaNeue", size: 40))
                                     .foregroundColor(.black)
                             }
                             
                             
                         }
-                   // }
-
-                //}
-                
                 HStack {
                     Image("correct")
                         .resizable()
@@ -166,7 +139,8 @@ struct LikedView: View {
                         card.x = 500; card.degree = 12
                         correctAnswer += 1
                         if  indexCard > 0 {
-                            indexCard -= 1
+                            //indexCard -= 1
+                            break
                         }
                        // self.isTapped = true
                         //self.resetBg = false
@@ -177,7 +151,8 @@ struct LikedView: View {
                         card.x  = -500; card.degree = -12
                         falseAnswer += 1
                         if  indexCard > 0 {
-                            indexCard -= 1
+                            //indexCard -= 1
+                            break
                             
                         }
                        // self.isTapped = true
@@ -195,7 +170,7 @@ struct LikedView: View {
                 
             }
             )
-        }
+        //}
             Text("\(indexCard+1) of \(likedArrPersistent.count)")
                 .font(.title2)
                 .padding(.top, 10)
@@ -222,7 +197,7 @@ struct LikedView: View {
         }
         .onAppear {
             print("Liked Screen View")
-            indexCard = likedArrPersistent.count-1
+            //indexCard = likedArrPersistent.count-1
             for likedCard in likedArrPersistent {
                 print(likedCard.unwrappedWord)
             }

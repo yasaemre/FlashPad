@@ -97,6 +97,7 @@ struct HeartView: View {
 //
 //                }
                 let likedCard = LikedCore(context: viewContext)
+                //likedCard.id = Int16(indexCard)
                 likedCard.word = deckCore.cardsArray[indexCard].unwrappedWord
                 likedCard.definition = deckCore.cardsArray[indexCard].unwrappedDefinition
                 likedCard.imageName = "cardBackg"

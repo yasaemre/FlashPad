@@ -20,4 +20,5 @@ struct Card: Identifiable{
         /// Card rotation angle
      var degree: Double = 0.0
     var imageName = "cardBackg"
+
 }

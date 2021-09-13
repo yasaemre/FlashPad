@@ -42,7 +42,7 @@ struct TabBarView: View {
     @StateObject var likedCore = LikedCore()
 
     //@State var indexCard = 0
-
+    //@Binding var indexCard:Int
     @State private var deckName = ""
     @State private var deckCreatedAt = ""
     @State private var numOfCardsInDeck = 0
@@ -79,6 +79,7 @@ struct TabBarView: View {
                                     NavigationLink(destination: EditScrnView(card: card, deckCore: decksArrPersistent[index], likedCore: likedCore)){
                                         
                                         ZStack {
+                                            
                                             Image("cardBackg")
                                                 .resizable()
                                                 .frame(width:150, height: 200)
@@ -154,12 +155,7 @@ struct TabBarView: View {
                         .ignoresSafeArea(.all, edges: .all)
                         .tag("donate")
 
-                  
-                    LikedView()
-
-
-                    
-                  //}
+                    LikedCardView()
                     .tag("liked")
 
                     Color(UIColor.systemBackground)
