@@ -107,6 +107,24 @@ struct ProfileView: View {
             .padding(.leading, 15)
             .padding(.trailing, 15)
             
+            HStack {
+                Spacer()
+                
+                Button {
+                    //add code
+                } label: {
+                    Text("Save")
+                        .font(.title)
+                        .frame(width: 130, height: 50)
+                        .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
+                        .clipShape(Capsule())
+                        .foregroundColor(.white)
+                        .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.pink]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                }
+                .padding(.trailing, 20)
+
+            }
+            
             Spacer()
         }
         .sheet(isPresented: $isShowingPhotoPicker) {
