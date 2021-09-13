@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 
+
 extension LikedCore {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<LikedCore> {
@@ -20,8 +21,11 @@ extension LikedCore {
     @NSManaged public var imageName: String?
     @NSManaged public var likedCards: NSObject?
     @NSManaged public var word: String?
+    @NSManaged public var id: Int16
+    @NSManaged public var offset: Float
     @NSManaged public var liked: NSSet?
-
+    
+    
     public var unwrappedImage:String {
         imageName ?? "cardBackg"
     }
@@ -41,6 +45,7 @@ extension LikedCore {
             $0.unwrappedWord < $1.unwrappedWord
         }
     }
+
 }
 
 // MARK: Generated accessors for liked

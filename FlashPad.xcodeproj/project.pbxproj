@@ -57,10 +57,12 @@
 		C696618926EBA87100DE06A3 /* CardCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C696618626EBA87100DE06A3 /* CardCore+CoreDataClass.swift */; };
 		C696618A26EBA87100DE06A3 /* CardCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C696618726EBA87100DE06A3 /* CardCore+CoreDataProperties.swift */; };
 		C696618B26EBA87100DE06A3 /* CardCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C696618726EBA87100DE06A3 /* CardCore+CoreDataProperties.swift */; };
-		C696618E26EBAE0500DE06A3 /* LikedCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C696618C26EBAE0500DE06A3 /* LikedCore+CoreDataClass.swift */; };
-		C696618F26EBAE0500DE06A3 /* LikedCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C696618C26EBAE0500DE06A3 /* LikedCore+CoreDataClass.swift */; };
-		C696619026EBAE0500DE06A3 /* LikedCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C696618D26EBAE0500DE06A3 /* LikedCore+CoreDataProperties.swift */; };
-		C696619126EBAE0500DE06A3 /* LikedCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C696618D26EBAE0500DE06A3 /* LikedCore+CoreDataProperties.swift */; };
+		C696619326EC4D1200DE06A3 /* LikedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C696619226EC4D1200DE06A3 /* LikedCardView.swift */; };
+		C696619426EC4D1200DE06A3 /* LikedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C696619226EC4D1200DE06A3 /* LikedCardView.swift */; };
+		C696619726EC517000DE06A3 /* LikedCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C696619526EC517000DE06A3 /* LikedCore+CoreDataClass.swift */; };
+		C696619826EC517000DE06A3 /* LikedCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C696619526EC517000DE06A3 /* LikedCore+CoreDataClass.swift */; };
+		C696619926EC517000DE06A3 /* LikedCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C696619626EC517000DE06A3 /* LikedCore+CoreDataProperties.swift */; };
+		C696619A26EC517000DE06A3 /* LikedCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C696619626EC517000DE06A3 /* LikedCore+CoreDataProperties.swift */; };
 		C6AC1384268F6FEA005815F3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC1383268F6FEA005815F3 /* LoginViewModel.swift */; };
 		C6AC1385268F6FEA005815F3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC1383268F6FEA005815F3 /* LoginViewModel.swift */; };
 		C6B634B226DF502E00DCC3BF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B634B126DF502E00DCC3BF /* CardView.swift */; };
@@ -137,8 +139,9 @@
 		C68E2F9A26EA534800553135 /* DeckCore+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeckCore+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C696618626EBA87100DE06A3 /* CardCore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardCore+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C696618726EBA87100DE06A3 /* CardCore+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardCore+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C696618C26EBAE0500DE06A3 /* LikedCore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LikedCore+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C696618D26EBAE0500DE06A3 /* LikedCore+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LikedCore+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C696619226EC4D1200DE06A3 /* LikedCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedCardView.swift; sourceTree = "<group>"; };
+		C696619526EC517000DE06A3 /* LikedCore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LikedCore+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C696619626EC517000DE06A3 /* LikedCore+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LikedCore+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C6AC1383268F6FEA005815F3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C6B634B126DF502E00DCC3BF /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		C6BB306026AF0A9F00B6710C /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
@@ -234,8 +237,8 @@
 		C67413A3268ABAEB00128E2D = {
 			isa = PBXGroup;
 			children = (
-				C696618C26EBAE0500DE06A3 /* LikedCore+CoreDataClass.swift */,
-				C696618D26EBAE0500DE06A3 /* LikedCore+CoreDataProperties.swift */,
+				C696619526EC517000DE06A3 /* LikedCore+CoreDataClass.swift */,
+				C696619626EC517000DE06A3 /* LikedCore+CoreDataProperties.swift */,
 				C696618626EBA87100DE06A3 /* CardCore+CoreDataClass.swift */,
 				C696618726EBA87100DE06A3 /* CardCore+CoreDataProperties.swift */,
 				C68E2F9926EA534800553135 /* DeckCore+CoreDataClass.swift */,
@@ -273,6 +276,7 @@
 				C6DB9B5D26E1E6AB00BBF9F5 /* EditView.swift */,
 				C6849533268E36A3003BC08C /* LogoutButtonView.swift */,
 				C6289093268F924B005EAE7F /* TabBarView.swift */,
+				C696619226EC4D1200DE06A3 /* LikedCardView.swift */,
 				C655B8CB26DC4EB900555434 /* StudyScreenView.swift */,
 				C6B634B126DF502E00DCC3BF /* CardView.swift */,
 				C62D509426E2BD0900761457 /* HeartView.swift */,
@@ -586,8 +590,8 @@
 				C655B8CC26DC4EB900555434 /* StudyScreenView.swift in Sources */,
 				C67413CB268ABAEC00128E2D /* FlashPadApp.swift in Sources */,
 				C6849537268E385C003BC08C /* SignUpViewModel.swift in Sources */,
-				C696618E26EBAE0500DE06A3 /* LikedCore+CoreDataClass.swift in Sources */,
 				C696618A26EBA87100DE06A3 /* CardCore+CoreDataProperties.swift in Sources */,
+				C696619726EC517000DE06A3 /* LikedCore+CoreDataClass.swift in Sources */,
 				C62D509526E2BD0900761457 /* HeartView.swift in Sources */,
 				C68726B726BA6EF5006BD793 /* CardViewModel.swift in Sources */,
 				C6243192268AD79400C01F24 /* AppleLoginViewModel.swift in Sources */,
@@ -598,9 +602,10 @@
 				C6849534268E36A4003BC08C /* LogoutButtonView.swift in Sources */,
 				C6F6B80E268CF59400A3D9C9 /* HomeView.swift in Sources */,
 				C67413E9268ABC1400128E2D /* SignUpView.swift in Sources */,
+				C696619326EC4D1200DE06A3 /* LikedCardView.swift in Sources */,
 				C67413E6268ABBED00128E2D /* ScreenView.swift in Sources */,
 				C68726B426BA6E29006BD793 /* Card.swift in Sources */,
-				C696619026EBAE0500DE06A3 /* LikedCore+CoreDataProperties.swift in Sources */,
+				C696619926EC517000DE06A3 /* LikedCore+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,13 +625,14 @@
 				C67024EA26E6CD22000D226C /* LikedView.swift in Sources */,
 				C6F6B80F268CF59400A3D9C9 /* HomeView.swift in Sources */,
 				C696618926EBA87100DE06A3 /* CardCore+CoreDataClass.swift in Sources */,
+				C696619426EC4D1200DE06A3 /* LikedCardView.swift in Sources */,
 				C6F6B80C268CF4BC00A3D9C9 /* HomeScreenView.swift in Sources */,
 				C68726B526BA6E29006BD793 /* Card.swift in Sources */,
 				C696618B26EBA87100DE06A3 /* CardCore+CoreDataProperties.swift in Sources */,
 				C67413CC268ABAEC00128E2D /* FlashPadApp.swift in Sources */,
 				C68726B826BA6EF5006BD793 /* CardViewModel.swift in Sources */,
+				C696619A26EC517000DE06A3 /* LikedCore+CoreDataProperties.swift in Sources */,
 				C6243196268AD7D600C01F24 /* ColorExtention.swift in Sources */,
-				C696619126EBAE0500DE06A3 /* LikedCore+CoreDataProperties.swift in Sources */,
 				C6DB9B5F26E1E6AB00BBF9F5 /* EditView.swift in Sources */,
 				C68E2F9C26EA534800553135 /* DeckCore+CoreDataClass.swift in Sources */,
 				C68E2F9E26EA534800553135 /* DeckCore+CoreDataProperties.swift in Sources */,
@@ -637,7 +643,7 @@
 				C6849535268E36A4003BC08C /* LogoutButtonView.swift in Sources */,
 				C67413EA268ABC1400128E2D /* SignUpView.swift in Sources */,
 				C6849538268E385C003BC08C /* SignUpViewModel.swift in Sources */,
-				C696618F26EBAE0500DE06A3 /* LikedCore+CoreDataClass.swift in Sources */,
+				C696619826EC517000DE06A3 /* LikedCore+CoreDataClass.swift in Sources */,
 				C67413E7268ABBED00128E2D /* ScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

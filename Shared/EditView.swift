@@ -134,7 +134,6 @@ struct EditView: View {
                                                 .foregroundColor(Color(.systemGray))
                                                 .offset(x: -123, y: -175)
                                                 .onTapGesture{
-                                        //deleteDeck(at: IndexSet.init(integer: index))
                                         alertViewDeleteCard(at: IndexSet.init(integer: indexCard))
                                     })
                             }

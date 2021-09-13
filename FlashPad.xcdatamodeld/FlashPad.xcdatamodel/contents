@@ -21,14 +21,16 @@
     </entity>
     <entity name="LikedCore" representedClassName="LikedCore" syncable="YES">
         <attribute name="definition" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="imageName" optional="YES" attributeType="String"/>
         <attribute name="likedCards" optional="YES" attributeType="Transformable" customClassName="NSObject"/>
+        <attribute name="offset" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="word" optional="YES" attributeType="String"/>
         <relationship name="liked" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CardCore" inverseName="liked" inverseEntity="CardCore"/>
     </entity>
     <elements>
-        <element name="CardCore" positionX="206.7109375" positionY="-44.2421875" width="128" height="178"/>
+        <element name="CardCore" positionX="206.7109375" positionY="-44.2421875" width="128" height="164"/>
         <element name="DeckCore" positionX="-24.30078125" positionY="25.4609375" width="128" height="133"/>
-        <element name="LikedCore" positionX="90" positionY="54" width="128" height="104"/>
+        <element name="LikedCore" positionX="90" positionY="54" width="128" height="134"/>
     </elements>
 </model>
