@@ -165,8 +165,6 @@ struct TabBarView: View {
                     
                     
                 }
-                
-
 
                 
                 //Custom bottom tabbar
