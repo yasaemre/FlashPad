@@ -14,20 +14,23 @@ struct ProfileView: View {
     @State private var age = ""
     @State private var sex = ""
     @State private var location = ""
-    
+    @State private var isShowingPhotoPicker = false
+    @State private var avatarImage = UIImage(named: "profilePhoto")!
     var body: some View {
         VStack(spacing: 30) {
-            Button(action: {
-                print("Profile button tapped")
-            }) {
-                Image("profilePhoto")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 90, height: 110)
-            }
+            
+            Image(uiImage: avatarImage)
+                .resizable()
+                .scaledToFill()
+                .clipShape(Circle())
+                .frame(width: 150, height: 150)
+                .padding()
+                .onTapGesture {isShowingPhotoPicker = true}
+            
             
             Button(action: {
                 print("Change profile photo tapped")
+                isShowingPhotoPicker = true
             }) {
                 Text("Change Profile Photo")
             }
@@ -104,7 +107,28 @@ struct ProfileView: View {
             .padding(.leading, 15)
             .padding(.trailing, 15)
             
+            HStack {
+                Spacer()
+                
+                Button {
+                    //add code
+                } label: {
+                    Text("Save")
+                        .font(.title)
+                        .frame(width: 130, height: 50)
+                        .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
+                        .clipShape(Capsule())
+                        .foregroundColor(.white)
+                        .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.pink]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                }
+                .padding(.trailing, 20)
+
+            }
+            
             Spacer()
+        }
+        .sheet(isPresented: $isShowingPhotoPicker) {
+            PhotoPicker(avatarImage: $avatarImage)
         }
     }
 }

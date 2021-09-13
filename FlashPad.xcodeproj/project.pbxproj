@@ -13,6 +13,8 @@
 		C60929F026B39D670048DE83 /* SlideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60929EE26B39D670048DE83 /* SlideMenu.swift */; };
 		C61D4A0C26EEFDC500D5CC52 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61D4A0B26EEFDC500D5CC52 /* ProfileView.swift */; };
 		C61D4A0D26EEFDC500D5CC52 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61D4A0B26EEFDC500D5CC52 /* ProfileView.swift */; };
+		C61D4A0F26EF231900D5CC52 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61D4A0E26EF231900D5CC52 /* PhotoPicker.swift */; };
+		C61D4A1026EF231900D5CC52 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61D4A0E26EF231900D5CC52 /* PhotoPicker.swift */; };
 		C622151B268AF67B00139D46 /* GoogleLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C622151A268AF67B00139D46 /* GoogleLoginView.swift */; };
 		C6243192268AD79400C01F24 /* AppleLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6243191268AD79400C01F24 /* AppleLoginViewModel.swift */; };
 		C6243195268AD7D600C01F24 /* ColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6243194268AD7D600C01F24 /* ColorExtention.swift */; };
@@ -111,6 +113,7 @@
 		7C001D30FFD5961535C533F5 /* Pods_FlashPad__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashPad__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C60929EE26B39D670048DE83 /* SlideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenu.swift; sourceTree = "<group>"; };
 		C61D4A0B26EEFDC500D5CC52 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		C61D4A0E26EF231900D5CC52 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		C622151A268AF67B00139D46 /* GoogleLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLoginView.swift; sourceTree = "<group>"; };
 		C6243191268AD79400C01F24 /* AppleLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginViewModel.swift; sourceTree = "<group>"; };
 		C6243194268AD7D600C01F24 /* ColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtention.swift; sourceTree = "<group>"; };
@@ -269,6 +272,7 @@
 				C6F6B80D268CF59400A3D9C9 /* HomeView.swift */,
 				C67413E2268ABBCC00128E2D /* LoginView.swift */,
 				C67413E8268ABC1400128E2D /* SignUpView.swift */,
+				C61D4A0E26EF231900D5CC52 /* PhotoPicker.swift */,
 				C622151A268AF67B00139D46 /* GoogleLoginView.swift */,
 				C6F6B80A268CF4BC00A3D9C9 /* HomeScreenView.swift */,
 				C60929EE26B39D670048DE83 /* SlideMenu.swift */,
@@ -601,6 +605,7 @@
 				C67413EC268ABC3200128E2D /* WalkthroughView.swift in Sources */,
 				C6849534268E36A4003BC08C /* LogoutButtonView.swift in Sources */,
 				C6F6B80E268CF59400A3D9C9 /* HomeView.swift in Sources */,
+				C61D4A0F26EF231900D5CC52 /* PhotoPicker.swift in Sources */,
 				C67413E9268ABC1400128E2D /* SignUpView.swift in Sources */,
 				C696619326EC4D1200DE06A3 /* LikedCardView.swift in Sources */,
 				C67413E6268ABBED00128E2D /* ScreenView.swift in Sources */,
@@ -636,6 +641,7 @@
 				C68E2F9C26EA534800553135 /* DeckCore+CoreDataClass.swift in Sources */,
 				C68E2F9E26EA534800553135 /* DeckCore+CoreDataProperties.swift in Sources */,
 				C67413ED268ABC3200128E2D /* WalkthroughView.swift in Sources */,
+				C61D4A1026EF231900D5CC52 /* PhotoPicker.swift in Sources */,
 				C6AC1385268F6FEA005815F3 /* LoginViewModel.swift in Sources */,
 				C61D4A0D26EEFDC500D5CC52 /* ProfileView.swift in Sources */,
 				C60929F026B39D670048DE83 /* SlideMenu.swift in Sources */,
