@@ -16,16 +16,57 @@ struct ProfileView: View {
     @State private var location = ""
     @State private var isShowingPhotoPicker = false
     @State private var avatarImage = UIImage(named: "profilePhoto")!
+    @State private var avatarImageData:Data? = Data()
+    @State private var imageHasChanged = false
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \ProfileCore.id, ascending: true)],
+           animation: .default)
+       private var profileArrPersistent: FetchedResults<ProfileCore>
+    
+    @StateObject var profileCore = ProfileCore()
+    @State private var index = 0
+
     var body: some View {
+
         VStack(spacing: 30) {
             
-            Image(uiImage: avatarImage)
-                .resizable()
-                .scaledToFill()
-                .clipShape(Circle())
-                .frame(width: 150, height: 150)
-                .padding()
-                .onTapGesture {isShowingPhotoPicker = true}
+            if imageHasChanged == true {
+                if let imgData = avatarImageData{
+                    Image(uiImage: UIImage(data: imgData) ?? avatarImage)
+                    .resizable()
+                    .scaledToFill()
+                    .clipShape(Circle())
+                    .frame(width: 150, height: 150)
+                    .padding()
+                    .onTapGesture {isShowingPhotoPicker = true}
+                }
+            } else {
+                if let image = profileArrPersistent.last?.image{
+                    if let uiImage = UIImage(data: image)  {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .scaledToFill()
+                            .clipShape(Circle())
+                            .frame(width: 150, height: 150)
+                            .padding()
+                            .onTapGesture {isShowingPhotoPicker = true}
+                    }
+                } else {
+                    Image(uiImage: avatarImage)
+                        .resizable()
+                        .scaledToFill()
+                        .clipShape(Circle())
+                        .frame(width: 150, height: 150)
+                        .padding()
+                        .onTapGesture {isShowingPhotoPicker = true}
+                }
+            }
+            
+           
+
+            
+            
             
             
             Button(action: {
@@ -41,10 +82,12 @@ struct ProfileView: View {
                         .foregroundColor(Color.init(hex: "6C63FF"))
                         .font(.title)
                     VStack {
-                        TextField("", text: $name)
+                        if let name =  profileArrPersistent.last?.name {
+                        TextField("\(name)", text: $name)
                             .font(Font.system(size: 25, design: .default))
+                        }
                         Divider()
-
+                        
                     }
                 }
                 
@@ -56,9 +99,12 @@ struct ProfileView: View {
                         .foregroundColor(Color.init(hex: "6C63FF"))
                         .font(.title)
                     VStack {
-                        TextField("", text: $lastName)
+                        if let lname =  profileArrPersistent.last?.lastName {
+                        TextField("\(lname)", text: $lastName)
                             .font(Font.system(size: 25, design: .default))
+                        }
                         Divider()
+                        
                     }
 
                 }
@@ -69,9 +115,14 @@ struct ProfileView: View {
                         .foregroundColor(Color.init(hex: "6C63FF"))
                         .font(.title)
                     VStack {
-                        TextField("", text: $age)
+                        if let age =  profileArrPersistent.last?.age {
+                        TextField("\(age)", text: $age)
                             .font(Font.system(size: 25, design: .default))
+                            .textContentType(.oneTimeCode)
+                                .keyboardType(.numberPad)
+                        }
                         Divider()
+                        
                     }
 
                 }
@@ -82,9 +133,12 @@ struct ProfileView: View {
                         .foregroundColor(Color.init(hex: "6C63FF"))
                         .font(.title)
                     VStack {
-                        TextField("", text: $sex)
+                        if let sex =  profileArrPersistent.last?.sex {
+                        TextField("\(sex)", text: $sex)
                             .font(Font.system(size: 25, design: .default))
+                        }
                         Divider()
+                        
                     }
                 }
                 
@@ -95,9 +149,12 @@ struct ProfileView: View {
                         .font(.title)
 
                     VStack {
-                        TextField("", text: $location)
+                        if let loc =  profileArrPersistent.last?.location {
+                        TextField("\(loc)", text: $location)
                             .font(Font.system(size: 25, design: .default))
+                        }
                         Divider()
+                        
                     }
                 }
                 
@@ -111,7 +168,15 @@ struct ProfileView: View {
                 Spacer()
                 
                 Button {
-                    //add code
+                    let profileCore = ProfileCore(context:viewContext)
+                    profileCore.image = avatarImageData
+                    profileCore.name = name
+                    profileCore.lastName = lastName
+                    profileCore.age = age
+                    profileCore.sex = sex
+                    profileCore.location = location
+                    PersistenceController.shared.saveContext()
+                    
                 } label: {
                     Text("Save")
                         .font(.title)
@@ -126,15 +191,25 @@ struct ProfileView: View {
             }
             
             Spacer()
+        
         }
         .sheet(isPresented: $isShowingPhotoPicker) {
-            PhotoPicker(avatarImage: $avatarImage)
+            PhotoPicker(avatarImageData: $avatarImageData, imageHasChanged: $imageHasChanged)
         }
+        
+
+
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
-    }
+//struct ProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProfileView()
+//    }
+//}
+
+
+extension UIImage {
+    var jpeg: Data? { jpegData(compressionQuality: 1) }  // QUALITY min = 0 / max = 1
+    var png: Data? { pngData() }
 }

@@ -23,6 +23,10 @@
 		C6289095268F924B005EAE7F /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6289093268F924B005EAE7F /* TabBarView.swift */; };
 		C62D509526E2BD0900761457 /* HeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62D509426E2BD0900761457 /* HeartView.swift */; };
 		C62D509626E2BD0900761457 /* HeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62D509426E2BD0900761457 /* HeartView.swift */; };
+		C63A823226EFB06600496B6C /* ProfileCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A823026EFB06600496B6C /* ProfileCore+CoreDataClass.swift */; };
+		C63A823326EFB06600496B6C /* ProfileCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A823026EFB06600496B6C /* ProfileCore+CoreDataClass.swift */; };
+		C63A823426EFB06600496B6C /* ProfileCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A823126EFB06600496B6C /* ProfileCore+CoreDataProperties.swift */; };
+		C63A823526EFB06600496B6C /* ProfileCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A823126EFB06600496B6C /* ProfileCore+CoreDataProperties.swift */; };
 		C655B8CC26DC4EB900555434 /* StudyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C655B8CB26DC4EB900555434 /* StudyScreenView.swift */; };
 		C655B8CD26DC4EB900555434 /* StudyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C655B8CB26DC4EB900555434 /* StudyScreenView.swift */; };
 		C67413C0268ABAEC00128E2D /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413BF268ABAEC00128E2D /* Tests_iOS.swift */; };
@@ -119,6 +123,8 @@
 		C6243194268AD7D600C01F24 /* ColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtention.swift; sourceTree = "<group>"; };
 		C6289093268F924B005EAE7F /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		C62D509426E2BD0900761457 /* HeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartView.swift; sourceTree = "<group>"; };
+		C63A823026EFB06600496B6C /* ProfileCore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileCore+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C63A823126EFB06600496B6C /* ProfileCore+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileCore+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C655B8CB26DC4EB900555434 /* StudyScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyScreenView.swift; sourceTree = "<group>"; };
 		C67413A9268ABAEB00128E2D /* FlashPadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashPadApp.swift; sourceTree = "<group>"; };
 		C67413AA268ABAEB00128E2D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -240,6 +246,8 @@
 		C67413A3268ABAEB00128E2D = {
 			isa = PBXGroup;
 			children = (
+				C63A823026EFB06600496B6C /* ProfileCore+CoreDataClass.swift */,
+				C63A823126EFB06600496B6C /* ProfileCore+CoreDataProperties.swift */,
 				C696619526EC517000DE06A3 /* LikedCore+CoreDataClass.swift */,
 				C696619626EC517000DE06A3 /* LikedCore+CoreDataProperties.swift */,
 				C696618626EBA87100DE06A3 /* CardCore+CoreDataClass.swift */,
@@ -272,7 +280,6 @@
 				C6F6B80D268CF59400A3D9C9 /* HomeView.swift */,
 				C67413E2268ABBCC00128E2D /* LoginView.swift */,
 				C67413E8268ABC1400128E2D /* SignUpView.swift */,
-				C61D4A0E26EF231900D5CC52 /* PhotoPicker.swift */,
 				C622151A268AF67B00139D46 /* GoogleLoginView.swift */,
 				C6F6B80A268CF4BC00A3D9C9 /* HomeScreenView.swift */,
 				C60929EE26B39D670048DE83 /* SlideMenu.swift */,
@@ -284,6 +291,7 @@
 				C6B634B126DF502E00DCC3BF /* CardView.swift */,
 				C62D509426E2BD0900761457 /* HeartView.swift */,
 				C696619226EC4D1200DE06A3 /* LikedCardView.swift */,
+				C61D4A0E26EF231900D5CC52 /* PhotoPicker.swift */,
 				C61D4A0B26EEFDC500D5CC52 /* ProfileView.swift */,
 				C67413DF268ABB2800128E2D /* ErrorView.swift */,
 				C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */,
@@ -585,6 +593,7 @@
 				C60929EF26B39D670048DE83 /* SlideMenu.swift in Sources */,
 				C6D2CF0926CD864A00C868A9 /* Persistence.swift in Sources */,
 				C6BB306126AF0A9F00B6710C /* Deck.swift in Sources */,
+				C63A823426EFB06600496B6C /* ProfileCore+CoreDataProperties.swift in Sources */,
 				C6B634B226DF502E00DCC3BF /* CardView.swift in Sources */,
 				C696618826EBA87100DE06A3 /* CardCore+CoreDataClass.swift in Sources */,
 				C68E2F9D26EA534800553135 /* DeckCore+CoreDataProperties.swift in Sources */,
@@ -608,6 +617,7 @@
 				C61D4A0F26EF231900D5CC52 /* PhotoPicker.swift in Sources */,
 				C67413E9268ABC1400128E2D /* SignUpView.swift in Sources */,
 				C696619326EC4D1200DE06A3 /* LikedCardView.swift in Sources */,
+				C63A823226EFB06600496B6C /* ProfileCore+CoreDataClass.swift in Sources */,
 				C67413E6268ABBED00128E2D /* ScreenView.swift in Sources */,
 				C68726B426BA6E29006BD793 /* Card.swift in Sources */,
 				C696619926EC517000DE06A3 /* LikedCore+CoreDataProperties.swift in Sources */,
@@ -618,12 +628,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C63A823326EFB06600496B6C /* ProfileCore+CoreDataClass.swift in Sources */,
 				C6D2CF0726CD82B300C868A9 /* FlashPad.xcdatamodeld in Sources */,
 				C62D509626E2BD0900761457 /* HeartView.swift in Sources */,
 				C67413CE268ABAEC00128E2D /* ContentView.swift in Sources */,
 				C6DB9B5C26E1E6A200BBF9F5 /* EditScrnView.swift in Sources */,
 				C655B8CD26DC4EB900555434 /* StudyScreenView.swift in Sources */,
 				C67413E1268ABB2800128E2D /* ErrorView.swift in Sources */,
+				C63A823526EFB06600496B6C /* ProfileCore+CoreDataProperties.swift in Sources */,
 				C6D2CF0A26CD864A00C868A9 /* Persistence.swift in Sources */,
 				C6289095268F924B005EAE7F /* TabBarView.swift in Sources */,
 				C67413E4268ABBCC00128E2D /* LoginView.swift in Sources */,
