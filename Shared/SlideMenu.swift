@@ -12,6 +12,10 @@ struct SlideMenu: View {
     @Binding var dark:Bool
     @Binding var show:Bool
     @Environment(\.colorScheme) var colorScheme
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \ProfileCore.id, ascending: true)],
+           animation: .default)
+       private var profileArrPersistent: FetchedResults<ProfileCore>
     var body: some View {
         VStack {
             
@@ -43,13 +47,17 @@ struct SlideMenu: View {
             .padding(.bottom, 25)
 
 
-            Image("profilePhoto")
-                .resizable()
-                .frame(width: 80, height: 80)
-                .clipShape(Circle())
+            if let data = profileArrPersistent.last?.image {
+                Image(uiImage: (UIImage(data: data) ?? UIImage(named: "profilePhoto"))!)
+                    .resizable()
+                    .scaledToFill()
+                    .clipShape(Circle())
+                    .frame(width: 80, height: 80)
+                    .padding(.trailing, 10)
+            }
             
             VStack(spacing:12) {
-                Text("Emre")
+                Text(profileArrPersistent.last?.name ?? "Anonymous")
                 Text("Software Engineer")
                     .font(.caption)
             }

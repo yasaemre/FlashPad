@@ -34,7 +34,10 @@ struct TabBarView: View {
    // @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
    @Environment(\.managedObjectContext) private var viewContext
 
-    
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \ProfileCore.id, ascending: true)],
+           animation: .default)
+       private var profileArrPersistent: FetchedResults<ProfileCore>
     @FetchRequest(
            sortDescriptors: [NSSortDescriptor(keyPath: \DeckCore.deckName, ascending: true)],
            animation: .default)
@@ -244,10 +247,14 @@ struct TabBarView: View {
 //                                        .frame(width: 50, height: 70)
 //                                }
                                 NavigationLink(destination: ProfileView()) {
-                                    Image("profilePhoto")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 50, height: 70)
+                                    if let data = profileArrPersistent.last?.image {
+                                        Image(uiImage: (UIImage(data: data) ?? UIImage(named: "profilePhoto"))!)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .clipShape(Circle())
+                                            .frame(width: 47, height: 47)
+                                            .padding(.trailing, 10)
+                                    }
                                 }
                                 .padding(.trailing, 10)
                             }
