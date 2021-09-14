@@ -27,6 +27,8 @@
 		C63A823326EFB06600496B6C /* ProfileCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A823026EFB06600496B6C /* ProfileCore+CoreDataClass.swift */; };
 		C63A823426EFB06600496B6C /* ProfileCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A823126EFB06600496B6C /* ProfileCore+CoreDataProperties.swift */; };
 		C63A823526EFB06600496B6C /* ProfileCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A823126EFB06600496B6C /* ProfileCore+CoreDataProperties.swift */; };
+		C63A823726F0521B00496B6C /* ScoreboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A823626F0521B00496B6C /* ScoreboardView.swift */; };
+		C63A823826F0521B00496B6C /* ScoreboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A823626F0521B00496B6C /* ScoreboardView.swift */; };
 		C655B8CC26DC4EB900555434 /* StudyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C655B8CB26DC4EB900555434 /* StudyScreenView.swift */; };
 		C655B8CD26DC4EB900555434 /* StudyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C655B8CB26DC4EB900555434 /* StudyScreenView.swift */; };
 		C67413C0268ABAEC00128E2D /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413BF268ABAEC00128E2D /* Tests_iOS.swift */; };
@@ -125,6 +127,7 @@
 		C62D509426E2BD0900761457 /* HeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartView.swift; sourceTree = "<group>"; };
 		C63A823026EFB06600496B6C /* ProfileCore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileCore+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C63A823126EFB06600496B6C /* ProfileCore+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileCore+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C63A823626F0521B00496B6C /* ScoreboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardView.swift; sourceTree = "<group>"; };
 		C655B8CB26DC4EB900555434 /* StudyScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyScreenView.swift; sourceTree = "<group>"; };
 		C67413A9268ABAEB00128E2D /* FlashPadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashPadApp.swift; sourceTree = "<group>"; };
 		C67413AA268ABAEB00128E2D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -293,6 +296,7 @@
 				C696619226EC4D1200DE06A3 /* LikedCardView.swift */,
 				C61D4A0E26EF231900D5CC52 /* PhotoPicker.swift */,
 				C61D4A0B26EEFDC500D5CC52 /* ProfileView.swift */,
+				C63A823626F0521B00496B6C /* ScoreboardView.swift */,
 				C67413DF268ABB2800128E2D /* ErrorView.swift */,
 				C6F4134C268AD65000ACBC78 /* GoogleService-Info.plist */,
 				C67413AB268ABAEC00128E2D /* Assets.xcassets */,
@@ -598,6 +602,7 @@
 				C696618826EBA87100DE06A3 /* CardCore+CoreDataClass.swift in Sources */,
 				C68E2F9D26EA534800553135 /* DeckCore+CoreDataProperties.swift in Sources */,
 				C67413E3268ABBCC00128E2D /* LoginView.swift in Sources */,
+				C63A823726F0521B00496B6C /* ScoreboardView.swift in Sources */,
 				C6BB306326AF0B0700B6710C /* DeckViewModel.swift in Sources */,
 				C6BB306726AF120900B6710C /* DropViewDelegate.swift in Sources */,
 				C655B8CC26DC4EB900555434 /* StudyScreenView.swift in Sources */,
@@ -638,6 +643,7 @@
 				C63A823526EFB06600496B6C /* ProfileCore+CoreDataProperties.swift in Sources */,
 				C6D2CF0A26CD864A00C868A9 /* Persistence.swift in Sources */,
 				C6289095268F924B005EAE7F /* TabBarView.swift in Sources */,
+				C63A823826F0521B00496B6C /* ScoreboardView.swift in Sources */,
 				C67413E4268ABBCC00128E2D /* LoginView.swift in Sources */,
 				C6F6B80F268CF59400A3D9C9 /* HomeView.swift in Sources */,
 				C696618926EBA87100DE06A3 /* CardCore+CoreDataClass.swift in Sources */,

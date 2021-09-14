@@ -86,15 +86,18 @@ struct SlideMenu: View {
             
             
             Group {
-                Button(action: {
+               
+                HStack(alignment: .center, spacing:22) {
                     
-                }) {
-                    HStack(alignment: .center, spacing:22) {
+                    NavigationLink(destination: ScoreboardView()) {
                         Image("scoreboard")
                             .resizable()
                             .frame(width: 70, height: 70)
                         Text("Scoreboard")
                     }
+                    
+                    
+                    
                 }
                 .padding(.top, 25)
                 
@@ -118,6 +121,7 @@ struct SlideMenu: View {
                             .resizable()
                             .frame(width: 70, height: 70)
                         Text("Share with \nFriends")
+                            .frame(height: 50)
                     }
                 }
                 .padding(.top, 25)
