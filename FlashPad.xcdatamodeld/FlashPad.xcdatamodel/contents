@@ -28,9 +28,20 @@
         <attribute name="word" optional="YES" attributeType="String"/>
         <relationship name="liked" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CardCore" inverseName="liked" inverseEntity="CardCore"/>
     </entity>
+    <entity name="ProfileCore" representedClassName="ProfileCore" syncable="YES">
+        <attribute name="age" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
+        <attribute name="location" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="sex" optional="YES" attributeType="String"/>
+    </entity>
     <elements>
         <element name="CardCore" positionX="206.7109375" positionY="-44.2421875" width="128" height="164"/>
         <element name="DeckCore" positionX="-24.30078125" positionY="25.4609375" width="128" height="133"/>
         <element name="LikedCore" positionX="90" positionY="54" width="128" height="134"/>
+        <element name="ProfileCore" positionX="90" positionY="63" width="128" height="149"/>
     </elements>
 </model>
