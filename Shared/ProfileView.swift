@@ -77,14 +77,17 @@ struct ProfileView: View {
             }
             
             Group {
-                HStack(spacing:30) {
+                HStack(spacing:10) {
                     Text("Name: ")
                         .foregroundColor(Color.init(hex: "6C63FF"))
                         .font(.title)
                     VStack {
                         if let name =  profileArrPersistent.last?.name {
-                        TextField("\(name)", text: $name)
+                        TextField(" \(name)", text: $name)
                             .font(Font.system(size: 25, design: .default))
+                        } else {
+                            TextField("Name", text: $name)
+                                .font(Font.system(size: 25, design: .default))
                         }
                         Divider()
                         
@@ -94,7 +97,7 @@ struct ProfileView: View {
                 
                 
                 
-                HStack(spacing:30) {
+                HStack(spacing:10) {
                     Text("Last Name: ")
                         .foregroundColor(Color.init(hex: "6C63FF"))
                         .font(.title)
@@ -102,6 +105,9 @@ struct ProfileView: View {
                         if let lname =  profileArrPersistent.last?.lastName {
                         TextField("\(lname)", text: $lastName)
                             .font(Font.system(size: 25, design: .default))
+                        } else {
+                            TextField("Last Name", text: $lastName)
+                                .font(Font.system(size: 25, design: .default))
                         }
                         Divider()
                         
@@ -110,7 +116,7 @@ struct ProfileView: View {
                 }
                 
                 
-                HStack(spacing:30){
+                HStack(spacing:10){
                     Text("Age: ")
                         .foregroundColor(Color.init(hex: "6C63FF"))
                         .font(.title)
@@ -120,6 +126,11 @@ struct ProfileView: View {
                             .font(Font.system(size: 25, design: .default))
                             .textContentType(.oneTimeCode)
                                 .keyboardType(.numberPad)
+                        } else {
+                            TextField("Age", text: $age)
+                                .font(Font.system(size: 25, design: .default))
+                                .textContentType(.oneTimeCode)
+                                    .keyboardType(.numberPad)
                         }
                         Divider()
                         
@@ -128,7 +139,7 @@ struct ProfileView: View {
                 }
                 
 
-                HStack(spacing:30) {
+                HStack(spacing:10) {
                     Text("Sex: ")
                         .foregroundColor(Color.init(hex: "6C63FF"))
                         .font(.title)
@@ -136,6 +147,9 @@ struct ProfileView: View {
                         if let sex =  profileArrPersistent.last?.sex {
                         TextField("\(sex)", text: $sex)
                             .font(Font.system(size: 25, design: .default))
+                        } else {
+                            TextField("Sex", text: $sex)
+                                .font(Font.system(size: 25, design: .default))
                         }
                         Divider()
                         
@@ -143,7 +157,7 @@ struct ProfileView: View {
                 }
                 
 
-                HStack(spacing:30) {
+                HStack(spacing:10) {
                     Text("Location: ")
                         .foregroundColor(Color.init(hex: "6C63FF"))
                         .font(.title)
@@ -152,6 +166,9 @@ struct ProfileView: View {
                         if let loc =  profileArrPersistent.last?.location {
                         TextField("\(loc)", text: $location)
                             .font(Font.system(size: 25, design: .default))
+                        } else {
+                            TextField("Location", text: $location)
+                                .font(Font.system(size: 25, design: .default))
                         }
                         Divider()
                         
