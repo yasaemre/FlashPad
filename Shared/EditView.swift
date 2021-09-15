@@ -21,6 +21,9 @@ struct EditView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
     @StateObject var likedCore:LikedCore
+    @State var correctAnswer = 0
+
+
 
     var body: some View {
         VStack{
@@ -70,11 +73,12 @@ struct EditView: View {
                         .background(!flip ? Color.init(hex: "6C63FF") : .gray)
                         .clipShape(Capsule())
                         .foregroundColor(.white)
-                        .navigationBarItems(trailing: NavigationLink(destination: StudyScreenView(deckCore: deckCore, card: card, correctAnswer: 0,falseAnswer: 0 )) {
+                        .navigationBarItems(trailing: NavigationLink(destination: StudyScreenView(deckCore: deckCore, card: card, correctAnswer: correctAnswer)) {
                             Text("Study")
                                 .font(.title)
                                 .foregroundColor(Color.init(hex: "6C63FF"))
                                 .padding(.trailing, 1)
+                                
                         }
                         )
                     

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct StudyScreenView: View {
     
@@ -18,27 +19,46 @@ struct StudyScreenView: View {
    // @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
     @State var indexCard = 0
     @State var correctAnswer:Int
-    @State var falseAnswer:Int
+//    @State var falseAnswer:Int
     //@State var isTapped = false
     
     @State var resetBg = false
     //@Binding var resetBg:Bool
-
-
+    @State var correctRate = 0.0
+    //@State var correctAnswer = 0
+    @State var falseAnswer = 0
+    //@EnvironmentObject var settings: GameSettings
+    //@State var correctAnswer = UserDefaults.standard.integer(forKey: "correctAnswer")
+    @AppStorage("correctA") var correctA = 0.0
+    
     var body: some View {
         
         ZStack(alignment: .top){
             ForEach(deckCore.cardsArray.reversed()) { cardCore in
-                CardView(cardCore: cardCore, card: card, deckCore: deckCore, indexCard: $indexCard, correctAnswer: $correctAnswer,  falseAnswer: $falseAnswer, resetBg: $resetBg)
+                CardView(cardCore: cardCore, card: card, deckCore: deckCore, indexCard: $indexCard, correctAnswer: correctAnswer,  falseAnswer: falseAnswer, resetBg: $resetBg)
+                    
             }
             .onAppear {
                 indexCard = deckCore.cardsArray.count-1
+    
             }
+            
+            
         }
+        .onDisappear{
+            deckCore.correctRate = (correctA / Double(deckCore.cardsArray.count)) * 100
+            print("correctA \(correctA)")
+            print("deckCore.cardsArray.count \(deckCore.cardsArray.count)")
+            print("deckCore.correctRate \(deckCore.correctRate)")
+            correctA = 0
+        }
+       
         .zIndex(1.0)
     }
 }
     
+
+
 
 //struct StudyScreenView_Previews: PreviewProvider {
 //    static var previews: some View {

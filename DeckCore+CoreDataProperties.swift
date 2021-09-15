@@ -2,7 +2,7 @@
 //  DeckCore+CoreDataProperties.swift
 //  FlashPad
 //
-//  Created by Emre Yasa on 9/9/21.
+//  Created by Emre Yasa on 9/14/21.
 //
 //
 
@@ -16,14 +16,19 @@ extension DeckCore {
         return NSFetchRequest<DeckCore>(entityName: "DeckCore")
     }
 
+    @NSManaged public var correctRate: Double
     @NSManaged public var deckCreatedAt: String?
     @NSManaged public var deckName: String?
     @NSManaged public var id: UUID?
     @NSManaged public var numberOfCardsInDeck: Int16
     @NSManaged public var cards: NSSet?
     @NSManaged public var likedCards: NSSet?
-
-
+    
+    
+    public var unwrappedCorrectRate: Double {
+        correctRate 
+    }
+    
     public var unwrappedDeckName:String {
         deckName ?? "Unknown deckName"
     }
@@ -43,7 +48,8 @@ extension DeckCore {
             $0.unwrappedWord < $1.unwrappedWord
         }
     }
-    
+
+
 }
 
 // MARK: Generated accessors for cards

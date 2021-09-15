@@ -26,6 +26,7 @@ extension CardCore {
     @NSManaged public var liked: LikedCore?
     @NSManaged public var likedDeck: NSSet?
 
+
     public var unwrappedWord:String {
         word ?? "Unknown deckName"
     }

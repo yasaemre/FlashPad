@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct CardView: View {
     @State var cardCore: CardCore
     @State var card: Card
-    
     @State var flipped = false
     @State var flip = false
     @State var rightArrowTapped = false
@@ -22,10 +22,10 @@ struct CardView: View {
     @Binding var indexCard:Int
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) private var viewContext
+    @State var correctRate = 0.0
 
-    @Binding var correctAnswer:Int
-    @Binding var falseAnswer:Int
-    
+    @State var correctAnswer = 0
+    @State var falseAnswer = 0
 //    @State var isTapped = false
 //    @State var startAnimation = false
 //    @State var bgAnimaton = false
@@ -33,8 +33,10 @@ struct CardView: View {
     //@StateObject var likedCore: LikedCore
     //@State var fireworkAnimation = false
     //@Binding var isTapped:Bool
-    
-    
+    //@State var correctA = 0
+    @AppStorage("correctA") var correctA = 0.0
+
+
     //To avoid Taps during animation..
     
     
@@ -171,6 +173,7 @@ struct CardView: View {
                     case let x where x > 100:
                         card.x = 500; card.degree = 12
                         correctAnswer += 1
+                        correctA += 1
                         if  indexCard > 0 {
                             indexCard -= 1
                         }
@@ -194,6 +197,8 @@ struct CardView: View {
                         card.x = 0; card.y = 0
                         
                     }
+                    
+                    
                     
                 }
                 
@@ -241,6 +246,8 @@ struct CardView: View {
             .navigationBarHidden(true)
             .padding(.top, 10)
         }
+        
+        
         
     }
 }

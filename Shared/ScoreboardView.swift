@@ -6,14 +6,45 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ScoreboardView: View {
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \ProfileCore.id, ascending: true)],
            animation: .default)
        private var profileArrPersistent: FetchedResults<ProfileCore>
+    
+    @FetchRequest(
+           sortDescriptors: [NSSortDescriptor(keyPath: \DeckCore.deckName, ascending: true)],
+           animation: .default)
+       private var decksArrPersistent: FetchedResults<DeckCore>
+//    @FetchRequest private var decksArrPersistent: FetchedResults<DeckCore>
+
+
+    
+    @State private var selectedDeck: DeckCore
+
+        init(moc: NSManagedObjectContext) {
+            let fetchRequest: NSFetchRequest<DeckCore> = DeckCore.fetchRequest()
+            fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \DeckCore.deckName, ascending: false)]
+            fetchRequest.predicate = NSPredicate(value: true)
+            self._decksArrPersistent = FetchRequest(fetchRequest: fetchRequest)
+            do {
+                let tempItems = try moc.fetch(fetchRequest)
+                if(tempItems.count > 0) {
+                    self._selectedDeck = State(initialValue: tempItems.first!)
+                } else {
+                    self._selectedDeck = State(initialValue: DeckCore(context: moc))
+                    moc.delete(selectedDeck)
+                }
+            } catch {
+                fatalError("Init Problem")
+            }
+        }
+    
+    
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 10) {
             if let data = profileArrPersistent.last?.image {
                 Image(uiImage: (UIImage(data: data) ?? UIImage(named: "profilePhoto"))!)
                     .resizable()
@@ -23,6 +54,7 @@ struct ScoreboardView: View {
                     .padding(.trailing, 10)
             }
             
+           
         
             HStack {
                 Text(profileArrPersistent.last?.name ?? "Anonymous")
@@ -31,12 +63,30 @@ struct ScoreboardView: View {
                     .foregroundColor(Color.init(hex: "6C63FF"))
             }
             
+            VStack(spacing: 5) {
+                if (decksArrPersistent.count > 0) {
+                    Picker("Please choose a deck", selection: $selectedDeck) {
+                        ForEach(decksArrPersistent, id: \.self) { (deck:DeckCore) in
+                            Text(deck.unwrappedDeckName)
+                        }
+                    }
+                    .frame(height: 150)
+                }
+//                if (decksArrPersistent.count > 0) {
+//                    Text("You selected: \(selectedDeck.unwrappedDeckName)")
+//                }
+            }
+
+            
+            
+            
             Group {
-                Text("The Highest Correct Rate:")
+                if (decksArrPersistent.count > 0) {
+                Text("The Highest Correct Rate for \(selectedDeck.unwrappedDeckName):")
                     .font(.title)
                     .foregroundColor(Color.init(hex: "1F3CD6"))
-                
-                Text("%96")
+                }
+                Text("% \(String(format: "%.2f", selectedDeck.correctRate as CVarArg))")
                     .fontWeight(.semibold)
                     .font(.system(size: 54))
                     .foregroundColor(.red)
@@ -49,14 +99,15 @@ struct ScoreboardView: View {
                     .font(.title)
                     .foregroundColor(.red)
             }
-            .padding(.top, 30)
+            .padding(.top, 20)
             Spacer()
         }
+
     }
 }
 
-struct ScoreboardView_Previews: PreviewProvider {
-    static var previews: some View {
-        ScoreboardView()
-    }
-}
+//struct ScoreboardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ScoreboardView()
+//    }
+//}

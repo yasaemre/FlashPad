@@ -16,6 +16,8 @@ struct SlideMenu: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \ProfileCore.id, ascending: true)],
            animation: .default)
        private var profileArrPersistent: FetchedResults<ProfileCore>
+    @Environment(\.managedObjectContext) private var viewContext
+
     var body: some View {
         VStack {
             
@@ -89,7 +91,7 @@ struct SlideMenu: View {
                
                 HStack(alignment: .center, spacing:22) {
                     
-                    NavigationLink(destination: ScoreboardView()) {
+                    NavigationLink(destination: ScoreboardView(moc: viewContext)) {
                         Image("scoreboard")
                             .resizable()
                             .frame(width: 70, height: 70)
@@ -136,7 +138,7 @@ struct SlideMenu: View {
         .frame(width: UIScreen.main.bounds.width / 1.5)
         .background((colorScheme == .dark ? Color.black : Color.white).edgesIgnoringSafeArea(.all))
         .overlay(Rectangle().stroke(Color.primary.opacity(0.2), lineWidth: 2).shadow( radius:3).edgesIgnoringSafeArea(.all))
-
+        
     }
 }
 
