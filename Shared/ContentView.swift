@@ -11,15 +11,24 @@ struct ContentView: View {
 
     @AppStorage("currentPage") var currentPage = 1
 
-    private var walkthrough = WalkthroughView()
+    //private var walkthrough = WalkthroughView()
     @State var show = false
     @State var logged = UserDefaults.standard.value(forKey: "logged") as? Bool ?? false
     //@State var appleLogStatus = UserDefaults.standard.value(forKey: "appleLogStatus") as? Bool ?? false
     var body: some View {
         if currentPage > totalPages {
             HomeView().navigationBarHidden(true)
+                .onAppear {
+                    UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+                    AppDelegate.orientationLock = .portrait
+                }
+
         } else {
-            walkthrough
+            WalkthroughView()
+                .onAppear {
+                    UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+                    AppDelegate.orientationLock = .portrait
+                }
         }
     }
 }

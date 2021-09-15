@@ -56,12 +56,25 @@ struct SlideMenu: View {
                     .clipShape(Circle())
                     .frame(width: 80, height: 80)
                     .padding(.trailing, 10)
+            } else {
+                Image("profilePhoto")
+                    .resizable()
+                    .scaledToFill()
+                    .clipShape(Circle())
+                    .frame(width: 47, height: 47)
+                    .padding(.trailing, 10)
             }
             
             VStack(spacing:12) {
-                Text(profileArrPersistent.last?.name ?? "Anonymous")
-                Text("Software Engineer")
-                    .font(.caption)
+                if let name = profileArrPersistent.last?.name {
+                    Text(name)
+                        .font(.caption)
+                } else {
+                    Text("Anonymous")
+                        .font(.caption)
+                }
+                
+                    
             }
             .padding(.top, 25)
             

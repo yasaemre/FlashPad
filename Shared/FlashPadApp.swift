@@ -32,6 +32,12 @@ class AppDelegate: NSObject, UIApplicationDelegate, GIDSignInDelegate {
     
     @AppStorage("logged") var logged = false
     @AppStorage("loggedViaEmail") var loggedViaEmail = ""
+    
+    static var orientationLock = UIInterfaceOrientationMask.all
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return AppDelegate.orientationLock
+    }
+    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
          // ...
          if let error = error {

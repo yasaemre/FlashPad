@@ -255,6 +255,13 @@ struct TabBarView: View {
                                             .clipShape(Circle())
                                             .frame(width: 47, height: 47)
                                             .padding(.trailing, 10)
+                                    } else {
+                                        Image("profilePhoto")
+                                            .resizable()
+                                            .scaledToFill()
+                                            .clipShape(Circle())
+                                            .frame(width: 47, height: 47)
+                                            .padding(.trailing, 10)
                                     }
                                 }
                                 .padding(.trailing, 10)

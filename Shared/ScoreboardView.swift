@@ -86,7 +86,7 @@ struct ScoreboardView: View {
                     .font(.title)
                     .foregroundColor(Color.init(hex: "1F3CD6"))
                 }
-                Text("% \(String(format: "%.2f", selectedDeck.correctRate as CVarArg))")
+                Text("% \(String(format: "%.2f", selectedDeck.correctRate))")
                     .fontWeight(.semibold)
                     .font(.system(size: 54))
                     .foregroundColor(.red)
