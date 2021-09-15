@@ -79,7 +79,7 @@ struct ProfileView: View {
             Group {
                 HStack(spacing:10) {
                     Text("Name: ")
-                        .foregroundColor(Color.init(hex: "6C63FF"))
+                        .foregroundColor(Color.init(hex: "1130C1"))
                         .font(.title)
                     VStack {
                         if let name =  profileArrPersistent.last?.name {
@@ -99,7 +99,7 @@ struct ProfileView: View {
                 
                 HStack(spacing:10) {
                     Text("Last Name: ")
-                        .foregroundColor(Color.init(hex: "6C63FF"))
+                        .foregroundColor(Color.init(hex: "1130C1"))
                         .font(.title)
                     VStack {
                         if let lname =  profileArrPersistent.last?.lastName {
@@ -118,7 +118,7 @@ struct ProfileView: View {
                 
                 HStack(spacing:10){
                     Text("Age: ")
-                        .foregroundColor(Color.init(hex: "6C63FF"))
+                        .foregroundColor(Color.init(hex: "1130C1"))
                         .font(.title)
                     VStack {
                         if let age =  profileArrPersistent.last?.age {
@@ -141,7 +141,7 @@ struct ProfileView: View {
 
                 HStack(spacing:10) {
                     Text("Sex: ")
-                        .foregroundColor(Color.init(hex: "6C63FF"))
+                        .foregroundColor(Color.init(hex: "1130C1"))
                         .font(.title)
                     VStack {
                         if let sex =  profileArrPersistent.last?.sex {
@@ -159,7 +159,7 @@ struct ProfileView: View {
 
                 HStack(spacing:10) {
                     Text("Location: ")
-                        .foregroundColor(Color.init(hex: "6C63FF"))
+                        .foregroundColor(Color.init(hex: "1130C1"))
                         .font(.title)
 
                     VStack {
@@ -198,7 +198,7 @@ struct ProfileView: View {
                     Text("Save")
                         .font(.title)
                         .frame(width: 130, height: 50)
-                        .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
+                        .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "1130C1"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
                         .clipShape(Capsule())
                         .foregroundColor(.white)
                         .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.pink]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))

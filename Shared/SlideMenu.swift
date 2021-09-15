@@ -66,8 +66,8 @@ struct SlideMenu: View {
             }
             
             VStack(spacing:12) {
-                if let name = profileArrPersistent.last?.name {
-                    Text(name)
+                if let name = profileArrPersistent.last?.name, let lastName = profileArrPersistent.last?.lastName {
+                    Text("\(name) \(lastName)")
                         .font(.caption)
                 } else {
                     Text("Anonymous")
