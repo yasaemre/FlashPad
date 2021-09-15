@@ -37,7 +37,7 @@ struct LikedCardView: View {
                     Text("Word")
                         .font(.title)
                         .frame(width: 130, height: 40)
-                        .background(!flip ? Color.init(hex: "6C63FF") : .gray)
+                        .background(!flip ? Color.init(hex: "271D76") : .gray)
                         .clipShape(Capsule())
                         .foregroundColor(.white)
                     
@@ -53,7 +53,7 @@ struct LikedCardView: View {
                     Text("Meaning")
                         .font(.title)
                         .frame(width: 130, height: 40)
-                        .background(flip ? Color.init(hex: "6C63FF") : .gray)
+                        .background(flip ? Color.init(hex: "271D76") : .gray)
                         .clipShape(Capsule())
                         .foregroundColor(.white)
                 }

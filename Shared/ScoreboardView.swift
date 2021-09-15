@@ -18,7 +18,6 @@ struct ScoreboardView: View {
            sortDescriptors: [NSSortDescriptor(keyPath: \DeckCore.deckName, ascending: true)],
            animation: .default)
        private var decksArrPersistent: FetchedResults<DeckCore>
-//    @FetchRequest private var decksArrPersistent: FetchedResults<DeckCore>
 
 
     
@@ -50,12 +49,13 @@ struct ScoreboardView: View {
                     .resizable()
                     .scaledToFill()
                     .clipShape(Circle())
-                    .frame(width: 80, height: 80)
+                    .frame(width: 130, height: 130)
                     .padding(.trailing, 10)
             }
             
-           
-        
+            
+            
+            
             HStack {
                 Text(profileArrPersistent.last?.name ?? "Anonymous")
                     .foregroundColor(Color.init(hex: "6C63FF"))
@@ -63,40 +63,32 @@ struct ScoreboardView: View {
                     .foregroundColor(Color.init(hex: "6C63FF"))
             }
             
-            VStack(spacing: 5) {
-                if (decksArrPersistent.count > 0) {
-                    Picker("Please choose a deck", selection: $selectedDeck) {
-                        ForEach(decksArrPersistent, id: \.self) { (deck:DeckCore) in
-                            Text(deck.unwrappedDeckName)
-                        }
+            
+            
+            if (decksArrPersistent.count > 0) {
+                Picker("Please choose a deck", selection: $selectedDeck) {
+                    ForEach(decksArrPersistent, id: \.self) { (deck:DeckCore) in
+                        Text(deck.unwrappedDeckName)
+                            .foregroundColor(Color.init(hex: "6C63FF"))
                     }
-                    .frame(height: 150)
                 }
-//                if (decksArrPersistent.count > 0) {
-//                    Text("You selected: \(selectedDeck.unwrappedDeckName)")
-//                }
+                .pickerStyle(.wheel)
+                //CustomPicker()
             }
-
+            
+            
             
             
             
             Group {
                 if (decksArrPersistent.count > 0) {
-                Text("The Highest Correct Rate for \(selectedDeck.unwrappedDeckName):")
+                Text("The Highest Correct Rate \nfor \(selectedDeck.unwrappedDeckName):")
                     .font(.title)
                     .foregroundColor(Color.init(hex: "1F3CD6"))
                 }
                 Text("% \(String(format: "%.2f", selectedDeck.correctRate as CVarArg))")
                     .fontWeight(.semibold)
                     .font(.system(size: 54))
-                    .foregroundColor(.red)
-                
-                Text("Time spent:")
-                    .font(.title)
-                    .foregroundColor(Color.init(hex: "1F3CD6"))
-                
-                Text("3 hrs 23 min")
-                    .font(.title)
                     .foregroundColor(.red)
             }
             .padding(.top, 20)

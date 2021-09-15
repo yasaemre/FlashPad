@@ -21,7 +21,7 @@ struct EditView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
     @StateObject var likedCore:LikedCore
-    @State var correctAnswer = 0
+   // @State var correctAnswer = 0
 
 
 
@@ -70,13 +70,13 @@ struct EditView: View {
                     Text("Word")
                         .font(.title)
                         .frame(width: 130, height: 40)
-                        .background(!flip ? Color.init(hex: "6C63FF") : .gray)
+                        .background(!flip ? Color.init(hex: "271D76") : .gray)
                         .clipShape(Capsule())
                         .foregroundColor(.white)
-                        .navigationBarItems(trailing: NavigationLink(destination: StudyScreenView(deckCore: deckCore, card: card, correctAnswer: correctAnswer)) {
+                        .navigationBarItems(trailing: NavigationLink(destination: StudyScreenView(deckCore: deckCore, card: card)) {
                             Text("Study")
                                 .font(.title)
-                                .foregroundColor(Color.init(hex: "6C63FF"))
+                                .foregroundColor(Color.init(hex: "B74278"))
                                 .padding(.trailing, 1)
                                 
                         }
@@ -94,7 +94,7 @@ struct EditView: View {
                     Text("Meaning")
                         .font(.title)
                         .frame(width: 130, height: 40)
-                        .background(flip ? Color.init(hex: "6C63FF") : .gray)
+                        .background(flip ? Color.init(hex: "271D76") : .gray)
                         .clipShape(Capsule())
                         .foregroundColor(.white)
                 }
@@ -120,7 +120,7 @@ struct EditView: View {
             }
             
             RoundedRectangle(cornerRadius: 10)
-                .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "271D76"), Color.init(hex: "c8d4f5")]), startPoint: .topLeading, endPoint: .bottomTrailing))
                 .frame(width: 250, height: 350)
                 .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
                 .overlay(
@@ -222,7 +222,7 @@ struct EditView: View {
                 } label: {
                     Image(systemName: "arrowshape.turn.up.backward")
                         .font(.largeTitle)
-                        .foregroundColor(Color.init(hex: "6C63FF"))
+                        .foregroundColor(Color.init(hex: "B74278"))
                 }
                 
                 Button {
@@ -233,7 +233,7 @@ struct EditView: View {
                     Text("Add Card")
                         .font(.title)
                         .frame(width: 150, height: 60)
-                        .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "6C63FF"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
+                        .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "271D76"), Color.init(hex: "B74278")]),  center: .center, startRadius: 5, endRadius: 120))
                         .clipShape(Capsule())
                         .foregroundColor(.white)
                         .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.pink]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
@@ -248,7 +248,7 @@ struct EditView: View {
                 } label: {
                     Image(systemName: "arrowshape.turn.up.right")
                         .font(.largeTitle)
-                        .foregroundColor(Color.init(hex: "6C63FF"))
+                        .foregroundColor(Color.init(hex: "B74278"))
                 }
             }
         }

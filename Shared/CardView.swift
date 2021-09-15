@@ -24,8 +24,8 @@ struct CardView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State var correctRate = 0.0
 
-    @State var correctAnswer = 0
-    @State var falseAnswer = 0
+    @Binding var correctAnswer:Int
+    @Binding var falseAnswer:Int
 //    @State var isTapped = false
 //    @State var startAnimation = false
 //    @State var bgAnimaton = false
@@ -73,7 +73,7 @@ struct CardView: View {
                     Text("Word")
                         .font(.title)
                         .frame(width: 130, height: 40)
-                        .background(!flip ? Color.init(hex: "6C63FF") : .gray)
+                        .background(!flip ? Color.init(hex: "271D76") : .gray)
                         .clipShape(Capsule())
                         .foregroundColor(.white)
                     
@@ -89,7 +89,7 @@ struct CardView: View {
                     Text("Meaning")
                         .font(.title)
                         .frame(width: 130, height: 40)
-                        .background(flip ? Color.init(hex: "6C63FF") : .gray)
+                        .background(flip ? Color.init(hex: "271D76") : .gray)
                         .clipShape(Capsule())
                         .foregroundColor(.white)
                 }
@@ -218,7 +218,7 @@ struct CardView: View {
                 Text("Correct: \(correctAnswer)")
                     .font(.title)
                     .frame(width: 130, height: 40)
-                    .background(Color.init(hex: "1EAE61"))
+                    .background(Color.init(hex: "271D76"))
                     .clipShape(Capsule())
                     .foregroundColor(.white)
                 
@@ -227,7 +227,7 @@ struct CardView: View {
                 Text("False: \(falseAnswer)")
                     .font(.title)
                     .frame(width: 130, height: 40)
-                    .background(Color.init(hex: "B60D0D"))
+                    .background(Color.init(hex: "B74278"))
                     .clipShape(Capsule())
                     .foregroundColor(.white)
             }

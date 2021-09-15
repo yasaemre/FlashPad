@@ -18,7 +18,7 @@ struct StudyScreenView: View {
     @State var card:Card
    // @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
     @State var indexCard = 0
-    @State var correctAnswer:Int
+    @State var correctAnswer = 0
 //    @State var falseAnswer:Int
     //@State var isTapped = false
     
@@ -35,7 +35,7 @@ struct StudyScreenView: View {
         
         ZStack(alignment: .top){
             ForEach(deckCore.cardsArray.reversed()) { cardCore in
-                CardView(cardCore: cardCore, card: card, deckCore: deckCore, indexCard: $indexCard, correctAnswer: correctAnswer,  falseAnswer: falseAnswer, resetBg: $resetBg)
+                CardView(cardCore: cardCore, card: card, deckCore: deckCore, indexCard: $indexCard, correctAnswer: $correctAnswer,  falseAnswer: $falseAnswer, resetBg: $resetBg)
                     
             }
             .onAppear {
