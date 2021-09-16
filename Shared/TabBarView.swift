@@ -162,9 +162,8 @@ struct TabBarView: View {
                     LikedCardView()
                     .tag("liked")
 
-                    Color(UIColor.systemBackground)
-                        .ignoresSafeArea(.all, edges: .all)
-                        .tag("about")
+                    IntsructionsView()
+                    .tag("about")
                     
                     
                     
