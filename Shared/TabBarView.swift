@@ -155,9 +155,7 @@ struct TabBarView: View {
                     }
                     .tag("home")
                     
-                    Color(UIColor.systemBackground)
-                        .ignoresSafeArea(.all, edges: .all)
-                        .tag("donate")
+                    .tag("donate")
 
                     LikedCardView()
                     .tag("liked")
@@ -270,7 +268,7 @@ struct TabBarView: View {
 
                     }
                 }
-                .ignoresSafeArea(.all, edges: .all)
+                //.ignoresSafeArea(.all, edges: .all)
                 .foregroundColor(.primary)
 
             }

@@ -157,7 +157,7 @@ struct LikedCardView: View {
             
             Spacer()
         }
-        .padding(.top, 1)
+        //.padding(.top, 1)
         .ignoresSafeArea(.all, edges: .all)
 
         
