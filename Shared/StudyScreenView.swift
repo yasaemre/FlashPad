@@ -29,8 +29,9 @@ struct StudyScreenView: View {
     @State var falseAnswer = 0
     //@EnvironmentObject var settings: GameSettings
     //@State var correctAnswer = UserDefaults.standard.integer(forKey: "correctAnswer")
-    @AppStorage("correctA") var correctA = 0.0
-    
+   // @AppStorage("correctA") var correctA = 0.0
+    @State var correctA = UserDefaults.standard.double(forKey: "correctA")
+
     var body: some View {
         
         ZStack(alignment: .top){
@@ -44,14 +45,16 @@ struct StudyScreenView: View {
             }
             
             
-        }
-        .onDisappear{
+        }.onDisappear{
             deckCore.correctRate = (correctA / Double(deckCore.cardsArray.count)) * 100
             print("correctA \(correctA)")
             print("deckCore.cardsArray.count \(deckCore.cardsArray.count)")
             print("deckCore.correctRate \(deckCore.correctRate)")
-            correctA = 0
+            //correctA = 0.0
+            UserDefaults.standard.set(0.0, forKey: "correctA")
+
         }
+        
        
         .zIndex(1.0)
     }

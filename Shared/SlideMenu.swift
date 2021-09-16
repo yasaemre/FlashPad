@@ -17,6 +17,7 @@ struct SlideMenu: View {
            animation: .default)
        private var profileArrPersistent: FetchedResults<ProfileCore>
     @Environment(\.managedObjectContext) private var viewContext
+    @State private var isShareSheetShowing = false
 
     var body: some View {
         VStack {
@@ -138,6 +139,9 @@ struct SlideMenu: View {
                         Text("Share with \nFriends")
                             .frame(height: 50)
                     }
+                    .onTapGesture {
+                        shareButton()
+                    }
                 }
                 .padding(.top, 25)
                 Divider()
@@ -152,6 +156,16 @@ struct SlideMenu: View {
         .background((colorScheme == .dark ? Color.black : Color.white).edgesIgnoringSafeArea(.all))
         .overlay(Rectangle().stroke(Color.primary.opacity(0.2), lineWidth: 2).shadow( radius:3).edgesIgnoringSafeArea(.all))
         
+    }
+    
+   public func shareButton() {
+        isShareSheetShowing.toggle()
+        
+       //https://apps.apple.com/us/app/vintage-house/id1549251393
+        let url = URL(string: "https://emre-yasa.tech/")
+        let activityView = UIActivityViewController(activityItems: [url!], applicationActivities: nil)
+        
+        UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
     }
 }
 
