@@ -16,21 +16,15 @@ struct StudyScreenView: View {
         // MARK: - Drawing Constant
     @StateObject var deckCore:DeckCore
     @State var card:Card
-   // @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
     @State var indexCard = 0
     @State var correctAnswer = 0
-//    @State var falseAnswer:Int
-    //@State var isTapped = false
     
     @State var resetBg = false
-    //@Binding var resetBg:Bool
     @State var correctRate = 0.0
-    //@State var correctAnswer = 0
     @State var falseAnswer = 0
-    //@EnvironmentObject var settings: GameSettings
-    //@State var correctAnswer = UserDefaults.standard.integer(forKey: "correctAnswer")
-    @AppStorage("correctA") var correctA = 0.0
-    
+ 
+    @State var correctA = UserDefaults.standard.double(forKey: "correctA")
+
     var body: some View {
         
         ZStack(alignment: .top){
@@ -44,14 +38,15 @@ struct StudyScreenView: View {
             }
             
             
-        }
-        .onDisappear{
+        }.onDisappear{
             deckCore.correctRate = (correctA / Double(deckCore.cardsArray.count)) * 100
             print("correctA \(correctA)")
             print("deckCore.cardsArray.count \(deckCore.cardsArray.count)")
             print("deckCore.correctRate \(deckCore.correctRate)")
-            correctA = 0
+            UserDefaults.standard.set(0.0, forKey: "correctA")
+
         }
+        
        
         .zIndex(1.0)
     }
