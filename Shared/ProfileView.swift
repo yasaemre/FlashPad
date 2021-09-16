@@ -63,10 +63,7 @@ struct ProfileView: View {
                 }
             }
             
-           
-
-            
-            
+ 
             
             
             Button(action: {
