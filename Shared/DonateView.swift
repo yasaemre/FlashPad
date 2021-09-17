@@ -18,20 +18,22 @@ struct DonateView: View {
             } else {
                 LinearGradient(gradient: Gradient(colors: [.black,.black, Color.init(hex:"81329b")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.bottom)
             }
-            VStack (){
-                Image("FlashCards")
+            VStack(spacing: 5){
+                
+                Image("donate")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 230, height: 200)
-                
+                    .frame(width: 100, height: 100)
+                    .padding(.top, 1)
+
                 Text("Support development of the app, FlashPad is a free and open application, developed by a small team. The heart and soul of FlashPad is our global community of tons of users, and donors like yourself – all united to share unlimited access to well structured app. Your donations keep our knowledge projects like FlashPad freely available to everyone. Please help us keep FlashPad growing.")
                     .foregroundColor(colorScheme == .dark ? .white : .black)
-                    .frame(width: UIScreen.main.bounds.width - 20)
+                    .frame(width: UIScreen.main.bounds.width - 60)
                     .padding(.top, 1)
                 
                 RoundedRectangle(cornerRadius: 10)
                     .fill(LinearGradient(gradient: Gradient(colors: [.white]), startPoint: .topLeading, endPoint: .bottomTrailing))
-                    .frame(width: 350, height: 100)
+                    .frame(width: 300, height: 100)
                     .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
                     .overlay(
                         VStack {
@@ -48,7 +50,27 @@ struct DonateView: View {
 
                     }
                     )
-                    .padding(.top, 1)
+                    .padding(.top, 13)
+                
+                HStack {
+                    Spacer()
+                    Button (action: {
+                        print("Donate button clicked")
+                        withAnimation {
+                            //alertView()
+                        }
+                    }, label: {
+                        Text("Continue")
+                            .font(.title)
+                            .frame(width: 150, height: 60)
+                            .foregroundColor(Color.init(hex: "271D76"))
+                            .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                    })
+                        .padding(.trailing, 20)
+                }
+                    .padding(.top, 13)
+                Spacer()
+
             }
         }
         
