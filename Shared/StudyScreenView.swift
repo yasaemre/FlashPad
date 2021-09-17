@@ -43,6 +43,7 @@ struct StudyScreenView: View {
             print("correctA \(correctA)")
             print("deckCore.cardsArray.count \(deckCore.cardsArray.count)")
             print("deckCore.correctRate \(deckCore.correctRate)")
+            //correctA = 0
             UserDefaults.standard.set(0.0, forKey: "correctA")
 
         }

@@ -19,6 +19,7 @@ struct ScoreboardView: View {
            animation: .default)
        private var decksArrPersistent: FetchedResults<DeckCore>
 
+    @State private var isShareSheetShowing = false
 
     
     @State private var selectedDeck: DeckCore
@@ -51,6 +52,18 @@ struct ScoreboardView: View {
                     .clipShape(Circle())
                     .frame(width: 130, height: 130)
                     .padding(.trailing, 10)
+                    .navigationBarItems(trailing:
+                        Image(systemName: "square.and.arrow.up")
+                                            .font(.title)
+                                            .foregroundColor(Color.init(hex: "B74278"))
+                                            .padding(.trailing, 1)
+                                            .onTapGesture {
+                        shareButton()
+                        
+                    }
+                            
+                    
+                    )
             }
             
             
@@ -96,6 +109,16 @@ struct ScoreboardView: View {
         }
 
     }
+    
+    public func shareButton() {
+         isShareSheetShowing.toggle()
+         
+        //https://apps.apple.com/us/app/vintage-house/id1549251393
+         let score = selectedDeck.correctRate
+        let activityView = UIActivityViewController(activityItems:[score], applicationActivities: nil)
+         
+         UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
+     }
 }
 
 //struct ScoreboardView_Previews: PreviewProvider {

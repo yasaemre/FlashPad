@@ -59,6 +59,8 @@ struct TabBarView: View {
    // var editScreenView = EditScreenView()
     @StateObject var deckCore = DeckCore()
     @State private var calendarWiggles = false
+    
+    @EnvironmentObject private var store:Store
     var body: some View {
        // ZStack {
         NavigationView {
@@ -154,7 +156,7 @@ struct TabBarView: View {
                         }
                     }
                     .tag("home")
-                    
+                    DonateView()
                     .tag("donate")
 
                     LikedCardView()

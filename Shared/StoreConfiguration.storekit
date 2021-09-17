@@ -1,0 +1,38 @@
+{
+  "identifier" : "84CFBF38",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "568F97B2",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Support the team to improve more",
+          "displayName" : "Donation",
+          "locale" : "en_GB"
+        }
+      ],
+      "productID" : "emre.FlashPad.donation",
+      "referenceName" : "donation",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 1
+  }
+}

@@ -16,10 +16,13 @@ struct FlashCardsApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     let persistenceController = PersistenceController.shared
     @Environment(\.scenePhase) var scenePhase
+    
+    @StateObject private var store = Store()
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(store)
             
         }.onChange(of: scenePhase) { _ in
             persistenceController.saveContext()

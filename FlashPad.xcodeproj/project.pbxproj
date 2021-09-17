@@ -76,6 +76,12 @@
 		C6BB306126AF0A9F00B6710C /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BB306026AF0A9F00B6710C /* Deck.swift */; };
 		C6BB306326AF0B0700B6710C /* DeckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BB306226AF0B0700B6710C /* DeckViewModel.swift */; };
 		C6BB306726AF120900B6710C /* DropViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BB306626AF120900B6710C /* DropViewDelegate.swift */; };
+		C6D25F4426F510440033A989 /* StoreConfiguration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = C6D25F4326F510440033A989 /* StoreConfiguration.storekit */; };
+		C6D25F4526F510440033A989 /* StoreConfiguration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = C6D25F4326F510440033A989 /* StoreConfiguration.storekit */; };
+		C6D25F4726F511A70033A989 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D25F4626F511A70033A989 /* Store.swift */; };
+		C6D25F4826F511A70033A989 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D25F4626F511A70033A989 /* Store.swift */; };
+		C6D25F4A26F52E7A0033A989 /* DonateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D25F4926F52E7A0033A989 /* DonateView.swift */; };
+		C6D25F4B26F52E7A0033A989 /* DonateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D25F4926F52E7A0033A989 /* DonateView.swift */; };
 		C6D2CF0626CD82B300C868A9 /* FlashPad.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C6D2CF0426CD82B300C868A9 /* FlashPad.xcdatamodeld */; };
 		C6D2CF0726CD82B300C868A9 /* FlashPad.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C6D2CF0426CD82B300C868A9 /* FlashPad.xcdatamodeld */; };
 		C6D2CF0926CD864A00C868A9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D2CF0826CD864A00C868A9 /* Persistence.swift */; };
@@ -160,6 +166,9 @@
 		C6BB306026AF0A9F00B6710C /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		C6BB306226AF0B0700B6710C /* DeckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckViewModel.swift; sourceTree = "<group>"; };
 		C6BB306626AF120900B6710C /* DropViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewDelegate.swift; sourceTree = "<group>"; };
+		C6D25F4326F510440033A989 /* StoreConfiguration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreConfiguration.storekit; sourceTree = "<group>"; };
+		C6D25F4626F511A70033A989 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		C6D25F4926F52E7A0033A989 /* DonateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateView.swift; sourceTree = "<group>"; };
 		C6D2CF0526CD82B300C868A9 /* FlashPad.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlashPad.xcdatamodel; sourceTree = "<group>"; };
 		C6D2CF0826CD864A00C868A9 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		C6D50CD0268AE8F200A60A7F /* FlashPad--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "FlashPad--iOS--Info.plist"; sourceTree = "<group>"; };
@@ -298,6 +307,9 @@
 				C62D509426E2BD0900761457 /* HeartView.swift */,
 				C696619226EC4D1200DE06A3 /* LikedCardView.swift */,
 				C61D4A0E26EF231900D5CC52 /* PhotoPicker.swift */,
+				C6D25F4326F510440033A989 /* StoreConfiguration.storekit */,
+				C6D25F4626F511A70033A989 /* Store.swift */,
+				C6D25F4926F52E7A0033A989 /* DonateView.swift */,
 				C61D4A0B26EEFDC500D5CC52 /* ProfileView.swift */,
 				C63A823626F0521B00496B6C /* ScoreboardView.swift */,
 				C693A1FF26F39A46006C9AB3 /* IntsructionsView.swift */,
@@ -475,6 +487,7 @@
 			files = (
 				C67413CF268ABAEC00128E2D /* Assets.xcassets in Resources */,
 				C6F4134D268AD65000ACBC78 /* GoogleService-Info.plist in Resources */,
+				C6D25F4426F510440033A989 /* StoreConfiguration.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +497,7 @@
 			files = (
 				C67413D0268ABAEC00128E2D /* Assets.xcassets in Resources */,
 				C6F4134E268AD65000ACBC78 /* GoogleService-Info.plist in Resources */,
+				C6D25F4526F510440033A989 /* StoreConfiguration.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +628,7 @@
 				C67413CB268ABAEC00128E2D /* FlashPadApp.swift in Sources */,
 				C6849537268E385C003BC08C /* SignUpViewModel.swift in Sources */,
 				C6DD7C1D26F1906B0028DCAC /* DeckCore+CoreDataProperties.swift in Sources */,
+				C6D25F4A26F52E7A0033A989 /* DonateView.swift in Sources */,
 				C696618A26EBA87100DE06A3 /* CardCore+CoreDataProperties.swift in Sources */,
 				C696619726EC517000DE06A3 /* LikedCore+CoreDataClass.swift in Sources */,
 				C62D509526E2BD0900761457 /* HeartView.swift in Sources */,
@@ -626,6 +641,7 @@
 				C6F6B80E268CF59400A3D9C9 /* HomeView.swift in Sources */,
 				C61D4A0F26EF231900D5CC52 /* PhotoPicker.swift in Sources */,
 				C67413E9268ABC1400128E2D /* SignUpView.swift in Sources */,
+				C6D25F4726F511A70033A989 /* Store.swift in Sources */,
 				C696619326EC4D1200DE06A3 /* LikedCardView.swift in Sources */,
 				C63A823226EFB06600496B6C /* ProfileCore+CoreDataClass.swift in Sources */,
 				C67413E6268ABBED00128E2D /* ScreenView.swift in Sources */,
@@ -664,6 +680,7 @@
 				C696619A26EC517000DE06A3 /* LikedCore+CoreDataProperties.swift in Sources */,
 				C6243196268AD7D600C01F24 /* ColorExtention.swift in Sources */,
 				C6DB9B5F26E1E6AB00BBF9F5 /* EditView.swift in Sources */,
+				C6D25F4B26F52E7A0033A989 /* DonateView.swift in Sources */,
 				C67413ED268ABC3200128E2D /* WalkthroughView.swift in Sources */,
 				C61D4A1026EF231900D5CC52 /* PhotoPicker.swift in Sources */,
 				C6AC1385268F6FEA005815F3 /* LoginViewModel.swift in Sources */,
@@ -671,6 +688,7 @@
 				C60929F026B39D670048DE83 /* SlideMenu.swift in Sources */,
 				C6B634B326DF502E00DCC3BF /* CardView.swift in Sources */,
 				C6849535268E36A4003BC08C /* LogoutButtonView.swift in Sources */,
+				C6D25F4826F511A70033A989 /* Store.swift in Sources */,
 				C67413EA268ABC1400128E2D /* SignUpView.swift in Sources */,
 				C6849538268E385C003BC08C /* SignUpViewModel.swift in Sources */,
 				C696619826EC517000DE06A3 /* LikedCore+CoreDataClass.swift in Sources */,
