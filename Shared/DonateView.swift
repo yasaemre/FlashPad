@@ -17,7 +17,7 @@ struct DonateView: View {
     var body: some View {
         ZStack(alignment: .top) {
             if colorScheme == .light {
-                LinearGradient(gradient: Gradient(colors: [.white,.white, Color.init(hex:"81329b")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.bottom)
+                LinearGradient(gradient: Gradient(colors: [.white, Color.init(hex:"81329b")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.bottom)
             } else {
                 LinearGradient(gradient: Gradient(colors: [.black,.black, Color.init(hex:"81329b")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.bottom)
             }
@@ -28,28 +28,22 @@ struct DonateView: View {
                     .scaledToFit()
                     .frame(width: 100, height: 100)
                     .padding(.top, 1)
+                    .tint(Color.init(hex: "102FC3"))
 
                 Text("Support development of the app, FlashPad is a free and open application, developed by a small team. The heart and soul of FlashPad is our global community of tons of users, and donors like yourself – all united to share unlimited access to well structured app. Your donations keep our knowledge projects like FlashPad freely available to everyone. Please help us keep FlashPad growing.")
                     .foregroundColor(colorScheme == .dark ? .white : .black)
                     .frame(width: UIScreen.main.bounds.width - 60)
                     .padding(.top, 1)
                 
+                
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(LinearGradient(gradient: Gradient(colors: [.white]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing))
                     .frame(width: 300, height: 100)
                     .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
                     .overlay(
                         VStack {
-                        Text("Donate whatever it's worth for you")
-                            .foregroundColor(.black)
-
-                        Text("One time purchase")
-                            .foregroundColor(.black)
-
-                            .font(.system(size: 10))
-                        Slider(value: $amount, in: 0.99...10)
-                        Text("Donation amount is  $\(amount, specifier: "%.2f")")
-                            .foregroundColor(.black)
+                        Text("One time donation amount is just \n$0.99")
+                            .foregroundColor(.white)
 
                     }
                     )
@@ -60,9 +54,12 @@ struct DonateView: View {
                     Button(action: action, label: {
                         Text("Continue")
                             .font(.title)
-                            .frame(width: 150, height: 60)
-                            .foregroundColor(Color.init(hex: "271D76"))
-                            .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                            .frame(width: 150, height: 45)
+                            //.foregroundColor(Color.init(hex: "271D76"))
+                            .foregroundColor(.white)
+//                            .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                            .background(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(20)
                     })
                         .padding(.trailing, 20)
                 }
@@ -75,7 +72,7 @@ struct DonateView: View {
     }
     
     func action() {
-        if let product = store.product(for: SKProduct().productIdentifier) {
+        if let product = store.product(for:"emre.FlashPad.donation") {
             store.purchaseProduct(product)
         }
         
