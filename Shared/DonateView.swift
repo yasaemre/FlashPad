@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct DonateView: View {
     
     @State private var amount: Double = 0
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject private var store:Store
+   // @StateObject var store = Store()
     var body: some View {
         ZStack(alignment: .top) {
             if colorScheme == .light {
@@ -54,12 +57,7 @@ struct DonateView: View {
                 
                 HStack {
                     Spacer()
-                    Button (action: {
-                        print("Donate button clicked")
-                        withAnimation {
-                            //alertView()
-                        }
-                    }, label: {
+                    Button(action: action, label: {
                         Text("Continue")
                             .font(.title)
                             .frame(width: 150, height: 60)
@@ -72,6 +70,13 @@ struct DonateView: View {
                 Spacer()
 
             }
+        }
+        
+    }
+    
+    func action() {
+        if let product = store.product(for: SKProduct().productIdentifier) {
+            store.purchaseProduct(product)
         }
         
     }

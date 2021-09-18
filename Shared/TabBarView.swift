@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TabBarView: View {
-    
     init() {
         UITabBar.appearance().isHidden = true
     }
@@ -60,7 +59,6 @@ struct TabBarView: View {
     @StateObject var deckCore = DeckCore()
     @State private var calendarWiggles = false
     
-    @EnvironmentObject private var store:Store
     var body: some View {
        // ZStack {
         NavigationView {
