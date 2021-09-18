@@ -18,7 +18,12 @@ struct SlideMenu: View {
        private var profileArrPersistent: FetchedResults<ProfileCore>
     @Environment(\.managedObjectContext) private var viewContext
     @State private var isShareSheetShowing = false
-
+    
+    @Binding var imageHasChanged:Bool
+    @Binding var avatarImageData:Data?
+    @State private var avatarImage = UIImage(named: "profilePhoto")!
+    
+   
     var body: some View {
         VStack {
             
@@ -50,20 +55,33 @@ struct SlideMenu: View {
             .padding(.bottom, 25)
 
 
-            if let data = profileArrPersistent.last?.image {
-                Image(uiImage: (UIImage(data: data) ?? UIImage(named: "profilePhoto"))!)
+            if imageHasChanged == true {
+                if let imgData = avatarImageData{
+                    Image(uiImage: UIImage(data: imgData) ?? avatarImage)
                     .resizable()
                     .scaledToFill()
                     .clipShape(Circle())
-                    .frame(width: 80, height: 80)
-                    .padding(.trailing, 10)
+                    .frame(width: 85, height: 85)
+                    .padding()
+                }
             } else {
-                Image("profilePhoto")
-                    .resizable()
-                    .scaledToFill()
-                    .clipShape(Circle())
-                    .frame(width: 47, height: 47)
-                    .padding(.trailing, 10)
+                if let image = profileArrPersistent.last?.image{
+                    if let uiImage = UIImage(data: image)  {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .scaledToFill()
+                            .clipShape(Circle())
+                            .frame(width: 85, height: 85)
+                            .padding()
+                    }
+                } else {
+                    Image(uiImage: avatarImage)
+                        .resizable()
+                        .scaledToFill()
+                        .clipShape(Circle())
+                        .frame(width: 85, height: 85)
+                        .padding()
+                }
             }
             
             VStack(spacing:12) {
@@ -168,9 +186,9 @@ struct SlideMenu: View {
         UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
     }
 }
-
-struct MenuView_Previews: PreviewProvider {
-    static var previews: some View {
-        SlideMenu(dark: .constant(false), show: .constant(false))
-    }
-}
+//
+//struct MenuView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SlideMenu(dark: .constant(false), show: .constant(false))
+//    }
+//}

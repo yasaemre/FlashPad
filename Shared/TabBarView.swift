@@ -58,7 +58,10 @@ struct TabBarView: View {
    // var editScreenView = EditScreenView()
     @StateObject var deckCore = DeckCore()
     @State private var calendarWiggles = false
-    
+    @State var imageHasChanged = false
+    @State private var avatarImageData:Data? = Data()
+    @State private var avatarImage = UIImage(named: "profilePhoto")!
+
     var body: some View {
        // ZStack {
         NavigationView {
@@ -244,21 +247,51 @@ struct TabBarView: View {
 //                                        .aspectRatio(contentMode: .fit)
 //                                        .frame(width: 50, height: 70)
 //                                }
-                                NavigationLink(destination: ProfileView()) {
-                                    if let data = profileArrPersistent.last?.image {
-                                        Image(uiImage: (UIImage(data: data) ?? UIImage(named: "profilePhoto"))!)
+                                NavigationLink(destination: ProfileView(avatarImageData: $avatarImageData, imageHasChanged: $imageHasChanged)) {
+                                    
+//                                    if let data = profileArrPersistent.last?.image {
+//                                        Image(uiImage: (UIImage(data: data) ?? UIImage(named: "profilePhoto"))!)
+//                                            .resizable()
+//                                            .scaledToFill()
+//                                            .clipShape(Circle())
+//                                            .frame(width: 47, height: 47)
+//                                            .padding(.trailing, 10)
+//                                    } else {
+//                                        Image("profilePhoto")
+//                                            .resizable()
+//                                            .scaledToFill()
+//                                            .clipShape(Circle())
+//                                            .frame(width: 47, height: 47)
+//                                            .padding(.trailing, 10)
+//                                    }
+                                    
+                                    if imageHasChanged == true {
+                                        if let imgData = avatarImageData{
+                                            Image(uiImage: UIImage(data: imgData) ?? avatarImage)
                                             .resizable()
                                             .scaledToFill()
                                             .clipShape(Circle())
-                                            .frame(width: 47, height: 47)
-                                            .padding(.trailing, 10)
+                                            .frame(width: 45, height: 45)
+                                            .padding()
+                                        }
                                     } else {
-                                        Image("profilePhoto")
-                                            .resizable()
-                                            .scaledToFill()
-                                            .clipShape(Circle())
-                                            .frame(width: 47, height: 47)
-                                            .padding(.trailing, 10)
+                                        if let image = profileArrPersistent.last?.image{
+                                            if let uiImage = UIImage(data: image)  {
+                                                Image(uiImage: uiImage)
+                                                    .resizable()
+                                                    .scaledToFill()
+                                                    .clipShape(Circle())
+                                                    .frame(width: 45, height: 45)
+                                                    .padding()
+                                            }
+                                        } else {
+                                            Image(uiImage: avatarImage)
+                                                .resizable()
+                                                .scaledToFill()
+                                                .clipShape(Circle())
+                                                .frame(width: 45, height: 45)
+                                                .padding()
+                                        }
                                     }
                                 }
                                 .padding(.trailing, 10)
@@ -278,7 +311,7 @@ struct TabBarView: View {
         .accentColor(Color.init(hex: "6C63FF"))
         
         HStack {
-            SlideMenu(dark: self.$dark, show: self.$show)
+            SlideMenu(dark: self.$dark, show: self.$show, imageHasChanged: $imageHasChanged, avatarImageData: $avatarImageData)
                 .preferredColorScheme(colorScheme == .dark ? .dark : .light)
                     .offset(x: self.show ? 0 : -UIScreen.main.bounds.width / 1.5)
 

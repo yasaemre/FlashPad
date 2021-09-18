@@ -16,8 +16,8 @@ struct ProfileView: View {
     @State private var location = ""
     @State private var isShowingPhotoPicker = false
     @State private var avatarImage = UIImage(named: "profilePhoto")!
-    @State private var avatarImageData:Data? = Data()
-    @State private var imageHasChanged = false
+    @Binding var avatarImageData:Data? 
+    @Binding var imageHasChanged:Bool
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \ProfileCore.id, ascending: true)],
@@ -69,6 +69,7 @@ struct ProfileView: View {
             Button(action: {
                 print("Change profile photo tapped")
                 isShowingPhotoPicker = true
+                
             }) {
                 Text("Change Profile Photo")
             }
@@ -175,8 +176,8 @@ struct ProfileView: View {
                 
 
             }
-            .padding(.leading, 15)
-            .padding(.trailing, 15)
+            .padding(.leading, 30)
+            .padding(.trailing, 30)
             
             HStack {
                 Spacer()
