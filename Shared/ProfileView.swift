@@ -172,9 +172,6 @@ struct ProfileView: View {
                         
                     }
                 }
-                
-                
-
             }
             .padding(.leading, 30)
             .padding(.trailing, 30)
@@ -184,12 +181,49 @@ struct ProfileView: View {
                 
                 Button {
                     let profileCore = ProfileCore(context:viewContext)
-                    profileCore.image = avatarImageData
-                    profileCore.name = name
-                    profileCore.lastName = lastName
-                    profileCore.age = age
-                    profileCore.sex = sex
-                    profileCore.location = location
+                    if avatarImageData != nil {
+                        if let img = profileArrPersistent.last?.image {
+                            profileCore.image = img
+                        }
+                    } else {
+                        profileCore.image = avatarImageData
+                    }
+                    //profileCore.image = avatarImageData
+                    if name.isEmpty {
+                        if let name = profileArrPersistent.last?.name {
+                            profileCore.name = name
+                        }
+                    } else {
+                        profileCore.name = name
+                    }
+                    if lastName.isEmpty {
+                        if let lastName = profileArrPersistent.last?.lastName {
+                            profileCore.lastName = lastName
+                        }
+                    } else {
+                        profileCore.lastName = lastName
+                    }
+                    if age.isEmpty {
+                        if let age = profileArrPersistent.last?.age {
+                            profileCore.age = age
+                        }
+                    } else {
+                        profileCore.age = age
+                    }
+                    if sex.isEmpty {
+                        if let sex = profileArrPersistent.last?.sex {
+                            profileCore.sex = sex
+                        }
+                    } else {
+                        profileCore.sex = sex
+                    }
+                    if location.isEmpty {
+                        if let loc = profileArrPersistent.last?.location {
+                            profileCore.location = loc
+                        }
+                    } else {
+                        profileCore.location = location
+                    }
                     PersistenceController.shared.saveContext()
                     
                 } label: {

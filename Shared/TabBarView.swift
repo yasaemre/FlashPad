@@ -215,8 +215,8 @@ struct TabBarView: View {
                 .toolbar {
                     //Top custom Navigation bar
                     ToolbarItemGroup(placement: .navigationBarLeading) {
-                        VStack(alignment: .center) {
-                            HStack(alignment: .center, spacing: 105) {
+                      //  VStack(alignment: .center) {
+                        HStack(alignment: .center, spacing: 100) {
 
                                 Button(action: {
                                     print("Slide in menu tapped")
@@ -227,8 +227,9 @@ struct TabBarView: View {
                                 .symbolRenderingMode(.hierarchical)
                                 .font(.system(size: 24))
                                 .foregroundColor(Color.init(hex: "6C63FF"))
-                                .padding(.leading, 10)
 
+                                //Spacer()
+                                
                                 Button(action: {
                                     print("iCloud button tapped")
                                 }) {
@@ -238,41 +239,16 @@ struct TabBarView: View {
                                 .symbolRenderingMode(.palette)
                                 .font(.system(size: 24))
                                 .foregroundStyle(Color.init(hex: "6C63FF"), (colorScheme == .dark ? Color.white : Color.black))
-                                //.padding(100)
-//                                Button(action: {
-//                                    print("Profile button tapped")
-//                                }) {
-//                                    Image("profilePhoto")
-//                                        .resizable()
-//                                        .aspectRatio(contentMode: .fit)
-//                                        .frame(width: 50, height: 70)
-//                                }
+                               // Spacer()
+
                                 NavigationLink(destination: ProfileView(avatarImageData: $avatarImageData, imageHasChanged: $imageHasChanged)) {
-                                    
-//                                    if let data = profileArrPersistent.last?.image {
-//                                        Image(uiImage: (UIImage(data: data) ?? UIImage(named: "profilePhoto"))!)
-//                                            .resizable()
-//                                            .scaledToFill()
-//                                            .clipShape(Circle())
-//                                            .frame(width: 47, height: 47)
-//                                            .padding(.trailing, 10)
-//                                    } else {
-//                                        Image("profilePhoto")
-//                                            .resizable()
-//                                            .scaledToFill()
-//                                            .clipShape(Circle())
-//                                            .frame(width: 47, height: 47)
-//                                            .padding(.trailing, 10)
-//                                    }
-                                    
                                     if imageHasChanged == true {
                                         if let imgData = avatarImageData{
                                             Image(uiImage: UIImage(data: imgData) ?? avatarImage)
                                             .resizable()
                                             .scaledToFill()
                                             .clipShape(Circle())
-                                            .frame(width: 45, height: 45)
-                                            .padding()
+                                            //.frame(width: 45, height: 45)
                                         }
                                     } else {
                                         if let image = profileArrPersistent.last?.image{
@@ -281,23 +257,22 @@ struct TabBarView: View {
                                                     .resizable()
                                                     .scaledToFill()
                                                     .clipShape(Circle())
-                                                    .frame(width: 45, height: 45)
-                                                    .padding()
+                                                   // .frame(width: 45, height: 45)
                                             }
                                         } else {
                                             Image(uiImage: avatarImage)
                                                 .resizable()
                                                 .scaledToFill()
                                                 .clipShape(Circle())
-                                                .frame(width: 45, height: 45)
-                                                .padding()
+                                                //.frame(width: 45, height: 45)
                                         }
                                     }
                                 }
-                                .padding(.trailing, 10)
-                            }
 
-                        }
+                            }
+                            .frame(width: UIScreen.main.bounds.width)
+
+                       // }
 
                     }
                 }
