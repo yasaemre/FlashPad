@@ -215,8 +215,8 @@ struct TabBarView: View {
                 .toolbar {
                     //Top custom Navigation bar
                     ToolbarItemGroup(placement: .navigationBarLeading) {
-                      //  VStack(alignment: .center) {
-                        HStack(alignment: .center, spacing: 100) {
+                      VStack {
+                        HStack {
 
                                 Button(action: {
                                     print("Slide in menu tapped")
@@ -228,7 +228,7 @@ struct TabBarView: View {
                                 .font(.system(size: 24))
                                 .foregroundColor(Color.init(hex: "6C63FF"))
 
-                                //Spacer()
+                                Spacer()
                                 
                                 Button(action: {
                                     print("iCloud button tapped")
@@ -239,7 +239,7 @@ struct TabBarView: View {
                                 .symbolRenderingMode(.palette)
                                 .font(.system(size: 24))
                                 .foregroundStyle(Color.init(hex: "6C63FF"), (colorScheme == .dark ? Color.white : Color.black))
-                               // Spacer()
+                                Spacer()
 
                                 NavigationLink(destination: ProfileView(avatarImageData: $avatarImageData, imageHasChanged: $imageHasChanged)) {
                                     if imageHasChanged == true {
@@ -270,9 +270,11 @@ struct TabBarView: View {
                                 }
 
                             }
-                            .frame(width: UIScreen.main.bounds.width)
+                           .frame(width: UIScreen.main.bounds.width)
 
-                       // }
+
+                       }
+                      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment:.top)
 
                     }
                 }

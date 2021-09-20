@@ -181,7 +181,7 @@ struct ProfileView: View {
                 
                 Button {
                     let profileCore = ProfileCore(context:viewContext)
-                    if avatarImageData != nil {
+                    if avatarImageData == nil {
                         if let img = profileArrPersistent.last?.image {
                             profileCore.image = img
                         }
