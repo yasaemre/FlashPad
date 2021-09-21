@@ -172,7 +172,7 @@ struct SlideMenu: View {
         .padding(.horizontal, 20)
         .frame(width: UIScreen.main.bounds.width / 1.5)
         .background((colorScheme == .dark ? Color.black : Color.white).edgesIgnoringSafeArea(.all))
-        .overlay(Rectangle().stroke(Color.primary.opacity(0.2), lineWidth: 2).shadow( radius:3).edgesIgnoringSafeArea(.all))
+        //.overlay(Rectangle().stroke(Color.primary.opacity(0.2), lineWidth: 2).shadow( radius:3).edgesIgnoringSafeArea(.all))
         
     }
     

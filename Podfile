@@ -8,6 +8,7 @@ target 'FlashPad (iOS)' do
   # Pods for FlashPad (iOS)
 	pod 'Firebase/Auth'
 	pod 'FBSDKLoginKit'
+ 	pod 'FBSDKCoreKit'
 	pod 'GoogleSignIn'
 
 
