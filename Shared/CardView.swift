@@ -96,7 +96,7 @@ struct CardView: View {
             }
             
             ZStack(alignment: .center) {
-                Image(cardCore.imageName ?? "cardBackg")
+                Image(cardCore.unwrappedImage)
                     .resizable()
                     .frame(width: 250, height: 350)
                     .clipped()
