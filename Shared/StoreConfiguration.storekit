@@ -5,7 +5,7 @@
   ],
   "products" : [
     {
-      "displayPrice" : "3.99",
+      "displayPrice" : "0.99",
       "familyShareable" : false,
       "internalID" : "568F97B2",
       "localizations" : [
@@ -22,6 +22,51 @@
       ],
       "productID" : "emre.FlashPad.donation",
       "referenceName" : "donation",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "3.99",
+      "familyShareable" : false,
+      "internalID" : "E376E741",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "emre.FlashPad.donation2",
+      "referenceName" : "donation2",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "6.99",
+      "familyShareable" : false,
+      "internalID" : "49A5A420",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "emre.FlashPad.donation3",
+      "referenceName" : "donation3",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : false,
+      "internalID" : "00EC56C2",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "emre.FlashPad.donation4",
+      "referenceName" : "donation4",
       "type" : "NonConsumable"
     }
   ],

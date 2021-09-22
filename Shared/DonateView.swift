@@ -14,6 +14,7 @@ struct DonateView: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject private var store:Store
    // @StateObject var store = Store()
+    @State var product = ""
     var body: some View {
         ZStack(alignment: .top) {
             if colorScheme == .light {
@@ -38,20 +39,74 @@ struct DonateView: View {
                 
                 RoundedRectangle(cornerRadius: 10)
                     .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing))
-                    .frame(width: 300, height: 100)
+                    .frame(width: 300, height: 50)
                     .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
                     .overlay(
-                        VStack {
-                        Text("One time donation amount is just \n$0.99")
+                    
+                        Text("Select one time donation amount")
                             .foregroundColor(.white)
-
-                    }
+                    
                     )
                     .padding(.top, 13)
                 
+                HStack(spacing: 8) {
+                    
+                    Button(action: {
+                        product = "emre.FlashPad.donation"
+                    }, label: {
+                        Text("$0.99")
+                            .font(.title2)
+                            .frame(width: 70, height: 35)
+                            .foregroundColor(.white)
+                            .background(Color.init(hex: "102FC3"))
+                                .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                            .background(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(20)
+                    })
+                    Button(action: {
+                        product = "emre.FlashPad.donation2"
+                    }, label: {
+                        Text("$3.99")
+                            .font(.title2)
+                            .frame(width: 70, height: 35)
+                            .foregroundColor(.white)
+                            .background(Color.init(hex: "102FC3"))
+                                .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                            .background(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(20)
+                    })
+                    Button(action: {
+                        product = "emre.FlashPad.donation3"
+                    }, label: {
+                        Text("$6.99")
+                            .font(.title2)
+                            .frame(width: 70, height: 35)
+                            .foregroundColor(.white)
+                            .background(Color.init(hex: "102FC3"))
+                                .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                            .background(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(20)
+                    })
+                    Button(action: {
+                        product = "emre.FlashPad.donation4"
+                    }, label: {
+                        Text("$9.99")
+                            .font(.title2)
+                            .frame(width: 70, height: 35)
+                            .foregroundColor(.white)
+                            .background(Color.init(hex: "102FC3"))
+                            .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                            .background(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(20)
+                    })
+                }
+                .padding()
+                
                 HStack {
                     Spacer()
-                    Button(action: action, label: {
+                    Button(action: {
+                        action(p: product)
+                    }, label: {
                         Text("Continue")
                             .font(.title)
                             .frame(width: 150, height: 45)
@@ -71,10 +126,12 @@ struct DonateView: View {
         
     }
     
-    func action() {
-        if let product = store.product(for:"emre.FlashPad.donation") {
-            store.purchaseProduct(product)
-        }
+    func action(p:String) {
+        //ForEach(0..<store.allProducts, id: \.self) { indexP in
+            if let product = store.product(for:p) {
+                store.purchaseProduct(product)
+            }
+       //}
         
     }
 }
