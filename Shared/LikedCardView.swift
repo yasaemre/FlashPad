@@ -105,6 +105,7 @@ struct LikedCardView: View {
                         Spacer(minLength: 0)
                     }
                     .onAppear(perform: {
+                        scrolled = 0
                         likedArrPersistent[index].offset = 0.0
                     })
                     .contentShape(Rectangle())
