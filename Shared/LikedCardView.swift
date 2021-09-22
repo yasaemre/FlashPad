@@ -13,7 +13,6 @@ struct LikedCardView: View {
            sortDescriptors: [NSSortDescriptor(keyPath: \LikedCore.word, ascending: true)],
            animation: .default)
        private var likedArrPersistent: FetchedResults<LikedCore>
-    @State var indexCard = 0
     @State var offset:CGFloat = 0.0
     
     @State var scrolled = 0
@@ -21,6 +20,7 @@ struct LikedCardView: View {
     @State var flip = false
     @State var correctAnswer = 0
     @State var falseAnswer = 0
+
 
     var body: some View {
         
@@ -104,6 +104,9 @@ struct LikedCardView: View {
                         
                         Spacer(minLength: 0)
                     }
+                    .onAppear(perform: {
+                        likedArrPersistent[index].offset = 0.0
+                    })
                     .contentShape(Rectangle())
                     .offset(x:CGFloat(likedArrPersistent[index].offset))
                     .gesture(DragGesture().onChanged({ value in
@@ -125,7 +128,6 @@ struct LikedCardView: View {
                                     //moving away..
                                     likedArrPersistent[index].offset = Float(-(calculateWidth() + 60))
                                     scrolled += 1
-                                    indexCard += 1
                                 } else {
                                     likedArrPersistent[index].offset = 0.0
                                 }
@@ -134,7 +136,6 @@ struct LikedCardView: View {
                                     if value.translation.width > 180 {
                                         likedArrPersistent[index-1].offset = 0.0
                                         scrolled -= 1
-                                        indexCard -= 1
                                     } else {
                                         likedArrPersistent[index-1].offset = Float(-(calculateWidth() + 60))
                                     }
@@ -144,6 +145,7 @@ struct LikedCardView: View {
                     }))
                     
                     
+                    
                 }
             }
             .frame(height: UIScreen.main.bounds.height / 1.8)
@@ -151,7 +153,7 @@ struct LikedCardView: View {
             .padding(.top, 1)
             
             
-            Text("\(indexCard+1) of \(likedArrPersistent.count)")
+            Text("\(scrolled+1) of \(likedArrPersistent.count)")
                 .font(.title2)
                 .padding(.top, 5)
             
