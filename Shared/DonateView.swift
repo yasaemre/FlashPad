@@ -13,6 +13,9 @@ struct DonateView: View {
     @State private var amount: Double = 0
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject private var store:Store
+    
+    @State private var pickedTab = "emre.FlashPad.donation2"
+
    // @StateObject var store = Store()
     @State var product = ""
     var body: some View {
@@ -49,58 +52,22 @@ struct DonateView: View {
                     )
                     .padding(.top, 13)
                 
-                HStack(spacing: 15) {
-                    
-                    Button(action: {
-                        product = "emre.FlashPad.donation"
-                    }, label: {
-                        Text("$0.99")
-                            .font(.caption)
-                            .bold()
-                            .frame(width: 50, height: 50)
-                            .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "271D76"), Color.init(hex: "102FC3")]),  center: .center, startRadius: 5, endRadius: 120))
-                            .clipShape(Circle())
-                            .foregroundColor(.white)
-                            .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
-                    })
-                    Button(action: {
-                        product = "emre.FlashPad.donation2"
-                    }, label: {
-                        Text("$3.99")
-                            .font(.caption)
-                            .bold()
-                            .frame(width: 50, height: 50)
-                            .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "271D76"), Color.init(hex: "102FC3")]),  center: .center, startRadius: 5, endRadius: 120))
-                            .clipShape(Circle())
-                            .foregroundColor(.white)
-                            .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
-                    })
-                    Button(action: {
-                        product = "emre.FlashPad.donation3"
-                    }, label: {
-                        Text("$6.99")
-                            .font(.caption)
-                            .bold()
-                            .frame(width: 50, height: 50)
-                            .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "271D76"), Color.init(hex: "102FC3")]),  center: .center, startRadius: 5, endRadius: 120))
-                            .clipShape(Circle())
-                            .foregroundColor(.white)
-                            .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
-                    })
-                    Button(action: {
-                        product = "emre.FlashPad.donation4"
-                    }, label: {
-                        Text("$9.99")
-                            .font(.caption)
-                            .bold()
-                            .frame(width: 50, height: 50)
-                            .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "271D76"), Color.init(hex: "102FC3")]),  center: .center, startRadius: 5, endRadius: 120))
-                            .clipShape(Circle())
-                            .foregroundColor(.white)
-                            .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
-                    })
-                }
-                .padding()
+                Picker(selection:$product, label: Text("Picker"), content: {
+                    Text("$0.99")
+                        .tag( "emre.FlashPad.donation")
+
+                    Text("$3.99").tag("emre.FlashPad.donation2")
+                    Text("$6.99").tag("emre.FlashPad.donation3")
+                    Text("$9.99").tag("emre.FlashPad.donation4")
+                })
+                    .pickerStyle(SegmentedPickerStyle())
+                    .labelsHidden()
+                    .font(.title2)
+                    .padding([.leading, .trailing])
+                    .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 3))
+                    //.frame(maxWidth: .infinity, maxHeight: 20)
+                    .padding(.top, 15)
+
                 
                 HStack {
                     Spacer()
