@@ -16,7 +16,7 @@ struct ProfileView: View {
     @State private var location = ""
     @State private var isShowingPhotoPicker = false
     @State private var avatarImage = UIImage(named: "profilePhoto")!
-    @Binding var avatarImageData:Data? 
+    @Binding var avatarImageData:Data
     @Binding var imageHasChanged:Bool
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
@@ -26,9 +26,16 @@ struct ProfileView: View {
     
     @StateObject var profileCore = ProfileCore()
     @State private var index = 0
+    
+    @State private var rotateCheckMark = 30
+    @State private var checkMarkValue = -60
+    
+    @State private var showCircle = 0
+    
+    @State private var isShowingCheckMark = false
 
     var body: some View {
-
+        ZStack {
         VStack(spacing: 30) {
             
             if imageHasChanged == true {
@@ -180,8 +187,11 @@ struct ProfileView: View {
                 Spacer()
                 
                 Button {
+                    withAnimation{
+                        isShowingCheckMark.toggle()
+                    }
                     let profileCore = ProfileCore(context:viewContext)
-                    if avatarImageData == nil {
+                    if avatarImageData.isEmpty {
                         if let img = profileArrPersistent.last?.image {
                             profileCore.image = img
                         }
@@ -226,6 +236,10 @@ struct ProfileView: View {
                     }
                     PersistenceController.shared.saveContext()
                     
+                    
+                    showCircle = 1
+                    rotateCheckMark = 0
+                    checkMarkValue = 0
                 } label: {
                     Text("Save")
                         .font(.title)
@@ -244,11 +258,61 @@ struct ProfileView: View {
         }
         .sheet(isPresented: $isShowingPhotoPicker) {
             PhotoPicker(avatarImageData: $avatarImageData, imageHasChanged: $imageHasChanged)
+            
+        }
+            
+            if isShowingCheckMark {
+                ZStack {
+                Circle()
+                    .frame(width: 110, height: 110, alignment: .center)
+                    .foregroundColor(.white)
+                    .opacity(0.5)
+                    .scaleEffect(CGFloat(showCircle))
+                    .animation(Animation.interpolatingSpring(stiffness: 170, damping: 15).delay(0.5))
+                    .transition(.asymmetric(insertion: .opacity, removal: .scale))
+
+                    
+                    
+                    
+                    VStack {
+                        Image(systemName: "checkmark")
+                            .foregroundColor(Color.init(hex: "067238"))
+                            .font(.system(size: 60))
+                            .rotationEffect(.degrees(Double(rotateCheckMark)))
+                            .clipShape(Rectangle().offset(x: CGFloat(checkMarkValue)))
+                            .animation(Animation.interpolatingSpring(stiffness: 170, damping: 15).delay(0.75))
+                            .transition(.asymmetric(insertion: .opacity, removal: .scale))
+                        
+                        Text("Saved")
+                            .font(.title2)
+                            .clipShape(Rectangle().offset(x: CGFloat(checkMarkValue)))
+                            .animation(Animation.interpolatingSpring(stiffness: 170, damping: 15).delay(0.75))
+                            .transition(.asymmetric(insertion: .opacity, removal: .scale))
+                    }
+                    
+                  
+                    
+                }
+                
+                .onAppear(perform: setDismissTimer)
+            }
         }
         
 
 
     }
+    
+    func setDismissTimer() {
+      let timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { timer in
+        withAnimation(.easeInOut(duration: 2)) {
+          self.isShowingCheckMark = false
+        }
+        timer.invalidate()
+      }
+      RunLoop.current.add(timer, forMode:RunLoop.Mode.default)
+        
+    }
+
 }
 
 //struct ProfileView_Previews: PreviewProvider {

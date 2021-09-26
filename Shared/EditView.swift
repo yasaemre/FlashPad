@@ -279,7 +279,7 @@ struct EditView: View {
                     
 
                     
-                Image(systemName: "checkmark")
+                Image(systemName: "square.and.arrow.down")
                         .foregroundColor(Color.init(hex: "067238"))
                     .font(.system(size: 60))
                     .rotationEffect(.degrees(Double(rotateCheckMark)))

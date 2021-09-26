@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PhotoPicker: UIViewControllerRepresentable {
     
-    @Binding var avatarImageData: Data?
+    @Binding var avatarImageData: Data
     @Binding var imageHasChanged: Bool
     
     func makeUIViewController(context: Context) -> UIImagePickerController {
