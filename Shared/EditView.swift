@@ -20,6 +20,8 @@ struct EditView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
+   // @AppStorage("indexCard") var indexCard = 0
+    //@State var indexCard = 0
     @StateObject var likedCore:LikedCore
     // @State var correctAnswer = 0
     @State private var rotateCheckMark = 30
@@ -35,38 +37,6 @@ struct EditView: View {
     var body: some View {
         ZStack {
             VStack{
-                
-                //            HStack {
-                //                Button {
-                //                    self.presentationMode.wrappedValue.dismiss()
-                //                    print("Back tapped")
-                //                } label: {
-                //                    Image(systemName: "arrowshape.turn.up.backward.fill")
-                //                        .font(.title)
-                //                        .foregroundColor(Color.init(hex: "6C63FF"))
-                //                        .contentShape(Rectangle())
-                //
-                //                }
-                //                .padding(.leading, 15)
-                //                .padding(.top, 10)
-                //                Spacer()
-                //
-                //
-                //
-                //                NavigationLink(destination: StudyScreenView(deckCore: deckCore, card: card, correctAnswer: 0, falseAnswer: 0)) {
-                //                    Text("Study")
-                //                        .font(.title)
-                //                        .foregroundColor(Color.init(hex: "6C63FF"))
-                //                        .contentShape(Rectangle())
-                //                        .padding(.top, 10)
-                //                }
-                //
-                //
-                //
-                //                .padding(.trailing, 15)
-                //                .padding(.top, 10)
-                //            }
-                
                 HStack(spacing: 15) {
                     
                     Button {
@@ -146,6 +116,7 @@ struct EditView: View {
                                                     .foregroundColor(Color(.systemGray))
                                                     .offset(x: -123, y: -175)
                                                     .onTapGesture{
+                                            print("idx card; \(indexCard)")
                                             alertViewDeleteCard(at: IndexSet.init(integer: indexCard))
                                         })
                                 }
@@ -279,7 +250,7 @@ struct EditView: View {
                     
 
                     
-                Image(systemName: "square.and.arrow.down")
+                Image(systemName: "checkmark")
                         .foregroundColor(Color.init(hex: "067238"))
                     .font(.system(size: 60))
                     .rotationEffect(.degrees(Double(rotateCheckMark)))
@@ -339,15 +310,22 @@ struct EditView: View {
         
     }
     
-    //Use with tap gesture or delete button
     private func deleteCard(at offsets: IndexSet) {
         withAnimation {
             
             for index in offsets {
                 let card = deckCore.cardsArray[index]
-                viewContext.delete(card)
-                PersistenceController.shared.saveContext()
+                if indexCard == 0 {
+                    viewContext.delete(card)
+                    PersistenceController.shared.saveContext()
+                } else {
+                    indexCard -= 1
+                    viewContext.delete(card)
+                    PersistenceController.shared.saveContext()
+                }
+                
             }
+
         }
     }
     
