@@ -20,7 +20,7 @@ struct SlideMenu: View {
     @State private var isShareSheetShowing = false
     
     @Binding var imageHasChanged:Bool
-    @Binding var avatarImageData:Data?
+    @Binding var avatarImageData:Data
     @State private var avatarImage = UIImage(named: "profilePhoto")!
     
    

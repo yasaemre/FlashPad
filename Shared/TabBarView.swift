@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct TabBarView: View {
     init() {
@@ -38,7 +39,7 @@ struct TabBarView: View {
            animation: .default)
        private var profileArrPersistent: FetchedResults<ProfileCore>
     @FetchRequest(
-           sortDescriptors: [NSSortDescriptor(keyPath: \DeckCore.deckName, ascending: true)],
+           sortDescriptors: [NSSortDescriptor(keyPath: \DeckCore.id, ascending: false)],
            animation: .default)
        private var decksArrPersistent: FetchedResults<DeckCore>
     @StateObject var likedCore = LikedCore()
@@ -59,8 +60,11 @@ struct TabBarView: View {
     @StateObject var deckCore = DeckCore()
     @State private var calendarWiggles = false
     @State var imageHasChanged = false
-    @State private var avatarImageData:Data? = Data()
+    @State private var avatarImageData = Data()
     @State private var avatarImage = UIImage(named: "profilePhoto")!
+
+    
+   // private let objectWillChange = ObservableObjectPublisher()
 
     var body: some View {
        // ZStack {
@@ -333,6 +337,7 @@ struct TabBarView: View {
                 let deck = decksArrPersistent[index]
                 viewContext.delete(deck)
                 PersistenceController.shared.saveContext()
+
             }
         }
     }

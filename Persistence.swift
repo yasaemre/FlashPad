@@ -7,6 +7,7 @@
 
 import CoreData
 import SwiftUI
+import Combine
 
 struct PersistenceController {
     let container: NSPersistentContainer
@@ -28,7 +29,8 @@ struct PersistenceController {
         deckCore.deckName = "Apple"
 
         shared.saveContext()
-        
+    
+
         return result
     }()
 
@@ -44,8 +46,9 @@ struct PersistenceController {
         })
         
         container.viewContext.automaticallyMergesChangesFromParent = true
+
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        
+        try? container.viewContext.setQueryGenerationFrom(.current)
         
     }
     
