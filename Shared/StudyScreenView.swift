@@ -30,7 +30,8 @@ struct StudyScreenView: View {
         
         ZStack(alignment: .top){
             ForEach(deckCore.cardsArray.reversed()) { cardCore in
-                CardView(cardCore: cardCore, card: card, deckCore: deckCore, correctAnswer: $correctAnswer,  falseAnswer: $falseAnswer, resetBg: $resetBg)
+//                CardView(cardCore: cardCore, card: card, deckCore: deckCore, correctAnswer: $correctAnswer,  falseAnswer: $falseAnswer, resetBg: $resetBg)
+                CardView(cardCore: cardCore, card: card, deckCore: deckCore, indexCard: $indexCard, correctAnswer: $correctAnswer,  falseAnswer: $falseAnswer, resetBg: $resetBg)
                     
             }
             .onAppear {

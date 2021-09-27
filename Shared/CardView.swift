@@ -19,8 +19,8 @@ struct CardView: View {
     // MARK: - Drawing Constant
     @StateObject var deckCore:DeckCore
    
-    //@Binding var indexCard:Int
-    @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
+    @Binding var indexCard:Int
+    //@State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) private var viewContext
     @State var correctRate = 0.0
