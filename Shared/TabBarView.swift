@@ -39,7 +39,7 @@ struct TabBarView: View {
            animation: .default)
        private var profileArrPersistent: FetchedResults<ProfileCore>
     @FetchRequest(
-           sortDescriptors: [NSSortDescriptor(keyPath: \DeckCore.id, ascending: false)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \DeckCore.deckCreatedAt, ascending: false)],
            animation: .default)
        private var decksArrPersistent: FetchedResults<DeckCore>
     @StateObject var likedCore = LikedCore()
@@ -162,7 +162,7 @@ struct TabBarView: View {
                     }
                     .tag("home")
                     DonateView()
-                    .tag("donate")
+                    .tag("donation2")
 
                     LikedCardView()
                     .tag("liked")
@@ -234,15 +234,15 @@ struct TabBarView: View {
 
                                 Spacer()
                                 
-                                Button(action: {
-                                    print("iCloud button tapped")
-                                }) {
-                                    Image(systemName: "icloud.and.arrow.down")
-                                }
-                                //.frame(width: 60, height: 60, alignment: .center)
-                                .symbolRenderingMode(.palette)
-                                .font(.system(size: 24))
-                                .foregroundStyle(Color.init(hex: "6C63FF"), (colorScheme == .dark ? Color.white : Color.black))
+//                                Button(action: {
+//                                    print("iCloud button tapped")
+//                                }) {
+//                                    Image(systemName: "icloud.and.arrow.down")
+//                                }
+//                                //.frame(width: 60, height: 60, alignment: .center)
+//                                .symbolRenderingMode(.palette)
+//                                .font(.system(size: 24))
+//                                .foregroundStyle(Color.init(hex: "6C63FF"), (colorScheme == .dark ? Color.white : Color.black))
                                 Spacer()
 
                                 NavigationLink(destination: ProfileView(avatarImageData: $avatarImageData, imageHasChanged: $imageHasChanged)) {
@@ -418,7 +418,7 @@ struct TabBarView: View {
         switch image {
         case "home":
             return Color.yellow
-        case "donate":
+        case "donation2":
             return Color.black
         case "liked":
             return Color.green
@@ -428,7 +428,7 @@ struct TabBarView: View {
     }
 }
 
-var tabs = ["home", "donate", "liked", "about"]
+var tabs = ["home", "donation2", "liked", "about"]
 
 //Curve..
 struct CustomShape:Shape {

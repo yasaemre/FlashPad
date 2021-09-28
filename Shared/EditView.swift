@@ -54,8 +54,11 @@ struct EditView: View {
                             .navigationBarItems(trailing: NavigationLink(destination: StudyScreenView(deckCore: deckCore, card: card)) {
                                 Text("Study")
                                     .font(.title)
-                                    .foregroundColor(Color.init(hex: "B74278"))
-                                    .padding(.trailing, 1)
+                                    //.foregroundColor(Color.init(hex: "B74278"))
+                                    .frame(width: 90, height: 40)
+                                    .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "B74278"), Color.init(hex: "B74278")]),  center: .center, startRadius: 5, endRadius: 120))
+                                    .clipShape(Capsule())
+                                    .foregroundColor(.white)
                                 
                             }
                             )

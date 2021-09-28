@@ -27,7 +27,7 @@ struct DonateView: View {
             }
             VStack(spacing: 5){
                 
-                Image("donate")
+                Image("donation2")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 100, height: 100)

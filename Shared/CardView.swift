@@ -11,10 +11,9 @@ import Foundation
 struct CardView: View {
     @State var cardCore: CardCore
     @State var card: Card
-    @State var flipped = false
-    @State var flip = false
-    @State var rightArrowTapped = false
-    
+
+    @Binding var flipped:Bool
+    @Binding var flip: Bool
     // @State var card: Card
     // MARK: - Drawing Constant
     @StateObject var deckCore:DeckCore
@@ -35,7 +34,9 @@ struct CardView: View {
     //@State var fireworkAnimation = false
     //@Binding var isTapped:Bool
     //@State var correctA = 0
-    @AppStorage("correctA") var correctA = 0.0
+    //@AppStorage("correctA") var correctA = 0.0
+    @Binding var correctA:Double
+    //@State var correctA = UserDefaults.standard.double(forKey: "correctA")
 
 
     //To avoid Taps during animation..
@@ -148,8 +149,8 @@ struct CardView: View {
                 }
                 
             }
-            .padding(.top, 10)
             .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
+            .padding(.top, 10)
             .cornerRadius(8)
             .offset(x: card.x, y: card.y)
             .rotationEffect(.init(degrees: card.degree))
@@ -248,7 +249,7 @@ struct CardView: View {
             .padding(.top, 10)
         }
         
-        
+     
         
     }
 }

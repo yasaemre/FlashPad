@@ -36,7 +36,7 @@ struct EditScrnView: View {
             print("Index in EditScrnView: \(indexCard)")
         })
         .zIndex(1.0)
-        
+
         
     }
 }

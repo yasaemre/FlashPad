@@ -88,11 +88,7 @@ struct ScoreboardView: View {
                 .pickerStyle(.wheel)
                 //CustomPicker()
             }
-            
-            
-            
-            
-            
+      
             Group {
                 if (decksArrPersistent.count > 0) {
                 Text("The Highest Correct Rate \nfor \(selectedDeck.unwrappedDeckName):")
