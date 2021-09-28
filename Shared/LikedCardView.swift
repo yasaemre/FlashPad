@@ -13,6 +13,8 @@ struct LikedCardView: View {
            sortDescriptors: [NSSortDescriptor(keyPath: \LikedCore.word, ascending: true)],
            animation: .default)
        private var likedArrPersistent: FetchedResults<LikedCore>
+    @Environment(\.managedObjectContext) private var viewContext
+
     @State var offset:CGFloat = 0.0
     
     @State var scrolled = 0
@@ -144,7 +146,14 @@ struct LikedCardView: View {
                             }
                         }
                     }))
-                    
+                    Button {
+                            deleteCard(at: IndexSet.init(integer: index))
+                    } label: {
+                        Image(systemName: "trash")
+                            .font(.title)
+                            .foregroundColor(.white)
+                    }
+                    .offset(x: -137, y: -175)
                     
                     
                 }
@@ -153,10 +162,13 @@ struct LikedCardView: View {
             .padding(.horizontal, 25)
             .padding(.top, 1)
             
-            
+            HStack {
+                
+            }
             Text("\(scrolled+1) of \(likedArrPersistent.count)")
                 .font(.title2)
                 .padding(.top, 5)
+            
             
             Spacer()
         }
@@ -165,6 +177,21 @@ struct LikedCardView: View {
 
         
        
+    }
+    
+    
+    //Use with tap gesture or delete button
+    private func deleteCard(at offsets: IndexSet) {
+        withAnimation {
+//            offsets.map {decksArrPersistent[$0]}.forEach(viewContext.delete)
+            for index in offsets {
+                let deck = likedArrPersistent[index]
+                
+                viewContext.delete(deck)
+                PersistenceController.shared.saveContext()
+                //indexCard = 0
+            }
+        }
     }
     
     func calculateWidth() -> CGFloat {
