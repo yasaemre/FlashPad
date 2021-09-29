@@ -155,7 +155,7 @@ struct TabBarView: View {
                                         .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
                                 })
                             }
-                            .padding(.vertical, 70)
+                            .padding(.vertical, UIScreen.main.bounds.minY + 90)
                             .padding(.horizontal, 33)
                             
                         }
@@ -208,13 +208,14 @@ struct TabBarView: View {
                 }
                 .padding(.horizontal, 30)
                 .padding(.vertical)
-                //.padding(.bottom, 1)
+                //.padding(.vertical, 20)
+                //.padding(.bottom, 10)
                 .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "8092EA"), Color.init(hex: "1130C1")]),  center: .center, startRadius: 5, endRadius: 120).clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
                 .padding(.horizontal)
                 //Bottom edge
-                .ignoresSafeArea(.all, edges: .bottom)
-
-                .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
+                //.ignoresSafeArea(.all, edges: .bottom)
+                //.frame( height: UIScreen.main.bounds.height - 30)
+                .padding(.bottom, UIScreen.main.bounds.minY + 30)
                 
                 .toolbar {
                     //Top custom Navigation bar
@@ -276,7 +277,6 @@ struct TabBarView: View {
                             }
                            .frame(width: UIScreen.main.bounds.width)
 
-
                        }
                       .frame(maxWidth: .infinity, maxHeight: .infinity, alignment:.top)
 
@@ -284,6 +284,7 @@ struct TabBarView: View {
                 }
                 //.ignoresSafeArea(.all, edges: .all)
                 .foregroundColor(.primary)
+                .padding(.top, UIScreen.main.bounds.minY + 90)
 
             }
             .ignoresSafeArea(.all, edges: .bottom)

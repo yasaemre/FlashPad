@@ -25,16 +25,8 @@ struct SlideMenu: View {
     
    
     var body: some View {
-        VStack {
-            
-//            HStack(spacing:22) {
-//                
-////                NavigationLink(destination: HomeScreenView()) {
-////                    Image(systemName: "arrowshape.turn.up.backward.fill")
-////                    .symbolRenderingMode(.hierarchical)
-////                    .font(.system(size: 24))
-////                    .foregroundColor(Color.init(hex: "6C63FF"))
-////                }
+        GeometryReader { geo in
+            VStack {
                 Button(action: {
                     withAnimation {
                         self.show.toggle()
@@ -45,29 +37,19 @@ struct SlideMenu: View {
                     Image(systemName: "arrowshape.turn.up.backward.fill")
                         .font(.title)
                         .foregroundColor(Color.init(hex: "6C63FF"))
-                
-                .contentShape(Rectangle())
-
-                Spacer()
-
-            }
-            .padding(.top)
-            .padding(.bottom, 25)
-
-
-            if imageHasChanged == true {
-                if let imgData = avatarImageData{
-                    Image(uiImage: UIImage(data: imgData) ?? avatarImage)
-                    .resizable()
-                    .scaledToFill()
-                    .clipShape(Circle())
-                    .frame(width: 85, height: 85)
-                    .padding()
+                    
+                        .contentShape(Rectangle())
+                    
+                    Spacer()
+                    
                 }
-            } else {
-                if let image = profileArrPersistent.last?.image{
-                    if let uiImage = UIImage(data: image)  {
-                        Image(uiImage: uiImage)
+                .padding(.top)
+                .padding(.bottom, 25)
+                
+                
+                if imageHasChanged == true {
+                    if let imgData = avatarImageData{
+                        Image(uiImage: UIImage(data: imgData) ?? avatarImage)
                             .resizable()
                             .scaledToFill()
                             .clipShape(Circle())
@@ -75,105 +57,123 @@ struct SlideMenu: View {
                             .padding()
                     }
                 } else {
-                    Image(uiImage: avatarImage)
-                        .resizable()
-                        .scaledToFill()
-                        .clipShape(Circle())
-                        .frame(width: 85, height: 85)
-                        .padding()
-                }
-            }
-            
-            VStack(spacing:12) {
-                if let name = profileArrPersistent.last?.name, let lastName = profileArrPersistent.last?.lastName {
-                    Text("\(name) \(lastName)")
-                        .font(.caption)
-                } else {
-                    Text("Anonymous")
-                        .font(.caption)
+                    if let image = profileArrPersistent.last?.image{
+                        if let uiImage = UIImage(data: image)  {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFill()
+                                .clipShape(Circle())
+                                .frame(width: 85, height: 85)
+                                .padding()
+                        }
+                    } else {
+                        Image(uiImage: avatarImage)
+                            .resizable()
+                            .scaledToFill()
+                            .clipShape(Circle())
+                            .frame(width: 85, height: 85)
+                            .padding()
+                    }
                 }
                 
+                VStack(spacing:12) {
+                    if let name = profileArrPersistent.last?.name, let lastName = profileArrPersistent.last?.lastName {
+                        Text("\(name) \(lastName)")
+                            .font(.title3)
+                    } else {
+                        Text("Anonymous")
+                            .font(.caption)
+                    }
                     
-            }
-            .padding(.top, 25)
-            
-            HStack(spacing: 22) {
-//                Image(systemName: "moon.fill")
-//                    .font(.title)
+                    
+                }
+                .padding(.top, 25)
                 
-                Text("Dark Mode")
-                Spacer()
-                Button(action: {
-                    print("Flash button tapped")
-                    self.dark.toggle()
-                    
-                    UIApplication.shared.windows.first?.rootViewController?.view.overrideUserInterfaceStyle = self.dark ? .dark : .light
-                }) {
-                    Image(systemName: "moon.stars.fill")
+                HStack() {
+                    Image(systemName: "moon.fill")
                         .font(.title)
-                        .rotationEffect(.init(degrees: self.dark ? 180 : 0))
-                }
-                
-            }
-            .padding(.top,25)
-            
-            
-            
-            Group {
-               
-                HStack(alignment: .center, spacing:22) {
                     
-                    NavigationLink(destination: ScoreboardView(moc: viewContext)) {
-                        Image("scoreboard")
-                            .resizable()
-                            .frame(width: 70, height: 70)
-                        Text("Scoreboard")
+                    Text("Dark Mode")
+                        .frame(width:  150, height: geo.size.height * 0.06)
+
+                    Spacer()
+                    Button(action: {
+                        print("Flash button tapped")
+                        self.dark.toggle()
+                        
+                        
+                        UIApplication.shared.windows.first?.rootViewController?.view.overrideUserInterfaceStyle = self.dark ? .dark : .light
+                    }) {
+                        Image(systemName: "sunrise")
+                            .font(.title)
+                            .rotationEffect(.init(degrees: self.dark ? 180 : 0))
                     }
                     
-                    
-                    
                 }
-                .padding(.top, 25)
+                .padding(.top,25)
+
                 
-                Button(action: {
+                
+                
+                Group {
                     
-                }) {
                     HStack(alignment: .center, spacing:22) {
-                        Image("desktop")
-                            .resizable()
-                            .frame(width: 70, height: 70)
-                        Text("Desktop App")
+                        
+                        NavigationLink(destination: ScoreboardView(moc: viewContext)) {
+                            Image("scoreboard")
+                                .resizable()
+                            Text("Scoreboard")
+                                .frame(width:  150, height: geo.size.height * 0.06)
+
+                        }
+
+                        
+                        
+                        
                     }
-                }
-                .padding(.top, 25)
-                
-                Button(action: {
-                    
-                }) {
-                    HStack(alignment: .center, spacing:22) {
-                        Image("share")
-                            .resizable()
-                            .frame(width: 70, height: 70)
-                        Text("Share with \nFriends")
-                            .frame(height: 50)
-                    }
-                    .onTapGesture {
-                        shareButton()
-                    }
-                }
-                .padding(.top, 25)
-                Divider()
                     .padding(.top, 25)
-                LogoutButtonView()
+
+                    Button(action: {
+                        
+                    }) {
+                        HStack(alignment: .center, spacing:22) {
+                            Image("desktop")
+                                .resizable()
+                            Text("Desktop App")
+                                .frame(width:  150, height: geo.size.height * 0.06)
+
+                        }
+                    }
+                    .padding(.top, 25)
+                    Button(action: {
+                        
+                    }) {
+                        HStack(alignment: .center) {
+                            Image("share")
+                                .resizable()
+                            Text("Share with \nFriends")
+                                .frame(width:  150, height: geo.size.height * 0.06)
+
+                        }
+                        .onTapGesture {
+                            shareButton()
+                        }
+                    }
+                    .padding(.top, 25)
+                    Divider()
+                        .padding(.top, 25)
+                    LogoutButtonView()
+                        .frame(width:  150, height: geo.size.height * 0.06)
+
+                }
+                Spacer()
             }
-            Spacer()
+            .foregroundColor(.primary)
+            .padding(.horizontal, 20)
+            .frame(width: UIScreen.main.bounds.width / 1.5)
+            .background((colorScheme == .dark ? Color.black : Color.white).edgesIgnoringSafeArea(.all))
+            //.overlay(Rectangle().stroke(Color.primary.opacity(0.2), lineWidth: 2).shadow( radius:3).edgesIgnoringSafeArea(.all))
         }
-        .foregroundColor(.primary)
-        .padding(.horizontal, 20)
-        .frame(width: UIScreen.main.bounds.width / 1.5)
-        .background((colorScheme == .dark ? Color.black : Color.white).edgesIgnoringSafeArea(.all))
-        //.overlay(Rectangle().stroke(Color.primary.opacity(0.2), lineWidth: 2).shadow( radius:3).edgesIgnoringSafeArea(.all))
-        
     }
     
    public func shareButton() {
