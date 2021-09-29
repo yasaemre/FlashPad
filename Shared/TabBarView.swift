@@ -280,7 +280,7 @@ struct TabBarView: View {
                                 }
 
                             }
-                           .frame(width: UIScreen.main.bounds.width)
+                        .frame(width: UIScreen.main.bounds.width * 0.95)
 
                        }
                       .frame(maxWidth: .infinity, maxHeight: .infinity, alignment:.top)

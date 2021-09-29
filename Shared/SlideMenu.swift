@@ -26,7 +26,7 @@ struct SlideMenu: View {
    
     var body: some View {
         GeometryReader { geo in
-            VStack {
+            VStack(spacing: 30) {
                 Button(action: {
                     withAnimation {
                         self.show.toggle()
@@ -43,8 +43,8 @@ struct SlideMenu: View {
                     Spacer()
                     
                 }
-                .padding(.top)
-                .padding(.bottom, 25)
+                .padding(.top, geo.size.height * 0.01)
+                .padding(.bottom, geo.size.height * 0.03)
                 
                 
                 if imageHasChanged == true {
@@ -84,17 +84,15 @@ struct SlideMenu: View {
                         Text("Anonymous")
                             .font(.caption)
                     }
-                    
-                    
                 }
-                .padding(.top, 25)
+                .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.04)
                 
                 HStack() {
                     Image(systemName: "moon.fill")
-                        .font(.title)
+                        .font(.title2)
                     
                     Text("Dark Mode")
-                        .frame(width:  150, height: geo.size.height * 0.05)
+                        .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.04)
 
                     Spacer()
                     Button(action: {
@@ -105,25 +103,25 @@ struct SlideMenu: View {
                         UIApplication.shared.windows.first?.rootViewController?.view.overrideUserInterfaceStyle = self.dark ? .dark : .light
                     }) {
                         Image(systemName: "sunrise")
-                            .font(.title)
+                            .font(.title2)
                             .rotationEffect(.init(degrees: self.dark ? 180 : 0))
                     }
                     
                 }
-                .padding(.top,25)
 
                 
                 
                 
                 Group {
                     
-                    HStack(alignment: .center, spacing:10) {
+                    HStack(alignment: .center, spacing:2) {
                         
                         NavigationLink(destination: ScoreboardView(moc: viewContext)) {
                             Image("scoreboard")
                                 .resizable()
+                                .frame(width:  geo.size.width * 0.2, height: geo.size.height * 0.07)
                             Text("Scoreboard")
-                                .frame(width:  150, height: geo.size.height * 0.05)
+                                .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.04)
 
                         }
 
@@ -131,46 +129,44 @@ struct SlideMenu: View {
                         
                         
                     }
-                    .padding(.top, 25)
 
                     Button(action: {
                         
                     }) {
-                        HStack(alignment: .center, spacing:22) {
+                        HStack(alignment: .center, spacing:2) {
                             Image("desktop")
                                 .resizable()
+                                .frame(width:  geo.size.width * 0.2, height: geo.size.height * 0.06)
                             Text("Desktop App")
-                                .frame(width:  150, height: geo.size.height * 0.05)
+                                .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.04)
 
                         }
                     }
-                    .padding(.top, 25)
                     Button(action: {
                         
                     }) {
-                        HStack(alignment: .center) {
+                        HStack(alignment: .center, spacing: 2) {
                             Image("share")
                                 .resizable()
+                                .frame(width:  geo.size.width * 0.2, height: geo.size.height * 0.06)
                             Text("Share with \nFriends")
-                                .frame(width:  150, height: geo.size.height * 0.05)
+                                .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.06)
 
                         }
                         .onTapGesture {
                             shareButton()
                         }
                     }
-                    .padding(.top, 25)
                     Divider()
-                        .padding(.top, 25)
                     LogoutButtonView()
-                        .frame(width:  150, height: geo.size.height * 0.05)
+                        .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.04)
 
                 }
                 Spacer()
             }
             .foregroundColor(.primary)
-            .padding(.horizontal, 20)
-            .frame(width: UIScreen.main.bounds.width / 1.5)
+            //.padding(.horizontal, 20)
+            .frame(width: UIScreen.main.bounds.width / 1.6)
             .background((colorScheme == .dark ? Color.black : Color.white).edgesIgnoringSafeArea(.all))
             //.overlay(Rectangle().stroke(Color.primary.opacity(0.2), lineWidth: 2).shadow( radius:3).edgesIgnoringSafeArea(.all))
         }
