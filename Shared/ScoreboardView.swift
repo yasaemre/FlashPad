@@ -44,64 +44,67 @@ struct ScoreboardView: View {
     
     
     var body: some View {
-        VStack(spacing: 10) {
-            if let data = profileArrPersistent.last?.image {
-                Image(uiImage: (UIImage(data: data) ?? UIImage(named: "profilePhoto"))!)
-                    .resizable()
-                    .scaledToFill()
-                    .clipShape(Circle())
-                    .frame(width: 130, height: 130)
-                    .padding(.trailing, 10)
-                    .navigationBarItems(trailing:
-                        Image(systemName: "square.and.arrow.up")
-                                            .font(.title)
-                                            .foregroundColor(Color.init(hex: "B74278"))
-                                            .padding(.trailing, 1)
-                                            .onTapGesture {
-                        shareButton()
-                        
-                    }
+        GeometryReader { geo in
+            VStack(spacing: 10) {
+                if let data = profileArrPersistent.last?.image {
+                    Image(uiImage: (UIImage(data: data) ?? UIImage(named: "profilePhoto"))!)
+                        .resizable()
+                        .scaledToFill()
+                        .clipShape(Circle())
+                        .frame(width:  geo.size.width * 0.2, height: geo.size.height * 0.2)
+                        .navigationBarItems(trailing:
+                                                Image(systemName: "square.and.arrow.up")
+                                                .font(.title)
+                                                .foregroundColor(Color.init(hex: "B74278"))
+                                                .padding(.trailing, 1)
+                                                .onTapGesture {
+                            shareButton()
                             
-                    
-                    )
-            }
-            
-            
-            
-            
-            HStack {
-                Text(profileArrPersistent.last?.name ?? "Anonymous")
-                    .foregroundColor(Color.init(hex: "6C63FF"))
-                Text(profileArrPersistent.last?.lastName ?? "Anonymous")
-                    .foregroundColor(Color.init(hex: "6C63FF"))
-            }
-            
-            
-            
-            if (decksArrPersistent.count > 0) {
-                Picker("Please choose a deck", selection: $selectedDeck) {
-                    ForEach(decksArrPersistent, id: \.self) { (deck:DeckCore) in
-                        Text(deck.unwrappedDeckName)
-                            .foregroundColor(Color.init(hex: "6C63FF"))
-                    }
+                        }
+                                            
+                                            
+                        )
                 }
-                .pickerStyle(.wheel)
-                //CustomPicker()
-            }
-      
-            Group {
+                
+                
+                
+                
+                HStack {
+                    Text(profileArrPersistent.last?.name ?? "Anonymous")
+                        .foregroundColor(Color.init(hex: "6C63FF"))
+                    Text(profileArrPersistent.last?.lastName ?? "Anonymous")
+                        .foregroundColor(Color.init(hex: "6C63FF"))
+                }
+                
+                
+                
                 if (decksArrPersistent.count > 0) {
-                Text("The Highest Correct Rate \nfor \(selectedDeck.unwrappedDeckName):")
-                    .font(.title)
-                    .foregroundColor(Color.init(hex: "1F3CD6"))
+                    Picker("Please choose a deck", selection: $selectedDeck) {
+                        ForEach(decksArrPersistent, id: \.self) { (deck:DeckCore) in
+                            Text(deck.unwrappedDeckName)
+                                .foregroundColor(Color.init(hex: "6C63FF"))
+                        }
+                    }
+                    .pickerStyle(.wheel)
+                    .frame(width:geo.size.width * 0.8)
+                    //CustomPicker()
                 }
-                Text("% \(String(round(selectedDeck.correctRate)))")
-                    .fontWeight(.semibold)
-                    .font(.system(size: 54))
-                    .foregroundColor(.red)
+                
+                Group {
+                    if (decksArrPersistent.count > 0) {
+                        Text("The Highest Correct Rate  of \(selectedDeck.unwrappedDeckName):")
+                            .frame(width:  geo.size.width * 0.97, height: geo.size.height * 0.1)
+                            .foregroundColor(Color.init(hex: "1F3CD6"))
+                    }
+                    Text("% \(String(round(selectedDeck.correctRate)))")
+                        .fontWeight(.semibold)
+//                        .frame(width: geo.size.width * 0.5, height: geo.size.height * 0.2)
+                        .font(.title)
+                        .foregroundColor(.red)
+                }
+                Spacer()
             }
-            .padding(.top, 20)
-            Spacer()
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
 
     }

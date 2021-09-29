@@ -80,10 +80,11 @@ struct DonateView: View {
                                 .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.06)
                             //.foregroundColor(Color.init(hex: "271D76"))
                                 .foregroundColor(.white)
-                            //                            .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                          
                                 .background(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing))
                                 .cornerRadius(20)
                         })
+                            .padding(.trailing, geo.size.width * 0.1 )
                             
                     }
                     .padding(.top, geo.size.height * 0.02)

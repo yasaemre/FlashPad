@@ -26,7 +26,7 @@ struct SlideMenu: View {
    
     var body: some View {
         GeometryReader { geo in
-            VStack(spacing: 30) {
+            VStack(spacing: 20) {
                 Button(action: {
                     withAnimation {
                         self.show.toggle()
@@ -150,7 +150,7 @@ struct SlideMenu: View {
                                 .resizable()
                                 .frame(width:  geo.size.width * 0.2, height: geo.size.height * 0.06)
                             Text("Share with \nFriends")
-                                .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.06)
+                                .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.1)
 
                         }
                         .onTapGesture {
