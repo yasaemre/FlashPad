@@ -36,230 +36,239 @@ struct ProfileView: View {
 
     var body: some View {
         ZStack {
-        VStack(spacing: 30) {
-            
-            if imageHasChanged == true {
-                if let imgData = avatarImageData{
-                    Image(uiImage: UIImage(data: imgData) ?? avatarImage)
-                    .resizable()
-                    .scaledToFill()
-                    .clipShape(Circle())
-                    .frame(width: 150, height: 150)
-                    .padding()
-                    .onTapGesture {isShowingPhotoPicker = true}
-                }
-            } else {
-                if let image = profileArrPersistent.last?.image{
-                    if let uiImage = UIImage(data: image)  {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFill()
-                            .clipShape(Circle())
-                            .frame(width: 150, height: 150)
-                            .padding()
-                            .onTapGesture {isShowingPhotoPicker = true}
-                    }
-                } else {
-                    Image(uiImage: avatarImage)
-                        .resizable()
-                        .scaledToFill()
-                        .clipShape(Circle())
-                        .frame(width: 150, height: 150)
-                        .padding()
-                        .onTapGesture {isShowingPhotoPicker = true}
-                }
-            }
-            
- 
-            
-            
-            Button(action: {
-                print("Change profile photo tapped")
-                isShowingPhotoPicker = true
-                
-            }) {
-                Text("Change Profile Photo")
-            }
-            
-            Group {
-                HStack(spacing:10) {
-                    Text("Name: ")
-                        .foregroundColor(Color.init(hex: "1130C1"))
-                        .font(.title)
-                    VStack {
-                        if let name =  profileArrPersistent.last?.name {
-                        TextField(" \(name)", text: $name)
-                            .font(Font.system(size: 25, design: .default))
+            GeometryReader { geo in
+                VStack(spacing: 10) {
+                    
+                    if imageHasChanged == true {
+                        if let imgData = avatarImageData{
+                            Image(uiImage: UIImage(data: imgData) ?? avatarImage)
+                                .resizable()
+                                .scaledToFill()
+                                .clipShape(Circle())
+                                .frame(width:  geo.size.width * 0.2, height: geo.size.height * 0.2)
+                                .onTapGesture {isShowingPhotoPicker = true}
+                        }
+                    } else {
+                        if let image = profileArrPersistent.last?.image{
+                            if let uiImage = UIImage(data: image)  {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .clipShape(Circle())
+                                    .frame(width:  geo.size.width * 0.2, height: geo.size.height * 0.2)
+                                    .onTapGesture {isShowingPhotoPicker = true}
+                            }
                         } else {
-                            TextField("Name", text: $name)
-                                .font(Font.system(size: 25, design: .default))
+                            Image(uiImage: avatarImage)
+                                .resizable()
+                                .scaledToFill()
+                                .clipShape(Circle())
+                                .frame(width:  geo.size.width * 0.2, height: geo.size.height * 0.2)
+                                .onTapGesture {isShowingPhotoPicker = true}
                         }
-                        Divider()
-                        
                     }
-                }
-                
-                
-                
-                
-                HStack(spacing:10) {
-                    Text("Last Name: ")
-                        .foregroundColor(Color.init(hex: "1130C1"))
-                        .font(.title)
-                    VStack {
-                        if let lname =  profileArrPersistent.last?.lastName {
-                        TextField("\(lname)", text: $lastName)
-                            .font(Font.system(size: 25, design: .default))
-                        } else {
-                            TextField("Last Name", text: $lastName)
-                                .font(Font.system(size: 25, design: .default))
-                        }
-                        Divider()
-                        
-                    }
-
-                }
-                
-                
-                HStack(spacing:10){
-                    Text("Age: ")
-                        .foregroundColor(Color.init(hex: "1130C1"))
-                        .font(.title)
-                    VStack {
-                        if let age =  profileArrPersistent.last?.age {
-                        TextField("\(age)", text: $age)
-                            .font(Font.system(size: 25, design: .default))
-                            .textContentType(.oneTimeCode)
-                                .keyboardType(.numberPad)
-                        } else {
-                            TextField("Age", text: $age)
-                                .font(Font.system(size: 25, design: .default))
-                                .textContentType(.oneTimeCode)
-                                    .keyboardType(.numberPad)
-                        }
-                        Divider()
-                        
-                    }
-
-                }
-                
-
-                HStack(spacing:10) {
-                    Text("Sex: ")
-                        .foregroundColor(Color.init(hex: "1130C1"))
-                        .font(.title)
-                    VStack {
-                        if let sex =  profileArrPersistent.last?.sex {
-                        TextField("\(sex)", text: $sex)
-                            .font(Font.system(size: 25, design: .default))
-                        } else {
-                            TextField("Sex", text: $sex)
-                                .font(Font.system(size: 25, design: .default))
-                        }
-                        Divider()
-                        
-                    }
-                }
-                
-
-                HStack(spacing:10) {
-                    Text("Location: ")
-                        .foregroundColor(Color.init(hex: "1130C1"))
-                        .font(.title)
-
-                    VStack {
-                        if let loc =  profileArrPersistent.last?.location {
-                        TextField("\(loc)", text: $location)
-                            .font(Font.system(size: 25, design: .default))
-                        } else {
-                            TextField("Location", text: $location)
-                                .font(Font.system(size: 25, design: .default))
-                        }
-                        Divider()
-                        
-                    }
-                }
-            }
-            .padding(.leading, 30)
-            .padding(.trailing, 30)
-            
-            HStack {
-                Spacer()
-                
-                Button {
-                    withAnimation{
-                        isShowingCheckMark.toggle()
-                    }
-                    let profileCore = ProfileCore(context:viewContext)
-                    if avatarImageData.isEmpty {
-                        if let img = profileArrPersistent.last?.image {
-                            profileCore.image = img
-                        }
-                    } else {
-                        profileCore.image = avatarImageData
-                    }
-                    //profileCore.image = avatarImageData
-                    if name.isEmpty {
-                        if let name = profileArrPersistent.last?.name {
-                            profileCore.name = name
-                        }
-                    } else {
-                        profileCore.name = name
-                    }
-                    if lastName.isEmpty {
-                        if let lastName = profileArrPersistent.last?.lastName {
-                            profileCore.lastName = lastName
-                        }
-                    } else {
-                        profileCore.lastName = lastName
-                    }
-                    if age.isEmpty {
-                        if let age = profileArrPersistent.last?.age {
-                            profileCore.age = age
-                        }
-                    } else {
-                        profileCore.age = age
-                    }
-                    if sex.isEmpty {
-                        if let sex = profileArrPersistent.last?.sex {
-                            profileCore.sex = sex
-                        }
-                    } else {
-                        profileCore.sex = sex
-                    }
-                    if location.isEmpty {
-                        if let loc = profileArrPersistent.last?.location {
-                            profileCore.location = loc
-                        }
-                    } else {
-                        profileCore.location = location
-                    }
-                    PersistenceController.shared.saveContext()
                     
                     
-                    showCircle = 1
-                    rotateCheckMark = 0
-                    checkMarkValue = 0
-                } label: {
-                    Text("Save")
-                        .font(.title)
-                        .frame(width: 130, height: 50)
-                        .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "1130C1"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
-                        .clipShape(Capsule())
-                        .foregroundColor(.white)
-                        .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.pink]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                    
+                    
+                    Button(action: {
+                        print("Change profile photo tapped")
+                        isShowingPhotoPicker = true
+                        
+                    }) {
+                        Text("Change Profile Photo")
+                            .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.07)
+                    }
+                    
+                    Group {
+                        HStack(spacing:10) {
+                            Text("Name: ")
+                                .foregroundColor(Color.init(hex: "1130C1"))
+                                //.font(.title)
+                                .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
+                            VStack {
+                                if let name =  profileArrPersistent.last?.name {
+                                    TextField(" \(name)", text: $name)
+                                        //.font(Font.system(size: 25, design: .default))
+                                        .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
+                                } else {
+                                    TextField("Name", text: $name)
+//                                        .font(Font.system(size: 25, design: .default))
+                                        .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
+                                }
+                                Divider()
+                                    
+                                
+                            }
+                        }
+                        
+                        
+                        
+                        
+                        HStack(spacing:10) {
+                            Text("Last Name: ")
+                                .foregroundColor(Color.init(hex: "1130C1"))
+                                .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
+                            VStack {
+                                if let lname =  profileArrPersistent.last?.lastName {
+                                    TextField("\(lname)", text: $lastName)
+                                        .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
+                                } else {
+                                    TextField("Last Name", text: $lastName)
+                                        .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
+                                }
+                                Divider()
+                                    
+                                
+                            }
+                            
+                        }
+                        
+                        
+                        HStack(spacing:10){
+                            Text("Age: ")
+                                .foregroundColor(Color.init(hex: "1130C1"))
+                                .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
+                            VStack {
+                                if let age =  profileArrPersistent.last?.age {
+                                    TextField("\(age)", text: $age)
+                                        .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
+                                        .textContentType(.oneTimeCode)
+                                        .keyboardType(.numberPad)
+                                } else {
+                                    TextField("Age", text: $age)
+                                        .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
+                                        .textContentType(.oneTimeCode)
+                                        .keyboardType(.numberPad)
+                                }
+                                Divider()
+                                
+                            }
+                            
+                        }
+                        
+                        
+                        HStack(spacing:10) {
+                            Text("Sex: ")
+                                .foregroundColor(Color.init(hex: "1130C1"))
+                                .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
+                            VStack {
+                                if let sex =  profileArrPersistent.last?.sex {
+                                    TextField("\(sex)", text: $sex)
+                                        .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
+                                } else {
+                                    TextField("Sex", text: $sex)
+                                        .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
+                                }
+                                Divider()
+                                
+                            }
+                        }
+                        
+                        
+                        HStack(spacing:10) {
+                            Text("Location: ")
+                                .foregroundColor(Color.init(hex: "1130C1"))
+                                .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
+                            
+                            VStack {
+                                if let loc =  profileArrPersistent.last?.location {
+                                    TextField("\(loc)", text: $location)
+                                        .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
+                                } else {
+                                    TextField("Location", text: $location)
+                                        .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
+                                }
+                                Divider()
+                                
+                            }
+                        }
+                    }
+//                    .padding(.leading, 30)
+//                    .padding(.trailing, 30)
+                   
+                    
+                    HStack {
+                        Spacer()
+                        
+                        Button {
+                            withAnimation{
+                                isShowingCheckMark.toggle()
+                            }
+                            let profileCore = ProfileCore(context:viewContext)
+                            if avatarImageData.isEmpty {
+                                if let img = profileArrPersistent.last?.image {
+                                    profileCore.image = img
+                                }
+                            } else {
+                                profileCore.image = avatarImageData
+                            }
+                            //profileCore.image = avatarImageData
+                            if name.isEmpty {
+                                if let name = profileArrPersistent.last?.name {
+                                    profileCore.name = name
+                                }
+                            } else {
+                                profileCore.name = name
+                            }
+                            if lastName.isEmpty {
+                                if let lastName = profileArrPersistent.last?.lastName {
+                                    profileCore.lastName = lastName
+                                }
+                            } else {
+                                profileCore.lastName = lastName
+                            }
+                            if age.isEmpty {
+                                if let age = profileArrPersistent.last?.age {
+                                    profileCore.age = age
+                                }
+                            } else {
+                                profileCore.age = age
+                            }
+                            if sex.isEmpty {
+                                if let sex = profileArrPersistent.last?.sex {
+                                    profileCore.sex = sex
+                                }
+                            } else {
+                                profileCore.sex = sex
+                            }
+                            if location.isEmpty {
+                                if let loc = profileArrPersistent.last?.location {
+                                    profileCore.location = loc
+                                }
+                            } else {
+                                profileCore.location = location
+                            }
+                            PersistenceController.shared.saveContext()
+                            
+                            
+                            showCircle = 1
+                            rotateCheckMark = 0
+                            checkMarkValue = 0
+                        } label: {
+                            Text("Save")
+                                .font(.title)
+                                .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
+                                .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "1130C1"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
+                                .clipShape(Capsule())
+                                .foregroundColor(.white)
+                                .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.pink]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                        }
+                        .padding(.trailing, 20)
+                        .padding(.top, geo.size.height * 0.02)
+                        
+                    }
+                    
+                    Spacer()
+                    
                 }
-                .padding(.trailing, 20)
-
+                .sheet(isPresented: $isShowingPhotoPicker) {
+                    PhotoPicker(avatarImageData: $avatarImageData, imageHasChanged: $imageHasChanged)
+                }
+                //.padding(.top, geo.size.height * 0.02)
+     //            .frame(width:geo.size.width * 0.7, height:  geo.size.height * 0.96, alignment: .center)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
-            
-            Spacer()
-        
-        }
-        .sheet(isPresented: $isShowingPhotoPicker) {
-            PhotoPicker(avatarImageData: $avatarImageData, imageHasChanged: $imageHasChanged)
-            
-        }
             
             if isShowingCheckMark {
                 ZStack {
