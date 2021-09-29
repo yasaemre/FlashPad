@@ -25,69 +25,72 @@ struct DonateView: View {
             } else {
                 LinearGradient(gradient: Gradient(colors: [.black,.black, Color.init(hex:"81329b")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.bottom)
             }
-            VStack(spacing: 5){
-                
-                Image("donation2")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100, height: 100)
-                    .padding(.top, 1)
-                    .tint(Color.init(hex: "102FC3"))
-
-                Text("Support development of the app, FlashPad is a free and open application, developed by a small team. The heart and soul of FlashPad is our global community of tons of users, and donors like yourself – all united to share unlimited access to well structured app. Your donations keep our knowledge projects like FlashPad freely available to everyone. Please help us keep FlashPad growing.")
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
-                    .frame(width: UIScreen.main.bounds.width - 60)
-                    .padding(.top, 1)
-                
-                
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing))
-                    .frame(width: 300, height: 50)
-                    .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
-                    .overlay(
+            GeometryReader { geo in
+                VStack(spacing: 1){
                     
-                        Text("Select one time donation amount")
-                            .foregroundColor(.white)
+                    Image("donation2")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width:  geo.size.width * 0.2, height: geo.size.height * 0.2)
+                        .tint(Color.init(hex: "102FC3"))
                     
-                    )
-                    .padding(.top, 13)
-                
-                Picker(selection:$product, label: Text("Picker"), content: {
-                    Text("$0.99")
-                        .tag( "emre.FlashPad.donation")
-
-                    Text("$3.99").tag("emre.FlashPad.donation2")
-                    Text("$6.99").tag("emre.FlashPad.donation3")
-                    Text("$9.99").tag("emre.FlashPad.donation4")
-                })
-                    .pickerStyle(SegmentedPickerStyle())
-                    .labelsHidden()
-                    .font(.title2)
-                    .padding([.leading, .trailing])
-                    .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 3))
-                    //.frame(maxWidth: .infinity, maxHeight: 20)
-                    .padding(.top, 15)
-
-                
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        action(p: product)
-                    }, label: {
-                        Text("Continue")
-                            .font(.title)
-                            .frame(width: 150, height: 45)
-                            //.foregroundColor(Color.init(hex: "271D76"))
-                            .foregroundColor(.white)
-//                            .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
-                            .background(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing))
-                            .cornerRadius(20)
+                    Text("Support development of the app, FlashPad is a free and open application, developed by a small team. The heart and soul of FlashPad is our global community of tons of users, and donors like yourself – all united to share unlimited access to well structured app. Your donations keep our knowledge projects like FlashPad freely available to everyone. Please help us keep FlashPad growing.")
+                        .foregroundColor(colorScheme == .dark ? .white : .black)
+                        .frame(width: geo.size.width * 0.9, height: geo.size.height * 0.4)
+                        
+                    
+                    
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing))
+                        .frame(width:  geo.size.width * 0.8, height: geo.size.height * 0.06)
+                        //.frame(width: 300, height: 50)
+                        .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
+                        .overlay(
+                            
+                            Text("Select one time donation amount")
+                                .foregroundColor(.white)
+                                .font(.caption)
+                                //.frame(width:  geo.size.width * 0.9, height: geo.size.height * 0.065)
+                            
+                        )
+                        //.padding(.top, 13)
+                    
+                    Picker(selection:$product, label: Text("Picker"), content: {
+                        Text("$0.99").tag( "emre.FlashPad.donation")
+                        Text("$3.99").tag("emre.FlashPad.donation2")
+                        Text("$6.99").tag("emre.FlashPad.donation3")
+                        Text("$9.99").tag("emre.FlashPad.donation4")
                     })
-                        .padding(.trailing, 20)
+                        .pickerStyle(SegmentedPickerStyle())
+                        .labelsHidden()
+                        .font(.title2)
+                        .frame(width:  geo.size.width * 0.8, height: geo.size.height * 0.07)
+                        .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 3))
+                    //.frame(maxWidth: .infinity, maxHeight: 20)
+                        .padding(.top, geo.size.height * 0.02)
+                    
+                    
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            action(p: product)
+                        }, label: {
+                            Text("Continue")
+                                .font(.title2)
+                                .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.06)
+                            //.foregroundColor(Color.init(hex: "271D76"))
+                                .foregroundColor(.white)
+                            //                            .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                                .background(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing))
+                                .cornerRadius(20)
+                        })
+                            
+                    }
+                    .padding(.top, geo.size.height * 0.02)
+                    Spacer()
+                    
                 }
-                    .padding(.top, 13)
-                Spacer()
-
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
         }
         

@@ -150,15 +150,15 @@ struct TabBarView: View {
                                 }, label: {
                                     Image(systemName: "plus")
                                         .font(.largeTitle)
-                                        .frame(width: 60, height: 60)
+                                        .frame(width:  geo.size.width * 0.15, height: geo.size.height * 0.15)
                                         .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "271D76"), Color.init(hex: "102FC3")]),  center: .center, startRadius: 5, endRadius: 120))
                                         .clipShape(Circle())
                                         .foregroundColor(.white)
-                                        .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                                        .overlay(Circle().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
                                 })
 //                                    .padding(.vertical, UIScreen.main.bounds.minY + geo.size.height * 0.3)
                             }
-                            .offset(y: UIScreen.main.bounds.minY + geo.size.height * 0.275 )
+                            .offset(y: UIScreen.main.bounds.minY + geo.size.height * 0.3 )
                            .padding(.vertical, UIScreen.main.bounds.minY + geo.size.height * 0.3)
                             .padding(.horizontal, 33)
                         
@@ -206,7 +206,7 @@ struct TabBarView: View {
                                     }
                                 }
                         }
-                        .frame(width: 25, height: 30)
+                        .frame(width: 25, height: geo.size.height * 0.04)
                         if image != tabs.last { Spacer(minLength: 0)}
                     }
                 }

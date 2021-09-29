@@ -103,7 +103,7 @@ struct EditView: View {
                 
                 RoundedRectangle(cornerRadius: 10)
                     .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "1130C1"), Color.init(hex: "c8d4f5")]), startPoint: .topLeading, endPoint: .bottomTrailing))
-                    .frame(width: geo.size.width * 0.65, height: geo.size.height * 0.6)
+                    .frame(width: geo.size.width * 0.65, height: geo.size.height * 0.5)
                     .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
                     .overlay(
                         VStack( spacing: 5) {
@@ -118,25 +118,23 @@ struct EditView: View {
                                         .overlay(Image(systemName: "minus.circle.fill")
                                                     .font(.title)
                                                     .foregroundColor(Color(.systemGray))
-                                                    .offset(x: UIScreen.main.bounds.minX - geo.size.width * 0.32, y: UIScreen.main.bounds.minY - geo.size.height * 0.3)
+                                                    .offset(x: UIScreen.main.bounds.minX - geo.size.width * 0.32, y: UIScreen.main.bounds.minY - geo.size.height * 0.25)
                                                     .onTapGesture{
                                             print("idx card; \(indexCard)")
                                             alertViewDeleteCard(at: IndexSet.init(integer: indexCard))
                                         })
                                 }
                             } else {
-                                //                                if rightArrowTapped == true {
-                                //                                    Text("")
-                                //                                } else {
                                 Text(deckCore.cardsArray[indexCard].unwrappedDefinition)
                                     .font(.custom("HelveticaNeue", size: 40))
                                     .foregroundColor(.white)
                                     .overlay(Image(systemName: "minus.circle.fill")
                                                 .font(.title)
                                                 .foregroundColor(Color(.systemGray))
-                                                .offset(x: UIScreen.main.bounds.minX - geo.size.width * 0.32, y: UIScreen.main.bounds.minY - geo.size.height * 0.3)
+                                                .offset(x: UIScreen.main.bounds.minX - geo.size.width * 0.32, y: UIScreen.main.bounds.minY - geo.size.height * 0.25)
+
                                                 .onTapGesture{
-                                        //deleteDeck(at: IndexSet.init(integer: index))
+                                        
                                         alertViewDeleteCard(at: IndexSet.init(integer: indexCard))
                                     })
                                 //}
