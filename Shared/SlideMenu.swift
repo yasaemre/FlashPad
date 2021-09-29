@@ -117,7 +117,7 @@ struct SlideMenu: View {
                 
                 Group {
                     
-                    HStack(alignment: .center, spacing:22) {
+                    HStack(alignment: .center, spacing:10) {
                         
                         NavigationLink(destination: ScoreboardView(moc: viewContext)) {
                             Image("scoreboard")

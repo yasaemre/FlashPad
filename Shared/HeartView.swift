@@ -74,7 +74,7 @@ struct HeartView: View {
                 .opacity(!fireworkAnimation ? 0 : 1)
             }
             )
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            .frame(maxWidth: 70, maxHeight: 70, alignment: .center)
             .contentShape(Rectangle())
             .onTapGesture {
                 

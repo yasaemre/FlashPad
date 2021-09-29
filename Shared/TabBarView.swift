@@ -50,6 +50,8 @@ struct TabBarView: View {
     @State private var deckCreatedAt = ""
     @State private var numOfCardsInDeck = 0
     @State private var currentTotalNumOfCards = 0
+    
+    //@State private var bottomBarHeihgt = 0.0
     @FetchRequest(
            sortDescriptors: [NSSortDescriptor(keyPath: \LikedCore.word, ascending: true)],
            animation: .default)
@@ -69,7 +71,7 @@ struct TabBarView: View {
     var body: some View {
        // ZStack {
         NavigationView {
-
+            GeometryReader { geo in
             ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
                 
                 TabView(selection: $selectedTab) {
@@ -136,8 +138,8 @@ struct TabBarView: View {
                    // }
                         
                         
-                        VStack {
-                            Spacer()
+                        //VStack {
+                            //Spacer()
                             HStack {
                                 
                                 Button(action: {
@@ -154,11 +156,13 @@ struct TabBarView: View {
                                         .foregroundColor(.white)
                                         .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
                                 })
+//                                    .padding(.vertical, UIScreen.main.bounds.minY + geo.size.height * 0.3)
                             }
-                            .padding(.vertical, UIScreen.main.bounds.minY + 90)
+                            .offset(y: UIScreen.main.bounds.minY + geo.size.height * 0.275 )
+                           .padding(.vertical, UIScreen.main.bounds.minY + geo.size.height * 0.3)
                             .padding(.horizontal, 33)
-                            
-                        }
+                        
+                        //}
                     }
                     .tag("home")
                     DonateView()
@@ -216,6 +220,7 @@ struct TabBarView: View {
                 //.ignoresSafeArea(.all, edges: .bottom)
                 //.frame( height: UIScreen.main.bounds.height - 30)
                 .padding(.bottom, UIScreen.main.bounds.minY + 30)
+                
                 
                 .toolbar {
                     //Top custom Navigation bar
@@ -284,11 +289,10 @@ struct TabBarView: View {
                 }
                 //.ignoresSafeArea(.all, edges: .all)
                 .foregroundColor(.primary)
-                .padding(.top, UIScreen.main.bounds.minY + 90)
-
+                .padding(.top, UIScreen.main.bounds.minY + geo.size.height * 0.1)
             }
             .ignoresSafeArea(.all, edges: .bottom)
-            
+        }
     }
         .accentColor(Color.init(hex: "6C63FF"))
         
@@ -313,16 +317,6 @@ struct TabBarView: View {
         newDeck.deckCreatedAt = deckCreatedAt
         
         PersistenceController.shared.saveContext()
-        
-//        print("new deck card count\(newDeck.cardsArray.count)")
-//        guard decksArrPersistent != nil && decksArrPersistent.count > 0 else {
-//            return
-//        }
-//        for deck1 in decksArrPersistent {
-//            print("deck name \(deck1.deckName)")
-//            print("Num of card \(deck1.numberOfCardsInDeck)")
-//            print("")
-//        }
 
        
 
