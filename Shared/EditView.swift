@@ -134,7 +134,7 @@ struct EditView: View {
                                     .overlay(Image(systemName: "minus.circle.fill")
                                                 .font(.title)
                                                 .foregroundColor(Color(.systemGray))
-                                                .offset(x: -123, y: -175)
+                                                .offset(x: UIScreen.main.bounds.minX - geo.size.width * 0.32, y: UIScreen.main.bounds.minY - geo.size.height * 0.3)
                                                 .onTapGesture{
                                         //deleteDeck(at: IndexSet.init(integer: index))
                                         alertViewDeleteCard(at: IndexSet.init(integer: indexCard))

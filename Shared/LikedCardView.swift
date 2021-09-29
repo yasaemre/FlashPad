@@ -25,67 +25,66 @@ struct LikedCardView: View {
 
 
     var body: some View {
-        
-        VStack(spacing:5) {
-            Spacer()
-
-            HStack(spacing: 15) {
+        GeometryReader { geo in
+            VStack() {
+                //Spacer()
                 
-                Button {
-                    withAnimation {
-                        flip = false
+                HStack(spacing: 15) {
+                    
+                    Button {
+                        withAnimation {
+                            flip = false
+                        }
+                    } label: {
+                        Text("Word")
+                            .font(.title)
+                            .frame(width: 130, height: 40)
+                            .background(!flip ? Color.init(hex: "271D76") : .gray)
+                            .clipShape(Capsule())
+                            .foregroundColor(.white)
+                        
+                        
                     }
-                } label: {
-                    Text("Word")
-                        .font(.title)
-                        .frame(width: 130, height: 40)
-                        .background(!flip ? Color.init(hex: "271D76") : .gray)
-                        .clipShape(Capsule())
-                        .foregroundColor(.white)
                     
-                    
+                    Button {
+                        withAnimation {
+                            flip = true
+                            //saveContext()
+                        }
+                    } label: {
+                        Text("Meaning")
+                            .font(.title)
+                            .frame(width: 130, height: 40)
+                            .background(flip ? Color.init(hex: "271D76") : .gray)
+                            .clipShape(Capsule())
+                            .foregroundColor(.white)
+                    }
                 }
                 
-                Button {
-                    withAnimation {
-                        flip = true
-                        //saveContext()
-                    }
-                } label: {
-                    Text("Meaning")
-                        .font(.title)
-                        .frame(width: 130, height: 40)
-                        .background(flip ? Color.init(hex: "271D76") : .gray)
-                        .clipShape(Capsule())
-                        .foregroundColor(.white)
-                }
-            }
-            .padding(.bottom, 5)
-            .padding(.top, 5)
-            
-            
-            ZStack {
-                ForEach((0..<likedArrPersistent.count).reversed(), id: \.self) { index in
-                    
-                    HStack {
-                        ZStack {
-                            Image("cardBackg")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: calculateWidth(), height: (UIScreen.main.bounds.height / 2.1) - CGFloat(index-scrolled)*50)
-                                .cornerRadius(15)
-                            //based on scrolled changing view size..
-                                .offset(x: index - scrolled <= 2 ? CGFloat(index - scrolled) * 30 : 60)
-                            if flip == false {
-                                //indexCard = deckCore.cardsArray.count
-                                
+                
+                
+                ZStack {
+                    ForEach((0..<likedArrPersistent.count).reversed(), id: \.self) { index in
+                        
+                        HStack {
+                            ZStack {
+                                Image("cardBackg")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: calculateWidth(), height: (UIScreen.main.bounds.height / 2.2) - CGFloat(index-scrolled)*50)
+                                    .cornerRadius(15)
+                                //based on scrolled changing view size..
+                                    .offset(x: index - scrolled <= 2 ? CGFloat(index - scrolled) * 30 : 60)
+                                if flip == false {
+                                    //indexCard = deckCore.cardsArray.count
+                                    
                                     ZStack {
                                         
                                         Text(likedArrPersistent[index].unwrappedWord)
                                             .font(.custom("HelveticaNeue", size: 40))
                                             .foregroundColor(.white)
                                     }
-
+                                    
                                     
                                     
                                     
@@ -96,85 +95,90 @@ struct LikedCardView: View {
                                             .font(.custom("HelveticaNeue", size: 40))
                                             .foregroundColor(.white)
                                     }
-
                                     
                                     
                                     
-                                }
-                        }
-                        .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
-                        
-                        Spacer(minLength: 0)
-                    }
-                    .onAppear(perform: {
-                        scrolled = 0
-                        likedArrPersistent[index].offset = 0.0
-                    })
-                    .contentShape(Rectangle())
-                    .offset(x:CGFloat(likedArrPersistent[index].offset))
-                    .gesture(DragGesture().onChanged({ value in
-                        withAnimation{
-                            if value.translation.width < 0 && index+1 != likedArrPersistent.count {
-                                likedArrPersistent[index].offset = Float(value.translation.width)
-
-                            } else {
-                                //restoring the cards..
-                                if index > 0 {
-                                    likedArrPersistent[index-1].offset = Float(-(calculateWidth() + 60) + value.translation.width)
+                                    
                                 }
                             }
+                            .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
+                            
+                            Spacer(minLength: 0)
                         }
-                    }).onEnded({ value in
-                        withAnimation{
-                            if value.translation.width < 0 {
-                                if -value.translation.width > 180 && index+1 != likedArrPersistent.count {
-                                    //moving away..
-                                    likedArrPersistent[index].offset = Float(-(calculateWidth() + 60))
-                                    scrolled += 1
+                        .onAppear(perform: {
+                            scrolled = 0
+                            likedArrPersistent[index].offset = 0.0
+                        })
+                        .contentShape(Rectangle())
+                        .offset(x:CGFloat(likedArrPersistent[index].offset))
+                        .gesture(DragGesture().onChanged({ value in
+                            withAnimation{
+                                if value.translation.width < 0 && index+1 != likedArrPersistent.count {
+                                    likedArrPersistent[index].offset = Float(value.translation.width)
+                                    
                                 } else {
-                                    likedArrPersistent[index].offset = 0.0
-                                }
-                            } else {
-                                if index > 0 {
-                                    if value.translation.width > 180 {
-                                        likedArrPersistent[index-1].offset = 0.0
-                                        scrolled -= 1
-                                    } else {
-                                        likedArrPersistent[index-1].offset = Float(-(calculateWidth() + 60))
+                                    //restoring the cards..
+                                    if index > 0 {
+                                        likedArrPersistent[index-1].offset = Float(-(calculateWidth() + 60) + value.translation.width)
                                     }
                                 }
                             }
-                        }
-                    }))
-                    Button {
+                        }).onEnded({ value in
+                            withAnimation{
+                                if value.translation.width < 0 {
+                                    if -value.translation.width > 180 && index+1 != likedArrPersistent.count {
+                                        //moving away..
+                                        likedArrPersistent[index].offset = Float(-(calculateWidth() + 60))
+                                        scrolled += 1
+                                    } else {
+                                        likedArrPersistent[index].offset = 0.0
+                                    }
+                                } else {
+                                    if index > 0 {
+                                        if value.translation.width > 180 {
+                                            likedArrPersistent[index-1].offset = 0.0
+                                            scrolled -= 1
+                                        } else {
+                                            likedArrPersistent[index-1].offset = Float(-(calculateWidth() + 60))
+                                        }
+                                    }
+                                }
+                            }
+                        }))
+                        Button {
                             deleteCard(at: IndexSet.init(integer: index))
-                    } label: {
-                        Image(systemName: "trash")
-                            .font(.title)
-                            .foregroundColor(.white)
+                        } label: {
+                            Image(systemName: "trash")
+                                .font(.title)
+                                .foregroundColor(.white)
+                        }
+                        .offset(x: UIScreen.main.bounds.minX - geo.size.width * 0.35, y: UIScreen.main.bounds.minY - geo.size.height * 0.23)
+                        
+                        
                     }
-                    .offset(x: -137, y: -175)
-                    
+                }
+                .frame(height: UIScreen.main.bounds.height / 1.8)
+                .padding(.horizontal, 25)
+                
+                
+                HStack {
                     
                 }
-            }
-            .frame(height: UIScreen.main.bounds.height / 1.8)
-            .padding(.horizontal, 25)
-            .padding(.top, 1)
-            
-            HStack {
+                Text("\(scrolled+1) of \(likedArrPersistent.count)")
+                    .font(.title3)
+                    .padding(.top, geo.size.height * 0.01)
                 
+                
+                Spacer()
             }
-            Text("\(scrolled+1) of \(likedArrPersistent.count)")
-                .font(.title2)
-                .padding(.top, 5)
+            //.padding(.top, 1)
+            //.ignoresSafeArea(.all, edges: .all)
+            //.frame(width:geo.size.width * 0.7, height:  geo.size.height * 0.96, alignment: .center)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            //geo.size.height * 0.02
+            .padding(.bottom, geo.size.height * 0.2)
             
-            
-            Spacer()
         }
-        //.padding(.top, 1)
-        .ignoresSafeArea(.all, edges: .all)
-
         
        
     }
