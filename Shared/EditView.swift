@@ -36,7 +36,8 @@ struct EditView: View {
     
     var body: some View {
         ZStack {
-            VStack{
+            GeometryReader { geo in
+                VStack(alignment: .center){
                 HStack(spacing: 15) {
                     
                     Button {
@@ -47,7 +48,7 @@ struct EditView: View {
                     } label: {
                         Text("Word")
                             .font(.title)
-                            .frame(width: 130, height: 40)
+                            .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
                             .background(!flip ? Color.init(hex: "1130C1") : .gray)
                             .clipShape(Capsule())
                             .foregroundColor(.white)
@@ -74,7 +75,7 @@ struct EditView: View {
                     } label: {
                         Text("Meaning")
                             .font(.title)
-                            .frame(width: 130, height: 40)
+                            .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
                             .background(flip ? Color.init(hex: "1130C1") : .gray)
                             .clipShape(Capsule())
                             .foregroundColor(.white)
@@ -102,7 +103,7 @@ struct EditView: View {
                 
                 RoundedRectangle(cornerRadius: 10)
                     .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "1130C1"), Color.init(hex: "c8d4f5")]), startPoint: .topLeading, endPoint: .bottomTrailing))
-                    .frame(width: 250, height: 350)
+                    .frame(width: geo.size.width * 0.65, height: geo.size.height * 0.6)
                     .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
                     .overlay(
                         VStack( spacing: 5) {
@@ -117,7 +118,7 @@ struct EditView: View {
                                         .overlay(Image(systemName: "minus.circle.fill")
                                                     .font(.title)
                                                     .foregroundColor(Color(.systemGray))
-                                                    .offset(x: -123, y: -175)
+                                                    .offset(x: UIScreen.main.bounds.minX - geo.size.width * 0.32, y: UIScreen.main.bounds.minY - geo.size.height * 0.3)
                                                     .onTapGesture{
                                             print("idx card; \(indexCard)")
                                             alertViewDeleteCard(at: IndexSet.init(integer: indexCard))
@@ -218,7 +219,7 @@ struct EditView: View {
                     } label: {
                         Text("Add Card")
                             .font(.title)
-                            .frame(width: 150, height: 60)
+                            .frame(width:  150, height: geo.size.height * 0.07)
                             .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "1130C1"), Color.init(hex: "B74278")]),  center: .center, startRadius: 5, endRadius: 120))
                             .clipShape(Capsule())
                             .foregroundColor(.white)
@@ -236,10 +237,16 @@ struct EditView: View {
                         Image(systemName: "arrowshape.turn.up.right")
                             .font(.largeTitle)
                             .foregroundColor(Color.init(hex: "B74278"))
+                    
                     }
                 }
+                
+
             }
-            
+                .padding(.leading, geo.size.width * 0.3)
+                .padding(.top, geo.size.height * 0.01)
+                .frame(width:geo.size.width * 0.7, height:  geo.size.height * 0.97, alignment: .center)
+        }
             if isShowingCheckMark {
                 ZStack {
                 Circle()

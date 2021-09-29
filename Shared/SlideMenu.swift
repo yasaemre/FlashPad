@@ -94,7 +94,7 @@ struct SlideMenu: View {
                         .font(.title)
                     
                     Text("Dark Mode")
-                        .frame(width:  150, height: geo.size.height * 0.06)
+                        .frame(width:  150, height: geo.size.height * 0.05)
 
                     Spacer()
                     Button(action: {
@@ -123,7 +123,7 @@ struct SlideMenu: View {
                             Image("scoreboard")
                                 .resizable()
                             Text("Scoreboard")
-                                .frame(width:  150, height: geo.size.height * 0.06)
+                                .frame(width:  150, height: geo.size.height * 0.05)
 
                         }
 
@@ -140,7 +140,7 @@ struct SlideMenu: View {
                             Image("desktop")
                                 .resizable()
                             Text("Desktop App")
-                                .frame(width:  150, height: geo.size.height * 0.06)
+                                .frame(width:  150, height: geo.size.height * 0.05)
 
                         }
                     }
@@ -152,7 +152,7 @@ struct SlideMenu: View {
                             Image("share")
                                 .resizable()
                             Text("Share with \nFriends")
-                                .frame(width:  150, height: geo.size.height * 0.06)
+                                .frame(width:  150, height: geo.size.height * 0.05)
 
                         }
                         .onTapGesture {
@@ -163,7 +163,7 @@ struct SlideMenu: View {
                     Divider()
                         .padding(.top, 25)
                     LogoutButtonView()
-                        .frame(width:  150, height: geo.size.height * 0.06)
+                        .frame(width:  150, height: geo.size.height * 0.05)
 
                 }
                 Spacer()
