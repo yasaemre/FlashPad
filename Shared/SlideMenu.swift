@@ -98,8 +98,8 @@ struct SlideMenu: View {
             .padding(.top, 25)
             
             HStack(spacing: 22) {
-                Image(systemName: "moon.fill")
-                    .font(.title)
+//                Image(systemName: "moon.fill")
+//                    .font(.title)
                 
                 Text("Dark Mode")
                 Spacer()
@@ -109,7 +109,7 @@ struct SlideMenu: View {
                     
                     UIApplication.shared.windows.first?.rootViewController?.view.overrideUserInterfaceStyle = self.dark ? .dark : .light
                 }) {
-                    Image(systemName: "flashlight.off.fill")
+                    Image(systemName: "moon.stars.fill")
                         .font(.title)
                         .rotationEffect(.init(degrees: self.dark ? 180 : 0))
                 }
@@ -180,12 +180,17 @@ struct SlideMenu: View {
         isShareSheetShowing.toggle()
         
        //https://apps.apple.com/us/app/vintage-house/id1549251393
-        let url = URL(string: "https://emre-yasa.tech/")
-        let activityView = UIActivityViewController(activityItems: [url!], applicationActivities: nil)
+       guard let url = URL(string: "https://emre-yasa.tech/") else {
+           return
+       }
+       
+        let activityView = UIActivityViewController(activityItems: ["FlahPad is fun way of learning new words, language and formulas and so on. Here is the link to download", url], applicationActivities: nil)
+   
         
         UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
     }
 }
+
 //
 //struct MenuView_Previews: PreviewProvider {
 //    static var previews: some View {
