@@ -24,8 +24,9 @@ struct StudyScreenView: View {
     //@State var correctRate = 0.0
     @State var falseAnswer = 0
  
-    @State var correctA = UserDefaults.standard.double(forKey: "correctA")
-   // @State var correctA = 0.0
+    //@State var correctA = UserDefaults.standard.double(forKey: "correctA")
+    @State var correctA = 0.0
+    @State var prevCorrectA  = 0.0
     @State var flipped = false
     @State var flip = false
     //@AppStorage("correctA") var correctA = 0.0
@@ -43,12 +44,15 @@ struct StudyScreenView: View {
     
             }
             .onDisappear{
-                
+                if prevCorrectA != correctA {
                 deckCore.correctRate = (correctA / Double(deckCore.cardsArray.count)) * 100.0
                 print("correctA \(correctA)")
                 print("deckCore.cardsArray.count \(deckCore.cardsArray.count)")
                 print("deckCore.correctRate \(deckCore.correctRate)")
-                
+                    
+                }
+                prevCorrectA = correctA
+
                // UserDefaults.standard.set(0.0, forKey: "correctA")
                 //correctA = 0.0
 

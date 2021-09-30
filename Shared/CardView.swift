@@ -248,9 +248,7 @@ struct CardView: View {
                 }
                 .navigationBarHidden(true)
             }
-            //.padding(.leading, geo.size.width * 0.3)
            .padding(.top, geo.size.height * 0.02)
-//            .frame(width:geo.size.width * 0.7, height:  geo.size.height * 0.96, alignment: .center)
            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
 
 
@@ -259,32 +257,3 @@ struct CardView: View {
     }
 }
 
-//Custom shape for resetting center
-//struct CustomShapeLike: Shape {
-//    var radius: CGFloat
-//
-//    var animatableData: CGFloat {
-//        get { return radius}
-//        set { radius = newValue }
-//    }
-//
-//    func path(in rect: CGRect) -> Path {
-//        return Path { path in
-//            path.move(to: CGPoint(x: 0, y: 0))
-//            path.addLine(to: CGPoint(x: 0, y: rect.height))
-//            path.addLine(to: CGPoint(x: rect.width, y: rect.height))
-//            path.addLine(to: CGPoint(x: rect.width, y: 0))
-//
-//            //adding center to circle
-//            let center = CGPoint(x: rect.width / 2, y: rect.height / 2)
-//            path.move(to: center)
-//            path.addArc(center: center, radius: radius, startAngle: .zero, endAngle: .init(degrees: 360), clockwise: false)
-//        }
-//    }
-
-//struct CardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CardView(card: DeckCore.cardsArray[0])
-//                    .previewLayout(.sizeThatFits)
-//    }
-//}
