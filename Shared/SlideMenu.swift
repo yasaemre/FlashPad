@@ -45,6 +45,7 @@ struct SlideMenu: View {
                 }
                 .padding(.top, geo.size.height * 0.01)
                 .padding(.bottom, geo.size.height * 0.03)
+                .padding(.leading, geo.size.height * 0.01)
                 
                 
                 if imageHasChanged == true {
@@ -55,6 +56,8 @@ struct SlideMenu: View {
                             .clipShape(Circle())
                             .frame(width: 85, height: 85)
                             .padding()
+                            .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
+
                     }
                 } else {
                     if let image = profileArrPersistent.last?.image{
@@ -65,6 +68,8 @@ struct SlideMenu: View {
                                 .clipShape(Circle())
                                 .frame(width: 85, height: 85)
                                 .padding()
+                                .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
+
                         }
                     } else {
                         Image(uiImage: avatarImage)
@@ -73,6 +78,8 @@ struct SlideMenu: View {
                             .clipShape(Circle())
                             .frame(width: 85, height: 85)
                             .padding()
+                            .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
+
                     }
                 }
                 
@@ -82,10 +89,10 @@ struct SlideMenu: View {
                             .font(.title3)
                     } else {
                         Text("Anonymous")
-                            .font(.caption)
+                            .font(.title3)
                     }
                 }
-                .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.04)
+                .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.04)
                 
                 HStack() {
                     Image(systemName: "moon.fill")
@@ -94,7 +101,7 @@ struct SlideMenu: View {
                     Text("Dark Mode")
                         .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.04)
 
-                    Spacer()
+                    //Spacer()
                     Button(action: {
                         print("Flash button tapped")
                         self.dark.toggle()
@@ -108,6 +115,7 @@ struct SlideMenu: View {
                     }
                     
                 }
+                .padding(.top, geo.size.height * 0.02)
 
                 
                 
@@ -119,16 +127,13 @@ struct SlideMenu: View {
                         NavigationLink(destination: ScoreboardView(moc: viewContext)) {
                             Image("scoreboard")
                                 .resizable()
-                                .frame(width:  geo.size.width * 0.2, height: geo.size.height * 0.07)
+                                .frame(width:  geo.size.width * 0.17, height: geo.size.height * 0.07)
                             Text("Scoreboard")
                                 .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.04)
 
                         }
-
-                        
-                        
-                        
                     }
+                    .padding(.top, geo.size.height * 0.02)
 
                     Button(action: {
                         
@@ -136,7 +141,7 @@ struct SlideMenu: View {
                         HStack(alignment: .center, spacing:2) {
                             Image("desktop")
                                 .resizable()
-                                .frame(width:  geo.size.width * 0.2, height: geo.size.height * 0.06)
+                                .frame(width:  geo.size.width * 0.17, height: geo.size.height * 0.07)
                             Text("Desktop App")
                                 .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.04)
 
@@ -148,7 +153,7 @@ struct SlideMenu: View {
                         HStack(alignment: .center, spacing: 2) {
                             Image("share")
                                 .resizable()
-                                .frame(width:  geo.size.width * 0.2, height: geo.size.height * 0.06)
+                                .frame(width:  geo.size.width * 0.17, height: geo.size.height * 0.07)
                             Text("Share with \nFriends")
                                 .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.1)
 
@@ -162,6 +167,7 @@ struct SlideMenu: View {
                         .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.04)
 
                 }
+                
                 Spacer()
             }
             .foregroundColor(.primary)

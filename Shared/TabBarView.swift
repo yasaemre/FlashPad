@@ -156,10 +156,12 @@ struct TabBarView: View {
                                         .foregroundColor(.white)
                                         .overlay(Circle().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
                                 })
+                                    .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
+
 //                                    .padding(.vertical, UIScreen.main.bounds.minY + geo.size.height * 0.3)
                             }
-                            .offset(y: UIScreen.main.bounds.minY + geo.size.height * 0.3 )
-                           .padding(.vertical, UIScreen.main.bounds.minY + geo.size.height * 0.3)
+                            .offset(y: UIScreen.main.bounds.minY + geo.size.height * 0.32 )
+                           //.padding(.vertical, UIScreen.main.bounds.minY + geo.size.height * 0.3)
                             .padding(.horizontal, 33)
                         
                         //}
@@ -219,7 +221,7 @@ struct TabBarView: View {
                 //Bottom edge
                 //.ignoresSafeArea(.all, edges: .bottom)
                 //.frame( height: UIScreen.main.bounds.height - 30)
-                .padding(.bottom, UIScreen.main.bounds.minY + 30)
+                .padding(.bottom, UIScreen.main.bounds.minY + geo.size.height * 0.03)
                 
                 
                 .toolbar {
@@ -291,7 +293,7 @@ struct TabBarView: View {
                 .foregroundColor(.primary)
                 .padding(.top, UIScreen.main.bounds.minY + geo.size.height * 0.1)
             }
-            .ignoresSafeArea(.all, edges: .bottom)
+            //.ignoresSafeArea(.all, edges: .bottom)
         }
     }
         .accentColor(Color.init(hex: "6C63FF"))

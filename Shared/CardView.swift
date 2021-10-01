@@ -101,13 +101,10 @@ struct CardView: View {
                 ZStack(alignment: .center) {
                     Image(cardCore.unwrappedImage)
                         .resizable()
-                        .frame(width: geo.size.width * 0.8, height: geo.size.height * 0.55)
+                        .frame(width: geo.size.width * 0.7, height: geo.size.height * 0.50)
                         .clipped()
                         .cornerRadius(12)
-                    
-                    
-                    
-                    
+
                     //ForEach(0..<deckCore.cardsArray.count) { index in
                     
                     if deckCore.cardsArray.count >= 0 {
