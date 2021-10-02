@@ -45,7 +45,7 @@ struct CardView: View {
     
     var body: some View {
         GeometryReader { geo in
-            VStack(spacing:10) {
+            VStack() {
                 
                 HStack {
                     Button {
@@ -54,19 +54,20 @@ struct CardView: View {
                     } label: {
                         Image(systemName: "arrowshape.turn.up.backward.fill")
                             .font(.title)
-                            .foregroundColor(Color.init(hex: "6C63FF"))
+                            .foregroundColor(Color.init(hex: "164430"))
                             .contentShape(Rectangle())
                         
                     }
                     Spacer()
                 }
                 .padding(.leading, 15)
+                .padding(.bottom, UIScreen.main.bounds.height * 0.1)
 
                 
                 //Spacer()
                 
                 
-                HStack(spacing: 15) {
+                HStack(spacing: 25) {
                     
                     Button {
                         withAnimation {
@@ -74,9 +75,9 @@ struct CardView: View {
                         }
                     } label: {
                         Text("Word")
-                            .font(.title)
-                            .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
-                            .background(!flip ? Color.init(hex: "271D76") : .gray)
+                            .font(.custom("Chalkduster", size: 24))
+                            .frame(width:  geo.size.width * 0.35, height: geo.size.height * 0.07)
+                            .background(!flip ? Color.init(hex: "164430") : .gray)
                             .clipShape(Capsule())
                             .foregroundColor(.white)
                         
@@ -90,16 +91,17 @@ struct CardView: View {
                         }
                     } label: {
                         Text("Meaning")
-                            .font(.title)
-                            .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
-                            .background(flip ? Color.init(hex: "271D76") : .gray)
+                            .font(.custom("Chalkduster", size: 24))
+                            .frame(width:  geo.size.width * 0.35, height: geo.size.height * 0.07)
+                            .background(flip ? Color.init(hex: "164430") : .gray)
                             .clipShape(Capsule())
                             .foregroundColor(.white)
                     }
                 }
                 
+                
                 ZStack(alignment: .center) {
-                    Image(cardCore.unwrappedImage)
+                    Image("bbS")
                         .resizable()
                         .frame(width: geo.size.width * 0.7, height: geo.size.height * 0.50)
                         .clipped()
@@ -112,7 +114,7 @@ struct CardView: View {
                             
                             ZStack {
                                 Text(deckCore.cardsArray[indexCard].unwrappedWord)
-                                    .font(.custom("HelveticaNeue", size: 40))
+                                    .font(.custom("Chalkduster", size: 40))
                                     .foregroundColor(.white)
                             }
                             
@@ -122,7 +124,7 @@ struct CardView: View {
                             ZStack {
                                 
                                 Text(deckCore.cardsArray[indexCard].unwrappedDefinition)
-                                    .font(.custom("HelveticaNeue", size: 40))
+                                    .font(.custom("Chalkduster", size: 40))
                                     .foregroundColor(.white)
                             }
                             
@@ -132,6 +134,7 @@ struct CardView: View {
                     HStack {
                         Image("correct")
                             .resizable()
+                            .font(.custom("Chalkduster", size: 22))
                             .aspectRatio(contentMode: .fit)
                             .frame(width:75,height: 75)
                             .offset(x: 60, y: -140)
@@ -140,6 +143,7 @@ struct CardView: View {
                         Spacer()
                         Image("false")
                             .resizable()
+                            .font(.custom("Chalkduster", size: 22))
                             .aspectRatio(contentMode: .fit)
                             .frame(width:75,height: 75)
                             .offset(x: -60, y: -140)
@@ -216,18 +220,19 @@ struct CardView: View {
                 HStack(spacing: 40){
                     
                     Text("Correct: \(correctAnswer)")
-                        .font(.title)
+                        .font(.custom("Chalkduster", size: 22))
                         .frame(width:  geo.size.width * 0.4, height: geo.size.height * 0.07)
-                        .background(Color.init(hex: "271D76"))
+                        .background(Color.init(hex: "164430"))
                         .clipShape(Capsule())
                         .foregroundColor(.white)
                     
                     
                     
                     Text("False: \(falseAnswer)")
-                        .font(.title)
+                        .font(.custom("Chalkduster", size: 22))
                         .frame(width:  geo.size.width * 0.4, height: geo.size.height * 0.07)
-                        .background(Color.init(hex: "B74278"))
+                        .foregroundColor(Color.init(hex: "164430"))
+                        .background(Color(.systemGray6))
                         .clipShape(Capsule())
                         .foregroundColor(.white)
                 }
@@ -245,7 +250,7 @@ struct CardView: View {
                 }
                 .navigationBarHidden(true)
             }
-           .padding(.top, geo.size.height * 0.02)
+           //.padding(.top, geo.size.height * 0.02)
            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
 
 

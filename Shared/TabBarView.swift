@@ -92,7 +92,7 @@ struct TabBarView: View {
                                         
                                         ZStack {
                                             
-                                            Image("cardBackg")
+                                            Image("blackboardM")
                                                 .resizable()
                                                 .frame(width:150, height: 200)
                                                 .cornerRadius(16)
@@ -110,17 +110,18 @@ struct TabBarView: View {
 
                                             VStack(spacing: 10) {
                                                 Text(decksArrPersistent[index].unwrappedDeckName)
-                                                    .font(.title).bold()
+                                                    .font(.custom("Chalkduster", size: 22))
+
                                                     .foregroundColor(.white)
 
                                                 Text("\(decksArrPersistent[index].numberOfCardsInDeck) cards")
-                                                    .font(.title2)
+                                                    .font(.custom("Chalkduster", size: 18))
                                                     .foregroundColor(.white)
                                                     .onAppear {
                                                         decksArrPersistent[index].numberOfCardsInDeck = Int16(decksArrPersistent[index].cardsArray.count)
                                                     }
                                                 Text("created on \n\(decksArrPersistent[index].deckCreatedAt ?? "")")
-                                                    .font(.system(size: 12.0))
+                                                    .font(.custom("Chalkduster", size: 14))
                                                     .foregroundColor(.white)
                                             }
                                             .frame(width:150, height: 200)
@@ -151,7 +152,7 @@ struct TabBarView: View {
                                     Image(systemName: "plus")
                                         .font(.largeTitle)
                                         .frame(width:  geo.size.width * 0.15, height: geo.size.height * 0.15)
-                                        .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "271D76"), Color.init(hex: "102FC3")]),  center: .center, startRadius: 5, endRadius: 120))
+                                        .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "164430"), Color.init(hex: "164430")]),  center: .center, startRadius: 5, endRadius: 120))
                                         .clipShape(Circle())
                                         .foregroundColor(.white)
                                         .overlay(Circle().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
@@ -197,7 +198,7 @@ struct TabBarView: View {
                                     .frame(width: 25, height: 25)
                                     .foregroundColor(selectedTab == image ? getColor(image: image) : Color.gray)
                                     .padding(selectedTab == image ? 15 : 0)
-                                    .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "c8d4f5"), Color.init(hex: "271D76")]),  center: .center, startRadius: 5, endRadius: 120).opacity(selectedTab == image ? 1 : 0).clipShape(Circle()))
+                                    .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "c8d4f5"), Color.init(hex: "164430")]),  center: .center, startRadius: 5, endRadius: 120).opacity(selectedTab == image ? 1 : 0).clipShape(Circle()))
                                     .matchedGeometryEffect(id: image, in: animation)
                                     .offset(x: selectedTab == image ? (reader.frame(in: .global).minX - reader.frame(in: .global).midX) : 0, y: selectedTab == image ? -50 : 0)
                             })
@@ -215,7 +216,7 @@ struct TabBarView: View {
                 .padding(.vertical)
                 //.padding(.vertical, 20)
                 //.padding(.bottom, 10)
-                .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "8092EA"), Color.init(hex: "1130C1")]),  center: .center, startRadius: 5, endRadius: 120).clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
+                .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "8092EA"), Color.init(hex: "164430")]),  center: .center, startRadius: 5, endRadius: 120).clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
                 .padding(.horizontal)
                 //Bottom edge
                 //.ignoresSafeArea(.all, edges: .bottom)
@@ -237,7 +238,7 @@ struct TabBarView: View {
                                 }
                                 .symbolRenderingMode(.hierarchical)
                                 .font(.system(size: 24))
-                                .foregroundColor(Color.init(hex: "6C63FF"))
+                                .foregroundColor(Color.init(hex: "164430"))
 
                                 Spacer()
                                 
@@ -295,7 +296,7 @@ struct TabBarView: View {
             //.ignoresSafeArea(.all, edges: .bottom)
         }
     }
-        .accentColor(Color.init(hex: "6C63FF"))
+        .accentColor(Color.init(hex: "164430"))
         
         HStack {
             SlideMenu(dark: self.$dark, show: self.$show, imageHasChanged: $imageHasChanged, avatarImageData: $avatarImageData)

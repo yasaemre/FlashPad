@@ -47,17 +47,16 @@ struct EditView: View {
                         }
                     } label: {
                         Text("Word")
-                            .font(.title)
-                            .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
-                            .background(!flip ? Color.init(hex: "1130C1") : .gray)
+                            .font(.custom("Chalkduster", size: 24))
+                            .frame(width:  geo.size.width * 0.35, height: geo.size.height * 0.07)
+                            .background(!flip ? Color.init(hex: "164430") : .gray)
                             .clipShape(Capsule())
                             .foregroundColor(.white)
                             .navigationBarItems(trailing: NavigationLink(destination: StudyScreenView(deckCore: deckCore, card: card)) {
                                 Text("Study")
-                                    .font(.title)
-                                    //.foregroundColor(Color.init(hex: "B74278"))
-                                    .frame(width: 90, height: 40)
-                                    .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "B74278"), Color.init(hex: "B74278")]),  center: .center, startRadius: 5, endRadius: 120))
+                                    .font(.custom("Chalkduster", size: 24))
+                                //.foregroundColor(Color.init(hex: "B74278"))
+                                    .frame(width:  geo.size.width * 0.35, height: geo.size.height * 0.06)                   .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "B74278"), Color.init(hex: "164430")]),  center: .center, startRadius: 5, endRadius: 120))
                                     .clipShape(Capsule())
                                     .foregroundColor(.white)
                                 
@@ -74,9 +73,9 @@ struct EditView: View {
                         }
                     } label: {
                         Text("Meaning")
-                            .font(.title)
-                            .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
-                            .background(flip ? Color.init(hex: "1130C1") : .gray)
+                            .font(.custom("Chalkduster", size: 24))
+                            .frame(width:  geo.size.width * 0.35, height: geo.size.height * 0.07)
+                            .background(flip ? Color.init(hex: "164430") : .gray)
                             .clipShape(Capsule())
                             .foregroundColor(.white)
                     }
@@ -102,7 +101,7 @@ struct EditView: View {
                 }
                 
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "1130C1"), Color.init(hex: "c8d4f5")]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "164430"), Color.init(hex: "c8d4f5")]), startPoint: .topLeading, endPoint: .bottomTrailing))
                     .frame(width: geo.size.width * 0.65, height: geo.size.height * 0.5)
                     .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
                     .overlay(
@@ -113,7 +112,7 @@ struct EditView: View {
                                     Text("")
                                 } else {
                                     Text(deckCore.cardsArray[indexCard].unwrappedWord)
-                                        .font(.custom("HelveticaNeue", size: 40))
+                                        .font(.custom("Chalkduster", size: 40))
                                         .foregroundColor(.white)
                                         .overlay(Image(systemName: "minus.circle.fill")
                                                     .font(.title)
@@ -126,10 +125,10 @@ struct EditView: View {
                                 }
                             } else {
                                 Text(deckCore.cardsArray[indexCard].unwrappedDefinition)
-                                    .font(.custom("HelveticaNeue", size: 40))
+                                    .font(.custom("Chalkduster", size: 40))
                                     .foregroundColor(.white)
                                     .overlay(Image(systemName: "minus.circle.fill")
-                                                .font(.title)
+                                                .font(.custom("Chalkduster", size: 40))
                                                 .foregroundColor(Color(.systemGray))
                                                 .offset(x: UIScreen.main.bounds.minX - geo.size.width * 0.32, y: UIScreen.main.bounds.minY - geo.size.height * 0.25)
 
@@ -146,7 +145,7 @@ struct EditView: View {
                                     //                                    Text("")
                                     //                                } else {
                                     Text(deckCore.cardsArray[index].unwrappedWord)
-                                        .font(.custom("HelveticaNeue", size: 40))
+                                        .font(.custom("Chalkduster", size: 40))
                                         .foregroundColor(.white)
                                         .overlay(Image(systemName: "minus.circle.fill")
                                                     .font(.title)
@@ -164,7 +163,7 @@ struct EditView: View {
                                     //                                    Text("")
                                     //                                } else {
                                     Text(deckCore.cardsArray[index].unwrappedDefinition)
-                                        .font(.custom("HelveticaNeue", size: 40))
+                                        .font(.custom("Chalkduster", size: 40))
                                         .foregroundColor(.white)
                                         .overlay(Image(systemName: "minus.circle.fill")
                                                     .font(.title)
@@ -203,7 +202,7 @@ struct EditView: View {
                     } label: {
                         Image(systemName: "arrowshape.turn.up.backward")
                             .font(.largeTitle)
-                            .foregroundColor(Color.init(hex: "B74278"))
+                            .foregroundColor(Color.init(hex: "164430"))
                     }
                     
                     Button {
@@ -216,12 +215,12 @@ struct EditView: View {
                         
                     } label: {
                         Text("Add Card")
-                            .font(.title)
+                            .font(.custom("Chalkduster", size: 24))
                             .frame(width:  150, height: geo.size.height * 0.07)
-                            .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "1130C1"), Color.init(hex: "B74278")]),  center: .center, startRadius: 5, endRadius: 120))
+                            .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "164430"), Color.init(hex: "164430")]),  center: .center, startRadius: 5, endRadius: 120))
                             .clipShape(Capsule())
                             .foregroundColor(.white)
-                            .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.pink]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                            .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "164430"), Color.init(hex: "B74278")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
                     }
                     
                     
@@ -234,7 +233,7 @@ struct EditView: View {
                     } label: {
                         Image(systemName: "arrowshape.turn.up.right")
                             .font(.largeTitle)
-                            .foregroundColor(Color.init(hex: "B74278"))
+                            .foregroundColor(Color.init(hex: "164430"))
                     
                     }
                 }
@@ -259,7 +258,7 @@ struct EditView: View {
 
                     
                 Image(systemName: "checkmark")
-                        .foregroundColor(Color.init(hex: "067238"))
+                        foregroundColor(Color.init(hex: "067238"))
                     .font(.system(size: 60))
                     .rotationEffect(.degrees(Double(rotateCheckMark)))
                     .clipShape(Rectangle().offset(x: CGFloat(checkMarkValue)))
