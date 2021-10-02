@@ -90,9 +90,8 @@ struct ProfileView: View {
                     Group {
                         HStack(spacing:10) {
                             Text("Name: ")
-                                .foregroundColor(Color.init(hex: "6C63FF"))
+                                .foregroundColor(Color.init(hex: "164430"))
                                 .font(.title2)
-                                .bold()
                             VStack {
                                 if let name =  profileArrPersistent.last?.name {
                                     TextField(" \(name)", text: $name)
@@ -112,9 +111,8 @@ struct ProfileView: View {
                         
                         HStack(spacing:10) {
                             Text("Last Name: ")
-                                .foregroundColor(Color.init(hex: "6C63FF"))
+                                .foregroundColor(Color.init(hex: "164430"))
                                 .font(.title2)
-                                .bold()
                             VStack {
                                 if let lname =  profileArrPersistent.last?.lastName {
                                     TextField("\(lname)", text: $lastName)
@@ -135,9 +133,8 @@ struct ProfileView: View {
                         
                         HStack(spacing:10){
                             Text("Age: ")
-                                .foregroundColor(Color.init(hex: "6C63FF"))
+                                .foregroundColor(Color.init(hex: "164430"))
                                 .font(.title2)
-                                .bold()
 
                             VStack {
                                 if let age =  profileArrPersistent.last?.age {
@@ -146,7 +143,7 @@ struct ProfileView: View {
                                         .keyboardType(.numberPad)
                                 } else {
                                     TextField("Age", text: $age)
-                                        .font(.title2)                                         .textContentType(.oneTimeCode)
+                                        .font(.title2)                           .textContentType(.oneTimeCode)
                                         .keyboardType(.numberPad)
                                 }
                                 Divider()
@@ -158,9 +155,8 @@ struct ProfileView: View {
                         
                         HStack(spacing:10) {
                             Text("Sex: ")
-                                .foregroundColor(Color.init(hex: "6C63FF"))
+                                .foregroundColor(Color.init(hex: "164430"))
                                 .font(.title2)
-                                .bold()
                             VStack {
                                 if let sex =  profileArrPersistent.last?.sex {
                                     TextField("\(sex)", text: $sex)
@@ -179,9 +175,8 @@ struct ProfileView: View {
                         
                         HStack(spacing:10) {
                             Text("Location: ")
-                                .foregroundColor(Color.init(hex: "6C63FF"))
+                                .foregroundColor(Color.init(hex: "164430"))
                                 .font(.title2)
-                                .bold()
                             VStack {
                                 if let loc =  profileArrPersistent.last?.location {
                                     TextField("\(loc)", text: $location)
@@ -263,7 +258,7 @@ struct ProfileView: View {
                             Text("Save")
                                 .font(.title)
                                 .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.07)
-                                .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "1130C1"), Color.init(hex: "c8d4f5")]),  center: .center, startRadius: 5, endRadius: 120))
+                                .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "164430"), Color.init(hex: "164430")]),  center: .center, startRadius: 5, endRadius: 120))
                                 .clipShape(Capsule())
                                 .foregroundColor(.white)
                                 .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.pink]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
