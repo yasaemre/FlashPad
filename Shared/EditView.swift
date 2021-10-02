@@ -258,7 +258,7 @@ struct EditView: View {
 
                     
                 Image(systemName: "checkmark")
-                        foregroundColor(Color.init(hex: "067238"))
+                        .foregroundColor(Color.init(hex: "067238"))
                     .font(.system(size: 60))
                     .rotationEffect(.degrees(Double(rotateCheckMark)))
                     .clipShape(Rectangle().offset(x: CGFloat(checkMarkValue)))
@@ -293,7 +293,7 @@ struct EditView: View {
         let newCard = CardCore(context: viewContext)
         newCard.word = card.word
         newCard.definition = card.definition
-        newCard.imageName = "cardBackg"
+        newCard.imageName = "bbS"
         //        guard cardsArrPersistent != nil && cardsArrPersistent.count > 0 else {
         //            return
         //        }
