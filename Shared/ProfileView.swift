@@ -85,23 +85,22 @@ struct ProfileView: View {
                         Text("Change Profile Photo")
                             .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.07)
                     }
+                    .padding(.bottom, geo.size.height * 0.07)
                     
                     Group {
                         HStack(spacing:10) {
                             Text("Name: ")
-                                .foregroundColor(Color.init(hex: "1130C1"))
-                                //.font(.title)
-                                .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.07)
+                                .foregroundColor(Color.init(hex: "6C63FF"))
+                                .font(.title2)
+                                .bold()
                             VStack {
                                 if let name =  profileArrPersistent.last?.name {
                                     TextField(" \(name)", text: $name)
-                                        //.font(Font.system(size: 25, design: .default))
-                                        .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.07)
+                                        .font(.title2)
                                 } else {
                                     TextField("Name", text: $name)
 //                                        .font(Font.system(size: 25, design: .default))
-                                        .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.07)
-                                }
+                                    .font(.title2)                                }
                                 Divider()
                                     
                                 
@@ -113,15 +112,18 @@ struct ProfileView: View {
                         
                         HStack(spacing:10) {
                             Text("Last Name: ")
-                                .foregroundColor(Color.init(hex: "1130C1"))
-                                .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.07)
+                                .foregroundColor(Color.init(hex: "6C63FF"))
+                                .font(.title2)
+                                .bold()
                             VStack {
                                 if let lname =  profileArrPersistent.last?.lastName {
                                     TextField("\(lname)", text: $lastName)
-                                        .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.07)
+                                    .font(.title2)
+                                    
                                 } else {
                                     TextField("Last Name", text: $lastName)
-                                        .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.07)
+                                        .font(.title2)
+                                    
                                 }
                                 Divider()
                                     
@@ -133,18 +135,18 @@ struct ProfileView: View {
                         
                         HStack(spacing:10){
                             Text("Age: ")
-                                .foregroundColor(Color.init(hex: "1130C1"))
-                                .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.07)
+                                .foregroundColor(Color.init(hex: "6C63FF"))
+                                .font(.title2)
+                                .bold()
+
                             VStack {
                                 if let age =  profileArrPersistent.last?.age {
                                     TextField("\(age)", text: $age)
-                                        .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.07)
-                                        .textContentType(.oneTimeCode)
+                                        .font(.title2)                                         .textContentType(.oneTimeCode)
                                         .keyboardType(.numberPad)
                                 } else {
                                     TextField("Age", text: $age)
-                                        .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.07)
-                                        .textContentType(.oneTimeCode)
+                                        .font(.title2)                                         .textContentType(.oneTimeCode)
                                         .keyboardType(.numberPad)
                                 }
                                 Divider()
@@ -156,16 +158,19 @@ struct ProfileView: View {
                         
                         HStack(spacing:10) {
                             Text("Sex: ")
-                                .foregroundColor(Color.init(hex: "1130C1"))
-                                .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.07)
+                                .foregroundColor(Color.init(hex: "6C63FF"))
+                                .font(.title2)
+                                .bold()
                             VStack {
                                 if let sex =  profileArrPersistent.last?.sex {
                                     TextField("\(sex)", text: $sex)
-                                        .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.07)
+                                    .font(.title2)
+                                    
                                 } else {
                                     TextField("Sex", text: $sex)
-                                        .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.07)
-                                }
+                                        .font(.title2)
+                                        
+                                    }
                                 Divider()
                                 
                             }
@@ -174,17 +179,17 @@ struct ProfileView: View {
                         
                         HStack(spacing:10) {
                             Text("Location: ")
-                                .foregroundColor(Color.init(hex: "1130C1"))
-                                .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.07)
-
+                                .foregroundColor(Color.init(hex: "6C63FF"))
+                                .font(.title2)
+                                .bold()
                             VStack {
                                 if let loc =  profileArrPersistent.last?.location {
                                     TextField("\(loc)", text: $location)
-                                        .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.07)
+                                    .font(.title2)
+                                    
                                 } else {
                                     TextField("Location", text: $location)
-                                        .frame(width:  geo.size.width * 0.5, height: geo.size.height * 0.07)
-                                }
+                                        .font(.title2)                                 }
                                 Divider()
                                 
                             }
@@ -192,7 +197,10 @@ struct ProfileView: View {
                     }
 //                    .padding(.leading, 30)
 //                    .padding(.trailing, 30)
-                   
+                    .padding(.leading, geo.size.width * 0.1)
+                    .padding(.trailing, geo.size.width * 0.1)
+
+
                     
                     HStack {
                         Spacer()
@@ -261,7 +269,7 @@ struct ProfileView: View {
                                 .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.pink]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
                         }
                         .padding(.trailing, 30)
-                        .padding(.top, geo.size.height * 0.02)
+                        .padding(.top, geo.size.height * 0.04)
                         .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
 
                         

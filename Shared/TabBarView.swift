@@ -156,7 +156,6 @@ struct TabBarView: View {
                                         .foregroundColor(.white)
                                         .overlay(Circle().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
                                 })
-                                    .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
 
 //                                    .padding(.vertical, UIScreen.main.bounds.minY + geo.size.height * 0.3)
                             }
