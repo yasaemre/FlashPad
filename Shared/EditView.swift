@@ -100,9 +100,13 @@ struct EditView: View {
                         .modifier(TextFieldClearButton(text: $card.definition))
                 }
                 
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "164430"), Color.init(hex: "c8d4f5")]), startPoint: .topLeading, endPoint: .bottomTrailing))
+//                RoundedRectangle(cornerRadius: 10)
+//                    .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "164430"), Color.init(hex: "c8d4f5")]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                    Image("bbS")
+                        .resizable()
                     .frame(width: geo.size.width * 0.65, height: geo.size.height * 0.5)
+                    .clipped()
+                    .cornerRadius(12)
                     .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
                     .overlay(
                         VStack( spacing: 5) {
@@ -257,13 +261,13 @@ struct EditView: View {
                     
 
                     
-                Image(systemName: "checkmark")
+                    Image(systemName: "checkmark")
                         .foregroundColor(Color.init(hex: "067238"))
-                    .font(.system(size: 60))
-                    .rotationEffect(.degrees(Double(rotateCheckMark)))
-                    .clipShape(Rectangle().offset(x: CGFloat(checkMarkValue)))
-                    .animation(Animation.interpolatingSpring(stiffness: 170, damping: 15).delay(0.75))
-                    .transition(.asymmetric(insertion: .opacity, removal: .scale))
+                        .font(.system(size: 60))
+                        .rotationEffect(.degrees(Double(rotateCheckMark)))
+                        .clipShape(Rectangle().offset(x: CGFloat(checkMarkValue)))
+                        .animation(Animation.interpolatingSpring(stiffness: 170, damping: 15).delay(0.75))
+                        .transition(.asymmetric(insertion: .opacity, removal: .scale))
                 }
                 .onAppear(perform: setDismissTimer)
             }

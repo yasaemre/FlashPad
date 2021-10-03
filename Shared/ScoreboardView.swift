@@ -55,7 +55,7 @@ struct ScoreboardView: View {
                         .navigationBarItems(trailing:
                                                 Image(systemName: "square.and.arrow.up")
                                                 .font(.title)
-                                                .foregroundColor(Color.init(hex: "B74278"))
+                                                .foregroundColor(Color.init(hex: "164430"))
                                                 .padding(.trailing, 1)
                                                 .onTapGesture {
                             shareButton()
@@ -71,9 +71,9 @@ struct ScoreboardView: View {
                 
                 HStack {
                     Text(profileArrPersistent.last?.name ?? "Anonymous")
-                        .foregroundColor(Color.init(hex: "6C63FF"))
+                        .foregroundColor(Color.init(hex: "164430"))
                     Text(profileArrPersistent.last?.lastName ?? "Anonymous")
-                        .foregroundColor(Color.init(hex: "6C63FF"))
+                        .foregroundColor(Color.init(hex: "164430"))
                 }
                 
                 
@@ -82,7 +82,7 @@ struct ScoreboardView: View {
                     Picker("Please choose a deck", selection: $selectedDeck) {
                         ForEach(decksArrPersistent, id: \.self) { (deck:DeckCore) in
                             Text(deck.unwrappedDeckName)
-                                .foregroundColor(Color.init(hex: "6C63FF"))
+                                .foregroundColor(Color.init(hex: "164430"))
                         }
                     }
                     .pickerStyle(.wheel)
@@ -94,7 +94,7 @@ struct ScoreboardView: View {
                     if (decksArrPersistent.count > 0) {
                         Text("The Highest Correct Rate  of \(selectedDeck.unwrappedDeckName):")
                             .frame(width:  geo.size.width * 0.97, height: geo.size.height * 0.1)
-                            .foregroundColor(Color.init(hex: "1F3CD6"))
+                            .foregroundColor(Color.init(hex: "164430"))
                     }
                     Text("% \(String(round(selectedDeck.correctRate)))")
                         .fontWeight(.semibold)

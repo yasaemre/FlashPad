@@ -61,7 +61,8 @@ struct CardView: View {
                     Spacer()
                 }
                 .padding(.leading, 15)
-                .padding(.bottom, UIScreen.main.bounds.height * 0.1)
+                .padding(.top, UIScreen.main.bounds.height * 0.02)
+                .padding(.bottom, UIScreen.main.bounds.height * 0.03)
 
                 
                 //Spacer()
@@ -98,7 +99,8 @@ struct CardView: View {
                             .foregroundColor(.white)
                     }
                 }
-                
+                .padding(.bottom, UIScreen.main.bounds.height * 0.05)
+
                 
                 ZStack(alignment: .center) {
                     Image("bbS")
