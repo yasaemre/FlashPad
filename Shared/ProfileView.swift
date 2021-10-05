@@ -33,6 +33,7 @@ struct ProfileView: View {
     @State private var showCircle = 0
     
     @State private var isShowingCheckMark = false
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         ZStack {
@@ -90,7 +91,7 @@ struct ProfileView: View {
                     Group {
                         HStack(spacing:10) {
                             Text("Name: ")
-                                .foregroundColor(Color.init(hex: "164430"))
+                                .foregroundColor(colorScheme == .dark ? Color(.white) : Color.init(hex: "164430"))
                                 .font(.title2)
                             VStack {
                                 if let name =  profileArrPersistent.last?.name {
@@ -111,7 +112,7 @@ struct ProfileView: View {
                         
                         HStack(spacing:10) {
                             Text("Last Name: ")
-                                .foregroundColor(Color.init(hex: "164430"))
+                                .foregroundColor(colorScheme == .dark ? Color(.white) : Color.init(hex: "164430"))
                                 .font(.title2)
                             VStack {
                                 if let lname =  profileArrPersistent.last?.lastName {
@@ -133,7 +134,7 @@ struct ProfileView: View {
                         
                         HStack(spacing:10){
                             Text("Age: ")
-                                .foregroundColor(Color.init(hex: "164430"))
+                                .foregroundColor(colorScheme == .dark ? Color(.white) : Color.init(hex: "164430"))
                                 .font(.title2)
 
                             VStack {
@@ -155,7 +156,7 @@ struct ProfileView: View {
                         
                         HStack(spacing:10) {
                             Text("Sex: ")
-                                .foregroundColor(Color.init(hex: "164430"))
+                                .foregroundColor(colorScheme == .dark ? Color(.white) : Color.init(hex: "164430"))
                                 .font(.title2)
                             VStack {
                                 if let sex =  profileArrPersistent.last?.sex {
@@ -175,7 +176,7 @@ struct ProfileView: View {
                         
                         HStack(spacing:10) {
                             Text("Location: ")
-                                .foregroundColor(Color.init(hex: "164430"))
+                                .foregroundColor(colorScheme == .dark ? Color(.white) : Color.init(hex: "164430"))
                                 .font(.title2)
                             VStack {
                                 if let loc =  profileArrPersistent.last?.location {
@@ -261,7 +262,7 @@ struct ProfileView: View {
                                 .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "164430"), Color.init(hex: "164430")]),  center: .center, startRadius: 5, endRadius: 120))
                                 .clipShape(Capsule())
                                 .foregroundColor(.white)
-                                .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.pink]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                                .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.gray, Color.white]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
                         }
                         .padding(.trailing, 30)
                         .padding(.top, geo.size.height * 0.04)

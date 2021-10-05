@@ -36,7 +36,7 @@ struct SlideMenu: View {
                 }) {
                     Image(systemName: "arrowshape.turn.up.backward.fill")
                         .font(.title)
-                        .foregroundColor(Color.init(hex: "164430"))
+                        .foregroundColor(colorScheme == .dark ? Color(.systemGreen) : Color.init(hex: "164430"))
                     
                         .contentShape(Rectangle())
                     

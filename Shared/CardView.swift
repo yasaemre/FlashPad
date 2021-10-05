@@ -37,6 +37,7 @@ struct CardView: View {
     //@AppStorage("correctA") var correctA = 0.0
     @Binding var correctA:Double
     //@State var correctA = UserDefaults.standard.double(forKey: "correctA")
+    @Environment(\.colorScheme) var colorScheme
 
 
     //To avoid Taps during animation..
@@ -52,9 +53,9 @@ struct CardView: View {
                         self.presentationMode.wrappedValue.dismiss()
                         print("Back tapped")
                     } label: {
-                        Image(systemName: "arrowshape.turn.up.backward.fill")
+                        Image(systemName: "arrowshape.turn.up.backward")
                             .font(.title)
-                            .foregroundColor(Color.init(hex: "164430"))
+                            .foregroundColor(colorScheme == .dark ? Color(.systemGreen) : Color.init(hex: "164430"))
                             .contentShape(Rectangle())
                         
                     }
@@ -233,10 +234,10 @@ struct CardView: View {
                     Text("False: \(falseAnswer)")
                         .font(.custom("Chalkduster", size: 22))
                         .frame(width:  geo.size.width * 0.4, height: geo.size.height * 0.07)
-                        .foregroundColor(Color.init(hex: "164430"))
-                        .background(Color(.systemGray6))
+                        .foregroundColor(colorScheme == .dark ? Color(.white) : Color.init(hex: "164430"))
+                        .background(Color(.systemGray))
+                        //.background(colorScheme == .dark ? Color(.systemGray) : Color.init(hex: "164430"))
                         .clipShape(Capsule())
-                        .foregroundColor(.white)
                 }
                 
                 

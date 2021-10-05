@@ -30,6 +30,7 @@ struct EditView: View {
     @State private var showCircle = 0
     
     @State private var isShowingCheckMark = false
+    @Environment(\.colorScheme) var colorScheme
 
 
     
@@ -206,7 +207,7 @@ struct EditView: View {
                     } label: {
                         Image(systemName: "arrowshape.turn.up.backward")
                             .font(.largeTitle)
-                            .foregroundColor(Color.init(hex: "164430"))
+                            .foregroundColor(colorScheme == .dark ? Color(.systemGreen) : Color.init(hex: "164430"))
                     }
                     
                     Button {
@@ -237,7 +238,7 @@ struct EditView: View {
                     } label: {
                         Image(systemName: "arrowshape.turn.up.right")
                             .font(.largeTitle)
-                            .foregroundColor(Color.init(hex: "164430"))
+                            .foregroundColor(colorScheme == .dark ? Color(.systemGreen) : Color.init(hex: "164430"))
                     
                     }
                 }

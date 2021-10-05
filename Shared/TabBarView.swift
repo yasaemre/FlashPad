@@ -238,7 +238,7 @@ struct TabBarView: View {
                                 }
                                 .symbolRenderingMode(.hierarchical)
                                 .font(.system(size: 24))
-                                .foregroundColor(Color.init(hex: "164430"))
+                                .foregroundColor(colorScheme == .dark ? Color(.systemGreen) : Color.init(hex: "164430"))
 
                                 Spacer()
                                 
@@ -296,7 +296,7 @@ struct TabBarView: View {
             //.ignoresSafeArea(.all, edges: .bottom)
         }
     }
-        .accentColor(Color.init(hex: "164430"))
+        .accentColor(colorScheme == .dark ? Color(.systemGreen) : Color.init(hex: "164430"))
         
         HStack {
             SlideMenu(dark: self.$dark, show: self.$show, imageHasChanged: $imageHasChanged, avatarImageData: $avatarImageData)

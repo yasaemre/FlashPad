@@ -30,8 +30,8 @@
             filePath = "Shared/CardView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -74,8 +74,8 @@
             filePath = "Shared/EditView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -122,8 +122,8 @@
             filePath = "Shared/EditView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
             landmarkName = "addCard()"
             landmarkType = "7">
          </BreakpointContent>
