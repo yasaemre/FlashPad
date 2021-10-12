@@ -234,9 +234,8 @@ struct CardView: View {
                     Text("False: \(falseAnswer)")
                         .font(.custom("Chalkduster", size: 22))
                         .frame(width:  geo.size.width * 0.4, height: geo.size.height * 0.07)
-                        .foregroundColor(colorScheme == .dark ? Color(.white) : Color.init(hex: "164430"))
-                        .background(Color(.systemGray))
-                        //.background(colorScheme == .dark ? Color(.systemGray) : Color.init(hex: "164430"))
+                        .foregroundColor(Color.init(hex: "164430"))
+                        .background(Color(.lightGray))
                         .clipShape(Capsule())
                 }
                 

@@ -10,6 +10,10 @@ import SwiftUI
 import Combine
 
 struct PersistenceController {
+    
+    static var empty: PersistenceController = {
+        PersistenceController(inMemory: true)
+    }()
     let container: NSPersistentContainer
 
     static let shared = PersistenceController()
@@ -33,6 +37,8 @@ struct PersistenceController {
 
         return result
     }()
+    
+    
 
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "FlashPad") // else UnsafeRawBufferPointer with negative count

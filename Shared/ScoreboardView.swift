@@ -23,6 +23,7 @@ struct ScoreboardView: View {
 
     
     @State private var selectedDeck: DeckCore
+    @Environment(\.colorScheme) var colorScheme
 
         init(moc: NSManagedObjectContext) {
             let fetchRequest: NSFetchRequest<DeckCore> = DeckCore.fetchRequest()
@@ -55,7 +56,7 @@ struct ScoreboardView: View {
                         .navigationBarItems(trailing:
                                                 Image(systemName: "square.and.arrow.up")
                                                 .font(.title)
-                                                .foregroundColor(Color.init(hex: "164430"))
+                                                .foregroundColor(colorScheme == .dark ? Color(.systemGreen) : Color.init(hex: "164430"))
                                                 .padding(.trailing, 1)
                                                 .onTapGesture {
                             shareButton()
@@ -71,9 +72,9 @@ struct ScoreboardView: View {
                 
                 HStack {
                     Text(profileArrPersistent.last?.name ?? "Anonymous")
-                        .foregroundColor(Color.init(hex: "164430"))
+                        .foregroundColor(colorScheme == .dark ? Color(.systemGreen) : Color.init(hex: "164430"))
                     Text(profileArrPersistent.last?.lastName ?? "Anonymous")
-                        .foregroundColor(Color.init(hex: "164430"))
+                        .foregroundColor(colorScheme == .dark ? Color(.systemGreen) : Color.init(hex: "164430"))
                 }
                 
                 
@@ -82,7 +83,7 @@ struct ScoreboardView: View {
                     Picker("Please choose a deck", selection: $selectedDeck) {
                         ForEach(decksArrPersistent, id: \.self) { (deck:DeckCore) in
                             Text(deck.unwrappedDeckName)
-                                .foregroundColor(Color.init(hex: "164430"))
+                                .foregroundColor(colorScheme == .dark ? Color(.systemGreen) : Color.init(hex: "164430"))
                         }
                     }
                     .pickerStyle(.wheel)
@@ -94,7 +95,7 @@ struct ScoreboardView: View {
                     if (decksArrPersistent.count > 0) {
                         Text("The Highest Correct Rate  of \(selectedDeck.unwrappedDeckName):")
                             .frame(width:  geo.size.width * 0.97, height: geo.size.height * 0.1)
-                            .foregroundColor(Color.init(hex: "164430"))
+                            .foregroundColor(colorScheme == .dark ? Color(.systemGreen) : Color.init(hex: "164430"))
                     }
                     Text("% \(String(round(selectedDeck.correctRate)))")
                         .fontWeight(.semibold)
@@ -105,6 +106,7 @@ struct ScoreboardView: View {
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+
         }
 
     }
@@ -113,11 +115,11 @@ struct ScoreboardView: View {
          isShareSheetShowing.toggle()
          // Subtitute the url with FlashPad
         //https://apps.apple.com/us/app/vintage-house/id1549251393
-        let score:Double = selectedDeck.correctRate
+        let score = String(round(selectedDeck.correctRate))
         guard let deckName = selectedDeck.deckName, let url = URL(string: "https://apps.apple.com/us/app/vintage-house/id1549251393") else {
             return
         }
-        let activityView = UIActivityViewController(activityItems:["My correct rate on \(deckName) deck is \(score). You can try FlashPad too. Fun way to memorize anything you need to learn", url], applicationActivities: nil)
+        let activityView = UIActivityViewController(activityItems:["My correct rate on \(deckName) deck is %\(score). You can try FlashPad too. Fun way to memorize anything you need to learn", url], applicationActivities: nil)
       
          
          UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
