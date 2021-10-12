@@ -176,7 +176,9 @@ struct SlideMenu: View {
             .background((colorScheme == .dark ? Color.black : Color.white).edgesIgnoringSafeArea(.all))
             //.overlay(Rectangle().stroke(Color.primary.opacity(0.2), lineWidth: 2).shadow( radius:3).edgesIgnoringSafeArea(.all))
         }
+
     }
+    
     
    public func shareButton() {
         isShareSheetShowing.toggle()

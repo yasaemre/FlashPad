@@ -27,7 +27,6 @@
 		C655B8CC26DC4EB900555434 /* StudyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C655B8CB26DC4EB900555434 /* StudyScreenView.swift */; };
 		C669D44C26FA44B7008C305B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C669D44B26FA44B7008C305B /* CloudKit.framework */; };
 		C669D44E26FA45BB008C305B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C669D44D26FA45BB008C305B /* CloudKit.framework */; };
-		C67413C0268ABAEC00128E2D /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413BF268ABAEC00128E2D /* Tests_iOS.swift */; };
 		C67413CA268ABAEC00128E2D /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413C9268ABAEC00128E2D /* Tests_macOS.swift */; };
 		C67413CB268ABAEC00128E2D /* FlashPadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413A9268ABAEB00128E2D /* FlashPadApp.swift */; };
 		C67413CD268ABAEC00128E2D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413AA268ABAEB00128E2D /* ContentView.swift */; };
@@ -47,6 +46,8 @@
 		C68726B726BA6EF5006BD793 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68726B626BA6EF5006BD793 /* CardViewModel.swift */; };
 		C68726B826BA6EF5006BD793 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68726B626BA6EF5006BD793 /* CardViewModel.swift */; };
 		C693A20026F39A46006C9AB3 /* IntsructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C693A1FF26F39A46006C9AB3 /* IntsructionsView.swift */; };
+		C6964C5B271535DB00F83BF2 /* Test2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6964C582715343A00F83BF2 /* Test2.swift */; };
+		C6964C5D2715384100F83BF2 /* DeckTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6964C5C2715384100F83BF2 /* DeckTest.swift */; };
 		C696618826EBA87100DE06A3 /* CardCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C696618626EBA87100DE06A3 /* CardCore+CoreDataClass.swift */; };
 		C696618926EBA87100DE06A3 /* CardCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C696618626EBA87100DE06A3 /* CardCore+CoreDataClass.swift */; };
 		C696618A26EBA87100DE06A3 /* CardCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C696618726EBA87100DE06A3 /* CardCore+CoreDataProperties.swift */; };
@@ -126,7 +127,6 @@
 		C67413B0268ABAEC00128E2D /* FlashPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67413B6268ABAEC00128E2D /* FlashPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67413BB268ABAEC00128E2D /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C67413BF268ABAEC00128E2D /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		C67413C5268ABAEC00128E2D /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67413C9268ABAEC00128E2D /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		C67413DF268ABB2800128E2D /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
@@ -134,11 +134,14 @@
 		C67413E5268ABBED00128E2D /* ScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenView.swift; sourceTree = "<group>"; };
 		C67413E8268ABC1400128E2D /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C67413EB268ABC3200128E2D /* WalkthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughView.swift; sourceTree = "<group>"; };
+		C674ABC1271530DD003B2C81 /* FlashPad */ = {isa = PBXFileReference; lastKnownFileType = text; path = FlashPad; sourceTree = SOURCE_ROOT; };
 		C6849533268E36A3003BC08C /* LogoutButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutButtonView.swift; sourceTree = "<group>"; };
 		C6849536268E385C003BC08C /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		C68726B326BA6E29006BD793 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		C68726B626BA6EF5006BD793 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		C693A1FF26F39A46006C9AB3 /* IntsructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntsructionsView.swift; sourceTree = "<group>"; };
+		C6964C582715343A00F83BF2 /* Test2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test2.swift; sourceTree = "<group>"; };
+		C6964C5C2715384100F83BF2 /* DeckTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckTest.swift; sourceTree = "<group>"; };
 		C696618626EBA87100DE06A3 /* CardCore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardCore+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C696618726EBA87100DE06A3 /* CardCore+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardCore+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C696619226EC4D1200DE06A3 /* LikedCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedCardView.swift; sourceTree = "<group>"; };
@@ -276,6 +279,7 @@
 		C67413A8268ABAEB00128E2D /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				C674ABC1271530DD003B2C81 /* FlashPad */,
 				C67413A9268ABAEB00128E2D /* FlashPadApp.swift */,
 				C67413E5268ABBED00128E2D /* ScreenView.swift */,
 				C67413EB268ABC3200128E2D /* WalkthroughView.swift */,
@@ -322,7 +326,8 @@
 		C67413BE268ABAEC00128E2D /* Tests iOS */ = {
 			isa = PBXGroup;
 			children = (
-				C67413BF268ABAEC00128E2D /* Tests_iOS.swift */,
+				C6964C582715343A00F83BF2 /* Test2.swift */,
+				C6964C5C2715384100F83BF2 /* DeckTest.swift */,
 			);
 			path = "Tests iOS";
 			sourceTree = "<group>";
@@ -666,7 +671,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C67413C0268ABAEC00128E2D /* Tests_iOS.swift in Sources */,
+				C6964C5D2715384100F83BF2 /* DeckTest.swift in Sources */,
+				C6964C5B271535DB00F83BF2 /* Test2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -950,6 +956,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5DG8S4P5ZL;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Firebase/CoreOnly/Sources";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -975,6 +982,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5DG8S4P5ZL;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Firebase/CoreOnly/Sources";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
