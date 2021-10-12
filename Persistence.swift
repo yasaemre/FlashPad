@@ -10,10 +10,10 @@ import SwiftUI
 import Combine
 
 struct PersistenceController {
-    
-    static var empty: PersistenceController = {
-        PersistenceController(inMemory: true)
-    }()
+    //For Test Purposes
+//    static var empty: PersistenceController = {
+//        PersistenceController(inMemory: true)
+//    }()
     let container: NSPersistentContainer
 
     static let shared = PersistenceController()
