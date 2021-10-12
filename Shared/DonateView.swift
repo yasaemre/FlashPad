@@ -56,10 +56,10 @@ struct DonateView: View {
                         //.padding(.top, 13)
                     
                     Picker(selection:$product, label: Text("Picker"), content: {
-                        Text("$0.99").tag( "emre.FlashPad.donation")
-                        Text("$3.99").tag("emre.FlashPad.donation2")
-                        Text("$6.99").tag("emre.FlashPad.donation3")
-                        Text("$9.99").tag("emre.FlashPad.donation4")
+                        Text("$0.99").tag( "com.emre.FlashPad.donation")
+                        Text("$3.99").tag("com.emre.FlashPad.donation2")
+                        Text("$6.99").tag("com.emre.FlashPad.donation3")
+                        Text("$9.99").tag("com.emre.FlashPad.donation4")
                     })
                         .pickerStyle(SegmentedPickerStyle())
                         .labelsHidden()

@@ -10,17 +10,12 @@
       "internalID" : "568F97B2",
       "localizations" : [
         {
-          "description" : "",
-          "displayName" : "",
-          "locale" : "en_US"
-        },
-        {
-          "description" : "Support the team to improve more",
+          "description" : "Contribute team to improve the app",
           "displayName" : "Donation",
-          "locale" : "en_GB"
+          "locale" : "en_US"
         }
       ],
-      "productID" : "emre.FlashPad.donation",
+      "productID" : "com.emre.FlashPad.donation",
       "referenceName" : "donation",
       "type" : "NonConsumable"
     },
@@ -30,12 +25,12 @@
       "internalID" : "E376E741",
       "localizations" : [
         {
-          "description" : "",
-          "displayName" : "",
+          "description" : "Contribute team to improve the app",
+          "displayName" : "Donation",
           "locale" : "en_US"
         }
       ],
-      "productID" : "emre.FlashPad.donation2",
+      "productID" : "com.emre.FlashPad.donation2",
       "referenceName" : "donation2",
       "type" : "NonConsumable"
     },
@@ -45,12 +40,12 @@
       "internalID" : "49A5A420",
       "localizations" : [
         {
-          "description" : "",
-          "displayName" : "",
+          "description" : "Contribute team to improve the app",
+          "displayName" : "Donation",
           "locale" : "en_US"
         }
       ],
-      "productID" : "emre.FlashPad.donation3",
+      "productID" : "com.emre.FlashPad.donation3",
       "referenceName" : "donation3",
       "type" : "NonConsumable"
     },
@@ -60,12 +55,12 @@
       "internalID" : "00EC56C2",
       "localizations" : [
         {
-          "description" : "",
-          "displayName" : "",
+          "description" : "Contribute team to improve the app",
+          "displayName" : "Donation",
           "locale" : "en_US"
         }
       ],
-      "productID" : "emre.FlashPad.donation4",
+      "productID" : "com.emre.FlashPad.donatio4",
       "referenceName" : "donation4",
       "type" : "NonConsumable"
     }
