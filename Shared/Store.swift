@@ -17,10 +17,10 @@ class Store: NSObject, ObservableObject {
     @Published var allProducts = [SKProduct]()
 
      let allProductIdentifiers = Set([
-        "emre.FlashPad.donation" ,
-    "emre.FlashPad.donation2",
-    "emre.FlashPad.donation3",
-    "emre.FlashPad.donation4"])
+        "com.emre.FlashPad.donation" ,
+    "com.emre.FlashPad.donation2",
+    "com.emre.FlashPad.donation3",
+    "com.emre.FlashPad.donation4"])
 
     private var completedPurchases = [String]() {
         didSet {
