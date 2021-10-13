@@ -30,8 +30,6 @@
 		C67413CA268ABAEC00128E2D /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413C9268ABAEC00128E2D /* Tests_macOS.swift */; };
 		C67413CB268ABAEC00128E2D /* FlashPadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413A9268ABAEB00128E2D /* FlashPadApp.swift */; };
 		C67413CD268ABAEC00128E2D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413AA268ABAEB00128E2D /* ContentView.swift */; };
-		C67413CF268ABAEC00128E2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C67413AB268ABAEC00128E2D /* Assets.xcassets */; };
-		C67413D0268ABAEC00128E2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C67413AB268ABAEC00128E2D /* Assets.xcassets */; };
 		C67413E0268ABB2800128E2D /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413DF268ABB2800128E2D /* ErrorView.swift */; };
 		C67413E3268ABBCC00128E2D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413E2268ABBCC00128E2D /* LoginView.swift */; };
 		C67413E6268ABBED00128E2D /* ScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67413E5268ABBED00128E2D /* ScreenView.swift */; };
@@ -45,6 +43,8 @@
 		C68726B526BA6E29006BD793 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68726B326BA6E29006BD793 /* Card.swift */; };
 		C68726B726BA6EF5006BD793 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68726B626BA6EF5006BD793 /* CardViewModel.swift */; };
 		C68726B826BA6EF5006BD793 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68726B626BA6EF5006BD793 /* CardViewModel.swift */; };
+		C69372422716C97D00906653 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C67413AB268ABAEC00128E2D /* Assets.xcassets */; };
+		C69372432716C98100906653 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C67413AB268ABAEC00128E2D /* Assets.xcassets */; };
 		C693A20026F39A46006C9AB3 /* IntsructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C693A1FF26F39A46006C9AB3 /* IntsructionsView.swift */; };
 		C6964C5D2715384100F83BF2 /* DeckTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6964C5C2715384100F83BF2 /* DeckTest.swift */; };
 		C6964C65271653F000F83BF2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6964C64271653F000F83BF2 /* StoreKit.framework */; };
@@ -480,8 +480,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C67413CF268ABAEC00128E2D /* Assets.xcassets in Resources */,
 				C6D25F4426F510440033A989 /* StoreConfiguration.storekit in Resources */,
+				C69372432716C98100906653 /* Assets.xcassets in Resources */,
 				C6964C6B2716680300F83BF2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,7 +490,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C67413D0268ABAEC00128E2D /* Assets.xcassets in Resources */,
+				C69372422716C97D00906653 /* Assets.xcassets in Resources */,
 				C6D25F4526F510440033A989 /* StoreConfiguration.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -817,6 +817,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = FlashPad.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -856,6 +857,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = FlashPad.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
