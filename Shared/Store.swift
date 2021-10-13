@@ -66,33 +66,6 @@ class Store: NSObject, ObservableObject {
         let payment = SKPayment(product: product)
         SKPaymentQueue.default().add(payment)
     }
-    
-//    private var fetchedProducts = [SKProduct]()
-//
-//    func fetchProducts() {
-//        async {
-//            do {
-//                let products = try await Product.request(with:"emre.FlashPad.donation")
-//                print(products)
-//                self.products = products
-//            }
-//            catch {
-//                print("error")
-//            }
-//        }
-//    }
-//
-//    func purchase() {
-//        async {
-//            guard let product = products.first else { return }
-//            do {
-//                let result = try await product.purchase()
-//            }
-//            catch {
-//                print(error)
-//            }
-//        }
-//    }
 }
 
 extension Store {

@@ -230,7 +230,12 @@ struct LoginView: View {
                         .fontWeight(.light)
                         .foregroundColor(.white)
                         .hoverEffect()
+                        .onTapGesture {
+                            UserDefaults.standard.set(true, forKey: "logged")
+                            NotificationCenter.default.post(name: NSNotification.Name("logged"), object: nil)
+                        }
                 }
+                
                 
             }
                     .padding(.horizontal, 25)

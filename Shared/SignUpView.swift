@@ -42,9 +42,10 @@ struct SignUpView : View {
                     TextField("Email", text: self.signUpVM.$loggedViaEmail)
                         .autocapitalization(.none)
                         .padding()
-                        .background(RoundedRectangle(cornerRadius: 4).stroke(self.signUpVM.loggedViaEmail != "" ? Color("Color") : self.color,lineWidth: 2))
+                        .foregroundColor(Color(.systemGray4))
+                        .background(RoundedRectangle(cornerRadius: 4).stroke(self.signUpVM.loggedViaEmail != "" ? Color(.systemRed) : self.color,lineWidth: 2))
                         .padding(.top, 1)
-                    
+
                     HStack(spacing: 15){
                         
                         VStack{
@@ -53,11 +54,15 @@ struct SignUpView : View {
                                 
                                 TextField("Password", text: self.$signUpVM.pass)
                                     .autocapitalization(.none)
+                                    .foregroundColor(self.color)
+
                             }
                             else{
                                 
                                 SecureField("Password", text: self.$signUpVM.pass)
                                     .autocapitalization(.none)
+                                    .foregroundColor(self.color)
+
                             }
                         }
                         
@@ -73,8 +78,10 @@ struct SignUpView : View {
                         
                     }
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 4).stroke(self.signUpVM.pass != "" ? Color("Color") : self.color,lineWidth: 2))
+                    .foregroundColor(Color(.systemGray4))
+                    .background(RoundedRectangle(cornerRadius: 4).stroke(self.signUpVM.pass != "" ? Color(.systemRed) : self.color,lineWidth: 2))
                     .padding(.top, 5)
+
                     
                     HStack(spacing: 15){
                         
@@ -84,12 +91,16 @@ struct SignUpView : View {
                                 
                                 TextField("Re-enter", text: self.$signUpVM.repass)
                                     .autocapitalization(.none)
+                                    .foregroundColor(self.color)
+
                                 
                             }
                             else{
                                 
                                 SecureField("Re-enter", text: self.$signUpVM.repass)
                                     .autocapitalization(.none)
+                                    .foregroundColor(self.color)
+
                                 
                             }
                         }
@@ -106,7 +117,8 @@ struct SignUpView : View {
                         
                     }
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 4).stroke(self.signUpVM.repass != "" ? Color("Color") : self.color,lineWidth: 2))
+                    .foregroundColor(Color(.systemGray4))
+                    .background(RoundedRectangle(cornerRadius: 4).stroke(self.signUpVM.repass != "" ? Color(.systemRed) : self.color,lineWidth: 2))
                     .padding(.top, 5)
                     
                     Button(action: {
