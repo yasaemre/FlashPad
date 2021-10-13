@@ -104,7 +104,7 @@ struct CardView: View {
 
                 
                 ZStack(alignment: .center) {
-                    Image("bbS")
+                    Image("bbs1")
                         .resizable()
                         .frame(width: geo.size.width * 0.7, height: geo.size.height * 0.50)
                         .clipped()

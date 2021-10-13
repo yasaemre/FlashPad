@@ -117,8 +117,9 @@ struct EditView: View {
                                     Text("")
                                 } else {
                                     Text(deckCore.cardsArray[indexCard].unwrappedWord)
-                                        .font(.custom("Chalkduster", size: 40))
+                                        .font(.custom("Chalkduster", size: 30))
                                         .foregroundColor(.white)
+                                        .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
                                         .overlay(Image(systemName: "minus.circle.fill")
                                                     .font(.title)
                                                     .foregroundColor(Color(.systemGray))
@@ -130,8 +131,9 @@ struct EditView: View {
                                 }
                             } else {
                                 Text(deckCore.cardsArray[indexCard].unwrappedDefinition)
-                                    .font(.custom("Chalkduster", size: 40))
+                                    .font(.custom("Chalkduster", size: 30))
                                     .foregroundColor(.white)
+                                    .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
                                     .overlay(Image(systemName: "minus.circle.fill")
                                                 .font(.custom("Chalkduster", size: 40))
                                                 .foregroundColor(Color(.systemGray))
@@ -150,8 +152,10 @@ struct EditView: View {
                                     //                                    Text("")
                                     //                                } else {
                                     Text(deckCore.cardsArray[index].unwrappedWord)
-                                        .font(.custom("Chalkduster", size: 40))
+                                        .font(.custom("Chalkduster", size: 30))
                                         .foregroundColor(.white)
+                                        .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
+
                                         .overlay(Image(systemName: "minus.circle.fill")
                                                     .font(.title)
                                                     .foregroundColor(Color(.systemGray))
@@ -168,8 +172,10 @@ struct EditView: View {
                                     //                                    Text("")
                                     //                                } else {
                                     Text(deckCore.cardsArray[index].unwrappedDefinition)
-                                        .font(.custom("Chalkduster", size: 40))
+                                        .font(.custom("Chalkduster", size: 30))
                                         .foregroundColor(.white)
+                                        .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
+
                                         .overlay(Image(systemName: "minus.circle.fill")
                                                     .font(.title)
                                                     .foregroundColor(Color(.systemGray))

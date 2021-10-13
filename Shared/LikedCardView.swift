@@ -68,7 +68,7 @@ struct LikedCardView: View {
                         
                         HStack {
                             ZStack {
-                                Image("bbS")
+                                Image("bbs1")
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: calculateWidth(), height: (UIScreen.main.bounds.height / 2.2) - CGFloat(index-scrolled)*50)

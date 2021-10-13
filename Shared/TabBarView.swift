@@ -124,7 +124,7 @@ struct TabBarView: View {
                                                     .font(.custom("Chalkduster", size: 14))
                                                     .foregroundColor(.white)
                                             }
-                                            .frame(width:150, height: 200)
+                                            .frame(width:120, height: 170)
                                             
                                         }
 
