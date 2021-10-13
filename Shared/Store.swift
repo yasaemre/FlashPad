@@ -13,7 +13,6 @@ typealias PurchaseCompletionHandler = ((SKPaymentTransaction?) -> Void)
 
 class Store: NSObject, ObservableObject {
     
-   // @Published var allRecipes = [Recipe]()
     @Published var allProducts = [SKProduct]()
 
      let allProductIdentifiers = Set([

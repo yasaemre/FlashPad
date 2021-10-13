@@ -22,9 +22,6 @@ struct ContentView: View {
                     UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
                     AppDelegate.orientationLock = .portrait
                 }
-//                .onDisappear {
-//                    AppDelegate.orientationLock = .all
-//                }
 
         } else {
             WalkthroughView()
@@ -32,9 +29,6 @@ struct ContentView: View {
                     UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
                     AppDelegate.orientationLock = .portrait
                 }
-//                .onDisappear {
-//                    AppDelegate.orientationLock = .all
-//                }
         }
     }
 }

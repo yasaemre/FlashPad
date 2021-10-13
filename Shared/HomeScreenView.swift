@@ -9,15 +9,10 @@ import SwiftUI
 import Firebase
 
 struct HomeScreenView : View {
-    
-   
-    
+
     var body: some View{
         ZStack {
-            //LogoutButtonView()
-            
             TabBarView()
-            
         }
         .navigationBarHidden(true)
         

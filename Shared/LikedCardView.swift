@@ -27,8 +27,6 @@ struct LikedCardView: View {
     var body: some View {
         GeometryReader { geo in
             VStack() {
-                //Spacer()
-                
                 HStack(spacing: 15) {
                     
                     Button {
@@ -49,7 +47,6 @@ struct LikedCardView: View {
                     Button {
                         withAnimation {
                             flip = true
-                            //saveContext()
                         }
                     } label: {
                         Text("Meaning")
@@ -73,10 +70,8 @@ struct LikedCardView: View {
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: calculateWidth(), height: (UIScreen.main.bounds.height / 2.2) - CGFloat(index-scrolled)*50)
                                     .cornerRadius(15)
-                                //based on scrolled changing view size..
                                     .offset(x: index - scrolled <= 2 ? CGFloat(index - scrolled) * 30 : 60)
                                 if flip == false {
-                                    //indexCard = deckCore.cardsArray.count
                                     
                                     ZStack {
                                         
@@ -178,11 +173,8 @@ struct LikedCardView: View {
                 
                 Spacer()
             }
-            //.padding(.top, 1)
-            //.ignoresSafeArea(.all, edges: .all)
-            //.frame(width:geo.size.width * 0.7, height:  geo.size.height * 0.96, alignment: .center)
+
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-            //geo.size.height * 0.02
             .padding(.bottom, geo.size.height * 0.2)
             
         }
@@ -194,16 +186,9 @@ struct LikedCardView: View {
     //Use with tap gesture or delete button
     private func deleteCard(index: Int) {
         withAnimation {
-//            offsets.map {decksArrPersistent[$0]}.forEach(viewContext.delete)
-            //for index in offsets {
                 let deck = likedArrPersistent[index]
                 viewContext.delete(deck)
                 PersistenceController.shared.saveContext()
-            
-           
-            
-               //scrolled -= 1
-            //}
         }
     }
     

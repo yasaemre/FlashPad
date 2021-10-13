@@ -18,13 +18,7 @@ struct IntsructionsView: View {
                 .padding(.top, 1)
             
             VStack {
-//                Text("FLASHPADS")
-//                    .bold()
-//                    .font(.largeTitle)
-//                    .foregroundColor(.gray)
-//                    .multilineTextAlignment(.center)
-                    //.frame(width: UIScreen.main.bounds.width - 40, height: 70)
-                    //.padding(.bottom, 20)
+
                 Spacer()
                 
                     RoundedRectangle(cornerRadius: 10)

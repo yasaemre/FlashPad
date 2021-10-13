@@ -60,15 +60,9 @@ struct ScoreboardView: View {
                                                 .padding(.trailing, 1)
                                                 .onTapGesture {
                             shareButton()
-                            
                         }
-                                            
-                                            
                         )
                 }
-                
-                
-                
                 
                 HStack {
                     Text(profileArrPersistent.last?.name ?? "Anonymous")
@@ -88,7 +82,6 @@ struct ScoreboardView: View {
                     }
                     .pickerStyle(.wheel)
                     .frame(width:geo.size.width * 0.8)
-                    //CustomPicker()
                 }
                 
                 Group {
@@ -99,7 +92,6 @@ struct ScoreboardView: View {
                     }
                     Text("% \(String(round(selectedDeck.correctRate)))")
                         .fontWeight(.semibold)
-//                        .frame(width: geo.size.width * 0.5, height: geo.size.height * 0.2)
                         .font(.title)
                         .foregroundColor(.red)
                 }
@@ -120,14 +112,7 @@ struct ScoreboardView: View {
             return
         }
         let activityView = UIActivityViewController(activityItems:["My correct rate on \(deckName) deck is %\(score). You can try FlashPad too. Fun way to memorize anything you need to learn", url], applicationActivities: nil)
-      
-         
+
          UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
      }
 }
-
-//struct ScoreboardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ScoreboardView()
-//    }
-//}

@@ -99,11 +99,9 @@ struct ProfileView: View {
                                         .font(.title2)
                                 } else {
                                     TextField("Name", text: $name)
-//                                        .font(Font.system(size: 25, design: .default))
                                     .font(.title2)                                }
                                 Divider()
-                                    
-                                
+
                             }
                         }
                         
@@ -125,10 +123,8 @@ struct ProfileView: View {
                                     
                                 }
                                 Divider()
-                                    
-                                
                             }
-                            
+  
                         }
                         
                         
@@ -191,8 +187,6 @@ struct ProfileView: View {
                             }
                         }
                     }
-//                    .padding(.leading, 30)
-//                    .padding(.trailing, 30)
                     .padding(.leading, geo.size.width * 0.1)
                     .padding(.trailing, geo.size.width * 0.1)
 
@@ -213,7 +207,6 @@ struct ProfileView: View {
                             } else {
                                 profileCore.image = avatarImageData
                             }
-                            //profileCore.image = avatarImageData
                             if name.isEmpty {
                                 if let name = profileArrPersistent.last?.name {
                                     profileCore.name = name
@@ -277,8 +270,6 @@ struct ProfileView: View {
                 .sheet(isPresented: $isShowingPhotoPicker) {
                     PhotoPicker(avatarImageData: $avatarImageData, imageHasChanged: $imageHasChanged)
                 }
-                //.padding(.top, geo.size.height * 0.02)
-     //            .frame(width:geo.size.width * 0.7, height:  geo.size.height * 0.96, alignment: .center)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
             
@@ -335,13 +326,6 @@ struct ProfileView: View {
     }
 
 }
-
-//struct ProfileView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProfileView()
-//    }
-//}
-
 
 extension UIImage {
     var jpeg: Data? { jpegData(compressionQuality: 1) }  // QUALITY min = 0 / max = 1

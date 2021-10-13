@@ -19,7 +19,6 @@ struct TabBarView: View {
     
     @State var customAlert = false
     @State var HUD = false
-    //@State var nameOfDeck = ""
     
     @State var dark = false
     @State var show = false
@@ -31,7 +30,6 @@ struct TabBarView: View {
     let columns = Array(repeating: GridItem(.flexible(), spacing:25), count: 2)
     
     @State private var navBarHidden = false
-   // @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
    @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -43,15 +41,12 @@ struct TabBarView: View {
            animation: .default)
        private var decksArrPersistent: FetchedResults<DeckCore>
     @StateObject var likedCore = LikedCore()
-   // @State var imageHasChanged = false
-    //@State var indexCard = 0
-    //@Binding var indexCard:Int
+
     @State private var deckName = ""
     @State private var deckCreatedAt = ""
     @State private var numOfCardsInDeck = 0
     @State private var currentTotalNumOfCards = 0
     
-    //@State private var bottomBarHeihgt = 0.0
     @FetchRequest(
            sortDescriptors: [NSSortDescriptor(keyPath: \LikedCore.word, ascending: true)],
            animation: .default)
@@ -65,9 +60,6 @@ struct TabBarView: View {
     @State private var avatarImageData = Data()
     @State private var avatarImage = UIImage(named: "profilePhoto")!
 
-    
-   // private let objectWillChange = ObservableObjectPublisher()
-
     var body: some View {
        // ZStack {
         NavigationView {
@@ -78,14 +70,8 @@ struct TabBarView: View {
                     Color(UIColor.systemBackground)
                         .ignoresSafeArea(.all, edges: .all)
                     ZStack {
-                        //--
-//                        Color(UIColor.systemBackground)
-//                            .ignoresSafeArea(.all, edges: .all)
-                        
-                        //custom back button works here
                         ScrollView {
-                            //Tabs With Pages...
-                            //--
+
                             LazyVGrid(columns: columns, spacing: 30, content: {
                                 ForEach(0..<decksArrPersistent.count, id: \.self) { index in
                                     NavigationLink(destination: EditScrnView(card: card, deckCore: decksArrPersistent[index], likedCore: likedCore)){
@@ -101,7 +87,6 @@ struct TabBarView: View {
                                                             .foregroundColor(Color(.systemGray))
                                                             .offset(x: -70, y: -95)
                                                             .onTapGesture{
-                                                    //deleteDeck(at: IndexSet.init(integer: index))
                                                     alertViewDeleteDeck(at: IndexSet.init(integer: index))
                                                 })
                                                
@@ -136,11 +121,6 @@ struct TabBarView: View {
                             })
  
                         }
-                   // }
-                        
-                        
-                        //VStack {
-                            //Spacer()
                             HStack {
                                 
                                 Button(action: {
@@ -158,13 +138,10 @@ struct TabBarView: View {
                                         .overlay(Circle().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "C9E9E2"), Color.init(hex: "DFD5B8")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
                                 })
 
-//                                    .padding(.vertical, UIScreen.main.bounds.minY + geo.size.height * 0.3)
                             }
                             .offset(y: UIScreen.main.bounds.minY + geo.size.height * 0.32 )
-                           //.padding(.vertical, UIScreen.main.bounds.minY + geo.size.height * 0.3)
                             .padding(.horizontal, 33)
                         
-                        //}
                     }
                     .tag("home")
                     DonateView()
@@ -214,13 +191,8 @@ struct TabBarView: View {
                 }
                 .padding(.horizontal, 30)
                 .padding(.vertical)
-                //.padding(.vertical, 20)
-                //.padding(.bottom, 10)
                 .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "8092EA"), Color.init(hex: "164430")]),  center: .center, startRadius: 5, endRadius: 120).clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
                 .padding(.horizontal)
-                //Bottom edge
-                //.ignoresSafeArea(.all, edges: .bottom)
-                //.frame( height: UIScreen.main.bounds.height - 30)
                 .padding(.bottom, UIScreen.main.bounds.minY + geo.size.height * 0.03)
                 
                 
@@ -241,16 +213,6 @@ struct TabBarView: View {
                                 .foregroundColor(colorScheme == .dark ? Color(.systemGreen) : Color.init(hex: "164430"))
 
                                 Spacer()
-                                
-//                                Button(action: {
-//                                    print("iCloud button tapped")
-//                                }) {
-//                                    Image(systemName: "icloud.and.arrow.down")
-//                                }
-//                                //.frame(width: 60, height: 60, alignment: .center)
-//                                .symbolRenderingMode(.palette)
-//                                .font(.system(size: 24))
-//                                .foregroundStyle(Color.init(hex: "6C63FF"), (colorScheme == .dark ? Color.white : Color.black))
                                 Spacer()
 
                                 NavigationLink(destination: ProfileView(avatarImageData: $avatarImageData, imageHasChanged: $imageHasChanged)) {
@@ -269,14 +231,12 @@ struct TabBarView: View {
                                                     .resizable()
                                                     .scaledToFill()
                                                     .clipShape(Circle())
-                                                   // .frame(width: 45, height: 45)
                                             }
                                         } else {
                                             Image(uiImage: avatarImage)
                                                 .resizable()
                                                 .scaledToFill()
                                                 .clipShape(Circle())
-                                                //.frame(width: 45, height: 45)
                                         }
                                     }
                                 }
@@ -289,11 +249,9 @@ struct TabBarView: View {
 
                     }
                 }
-                //.ignoresSafeArea(.all, edges: .all)
                 .foregroundColor(.primary)
                 .padding(.top, UIScreen.main.bounds.minY + geo.size.height * 0.1)
             }
-            //.ignoresSafeArea(.all, edges: .bottom)
         }
     }
         .accentColor(colorScheme == .dark ? Color(.systemGreen) : Color.init(hex: "164430"))
@@ -329,7 +287,6 @@ struct TabBarView: View {
     //Use with tap gesture or delete button
     private func deleteDeck(at offsets: IndexSet) {
         withAnimation {
-//            offsets.map {decksArrPersistent[$0]}.forEach(viewContext.delete)
             for index in offsets {
                 let deck = decksArrPersistent[index]
                 viewContext.delete(deck)
@@ -359,7 +316,6 @@ struct TabBarView: View {
             self.numOfCardsInDeck = Int(Int16(indexOfCard))
             self.deckCreatedAt = deck.getTodayDate()
             
-            //deckVM.decks.append(Deck( deckName: deck.deckName, numberOfCardsInDeck: deck.numberOfCardsInDeck, deckCreatedAt: deck.deckCreatedAt))
             addDeck()
         }
         
@@ -380,32 +336,16 @@ struct TabBarView: View {
         
         
         let alert = UIAlertController(title: "Delete Deck", message: "Do you want to delete this deck?", preferredStyle: .alert)
-        
-//        alert.addTextField { pass in
-//            pass.placeholder = "Enter name of deck"
-//        }
-        
-        //Action Buttons
-        
-
-        
         let delete = UIAlertAction(title: "Delete", style: .default) { (_) in
-            //do your stuff..
-            
-            
-            //deckVM.decks.append(Deck( deckName: deck.deckName, numberOfCardsInDeck: deck.numberOfCardsInDeck, deckCreatedAt: deck.deckCreatedAt))
             deleteDeck(at: index)
         }
-        
         let cancel = UIAlertAction(title: "Cancel", style: .destructive) { _ in
-            //same
         }
         
         alert.addAction(cancel)
         alert.addAction(delete)
         
         UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: {
-            //code
             
         })
     }

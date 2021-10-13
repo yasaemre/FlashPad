@@ -14,35 +14,23 @@ struct CardView: View {
 
     @Binding var flipped:Bool
     @Binding var flip: Bool
-    // @State var card: Card
+
     // MARK: - Drawing Constant
     @StateObject var deckCore:DeckCore
    
     @Binding var indexCard:Int
-    //@State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) private var viewContext
     @State var correctRate = 0.0
 
     @Binding var correctAnswer:Int
     @Binding var falseAnswer:Int
-//    @State var isTapped = false
-//    @State var startAnimation = false
-//    @State var bgAnimaton = false
+
    @Binding var resetBg:Bool
-    //@StateObject var likedCore: LikedCore
-    //@State var fireworkAnimation = false
-    //@Binding var isTapped:Bool
-    //@State var correctA = 0
-    //@AppStorage("correctA") var correctA = 0.0
+
     @Binding var correctA:Double
-    //@State var correctA = UserDefaults.standard.double(forKey: "correctA")
     @Environment(\.colorScheme) var colorScheme
 
-
-    //To avoid Taps during animation..
-    
-    
     
     var body: some View {
         GeometryReader { geo in
@@ -66,9 +54,6 @@ struct CardView: View {
                 .padding(.bottom, UIScreen.main.bounds.height * 0.03)
 
                 
-                //Spacer()
-                
-                
                 HStack(spacing: 25) {
                     
                     Button {
@@ -89,7 +74,6 @@ struct CardView: View {
                     Button {
                         withAnimation {
                             flip = true
-                            //saveContext()
                         }
                     } label: {
                         Text("Meaning")
@@ -110,7 +94,6 @@ struct CardView: View {
                         .clipped()
                         .cornerRadius(12)
 
-                    //ForEach(0..<deckCore.cardsArray.count) { index in
                     
                     if deckCore.cardsArray.count >= 0 {
                         if flip == false {
@@ -204,12 +187,7 @@ struct CardView: View {
                                     card.x = 0; card.y = 0
                                     
                                 }
-                                
-                                
-                                
                             }
-                            
-                            
                             
                         }
                 )
@@ -241,9 +219,6 @@ struct CardView: View {
                 
                 
                 Button {
-                    //some code
-                    //  let newLikedCard = PersonCore(context: viewContext)
-                    
                     print("Like button tapped")
                 } label: {
                     
@@ -252,7 +227,6 @@ struct CardView: View {
                 }
                 .navigationBarHidden(true)
             }
-           //.padding(.top, geo.size.height * 0.02)
            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
 
 

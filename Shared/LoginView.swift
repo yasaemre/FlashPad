@@ -39,7 +39,6 @@ struct LoginView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: geo.size.width, height:geo.size.height)
                 }
-                //Spacer()
                 
                 SignInWithAppleButton { request in
                     //requesting parameters from Apple login
