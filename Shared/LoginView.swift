@@ -152,9 +152,10 @@ struct LoginView: View {
                     .fontWeight(.semibold)
                     .foregroundColor(.black)
                 
-                TextField(
-                    "Email",
-                    text:$loggedViaEmail)
+                TextField("",text:$loggedViaEmail)
+                        .placeholder(when: self.loggedViaEmail.isEmpty) {
+                                Text("Email").foregroundColor(.gray)
+                        }
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 4).stroke(self.loggedViaEmail != "" ? Color("Color") : self.color, lineWidth: 2))
                     .foregroundColor(.white)
@@ -163,10 +164,16 @@ struct LoginView: View {
                     
                     VStack {
                         if self.isVisible {
-                            TextField("Password", text: self.$loginVM.pass)
+                            TextField("", text: self.$loginVM.pass)
+                                .placeholder(when: self.loginVM.pass.isEmpty) {
+                                        Text("Password").foregroundColor(.gray)
+                                }
                                 .autocapitalization(.none)
                         } else {
-                            SecureField("Password", text: self.$loginVM.pass)
+                            SecureField("", text: self.$loginVM.pass)
+                                .placeholder(when: self.loginVM.pass.isEmpty) {
+                                        Text("Password").foregroundColor(.gray)
+                                }
                                 .autocapitalization(.none)
                         }
                     }

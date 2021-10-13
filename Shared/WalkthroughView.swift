@@ -18,19 +18,19 @@ struct WalkthroughView:View {
         ZStack{
             //Changing between views
             if currentPage == 1 {
-                ScreenView(image: "FlashCards", title: "Welcome to FlashCards", detail: "With FlashCards, you create your own deck, and sync with Mac, and then you can use them on iPhone and Mac concurrently.")
+                ScreenView(image: "FlashCards", title: "Welcome to FlashPad", detail: "With FlashPad, you create your own deck, and sync with Mac, and then you can use them on iPhone and Mac concurrently.")
                     .transition(.scale)
             }
             if currentPage == 2 {
-                ScreenView(image: "deck", title: "Create Deck", detail: "You can create on a deck including words you want to study on Mac or iPhone. By doing so, your decks will be always updated through iCloud.")
+                ScreenView(image: "deck", title: "Create Deck", detail: "You can create a deck including words, formulas you want to study on iMac or iPhone. By doing so, your decks will always be updated on cross devices through iCloud.")
                     .transition(.scale)
             }
             if currentPage == 3 {
-                ScreenView(image: "study", title: "Study Deck", detail: "You can study decks swiping right and left. But just be careful, every correct answer counts. ")
+                ScreenView(image: "study", title: "Study Deck", detail: "You can study decks swiping right and left, it is a kind of self-assesment. And check your score on the scoreboard screen. But just be careful, every false answer counts. :) ")
                     .transition(.scale)
             }
             if currentPage == 4 {
-                ScreenView(image: "sync", title: "Sync to Mac", detail: "You can create on a deck including words you want to study on Mac or iPhone. By doing so, your decks will be always updated through iCloud.")
+                ScreenView(image: "sync", title: "Sync to Mac", detail: "You can create a deck including words you want to study on Mac or iPhone. By doing so, your decks will always be updated on cross devices through iCloud.")
                     .transition(.scale)
             }
         }
