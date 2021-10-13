@@ -154,8 +154,8 @@ struct TabBarView: View {
                                         .frame(width:  geo.size.width * 0.15, height: geo.size.height * 0.15)
                                         .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "164430"), Color.init(hex: "164430")]),  center: .center, startRadius: 5, endRadius: 120))
                                         .clipShape(Circle())
-                                        .foregroundColor(.white)
-                                        .overlay(Circle().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                                        .foregroundColor(Color.init(hex: "C9E9E2"))
+                                        .overlay(Circle().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "C9E9E2"), Color.init(hex: "DFD5B8")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
                                 })
 
 //                                    .padding(.vertical, UIScreen.main.bounds.minY + geo.size.height * 0.3)
