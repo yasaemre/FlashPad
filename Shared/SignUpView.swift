@@ -10,7 +10,7 @@ import QuartzCore
 
 struct SignUpView : View {
     
-    @State var color = Color.black.opacity(0.7)
+    @State var color = Color.black.opacity(1.0)
     @State var visible = false
     @State var revisible = false
     @Binding var show : Bool
@@ -39,12 +39,16 @@ struct SignUpView : View {
                         .fontWeight(.bold)
                         .foregroundColor(self.color)
                         .padding(.top, 100)
-                    TextField("Email", text: self.signUpVM.$loggedViaEmail)
+                    TextField("", text: self.signUpVM.$loggedViaEmail)
+                        .placeholder(when: self.signUpVM.loggedViaEmail.isEmpty) {
+                                Text("Email").foregroundColor(.gray)
+                        }
                         .autocapitalization(.none)
                         .padding()
                         .foregroundColor(Color(.systemGray4))
                         .background(RoundedRectangle(cornerRadius: 4).stroke(self.signUpVM.loggedViaEmail != "" ? Color(.systemRed) : self.color,lineWidth: 2))
                         .padding(.top, 1)
+              
 
                     HStack(spacing: 15){
                         
@@ -52,14 +56,20 @@ struct SignUpView : View {
                             
                             if self.visible{
                                 
-                                TextField("Password", text: self.$signUpVM.pass)
+                                TextField("", text: self.$signUpVM.pass)
+                                    .placeholder(when: self.signUpVM.pass.isEmpty) {
+                                            Text("Password").foregroundColor(.gray)
+                                    }
                                     .autocapitalization(.none)
                                     .foregroundColor(self.color)
 
                             }
                             else{
                                 
-                                SecureField("Password", text: self.$signUpVM.pass)
+                                SecureField("", text: self.$signUpVM.pass)
+                                    .placeholder(when: self.signUpVM.pass.isEmpty) {
+                                            Text("Password").foregroundColor(.gray)
+                                    }
                                     .autocapitalization(.none)
                                     .foregroundColor(self.color)
 
@@ -89,7 +99,10 @@ struct SignUpView : View {
                             
                             if self.revisible{
                                 
-                                TextField("Re-enter", text: self.$signUpVM.repass)
+                                TextField("", text: self.$signUpVM.repass)
+                                    .placeholder(when: self.signUpVM.repass.isEmpty) {
+                                            Text("Re-enter").foregroundColor(.gray)
+                                    }
                                     .autocapitalization(.none)
                                     .foregroundColor(self.color)
 
@@ -98,6 +111,9 @@ struct SignUpView : View {
                             else{
                                 
                                 SecureField("Re-enter", text: self.$signUpVM.repass)
+                                    .placeholder(when: self.signUpVM.repass.isEmpty) {
+                                            Text("Re-enter").foregroundColor(.gray)
+                                    }
                                     .autocapitalization(.none)
                                     .foregroundColor(self.color)
 
@@ -172,3 +188,15 @@ struct SignUpView_Previews: PreviewProvider {
     }
 }
 
+extension View {
+    func placeholder<Content: View>(
+        when shouldShow: Bool,
+        alignment: Alignment = .leading,
+        @ViewBuilder placeholder: () -> Content) -> some View {
+
+        ZStack(alignment: alignment) {
+            placeholder().opacity(shouldShow ? 1 : 0)
+            self
+        }
+    }
+}

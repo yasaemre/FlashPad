@@ -12,7 +12,6 @@ struct EditView: View {
     @State var flipped = false
     @State var flip = false
     @State var rightArrowTapped = false
-    //@State var cardCore: CardCore
     @State var card: Card
     @StateObject var deckCore:DeckCore
     
@@ -20,10 +19,8 @@ struct EditView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @State var indexCard = UserDefaults.standard.integer(forKey: "indexCard")
-   // @AppStorage("indexCard") var indexCard = 0
-    //@State var indexCard = 0
+
     @StateObject var likedCore:LikedCore
-    // @State var correctAnswer = 0
     @State private var rotateCheckMark = 30
     @State private var checkMarkValue = -60
     
@@ -56,7 +53,6 @@ struct EditView: View {
                             .navigationBarItems(trailing: NavigationLink(destination: StudyScreenView(deckCore: deckCore, card: card)) {
                                 Text("Study")
                                     .font(.custom("Chalkduster", size: 24))
-                                //.foregroundColor(Color.init(hex: "B74278"))
                                     .frame(width:  geo.size.width * 0.35, height: geo.size.height * 0.06)                   .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "B74278"), Color.init(hex: "164430")]),  center: .center, startRadius: 5, endRadius: 120))
                                     .clipShape(Capsule())
                                     .foregroundColor(.white)
@@ -70,7 +66,6 @@ struct EditView: View {
                     Button {
                         withAnimation {
                             flip = true
-                            //saveContext()
                         }
                     } label: {
                         Text("Meaning")
@@ -86,23 +81,17 @@ struct EditView: View {
                     
                     TextField("Enter a word", text: $card.word)
                         .padding(.top, 1)
-                    //                        .padding(.leading, 40)
-                    //                        .padding(.trailing, 40)
                         .frame(width: 250, height: 75, alignment: .center)
                         .textFieldStyle(.roundedBorder)
                         .modifier(TextFieldClearButton(text: $card.word))
                 } else {
                     TextField("Enter a definition", text: $card.definition)
                         .padding(.top, 1)
-                    //                        .padding(.leading, 40)
-                    //                        .padding(.trailing, 40)
                         .frame(width: 250, height: 75, alignment: .center)
                         .textFieldStyle(.roundedBorder)
                         .modifier(TextFieldClearButton(text: $card.definition))
                 }
-                
-//                RoundedRectangle(cornerRadius: 10)
-//                    .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "164430"), Color.init(hex: "c8d4f5")]), startPoint: .topLeading, endPoint: .bottomTrailing))
+
                     Image("bbS")
                         .resizable()
                     .frame(width: geo.size.width * 0.65, height: geo.size.height * 0.5)
@@ -117,7 +106,7 @@ struct EditView: View {
                                     Text("")
                                 } else {
                                     Text(deckCore.cardsArray[indexCard].unwrappedWord)
-                                        .font(.custom("Chalkduster", size: 30))
+                                        .font(.custom("Chalkduster", size: 20))
                                         .foregroundColor(.white)
                                         .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
                                         .overlay(Image(systemName: "minus.circle.fill")
@@ -131,7 +120,7 @@ struct EditView: View {
                                 }
                             } else {
                                 Text(deckCore.cardsArray[indexCard].unwrappedDefinition)
-                                    .font(.custom("Chalkduster", size: 30))
+                                    .font(.custom("Chalkduster", size: 20))
                                     .foregroundColor(.white)
                                     .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
                                     .overlay(Image(systemName: "minus.circle.fill")
@@ -143,16 +132,12 @@ struct EditView: View {
                                         
                                         alertViewDeleteCard(at: IndexSet.init(integer: indexCard))
                                     })
-                                //}
                             }
                         } else {
                             ForEach(0..<deckCore.cardsArray.count, id:\.self) { index in
                                 if flip == false {
-                                    //                                if rightArrowTapped == true {
-                                    //                                    Text("")
-                                    //                                } else {
                                     Text(deckCore.cardsArray[index].unwrappedWord)
-                                        .font(.custom("Chalkduster", size: 30))
+                                        .font(.custom("Chalkduster", size: 20))
                                         .foregroundColor(.white)
                                         .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
 
@@ -161,18 +146,12 @@ struct EditView: View {
                                                     .foregroundColor(Color(.systemGray))
                                                     .offset(x: -123, y: -175)
                                                     .onTapGesture{
-                                            //deleteDeck(at: IndexSet.init(integer: index))
                                             alertViewDeleteCard(at: IndexSet.init(integer: index))
                                         })
-                                    
-                                    
-                                    //}
                                 } else {
-                                    //                                if rightArrowTapped == true {
-                                    //                                    Text("")
-                                    //                                } else {
+
                                     Text(deckCore.cardsArray[index].unwrappedDefinition)
-                                        .font(.custom("Chalkduster", size: 30))
+                                        .font(.custom("Chalkduster", size: 20))
                                         .foregroundColor(.white)
                                         .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
 
@@ -181,15 +160,9 @@ struct EditView: View {
                                                     .foregroundColor(Color(.systemGray))
                                                     .offset(x: -123, y: -175)
                                                     .onTapGesture{
-                                            //deleteDeck(at: IndexSet.init(integer: index))
                                             alertViewDeleteCard(at: IndexSet.init(integer: index))
                                         })
-                                    //}
                                 }
-                                
-                                
-                                
-                                
                             }
                         }
                         
@@ -283,9 +256,6 @@ struct EditView: View {
                    
             
         }
-        //.navigationBarHidden(true)
-        //navigationBarHidden work on real device iPhone x, but not in simulator for now keep it in active.
-        
     }
     func setDismissTimer() {
       let timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { timer in
@@ -305,27 +275,11 @@ struct EditView: View {
         newCard.word = card.word
         newCard.definition = card.definition
         newCard.imageName = "bbS"
-        //        guard cardsArrPersistent != nil && cardsArrPersistent.count > 0 else {
-        //            return
-        //        }
-        //cardsArrPersistent.last?.word = newCard.word
-        //cardsArrPersistent.last?.definition = newCard.definition
-        //indexCard += 1
         deckCore.addToCards(newCard)
         PersistenceController.shared.saveContext()
         showCircle = 1
         rotateCheckMark = 0
         checkMarkValue = 0
-            
-        //UserDefaults.standard.set(self.indexOfCard, forKey: "indexOfCard")
-        //print("\(Int(newCard.numOfCard))")
-        //        for card in deckCore.cardsArray {
-        //            print(card.word)
-        //            print(card.definition)
-        //        }
-        
-        
-        
     }
     
     private func deleteCard(at offsets: IndexSet) {
@@ -354,10 +308,6 @@ struct EditView: View {
         
         
         let delete = UIAlertAction(title: "Delete", style: .default) { (_) in
-            //do your stuff..
-            
-            
-            //deckVM.decks.append(Deck( deckName: deck.deckName, numberOfCardsInDeck: deck.numberOfCardsInDeck, deckCreatedAt: deck.deckCreatedAt))
             deleteCard(at: index)
         }
         
@@ -424,12 +374,3 @@ struct FlipEffect: GeometryEffect {
         return ProjectionTransform(transform3d).concatenating(affineTransform)
     }
 }
-
-
-
-
-//struct EditView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EditView()
-//    }
-//}

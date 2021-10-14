@@ -16,7 +16,6 @@ struct DonateView: View {
     
     @State private var pickedTab = "emre.FlashPad.donation2"
 
-   // @StateObject var store = Store()
     @State var product = ""
     var body: some View {
         ZStack(alignment: .top) {
@@ -34,7 +33,7 @@ struct DonateView: View {
                         .frame(width:  geo.size.width * 0.2, height: geo.size.height * 0.2)
                         .tint(Color.init(hex: "102FC3"))
                     
-                    Text("Support development of the app, FlashPad is a free and open application, developed by a small team. The heart and soul of FlashPad is our global community of tons of users, and donors like yourself – all united to share unlimited access to well structured app. Your donations keep our knowledge projects like FlashPad freely available to everyone. Please help us keep FlashPad growing.")
+                    Text("Support development of the app, FlashPad is a free and open application, developed by a small team. The heart and soul of FlashPad is our global community of users, and donors like yourself – all united to share unlimited access to well structured app. Your donations will keep projects like FlashPad freely available to everyone. Please help us keep FlashPad growing.")
                         .foregroundColor(colorScheme == .dark ? .white : .black)
                         .frame(width: geo.size.width * 0.9, height: geo.size.height * 0.4)
                         
@@ -43,17 +42,13 @@ struct DonateView: View {
                     RoundedRectangle(cornerRadius: 10)
                         .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing))
                         .frame(width:  geo.size.width * 0.8, height: geo.size.height * 0.06)
-                        //.frame(width: 300, height: 50)
                         .shadow(color: Color(UIColor(.black)), radius: 10, x: 5, y: 5)
                         .overlay(
                             
                             Text("Select one time donation amount")
                                 .foregroundColor(.white)
                                 .font(.caption)
-                                //.frame(width:  geo.size.width * 0.9, height: geo.size.height * 0.065)
-                            
                         )
-                        //.padding(.top, 13)
                     
                     Picker(selection:$product, label: Text("Picker"), content: {
                         Text("$0.99").tag( "com.emre.FlashPad.donation")
@@ -66,7 +61,6 @@ struct DonateView: View {
                         .font(.title2)
                         .frame(width:  geo.size.width * 0.8, height: geo.size.height * 0.07)
                         .overlay(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing), lineWidth: 3))
-                    //.frame(maxWidth: .infinity, maxHeight: 20)
                         .padding(.top, geo.size.height * 0.02)
                     
                     
@@ -78,7 +72,6 @@ struct DonateView: View {
                             Text("Continue")
                                 .font(.title2)
                                 .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.06)
-                            //.foregroundColor(Color.init(hex: "271D76"))
                                 .foregroundColor(.white)
                           
                                 .background(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "BC4571"), Color.init(hex: "102FC3")]), startPoint: .leading, endPoint: .trailing))
@@ -98,12 +91,9 @@ struct DonateView: View {
     }
     
     func action(p:String) {
-        //ForEach(0..<store.allProducts, id: \.self) { indexP in
             if let product = store.product(for:p) {
                 store.purchaseProduct(product)
-            }
-       //}
-        
+            }        
     }
 }
 

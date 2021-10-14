@@ -19,6 +19,7 @@ struct FlashCardsApp: App {
     
     @StateObject private var store = Store()
     var body: some Scene {
+        #if os(iOS)
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
@@ -27,6 +28,18 @@ struct FlashCardsApp: App {
         }.onChange(of: scenePhase) { _ in
             persistenceController.saveContext()
         }
+
+        #else
+        WindowGroup {
+            ContentView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(store)
+            
+        }.onChange(of: scenePhase) { _ in
+            persistenceController.saveContext()
+        }
+        .windowStyle(HiddenTitleBarWindowStyle())
+        #endif
     }
 }
 
@@ -42,7 +55,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, GIDSignInDelegate {
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
-         // ...
          if let error = error {
            print(error.localizedDescription)
            return
@@ -69,8 +81,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, GIDSignInDelegate {
              print(error.localizedDescription)
              return
            }
-           // Perform any operations when the user disconnects from app here.
-           // ...
        }
     
     

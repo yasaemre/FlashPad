@@ -60,6 +60,7 @@
 		C696619926EC517000DE06A3 /* LikedCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C696619626EC517000DE06A3 /* LikedCore+CoreDataProperties.swift */; };
 		C696619A26EC517000DE06A3 /* LikedCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C696619626EC517000DE06A3 /* LikedCore+CoreDataProperties.swift */; };
 		C6AC1384268F6FEA005815F3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC1383268F6FEA005815F3 /* LoginViewModel.swift */; };
+		C6B20FB92717A7B3007348E5 /* TabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B20FB82717A7B3007348E5 /* TabButton.swift */; };
 		C6B634B226DF502E00DCC3BF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B634B126DF502E00DCC3BF /* CardView.swift */; };
 		C6BB306126AF0A9F00B6710C /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BB306026AF0A9F00B6710C /* Deck.swift */; };
 		C6BB306326AF0B0700B6710C /* DeckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BB306226AF0B0700B6710C /* DeckViewModel.swift */; };
@@ -149,6 +150,7 @@
 		C696619526EC517000DE06A3 /* LikedCore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LikedCore+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C696619626EC517000DE06A3 /* LikedCore+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LikedCore+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C6AC1383268F6FEA005815F3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		C6B20FB82717A7B3007348E5 /* TabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButton.swift; sourceTree = "<group>"; };
 		C6B634B126DF502E00DCC3BF /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		C6BB306026AF0A9F00B6710C /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		C6BB306226AF0B0700B6710C /* DeckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckViewModel.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				C60929EE26B39D670048DE83 /* SlideMenu.swift */,
 				C6849533268E36A3003BC08C /* LogoutButtonView.swift */,
 				C6289093268F924B005EAE7F /* TabBarView.swift */,
+				C6B20FB82717A7B3007348E5 /* TabButton.swift */,
 				C6DB9B5A26E1E6A200BBF9F5 /* EditScrnView.swift */,
 				C6DB9B5D26E1E6AB00BBF9F5 /* EditView.swift */,
 				C655B8CB26DC4EB900555434 /* StudyScreenView.swift */,
@@ -615,6 +618,7 @@
 				C6B634B226DF502E00DCC3BF /* CardView.swift in Sources */,
 				C696618826EBA87100DE06A3 /* CardCore+CoreDataClass.swift in Sources */,
 				C67413E3268ABBCC00128E2D /* LoginView.swift in Sources */,
+				C6B20FB92717A7B3007348E5 /* TabButton.swift in Sources */,
 				C63A823726F0521B00496B6C /* ScoreboardView.swift in Sources */,
 				C6BB306326AF0B0700B6710C /* DeckViewModel.swift in Sources */,
 				C6BB306726AF120900B6710C /* DropViewDelegate.swift in Sources */,

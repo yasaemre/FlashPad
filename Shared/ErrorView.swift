@@ -52,7 +52,6 @@ struct ErrorView: View {
                 
             }
             .padding(.vertical, 25)
-            //.frame(width: UIScreen.main.bounds.width - 70)
             .background(Color.white)
             .cornerRadius(15)
         }

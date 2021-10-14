@@ -171,10 +171,8 @@ struct SlideMenu: View {
                 Spacer()
             }
             .foregroundColor(.primary)
-            //.padding(.horizontal, 20)
             .frame(width: UIScreen.main.bounds.width / 1.6)
             .background((colorScheme == .dark ? Color.black : Color.white).edgesIgnoringSafeArea(.all))
-            //.overlay(Rectangle().stroke(Color.primary.opacity(0.2), lineWidth: 2).shadow( radius:3).edgesIgnoringSafeArea(.all))
         }
 
     }
@@ -194,10 +192,3 @@ struct SlideMenu: View {
         UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
     }
 }
-
-//
-//struct MenuView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SlideMenu(dark: .constant(false), show: .constant(false))
-//    }
-//}
