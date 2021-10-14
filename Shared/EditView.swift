@@ -106,7 +106,7 @@ struct EditView: View {
                                     Text("")
                                 } else {
                                     Text(deckCore.cardsArray[indexCard].unwrappedWord)
-                                        .font(.custom("Chalkduster", size: 30))
+                                        .font(.custom("Chalkduster", size: 20))
                                         .foregroundColor(.white)
                                         .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
                                         .overlay(Image(systemName: "minus.circle.fill")
@@ -120,7 +120,7 @@ struct EditView: View {
                                 }
                             } else {
                                 Text(deckCore.cardsArray[indexCard].unwrappedDefinition)
-                                    .font(.custom("Chalkduster", size: 30))
+                                    .font(.custom("Chalkduster", size: 20))
                                     .foregroundColor(.white)
                                     .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
                                     .overlay(Image(systemName: "minus.circle.fill")
@@ -137,7 +137,7 @@ struct EditView: View {
                             ForEach(0..<deckCore.cardsArray.count, id:\.self) { index in
                                 if flip == false {
                                     Text(deckCore.cardsArray[index].unwrappedWord)
-                                        .font(.custom("Chalkduster", size: 30))
+                                        .font(.custom("Chalkduster", size: 20))
                                         .foregroundColor(.white)
                                         .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
 
@@ -151,7 +151,7 @@ struct EditView: View {
                                 } else {
 
                                     Text(deckCore.cardsArray[index].unwrappedDefinition)
-                                        .font(.custom("Chalkduster", size: 30))
+                                        .font(.custom("Chalkduster", size: 20))
                                         .foregroundColor(.white)
                                         .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
 

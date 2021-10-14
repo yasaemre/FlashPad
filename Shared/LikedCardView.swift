@@ -76,24 +76,23 @@ struct LikedCardView: View {
                                     ZStack {
                                         
                                         Text(likedArrPersistent[index].unwrappedWord)
-                                            .font(.custom("Chalkduster", size: 40))
+                                            .font(.custom("Chalkduster", size: 27))
+                                            .frame(width: calculateWidth()-30, height: (UIScreen.main.bounds.height / 2.23))
                                             .foregroundColor(.white)
                                     }
                                     
-                                    
-                                    
+
                                     
                                 } else {
                                     ZStack {
                                         
                                         Text(likedArrPersistent[index].unwrappedDefinition)
-                                            .font(.custom("Chalkduster", size: 40))
+                                            .font(.custom("Chalkduster", size: 27))
+                                            .frame(width: calculateWidth()-30, height: (UIScreen.main.bounds.height / 2.23))
 
                                             .foregroundColor(.white)
                                     }
-                                    
-                                    
-                                    
+
                                     
                                 }
                             }

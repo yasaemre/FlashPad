@@ -12,11 +12,24 @@ struct HomeScreenView : View {
 
     var body: some View{
         ZStack {
-            TabBarView()
+            TabBarView().toolbar {
+                ToolbarItem(placement: .navigation) {
+                    Button(action: toggleSidebar, label: { // 1
+                        Image(systemName: "sidebar.leading")
+                    })
+                }
+            }
+
         }
         .navigationBarHidden(true)
         
     }
+    private func toggleSidebar() { // 2
+          #if os(iOS)
+          #else
+          NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
+          #endif
+      }
 }
 
 

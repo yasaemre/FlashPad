@@ -10,7 +10,9 @@ import Combine
 
 struct TabBarView: View {
     init() {
+        #if os(iOS)
         UITabBar.appearance().isHidden = true
+        #endif
     }
 
     @State var selectedTab = "home"
@@ -61,212 +63,218 @@ struct TabBarView: View {
     @State private var avatarImage = UIImage(named: "profilePhoto")!
 
     var body: some View {
-       // ZStack {
-        NavigationView {
-            GeometryReader { geo in
-            ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
-                
-                TabView(selection: $selectedTab) {
-                    Color(UIColor.systemBackground)
-                        .ignoresSafeArea(.all, edges: .all)
-                    ZStack {
-                        ScrollView {
+        
+            NavigationView {
+                GeometryReader { geo in
+                ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
+                    #if os(iOS)
+                    TabView(selection: $selectedTab) {
+                        Color(UIColor.systemBackground)
+                            .ignoresSafeArea(.all, edges: .all)
+                        ZStack {
+                            ScrollView {
 
-                            LazyVGrid(columns: columns, spacing: 30, content: {
-                                ForEach(0..<decksArrPersistent.count, id: \.self) { index in
-                                    NavigationLink(destination: EditScrnView(card: card, deckCore: decksArrPersistent[index], likedCore: likedCore)){
-                                        
-                                        ZStack {
+                                LazyVGrid(columns: columns, spacing: 30, content: {
+                                    ForEach(0..<decksArrPersistent.count, id: \.self) { index in
+                                        NavigationLink(destination: EditScrnView(card: card, deckCore: decksArrPersistent[index], likedCore: likedCore)){
                                             
-                                            Image("blackboardM")
-                                                .resizable()
-                                                .frame(width:150, height: 200)
-                                                .cornerRadius(16)
-                                                .overlay(Image(systemName: "minus.circle.fill")
-                                                            .font(.title)
-                                                            .foregroundColor(Color(.systemGray))
-                                                            .offset(x: -70, y: -95)
-                                                            .onTapGesture{
-                                                    alertViewDeleteDeck(at: IndexSet.init(integer: index))
-                                                })
-                                               
+                                            ZStack {
                                                 
+                                                Image("blackboardM")
+                                                    .resizable()
+                                                    .frame(width:150, height: 200)
+                                                    .cornerRadius(16)
+                                                    .overlay(Image(systemName: "minus.circle.fill")
+                                                                .font(.title)
+                                                                .foregroundColor(Color(.systemGray))
+                                                                .offset(x: -70, y: -95)
+                                                                .onTapGesture{
+                                                        alertViewDeleteDeck(at: IndexSet.init(integer: index))
+                                                    })
+                                                   
+                                                    
+                                                    
+
+                                                VStack(spacing: 10) {
+                                                    Text(decksArrPersistent[index].unwrappedDeckName)
+                                                        .font(.custom("Chalkduster", size: 22))
+
+                                                        .foregroundColor(.white)
+
+                                                    Text("\(decksArrPersistent[index].numberOfCardsInDeck) cards")
+                                                        .font(.custom("Chalkduster", size: 18))
+                                                        .foregroundColor(.white)
+                                                        .onAppear {
+                                                            decksArrPersistent[index].numberOfCardsInDeck = Int16(decksArrPersistent[index].cardsArray.count)
+                                                        }
+                                                    Text("created on \n\(decksArrPersistent[index].deckCreatedAt ?? "")")
+                                                        .font(.custom("Chalkduster", size: 14))
+                                                        .foregroundColor(.white)
+                                                }
+                                                .frame(width:120, height: 170)
                                                 
-
-                                            VStack(spacing: 10) {
-                                                Text(decksArrPersistent[index].unwrappedDeckName)
-                                                    .font(.custom("Chalkduster", size: 22))
-
-                                                    .foregroundColor(.white)
-
-                                                Text("\(decksArrPersistent[index].numberOfCardsInDeck) cards")
-                                                    .font(.custom("Chalkduster", size: 18))
-                                                    .foregroundColor(.white)
-                                                    .onAppear {
-                                                        decksArrPersistent[index].numberOfCardsInDeck = Int16(decksArrPersistent[index].cardsArray.count)
-                                                    }
-                                                Text("created on \n\(decksArrPersistent[index].deckCreatedAt ?? "")")
-                                                    .font(.custom("Chalkduster", size: 14))
-                                                    .foregroundColor(.white)
                                             }
-                                            .frame(width:120, height: 170)
-                                            
                                         }
-
                                         
-
                                     }
-                                    
-                                }
-                            })
- 
-                        }
-                            HStack {
-                                
-                                Button(action: {
-                                    print("Deck added")
-                                    withAnimation {
-                                        alertView()
-                                    }
-                                }, label: {
-                                    Image(systemName: "plus")
-                                        .font(.largeTitle)
-                                        .frame(width:  geo.size.width * 0.15, height: geo.size.height * 0.15)
-                                        .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "164430"), Color.init(hex: "164430")]),  center: .center, startRadius: 5, endRadius: 120))
-                                        .clipShape(Circle())
-                                        .foregroundColor(Color.init(hex: "C9E9E2"))
-                                        .overlay(Circle().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "C9E9E2"), Color.init(hex: "DFD5B8")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
                                 })
-
+     
                             }
-                            .offset(y: UIScreen.main.bounds.minY + geo.size.height * 0.32 )
-                            .padding(.horizontal, 33)
+                                HStack {
+                                    
+                                    Button(action: {
+                                        print("Deck added")
+                                        withAnimation {
+                                            alertView()
+                                        }
+                                    }, label: {
+                                        Image(systemName: "plus")
+                                            .font(.largeTitle)
+                                            .frame(width:  geo.size.width * 0.15, height: geo.size.height * 0.15)
+                                            .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "164430"), Color.init(hex: "164430")]),  center: .center, startRadius: 5, endRadius: 120))
+                                            .clipShape(Circle())
+                                            .foregroundColor(Color.init(hex: "C9E9E2"))
+                                            .overlay(Circle().stroke(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "C9E9E2"), Color.init(hex: "DFD5B8")]), startPoint: .leading, endPoint: .trailing), lineWidth: 5))
+                                    })
+
+                                }
+                                .offset(y: UIScreen.main.bounds.minY + geo.size.height * 0.32 )
+                                .padding(.horizontal, 33)
+                            
+                        }
+                        .tag("home")
+                        DonateView()
+                        .tag("donation2")
+
+                        LikedCardView()
+                        .tag("liked")
+
+                        IntsructionsView()
+                        .tag("about")
+                        
+                        
                         
                     }
-                    .tag("home")
-                    DonateView()
-                    .tag("donation2")
-
-                    LikedCardView()
-                    .tag("liked")
-
-                    IntsructionsView()
-                    .tag("about")
-                    
-                    
-                    
-                }
-
-                
-                //Custom bottom tabbar
-                HStack(spacing: 0) {
-                    ForEach(tabs, id: \.self) { image in
-                        GeometryReader { reader in
-                            Button(action: {
-                                withAnimation(.spring()) {
-                                    selectedTab = image
-                                    xAxis = reader.frame(in: .global).minX
-                                }
-                            }, label: {
-                                Image(image)
-                                    .resizable()
-                                    .renderingMode(.original)
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 25, height: 25)
-                                    .foregroundColor(selectedTab == image ? getColor(image: image) : Color.gray)
-                                    .padding(selectedTab == image ? 15 : 0)
-                                    .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "c8d4f5"), Color.init(hex: "164430")]),  center: .center, startRadius: 5, endRadius: 120).opacity(selectedTab == image ? 1 : 0).clipShape(Circle()))
-                                    .matchedGeometryEffect(id: image, in: animation)
-                                    .offset(x: selectedTab == image ? (reader.frame(in: .global).minX - reader.frame(in: .global).midX) : 0, y: selectedTab == image ? -50 : 0)
-                            })
-                                .onAppear {
-                                    if image == tabs.first {
+                    //Custom bottom tabbar
+                    HStack(spacing: 0) {
+                        ForEach(tabs, id: \.self) { image in
+                            GeometryReader { reader in
+                                Button(action: {
+                                    withAnimation(.spring()) {
+                                        selectedTab = image
                                         xAxis = reader.frame(in: .global).minX
                                     }
-                                }
-                        }
-                        .frame(width: 25, height: geo.size.height * 0.04)
-                        if image != tabs.last { Spacer(minLength: 0)}
-                    }
-                }
-                .padding(.horizontal, 30)
-                .padding(.vertical)
-                .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "8092EA"), Color.init(hex: "164430")]),  center: .center, startRadius: 5, endRadius: 120).clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
-                .padding(.horizontal)
-                .padding(.bottom, UIScreen.main.bounds.minY + geo.size.height * 0.03)
-                
-                
-                .toolbar {
-                    //Top custom Navigation bar
-                    ToolbarItemGroup(placement: .navigationBarLeading) {
-                      VStack {
-                        HStack {
-
-                                Button(action: {
-                                    print("Slide in menu tapped")
-                                    self.show.toggle()
-                                }) {
-                                    Image(systemName: "list.bullet")
-                                }
-                                .symbolRenderingMode(.hierarchical)
-                                .font(.system(size: 24))
-                                .foregroundColor(colorScheme == .dark ? Color(.systemGreen) : Color.init(hex: "164430"))
-
-                                Spacer()
-                                Spacer()
-
-                                NavigationLink(destination: ProfileView(avatarImageData: $avatarImageData, imageHasChanged: $imageHasChanged)) {
-                                    if imageHasChanged == true {
-                                        if let imgData = avatarImageData{
-                                            Image(uiImage: UIImage(data: imgData) ?? avatarImage)
-                                            .resizable()
-                                            .scaledToFill()
-                                            .clipShape(Circle())
-                                            //.frame(width: 45, height: 45)
+                                }, label: {
+                                    Image(image)
+                                        .resizable()
+                                        .renderingMode(.original)
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 25, height: 25)
+                                        .foregroundColor(selectedTab == image ? getColor(image: image) : Color.gray)
+                                        .padding(selectedTab == image ? 15 : 0)
+                                        .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "c8d4f5"), Color.init(hex: "164430")]),  center: .center, startRadius: 5, endRadius: 120).opacity(selectedTab == image ? 1 : 0).clipShape(Circle()))
+                                        .matchedGeometryEffect(id: image, in: animation)
+                                        .offset(x: selectedTab == image ? (reader.frame(in: .global).minX - reader.frame(in: .global).midX) : 0, y: selectedTab == image ? -50 : 0)
+                                })
+                                    .onAppear {
+                                        if image == tabs.first {
+                                            xAxis = reader.frame(in: .global).minX
                                         }
-                                    } else {
-                                        if let image = profileArrPersistent.last?.image{
-                                            if let uiImage = UIImage(data: image)  {
-                                                Image(uiImage: uiImage)
+                                    }
+                            }
+                            .frame(width: 25, height: geo.size.height * 0.04)
+                            if image != tabs.last { Spacer(minLength: 0)}
+                        }
+                    }
+                    .padding(.horizontal, 30)
+                    .padding(.vertical)
+                    .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "8092EA"), Color.init(hex: "164430")]),  center: .center, startRadius: 5, endRadius: 120).clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
+                    .padding(.horizontal)
+                    .padding(.bottom, UIScreen.main.bounds.minY + geo.size.height * 0.03)
+                    
+                    //Top custom Navigation bar
+                    .toolbar {
+                        ToolbarItemGroup(placement: .navigationBarLeading) {
+                          VStack {
+                            HStack {
+
+                                    Button(action: {
+                                        print("Slide in menu tapped")
+                                        self.show.toggle()
+                                    }) {
+                                        Image(systemName: "list.bullet")
+                                    }
+                                    .symbolRenderingMode(.hierarchical)
+                                    .font(.system(size: 24))
+                                    .foregroundColor(colorScheme == .dark ? Color(.systemGreen) : Color.init(hex: "164430"))
+
+                                    Spacer()
+                                    Spacer()
+
+                                    NavigationLink(destination: ProfileView(avatarImageData: $avatarImageData, imageHasChanged: $imageHasChanged)) {
+                                        if imageHasChanged == true {
+                                            if let imgData = avatarImageData{
+                                                Image(uiImage: UIImage(data: imgData) ?? avatarImage)
+                                                .resizable()
+                                                .scaledToFill()
+                                                .clipShape(Circle())
+                                                //.frame(width: 45, height: 45)
+                                            }
+                                        } else {
+                                            if let image = profileArrPersistent.last?.image{
+                                                if let uiImage = UIImage(data: image)  {
+                                                    Image(uiImage: uiImage)
+                                                        .resizable()
+                                                        .scaledToFill()
+                                                        .clipShape(Circle())
+                                                }
+                                            } else {
+                                                Image(uiImage: avatarImage)
                                                     .resizable()
                                                     .scaledToFill()
                                                     .clipShape(Circle())
                                             }
-                                        } else {
-                                            Image(uiImage: avatarImage)
-                                                .resizable()
-                                                .scaledToFill()
-                                                .clipShape(Circle())
                                         }
                                     }
+
                                 }
+                            .frame(width: UIScreen.main.bounds.width * 0.95)
 
-                            }
-                        .frame(width: UIScreen.main.bounds.width * 0.95)
+                           }
+                          .frame(maxWidth: .infinity, maxHeight: .infinity, alignment:.top)
 
-                       }
-                      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment:.top)
-
+                        }
                     }
+                    .foregroundColor(.primary)
+                    .padding(.top, UIScreen.main.bounds.minY + geo.size.height * 0.1)
+                    #else
+                    ZStack {
+                        
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    #endif
+                    
+
+                   
                 }
-                .foregroundColor(.primary)
-                .padding(.top, UIScreen.main.bounds.minY + geo.size.height * 0.1)
             }
         }
-    }
-        .accentColor(colorScheme == .dark ? Color(.systemGreen) : Color.init(hex: "164430"))
+            .accentColor(colorScheme == .dark ? Color(.systemGreen) : Color.init(hex: "164430"))
+            
+            HStack {
+                SlideMenu(dark: self.$dark, show: self.$show, imageHasChanged: $imageHasChanged, avatarImageData: $avatarImageData)
+                    .preferredColorScheme(colorScheme == .dark ? .dark : .light)
+                        .offset(x: self.show ? 0 : -UIScreen.main.bounds.width / 1.5)
+
+                    Spacer(minLength: 0)
+                }
+                .background(Color.primary.opacity(self.show ? (self.dark ? 0.05 : 0.2) : 0))
         
-        HStack {
-            SlideMenu(dark: self.$dark, show: self.$show, imageHasChanged: $imageHasChanged, avatarImageData: $avatarImageData)
-                .preferredColorScheme(colorScheme == .dark ? .dark : .light)
-                    .offset(x: self.show ? 0 : -UIScreen.main.bounds.width / 1.5)
-
-                Spacer(minLength: 0)
-            }
-            .background(Color.primary.opacity(self.show ? (self.dark ? 0.05 : 0.2) : 0))
+        
+       
 
     }
-    
+ 
     private func addDeck() {
         indexOfCard = 0
         let newDeck = DeckCore(context: viewContext)
@@ -280,6 +288,21 @@ struct TabBarView: View {
 
        
 
+    }
+    
+    func getDevice() -> Device {
+        #if os(iOS)
+        
+        //Since there is no direct device for iPad OS
+        if UIDevice.current.model.contains("iPad") {
+            return .iPad
+        }
+        else {
+            return .iPhone
+        }
+        #else
+        return .macOS
+        #endif
     }
     
     
@@ -367,6 +390,21 @@ struct TabBarView: View {
 
 var tabs = ["home", "donation2", "liked", "about"]
 
+struct InsideTabBarItems: View {
+    @Binding var selectedTab: String
+    @StateObject var homeData = HomeViewModel()
+
+    var body: some View {
+        Group {
+            TabButton(image: "house", title: "Home", selectedTab: $homeData.selectedTab).padding(.top, 30)
+            TabButton(image: "textformat.123", title: "Scoreboard", selectedTab: $homeData.selectedTab)
+            TabButton(image: "heart.circle", title: "Liked Cards", selectedTab: $homeData.selectedTab)
+            TabButton(image: "doc.text.magnifyingglass", title: "Instructions", selectedTab: $homeData.selectedTab)
+            TabButton(image: "person.crop.circle", title: "Profile", selectedTab: $homeData.selectedTab)
+        }
+    }
+}
+
 //Curve..
 struct CustomShape:Shape {
     var xAxis: CGFloat
@@ -441,3 +479,31 @@ func body(content: Content) -> some View {
         }
     }
 }}
+
+
+//extension View {
+//    func getScreen() -> CGRect {
+//        #if os(iOS)
+//        return UIScreen.main.bounds
+//        #elseif
+//        return NSScreen.main!.visibleFrame
+//        #endif
+//    }
+//}
+
+enum Device {
+    case iPhone
+    case iPad
+    case macOS
+}
+class HomeViewModel: ObservableObject {
+    @Published var selectedTab = "Home"
+    
+    @Published var search = ""
+    
+    @Published var message = ""
+
+    @Published var isExpanded = false
+    
+    @Published var pickedTab = "Media"
+}

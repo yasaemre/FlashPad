@@ -19,6 +19,7 @@ struct FlashCardsApp: App {
     
     @StateObject private var store = Store()
     var body: some Scene {
+        #if os(iOS)
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
@@ -27,6 +28,18 @@ struct FlashCardsApp: App {
         }.onChange(of: scenePhase) { _ in
             persistenceController.saveContext()
         }
+
+        #else
+        WindowGroup {
+            ContentView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(store)
+            
+        }.onChange(of: scenePhase) { _ in
+            persistenceController.saveContext()
+        }
+        .windowStyle(HiddenTitleBarWindowStyle())
+        #endif
     }
 }
 
