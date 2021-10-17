@@ -146,6 +146,9 @@ struct SlideMenu: View {
                                 .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.04)
 
                         }
+                        .onTapGesture {
+                            shareDesktopApp()
+                        }
                     }
                     Button(action: {
                         
@@ -182,7 +185,7 @@ struct SlideMenu: View {
         isShareSheetShowing.toggle()
         
        //https://apps.apple.com/us/app/vintage-house/id1549251393
-       guard let url = URL(string: "https://emre-yasa.tech/") else {
+       guard let url = URL(string: "https://apps.apple.com/us/app/flashpadapp/id1590421812?mt=12") else {
            return
        }
        
@@ -191,4 +194,17 @@ struct SlideMenu: View {
         
         UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
     }
+    
+    public func shareDesktopApp() {
+         isShareSheetShowing.toggle()
+         
+        guard let url = URL(string: "https://apps.apple.com/us/app/flashpadapp/id1590421812?mt=12") else {
+            return
+        }
+        
+         let activityView = UIActivityViewController(activityItems: ["To download the Flashpad Desktop app, please click the link below ->", url], applicationActivities: nil)
+    
+         
+         UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
+     }
 }

@@ -43,7 +43,6 @@
 		C68726B526BA6E29006BD793 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68726B326BA6E29006BD793 /* Card.swift */; };
 		C68726B726BA6EF5006BD793 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68726B626BA6EF5006BD793 /* CardViewModel.swift */; };
 		C68726B826BA6EF5006BD793 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68726B626BA6EF5006BD793 /* CardViewModel.swift */; };
-		C69372422716C97D00906653 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C67413AB268ABAEC00128E2D /* Assets.xcassets */; };
 		C69372432716C98100906653 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C67413AB268ABAEC00128E2D /* Assets.xcassets */; };
 		C693A20026F39A46006C9AB3 /* IntsructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C693A1FF26F39A46006C9AB3 /* IntsructionsView.swift */; };
 		C6964C5D2715384100F83BF2 /* DeckTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6964C5C2715384100F83BF2 /* DeckTest.swift */; };
@@ -493,7 +492,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C69372422716C97D00906653 /* Assets.xcassets in Resources */,
 				C6D25F4526F510440033A989 /* StoreConfiguration.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -843,7 +841,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.emre.FlashPad;
 				PRODUCT_NAME = FlashPad;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -883,7 +881,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.emre.FlashPad;
 				PRODUCT_NAME = FlashPad;
 				PROVISIONING_PROFILE_SPECIFIER = "";
