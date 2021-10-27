@@ -69,7 +69,7 @@ struct LikedCardView: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: calculateWidth(), height: (UIScreen.main.bounds.height / 2.2) - CGFloat(index-scrolled)*50)
-                                    .cornerRadius(15)
+                                    .cornerRadius(33)
                                     .offset(x: index - scrolled <= 2 ? CGFloat(index - scrolled) * 30 : 60)
                                 if flip == false {
                                     

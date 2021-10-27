@@ -92,7 +92,7 @@ struct CardView: View {
                         .resizable()
                         .frame(width: geo.size.width * 0.7, height: geo.size.height * 0.50)
                         .clipped()
-                        .cornerRadius(12)
+                        .cornerRadius(33)
 
                     
                     if deckCore.cardsArray.count >= 0 {
@@ -124,8 +124,8 @@ struct CardView: View {
                             .resizable()
                             .font(.custom("Chalkduster", size: 22))
                             .aspectRatio(contentMode: .fit)
-                            .frame(width:75,height: 75)
-                            .offset(x: 60, y: -140)
+                            .frame(width:geo.size.width * 0.2,height: geo.size.width * 0.2)
+                            .offset(x:geo.size.width * 0.15, y: -geo.size.height * 0.19)
                             .opacity(Double(card.x/10 - 1))
                         
                         Spacer()
@@ -133,8 +133,8 @@ struct CardView: View {
                             .resizable()
                             .font(.custom("Chalkduster", size: 22))
                             .aspectRatio(contentMode: .fit)
-                            .frame(width:75,height: 75)
-                            .offset(x: -60, y: -140)
+                            .frame(width:geo.size.width * 0.2,height: geo.size.width * 0.2)
+                            .offset(x:-geo.size.width * 0.15, y: -geo.size.height * 0.2)
                             .opacity(Double(card.x/10 * -1 - 1))
                     }
                     

@@ -188,7 +188,7 @@ struct TabBarView: View {
                     }
                     .padding(.horizontal, 30)
                     .padding(.vertical)
-                    .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "8092EA"), Color.init(hex: "164430")]),  center: .center, startRadius: 5, endRadius: 120).clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
+                    .background(RadialGradient(gradient: Gradient(colors: [Color.init(hex: "164430"), Color.init(hex: "C9E9E2")]),  center: .center, startRadius: 1, endRadius: 420).clipShape(CustomShape(xAxis: xAxis)).cornerRadius(12))
                     .padding(.horizontal)
                     .padding(.bottom, UIScreen.main.bounds.minY + geo.size.height * 0.03)
                     
