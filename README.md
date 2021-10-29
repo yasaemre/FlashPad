@@ -7,18 +7,22 @@
 
 # FlashPads
 <br />
-<p align="center">
+<p>
   <a href="https://github.com/alexanderritik/Best-README-Template">
     <img src="https://user-images.githubusercontent.com/31274880/139500713-88171956-8d46-4df1-86e2-eb26c2730eaa.png" alt="Logo" width="80" height="80">
   </a>
-  <p align="center">
+  <p>
 FlashPads is fun way of learning new words, languages, formulas, anything you want to memorize.  </p>
 
-<p align="center"> With FlashPads, you can create your own deck on iPhone and it syncs with other devices such as iMac, Macbook through iCloud . FlashPads combines the ease of typing on keyboard and mobility of iPhone. Anytime you create a card or deck, all of your devices will be updated with new cards. Plus, you can make self-assessment by swiping right and left the cards and check your score on scoreboard screen.</p>
+<p> With FlashPads, you can create your own deck on iPhone and it syncs with other devices such as iMac, Macbook through iCloud . FlashPads combines the ease of typing on keyboard and mobility of iPhone. Anytime you create a card or deck, all of your devices will be updated with new cards. Plus, you can make self-assessment by swiping right and left the cards and check your score on scoreboard screen.</p>
 </p>
 
-<p align="center">
-<img src= "https://media.giphy.com/media/HYOlBKJBqgAfe/giphy.gif" width="400" >
+<p>
+
+
+https://user-images.githubusercontent.com/31274880/139506090-80b44f13-8f0c-4d76-9b39-084f08833cd3.mov
+
+
 </p>
 
 ## Features
