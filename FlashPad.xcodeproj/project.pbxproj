@@ -124,8 +124,8 @@
 		C67413A9268ABAEB00128E2D /* FlashPadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashPadApp.swift; sourceTree = "<group>"; };
 		C67413AA268ABAEB00128E2D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C67413AB268ABAEC00128E2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C67413B0268ABAEC00128E2D /* FlashPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C67413B6268ABAEC00128E2D /* FlashPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C67413B0268ABAEC00128E2D /* FlashPads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashPads.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C67413B6268ABAEC00128E2D /* FlashPads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashPads.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67413BB268ABAEC00128E2D /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67413C5268ABAEC00128E2D /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67413C9268ABAEC00128E2D /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 		C6D25F4926F52E7A0033A989 /* DonateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateView.swift; sourceTree = "<group>"; };
 		C6D2CF0526CD82B300C868A9 /* FlashPad.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlashPad.xcdatamodel; sourceTree = "<group>"; };
 		C6D2CF0826CD864A00C868A9 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		C6D50CD0268AE8F200A60A7F /* FlashPad--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "FlashPad--iOS--Info.plist"; sourceTree = "<group>"; };
+		C6D50CD0268AE8F200A60A7F /* FlashPads--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FlashPads--iOS--Info.plist"; sourceTree = "<group>"; };
 		C6D50CD1268AF0FA00A60A7F /* FlashPad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlashPad.entitlements; sourceTree = "<group>"; };
 		C6DB9B5A26E1E6A200BBF9F5 /* EditScrnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScrnView.swift; sourceTree = "<group>"; };
 		C6DB9B5D26E1E6AB00BBF9F5 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
@@ -268,7 +268,7 @@
 				C6D2CF0826CD864A00C868A9 /* Persistence.swift */,
 				C6D2CF0426CD82B300C868A9 /* FlashPad.xcdatamodeld */,
 				C6D50CD1268AF0FA00A60A7F /* FlashPad.entitlements */,
-				C6D50CD0268AE8F200A60A7F /* FlashPad--iOS--Info.plist */,
+				C6D50CD0268AE8F200A60A7F /* FlashPads--iOS--Info.plist */,
 				C6BB305F26AF0A4E00B6710C /* Model */,
 				C6243193268AD7AC00C01F24 /* Extention */,
 				C6243190268AD75800C01F24 /* ViewModel */,
@@ -320,8 +320,8 @@
 		C67413B1268ABAEC00128E2D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C67413B0268ABAEC00128E2D /* FlashPad.app */,
-				C67413B6268ABAEC00128E2D /* FlashPad.app */,
+				C67413B0268ABAEC00128E2D /* FlashPads.app */,
+				C67413B6268ABAEC00128E2D /* FlashPads.app */,
 				C67413BB268ABAEC00128E2D /* Tests iOS.xctest */,
 				C67413C5268ABAEC00128E2D /* Tests macOS.xctest */,
 			);
@@ -356,9 +356,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C67413AF268ABAEC00128E2D /* FlashPad (iOS) */ = {
+		C67413AF268ABAEC00128E2D /* FlashPads (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C67413D3268ABAEC00128E2D /* Build configuration list for PBXNativeTarget "FlashPad (iOS)" */;
+			buildConfigurationList = C67413D3268ABAEC00128E2D /* Build configuration list for PBXNativeTarget "FlashPads (iOS)" */;
 			buildPhases = (
 				9F6B994DD9130EBEF29EABCF /* [CP] Check Pods Manifest.lock */,
 				C67413AC268ABAEC00128E2D /* Sources */,
@@ -371,14 +371,14 @@
 			);
 			dependencies = (
 			);
-			name = "FlashPad (iOS)";
+			name = "FlashPads (iOS)";
 			productName = "FlashPad (iOS)";
-			productReference = C67413B0268ABAEC00128E2D /* FlashPad.app */;
+			productReference = C67413B0268ABAEC00128E2D /* FlashPads.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C67413B5268ABAEC00128E2D /* FlashPad (macOS) */ = {
+		C67413B5268ABAEC00128E2D /* FlashPads (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C67413D6268ABAEC00128E2D /* Build configuration list for PBXNativeTarget "FlashPad (macOS)" */;
+			buildConfigurationList = C67413D6268ABAEC00128E2D /* Build configuration list for PBXNativeTarget "FlashPads (macOS)" */;
 			buildPhases = (
 				B678EDE13E539070F3FB42F3 /* [CP] Check Pods Manifest.lock */,
 				C67413B2268ABAEC00128E2D /* Sources */,
@@ -389,9 +389,9 @@
 			);
 			dependencies = (
 			);
-			name = "FlashPad (macOS)";
+			name = "FlashPads (macOS)";
 			productName = "FlashPad (macOS)";
-			productReference = C67413B6268ABAEC00128E2D /* FlashPad.app */;
+			productReference = C67413B6268ABAEC00128E2D /* FlashPads.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C67413BA268ABAEC00128E2D /* Tests iOS */ = {
@@ -469,8 +469,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C67413AF268ABAEC00128E2D /* FlashPad (iOS) */,
-				C67413B5268ABAEC00128E2D /* FlashPad (macOS) */,
+				C67413AF268ABAEC00128E2D /* FlashPads (iOS) */,
+				C67413B5268ABAEC00128E2D /* FlashPads (macOS) */,
 				C67413BA268ABAEC00128E2D /* Tests iOS */,
 				C67413C4268ABAEC00128E2D /* Tests macOS */,
 			);
@@ -691,12 +691,12 @@
 /* Begin PBXTargetDependency section */
 		C67413BD268ABAEC00128E2D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C67413AF268ABAEC00128E2D /* FlashPad (iOS) */;
+			target = C67413AF268ABAEC00128E2D /* FlashPads (iOS) */;
 			targetProxy = C67413BC268ABAEC00128E2D /* PBXContainerItemProxy */;
 		};
 		C67413C7268ABAEC00128E2D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C67413B5268ABAEC00128E2D /* FlashPad (macOS) */;
+			target = C67413B5268ABAEC00128E2D /* FlashPads (macOS) */;
 			targetProxy = C67413C6268ABAEC00128E2D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -827,7 +827,7 @@
 				DEVELOPMENT_TEAM = 5DG8S4P5ZL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "FlashPad--iOS--Info.plist";
+				INFOPLIST_FILE = "FlashPads--iOS--Info.plist";
 				INFOPLIST_KEY_CFBundleExecutable = FlashPad;
 				INFOPLIST_KEY_CFBundleName = FlashPad;
 				INFOPLIST_KEY_CFBundleVersion = 1;
@@ -841,9 +841,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.emre.FlashPad;
-				PRODUCT_NAME = FlashPad;
+				PRODUCT_NAME = FlashPads;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;
@@ -867,7 +867,7 @@
 				DEVELOPMENT_TEAM = 5DG8S4P5ZL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "FlashPad--iOS--Info.plist";
+				INFOPLIST_FILE = "FlashPads--iOS--Info.plist";
 				INFOPLIST_KEY_CFBundleExecutable = FlashPad;
 				INFOPLIST_KEY_CFBundleName = FlashPad;
 				INFOPLIST_KEY_CFBundleVersion = 1;
@@ -881,9 +881,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.emre.FlashPad;
-				PRODUCT_NAME = FlashPad;
+				PRODUCT_NAME = FlashPads;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;
@@ -918,7 +918,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.emre.FlashPad;
-				PRODUCT_NAME = FlashPad;
+				PRODUCT_NAME = FlashPads;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -949,7 +949,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.emre.FlashPad;
-				PRODUCT_NAME = FlashPad;
+				PRODUCT_NAME = FlashPads;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1071,7 +1071,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C67413D3268ABAEC00128E2D /* Build configuration list for PBXNativeTarget "FlashPad (iOS)" */ = {
+		C67413D3268ABAEC00128E2D /* Build configuration list for PBXNativeTarget "FlashPads (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C67413D4268ABAEC00128E2D /* Debug */,
@@ -1080,7 +1080,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C67413D6268ABAEC00128E2D /* Build configuration list for PBXNativeTarget "FlashPad (macOS)" */ = {
+		C67413D6268ABAEC00128E2D /* Build configuration list for PBXNativeTarget "FlashPads (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C67413D7268ABAEC00128E2D /* Debug */,

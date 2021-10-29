@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:FlashPad.xcodeproj">
+      location = "group:/Users/emreyasa/Dev/FlashPad/FlashPad.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

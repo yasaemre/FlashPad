@@ -30,7 +30,7 @@ struct IntsructionsView: View {
                             ScrollView{
                                 Group {
                                     VStack {
-                                        Text("How to use Flashpad")
+                                        Text("How to use Flashpads")
                                             .bold()
                                             .font(.system(size: 28))
                                             .padding()

@@ -18,7 +18,7 @@ struct WalkthroughView:View {
         ZStack{
             //Changing between views
             if currentPage == 1 {
-                ScreenView(image: "FlashCards", title: "Welcome to FlashPad", detail: "With FlashPad, you create your own deck, and sync with Mac, and then you can use them on iPhone and Mac concurrently.")
+                ScreenView(image: "FlashCards", title: "Welcome to FlashPads", detail: "With FlashPad, you create your own deck, and sync with Mac, and then you can use them on iPhone and Mac concurrently.")
                     .transition(.scale)
             }
             if currentPage == 2 {
