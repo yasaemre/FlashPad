@@ -1,7 +1,5 @@
 
-
-
-[![Swift Version][swift-image]][swift-url]
+[![https://github.com/apple/swift][swift-image]][swift-url]
 [![Build Status][travis-image]][travis-url]
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](http://cocoapods.org/pods/LFAlertController)
@@ -19,7 +17,7 @@ FlashPads is fun way of learning new words, languages, formulas, anything you wa
 <p align="center"> With FlashPads, you can create your own deck on iPhone and it syncs with other devices such as iMac, Macbook through iCloud . FlashPads combines the ease of typing on keyboard and mobility of iPhone. Anytime you create a card or deck, all of your devices will be updated with new cards. Plus, you can make self-assessment by swiping right and left the cards and check your score on scoreboard screen.</p>
 </p>
 
-<p align="row">
+<p align="center">
 <img src= "https://media.giphy.com/media/HYOlBKJBqgAfe/giphy.gif" width="400" >
 </p>
 
