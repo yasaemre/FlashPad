@@ -6,11 +6,12 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](http://cocoapods.org/pods/LFAlertController)
 
+
 # FlashPads
 <br />
 <p align="center">
   <a href="https://github.com/alexanderritik/Best-README-Template">
-    <img src="logo.jpeg" alt="Logo" width="80" height="80">
+    <img src="https://user-images.githubusercontent.com/31274880/139500713-88171956-8d46-4df1-86e2-eb26c2730eaa.png" alt="Logo" width="80" height="80">
   </a>
   <p align="center">
 FlashPads is fun way of learning new words, languages, formulas, anything you want to memorize.  </p>
