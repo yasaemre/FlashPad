@@ -52,7 +52,7 @@ https://user-images.githubusercontent.com/31274880/139507060-e6066c16-ddf2-4947-
 
 ## Meta
 
-Emre Yasa – [@YourTwitter](https://twitter.com/Emre61310564) – yasaemre01@gmail..com
+Emre Yasa – [@Emre61310564](https://twitter.com/Emre61310564) – yasaemre01@gmail..com
 
 Distributed under the Emre Yasa license. See ``LICENSE`` for more information.
 
