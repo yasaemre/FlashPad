@@ -16,9 +16,8 @@ FlashPads is fun way of learning new words, languages, formulas, anything you wa
 
 <p> With FlashPads, you can create your own deck on iPhone and it syncs with other devices such as iMac, Macbook through iCloud . FlashPads combines the ease of typing on keyboard and mobility of iPhone. Anytime you create a card or deck, all of your devices will be updated with new cards. Plus, you can make self-assessment by swiping right and left the cards and check your score on scoreboard screen.</p>
 </p>
-
+Here is a video that shows how Flashpads works
 <p>
-
 
 https://user-images.githubusercontent.com/31274880/139506090-80b44f13-8f0c-4d76-9b39-084f08833cd3.mov
 
