@@ -53,6 +53,11 @@ https://user-images.githubusercontent.com/31274880/139507060-e6066c16-ddf2-4947-
 
 ![prototypeFP](https://user-images.githubusercontent.com/31274880/139513034-8d59e655-ccd9-4eda-a98e-3b2046cf4433.png)
 
+##  Responsive design on different devices
+![Screen Shot 2021-10-31 at 10 46 31 AM](https://user-images.githubusercontent.com/31274880/139595677-913cb969-ae94-4e83-9f60-96413c892612.png)
+![Screen Shot 2021-10-31 at 10 46 50 AM](https://user-images.githubusercontent.com/31274880/139595681-7a556231-a114-4a28-93df-9cf6433e3d46.png)
+![Screen Shot 2021-10-31 at 10 47 06 AM](https://user-images.githubusercontent.com/31274880/139595683-e2857046-9643-459f-8ce0-51dc730f3c7d.png)
+
 
 ## Meta
 
