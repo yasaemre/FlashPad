@@ -157,7 +157,7 @@ struct SlideMenu: View {
                             Image("share")
                                 .resizable()
                                 .frame(width:  geo.size.width * 0.17, height: geo.size.height * 0.07)
-                            Text("Share with \nFriends")
+                            Text("Share with FP \nFriends")
                                 .frame(width:  geo.size.width * 0.3, height: geo.size.height * 0.1)
 
                         }
@@ -184,8 +184,7 @@ struct SlideMenu: View {
    public func shareButton() {
         isShareSheetShowing.toggle()
         
-       //https://apps.apple.com/us/app/vintage-house/id1549251393
-       guard let url = URL(string: "https://apps.apple.com/us/app/flashpadapp/id1590421812?mt=12") else {
+       guard let url = URL(string: "https://apps.apple.com/us/app/flashpads/id1590029213#?platform=iphone") else {
            return
        }
        
@@ -198,11 +197,11 @@ struct SlideMenu: View {
     public func shareDesktopApp() {
          isShareSheetShowing.toggle()
          
-        guard let url = URL(string: "https://apps.apple.com/us/app/flashpadapp/id1590421812?mt=12") else {
+        guard let url = URL(string: "https://apps.apple.com/us/app/flashpads/id1590029213") else {
             return
         }
         
-         let activityView = UIActivityViewController(activityItems: ["To download the Flashpad Desktop app, please click the link below ->", url], applicationActivities: nil)
+         let activityView = UIActivityViewController(activityItems: ["To download the Flashpad Desktop app ->", url], applicationActivities: nil)
     
          
          UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)

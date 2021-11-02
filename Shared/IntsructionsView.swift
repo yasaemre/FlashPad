@@ -41,7 +41,7 @@ struct IntsructionsView: View {
                                         Text("Create Deck")
                                             .bold()
                                             .font(.system(size: 24))
-                                        Text("On the home screen, click the plus button to create a new deck. To populate the deck with flash cards, tap the deck and navigate the edit screen. ")
+                                        Text("On the home screen, click the plus button to create a new deck. To populate the deck with flash cards, tap the deck and navigate the edit screen.")
                                         Text("Edit Deck")
                                             .bold()
                                             .font(.system(size: 24))
@@ -53,7 +53,7 @@ struct IntsructionsView: View {
                                         Text("Liked Cards")
                                             .bold()
                                             .font(.system(size: 24))
-                                        Text("While studying a deck, pick the card you like by clicking heart button. The card you liked on each deck will show up on liked screen all togather. Liked screen is the one having heart icon on tab bar on home screen.")
+                                        Text("While studying a deck, pick the card you like by clicking heart button. The card you liked on each deck will show up on liked screen all together. Liked screen is the one having heart icon on tab bar on home screen.")
                                     }
                                   
                                 }

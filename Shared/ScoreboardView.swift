@@ -105,10 +105,8 @@ struct ScoreboardView: View {
     
     public func shareButton() {
          isShareSheetShowing.toggle()
-         // Subtitute the url with FlashPad
-        //https://apps.apple.com/us/app/vintage-house/id1549251393
         let score = String(round(selectedDeck.correctRate))
-        guard let deckName = selectedDeck.deckName, let url = URL(string: "https://apps.apple.com/us/app/vintage-house/id1549251393") else {
+        guard let deckName = selectedDeck.deckName, let url = URL(string: "https://apps.apple.com/us/app/flashpads/id1590029213#?platform=iphone") else {
             return
         }
         let activityView = UIActivityViewController(activityItems:["My correct rate on \(deckName) deck is %\(score). You can try FlashPad too. Fun way to memorize anything you need to learn", url], applicationActivities: nil)

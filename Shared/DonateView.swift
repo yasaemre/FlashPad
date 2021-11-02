@@ -33,7 +33,7 @@ struct DonateView: View {
                         .frame(width:  geo.size.width * 0.2, height: geo.size.height * 0.2)
                         .tint(Color.init(hex: "102FC3"))
                     
-                    Text("Support the development to continually improve this app.  FlashPad is a free and open application developed by a solo developer.  The heart and soul of FlashPad is to help our global community user such as yourself.  We are all united to share unlimited assess to this app.  Your donation will keep projects like FlashPad free.  Please help us continue to grow.  Any amount of donation is greatly appreciate or any suggestion on how to improve.  Thank you and we appreciate your support❤️")
+                    Text("Support the development to continually improve this app.  FlashPads is a free and open application developed by a solo developer.  The heart and soul of FlashPads is to help our global community user such as yourself.  We are all united to share unlimited assess to this app.  Your donation will keep projects like FlashPads free.  Please help us continue to grow.  Any amount of donation is greatly appreciated or any suggestion on how to improve.  Thank you and we appreciate your support❤️")
                         .font(.system(size: geo.size.height * 0.023))
                         .foregroundColor(colorScheme == .dark ? .white : .black)
                         .frame(width: geo.size.width * 0.9, height: geo.size.height * 0.4)
