@@ -103,6 +103,8 @@ struct CardView: View {
                                     .font(.custom("Chalkduster", size: 25))
                                     .frame(width: geo.size.width * 0.6, height: geo.size.height * 0.40)
                                     .foregroundColor(.white)
+                                    .minimumScaleFactor(0.70)
+
                             }
                             
                             
@@ -114,6 +116,8 @@ struct CardView: View {
                                     .font(.custom("Chalkduster", size: 25))
                                     .frame(width: geo.size.width * 0.6, height: geo.size.height * 0.40)
                                     .foregroundColor(.white)
+                                    .minimumScaleFactor(0.70)
+
                             }
                             
                             

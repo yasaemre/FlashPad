@@ -109,6 +109,7 @@ struct EditView: View {
                                         .font(.custom("Chalkduster", size: 22))
                                         .foregroundColor(.white)
                                         .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
+                                        .minimumScaleFactor(0.70)
                                         .overlay(Image(systemName: "minus.circle.fill")
                                                     .font(.title)
                                                     .foregroundColor(Color(.systemGray))
@@ -123,6 +124,7 @@ struct EditView: View {
                                     .font(.custom("Chalkduster", size: 20))
                                     .foregroundColor(.white)
                                     .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
+                                    .minimumScaleFactor(0.70)
                                     .overlay(Image(systemName: "minus.circle.fill")
                                                 .font(.custom("Chalkduster", size: 40))
                                                 .foregroundColor(Color(.systemGray))
@@ -140,6 +142,7 @@ struct EditView: View {
                                         .font(.custom("Chalkduster", size: 24))
                                         .foregroundColor(.white)
                                         .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
+                                        .minimumScaleFactor(0.70)
 
                                         .overlay(Image(systemName: "minus.circle.fill")
                                                     .font(.title)
@@ -154,7 +157,7 @@ struct EditView: View {
                                         .font(.custom("Chalkduster", size: 20))
                                         .foregroundColor(.white)
                                         .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
-
+                                        .minimumScaleFactor(0.70)
                                         .overlay(Image(systemName: "minus.circle.fill")
                                                     .font(.title)
                                                     .foregroundColor(Color(.systemGray))

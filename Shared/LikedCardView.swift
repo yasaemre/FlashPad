@@ -79,6 +79,8 @@ struct LikedCardView: View {
                                             .font(.custom("Chalkduster", size: 27))
                                             .frame(width: calculateWidth()-30, height: (UIScreen.main.bounds.height / 2.23))
                                             .foregroundColor(.white)
+                                            .minimumScaleFactor(0.70)
+
                                     }
                                     
 
@@ -89,7 +91,7 @@ struct LikedCardView: View {
                                         Text(likedArrPersistent[index].unwrappedDefinition)
                                             .font(.custom("Chalkduster", size: 27))
                                             .frame(width: calculateWidth()-30, height: (UIScreen.main.bounds.height / 2.23))
-
+                                            .minimumScaleFactor(0.70)
                                             .foregroundColor(.white)
                                     }
 
