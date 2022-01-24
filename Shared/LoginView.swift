@@ -5,9 +5,9 @@
 //  Created by Emre Yasa on 6/17/21.
 //
 import SwiftUI
+import FBSDKLoginKit
 import Firebase
 import AuthenticationServices
-import FBSDKLoginKit
 import GoogleSignIn
 
 struct LoginView: View {

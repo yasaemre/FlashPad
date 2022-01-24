@@ -35,9 +35,7 @@ struct IntsructionsView: View {
                                             .font(.system(size: 28))
                                             .padding()
                                             .lineLimit(2)
-                                        
 
-                                        
                                         Text("Create Deck")
                                             .bold()
                                             .font(.system(size: 24))

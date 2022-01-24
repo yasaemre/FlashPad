@@ -6,6 +6,8 @@
 //
 import SwiftUI
 import Firebase
+import FBSDKLoginKit
+
 
 struct ContentView: View {
 

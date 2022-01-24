@@ -14,11 +14,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FBSDKCoreKit-FacebookSDKStrings.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>FBSDKCoreKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -79,12 +74,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-FlashPad (iOS).xcscheme</key>
+		<key>Pods-FlashPads (iOS).xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-FlashPad (macOS).xcscheme</key>
+		<key>Pods-FlashPads (macOS).xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

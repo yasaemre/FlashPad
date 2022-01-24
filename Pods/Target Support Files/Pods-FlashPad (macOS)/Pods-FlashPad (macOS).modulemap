@@ -1,6 +1,0 @@
-framework module Pods_FlashPad__macOS_ {
-  umbrella header "Pods-FlashPad (macOS)-umbrella.h"
-
-  export *
-  module * { export * }
-}
