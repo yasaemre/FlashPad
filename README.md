@@ -37,6 +37,7 @@ https://user-images.githubusercontent.com/31274880/139507060-e6066c16-ddf2-4947-
 - [x] SwiftUI
 - [x] Coredata
 - [x] CloudKit
+- [x] StoreKit
 - [x] FBSDK
 - [x] Google SDK
 - [x] Apple Login
